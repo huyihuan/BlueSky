@@ -1,0 +1,164 @@
+﻿/* CSS Document */
+/*全局样式*/
+*{margin:0;padding:0;}
+html,body,form{
+	color:#000;
+	background:#fff;
+	font:14px "宋体";
+	width:100%;
+	height:100%;
+}
+
+.Box{
+    overflow:hidden;
+    height:500px;
+    width:100%;
+}
+
+div.MenuItem
+{
+    font-size:12px;
+    padding-left:2px;
+    padding-right:5px;
+    color:Black;
+    height:19px;
+    line-height:19px;
+    }
+div.MenuItemBox
+{
+    height:21px;
+    }
+div.MenuItemNormal
+{
+   border:none;
+   background-color:#FFFFFF;   
+}
+
+div.MenuItemActive
+{
+   border:solid 1px #999999;
+   background-color:#F5F5F4;
+}
+
+/*系统功能树*/
+
+.treelist
+{
+    height:100%;
+    width:100%;
+    overflow:auto;
+    font-size:12px;
+    color:Black;
+    }
+    
+.treelist span
+{
+    display:block;
+    float:left;
+}
+    
+.tree-node
+{
+    width:100%;
+    height:20px;
+    border:none;
+    background-color:#FFFFFF;
+    display:inline-block;
+}
+.tree-nodes-box
+{
+    width:100%;
+    height:auto;
+    display:none;
+    }
+    
+.tree-node-head-normal
+{
+    width:auto;
+    height:18px;
+    border:solid 1px #FFFFFF;
+    background-color:#FFFFFF;
+    cursor:pointer;
+    padding-left:2px;
+    padding-right:5px;
+    }
+    
+.tree-node-head-active
+{
+    width:auto;
+    height:18px;
+    border:solid 1px #999999;
+    background-color:#F5F5F4;
+    cursor:pointer;
+    padding-left:2px;
+    padding-right:5px;
+    }
+    
+.tree-node-head-hover
+{
+    width:auto;
+    height:18px;
+    border:solid 1px #999999;
+    background-color:#E8E8E8;
+    cursor:pointer;
+    padding-left:2px;
+    padding-right:5px;
+    }
+    
+.tree-node-head-icon-leaf
+{
+    width:20px;
+    height:18px;
+    border:none;
+    background:url(../image/TreeImages/leaf.gif) left center no-repeat;
+    }
+.tree-node-folder-normal
+{
+    width:20px;
+    height:18px;
+    border:none;
+    background:url(../image/TreeImages/folder_normal.gif) left center no-repeat;
+    }
+.tree-node-folder-active
+{
+    width:20px;
+    height:18px;
+    border:none;
+    background:url(../image/TreeImages/folder_active.gif) left center no-repeat;
+    }
+.tree-node-head-text
+{
+    width:auto;
+    height:18px;
+    line-height:18px;
+    }
+.tree-node-head-text a
+{
+    color:#000000;
+    text-decoration:none;
+    outline:none;
+    }
+    
+.tree-node-dot-plus{background:url(../image/TreeImages/plus.gif) top right no-repeat;}
+.tree-node-dot-minus{background:url(../image/TreeImages/minus.gif) top right no-repeat;}
+.tree-node-dot-first-plus{background:url(../image/TreeImages/firstPlus.gif) top right no-repeat;}
+.tree-node-dot-last-plus{background:url(../image/TreeImages/lastPlus.gif) top right no-repeat;}
+.tree-node-dot-first-minus{background:url(../image/TreeImages/firstMinus.gif) top right no-repeat;}
+.tree-node-dot-last-minus{background:url(../image/TreeImages/lastMinus.gif) top right no-repeat;}
+.tree-node-branch-line
+{
+    background-image:url(../image/TreeImages/line.gif);
+    background-position:9px 1px !important;
+    background-position:center 1px;
+    background-repeat:repeat-y;
+}
+.tree-node-branch-middle{background:url(../image/TreeImages/middleLine.gif) top right no-repeat;}
+.tree-node-branch-last{background:url(../image/TreeImages/lastLine.gif) top right no-repeat;}
+.tree-node-branch-first{background:url(../image/TreeImages/firstLine.gif) top right no-repeat;}
+.tree-node-branch-empty{background:#FFFFFF;}
+.tree-node-branch-common
+{
+    width:20px;
+    height:20px;
+    border:none;
+}

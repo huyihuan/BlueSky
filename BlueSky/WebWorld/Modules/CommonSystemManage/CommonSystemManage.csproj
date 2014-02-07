@@ -1,0 +1,195 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16E85D0B-CDFA-49FF-9D6F-E6A3D4D5655E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebWorld.Modules.CommonSystemManage</RootNamespace>
+    <AssemblyName>WebWorld.Modules.CommonSystemManage</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Module.cfg.xml" />
+    <Content Include="FunctionAdd.ascx" />
+    <Content Include="FunctionDelete.ascx" />
+    <Content Include="FunctionsManage.ascx" />
+    <Content Include="RoleAdd.ascx" />
+    <Content Include="RoleList.ascx" />
+    <Content Include="SetRoleAction.ascx" />
+    <Content Include="SetRoleFunction.ascx" />
+    <Content Include="UserAdd.ascx" />
+    <Content Include="UserList.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class\ActionItem.cs" />
+    <Compile Include="Class\FunctionItem.cs" />
+    <Compile Include="Class\FunctionUtil.cs" />
+    <Compile Include="Class\RoleActionItem.cs" />
+    <Compile Include="Class\RoleFunctionItem.cs" />
+    <Compile Include="Class\RoleItem.cs" />
+    <Compile Include="Class\SettingItem.cs" />
+    <Compile Include="Class\UserItem.cs" />
+    <Compile Include="Class\UserRoleItem.cs" />
+    <Compile Include="FunctionAdd.ascx.cs">
+      <DependentUpon>FunctionAdd.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunctionAdd.ascx.designer.cs">
+      <DependentUpon>FunctionAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionDelete.ascx.cs">
+      <DependentUpon>FunctionDelete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunctionDelete.ascx.designer.cs">
+      <DependentUpon>FunctionDelete.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionsManage.ascx.cs">
+      <DependentUpon>FunctionsManage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunctionsManage.ascx.designer.cs">
+      <DependentUpon>FunctionsManage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionTree.ascx.cs">
+      <DependentUpon>FunctionTree.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunctionTree.ascx.designer.cs">
+      <DependentUpon>FunctionTree.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleAdd.ascx.cs">
+      <DependentUpon>RoleAdd.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoleAdd.ascx.designer.cs">
+      <DependentUpon>RoleAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="RoleList.ascx.cs">
+      <DependentUpon>RoleList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoleList.ascx.designer.cs">
+      <DependentUpon>RoleList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SetRoleAction.ascx.cs">
+      <DependentUpon>SetRoleAction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetRoleAction.ascx.designer.cs">
+      <DependentUpon>SetRoleAction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SetRoleFunction.ascx.cs">
+      <DependentUpon>SetRoleFunction.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetRoleFunction.ascx.designer.cs">
+      <DependentUpon>SetRoleFunction.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAdd.ascx.cs">
+      <DependentUpon>UserAdd.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserAdd.ascx.designer.cs">
+      <DependentUpon>UserAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserList.ascx.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserList.ascx.designer.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FunctionTree.ascx" />
+    <Content Include="Login.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2919</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

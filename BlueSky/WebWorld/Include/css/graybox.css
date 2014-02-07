@@ -1,0 +1,27 @@
+﻿/*Loading Styles*/
+div.grayBox
+{
+    width:100%;
+	height:100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:9998;
+	filter:alpha(Opacity=10);
+	-moz-opacity:0.1;
+	opacity:0.1;
+	background-color:gray;
+    }
+div.graybox-loading
+{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:9999;
+	filter:alpha(Opacity=80);
+	-moz-opacity:0.8;
+	opacity:0.8;
+	background-color:#ffffff;
+}

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Module>
+  <DisplayName>用户管理</DisplayName>
+  <KeyName>CommonUserManage</KeyName>
+  <Description>系统用户管理</Description>
+  <Controller>WebWorld.Modules.CommonUserManage</Controller>
+  <Icon>users</Icon>
+  <Functions>
+    <Function>
+      <DisplayName>用户管理</DisplayName>
+      <Description>系统用户基本管理</Description>
+      <KeyName>UserManage</KeyName>
+      <Actions>
+        <Action>
+          <Name>浏览用户</Name>
+          <Key>UserList</Key>
+          <Description>浏览用户列表</Description>
+          <ActionType>location</ActionType>
+          <ActionValue>http://www.baidu.com</ActionValue>
+        </Action>
+        <Action>
+          
+        </Action>
+      </Actions>
+    </Function>
+    <Function>
+
+    </Function>
+    <Function>
+
+    </Function>
+  </Functions>
+
+</Module>

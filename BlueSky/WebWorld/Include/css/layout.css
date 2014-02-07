@@ -1,0 +1,140 @@
+﻿/* CSS Document */
+/*全局样式*/
+*{margin:0;padding:0;}
+body
+{
+    width:100%;
+    height:100%;
+	color:#000000;
+	background:#ffffff;
+	font:14px "宋体";
+	text-align:center;
+	overflow:hidden;
+}
+
+html,body,form{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+html,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,frame,iframe,table,td,img,tr{
+	margin:0;
+	padding:0;
+	border:none;
+}
+
+/*p段落首行自动缩进2em*/
+p{
+    text-indent:2em;
+    padding:0px;
+    margin:0px;
+    line-height:17px;
+}
+
+select,input,img,select{vertical-align:middle;}
+ul,ol{list-style-type:none;}
+a,input,img{outline: none;}
+div,table{text-align:left;}
+
+/*布局*/
+#divTop{
+    height:40px;
+    width:100%;
+    /*background-color:#F5F5F4;*/
+    background:url(../image/topbackgroundimage.png) left top repeat-x;
+    border:none;
+}
+#divButtom{
+    width:100%;
+    overflow:hidden;
+    margin-top:2px;
+    background-color:Transparent;
+    border:none;
+}
+#divLeft{
+    width:200px;
+    height:100%;
+    float:left;
+    overflow:hidden;
+    background-color:#ffffff;
+    border:solid 1px #BBBBBB;    
+}
+
+#divRight{
+    height:100%;
+    float:right;  
+    overflow:hidden;  
+    background-color:#ffffff;
+}
+#bs_tabFrames
+{
+	overflow:hidden;
+	background-color:#ffffff;
+	border:solid 1px #BBBBBB;
+	border-top:none;
+	}
+#divMenuTitle
+{
+    height:25px;
+    background-color:#F5F5F4;
+    background:url(../image/pop_title_bg.gif) left center repeat-x;
+    width:100%;
+    border-bottom:solid 1px #e2e2e2;
+    color:#444444;
+    font-weight:bold;
+}
+
+#divShowBar
+{
+    width:100%;
+    height:100%;
+    background-color:#F5F5F4;
+    display:none;
+    }
+
+#divFooter
+{
+    width:100%;
+    height:auto;
+    border:none;
+    overflow:hidden;
+    }
+
+/*字体*/
+#divMenuTitleFont
+{
+    
+    }
+
+
+    
+/*通用*/
+.fl{float:left;}
+.fr{float:right;}
+
+
+div.ShowMenuBtn{
+    background-color:#F5F5F4;
+    cursor:pointer;
+}
+    
+div.SmallShowMenuBtn{
+    width:20px;
+    height:25px;
+    text-align:center;
+    line-height:25px;
+}
+
+
+
+font.font-title
+{
+    display:block;
+    overflow:hidden;
+    text-indent:5px;
+    font-size:25px;
+    font-family:"@华文行楷";
+    font-weight:900;
+    color:#192F46;
+    }

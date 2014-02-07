@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebWorld", "WebWorld\WebWorld.csproj", "{1323F955-E05A-42BE-A8D3-2766B10CD263}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSystemBase", "WebSystemBase\WebSystemBase.csproj", "{B28B902C-7EEF-4B0F-ABA2-73E6C0FF4826}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1323F955-E05A-42BE-A8D3-2766B10CD263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1323F955-E05A-42BE-A8D3-2766B10CD263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1323F955-E05A-42BE-A8D3-2766B10CD263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1323F955-E05A-42BE-A8D3-2766B10CD263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28B902C-7EEF-4B0F-ABA2-73E6C0FF4826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28B902C-7EEF-4B0F-ABA2-73E6C0FF4826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28B902C-7EEF-4B0F-ABA2-73E6C0FF4826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28B902C-7EEF-4B0F-ABA2-73E6C0FF4826}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

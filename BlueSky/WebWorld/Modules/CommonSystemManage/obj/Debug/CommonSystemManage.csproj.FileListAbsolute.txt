@@ -1,0 +1,10 @@
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.Modules.CommonSystemManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.Modules.CommonSystemManage.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\WebWorld.Modules.CommonSystemManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\WebWorld.Modules.CommonSystemManage.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonSystemManage\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonSystemManage\obj\Debug\WebWorld.Modules.CommonSystemManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonSystemManage\obj\Debug\WebWorld.Modules.CommonSystemManage.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.CommonSystemManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.CommonSystemManage.pdb

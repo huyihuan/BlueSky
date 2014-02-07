@@ -1,0 +1,5 @@
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.Modules.CommonUserManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.Modules.CommonUserManage.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\WebWorld.Modules.CommonUserManage.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\CommonUserManage\obj\Debug\WebWorld.Modules.CommonUserManage.pdb
