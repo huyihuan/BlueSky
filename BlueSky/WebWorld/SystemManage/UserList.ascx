@@ -2,8 +2,8 @@
 <%@ Register TagPrefix="BS" Namespace="WebSystemBase.UserControls" Assembly="WebSystemBase" %>
 <script type="text/javascript">
     $(document).ready(function() {
-        window.formUtil.initList({ listObject: ".list-container", minusHeight: 58, resize: true });
-        window.formUtil.initCheckBox({ listElement: ".table-list", rememberValue:true, rowHover: true, rowClick: true });
+        window.formUtil.initList({ listObject: ".list-container", minusHeight: 58, resize: true, minusWidth: 0 });
+        window.formUtil.initCheckBox({ listElement: ".table-list", rememberValue: true, rowHover: true, rowClick: true });
     });
 </script>
 
@@ -22,24 +22,26 @@
                     <tr>
                         <td align="center" class="td-header td-header-select"><input type="checkbox" class="cbSelectAll" /></td>
                         <td align="center" class="td-header td-header-order">序号</td>
-                        <td align="center" class="td-header">帐号</td>
-                        <td align="center" class="td-header">姓名</td>
-                        <td align="center" class="td-header">性别</td>
-                        <td align="center" class="td-header">QQ</td>
-                        <td align="center" class="td-header">角色</td>
-                        <td align="center" class="td-header-last">Email</td>
+                        <td align="center" class="td-header" width="100">帐号</td>
+                        <td align="center" class="td-header" width="100">姓名</td>
+                        <td align="center" class="td-header" width="50">性别</td>
+                        <td align="center" class="td-header" width="100">QQ</td>
+                        <td align="center" class="td-header" width="100">角色</td>
+                        <td align="center" class="td-header" width="100">Email</td>
+                        <td class="td-header-last"></td>
                     </tr>
                     <asp:Repeater ID="rptItems" runat="server" OnItemDataBound="rptItems_ItemDataBound">
                     <ItemTemplate>
                         <tr>
                             <td align="center" class="td-content td-content-select"><input type="checkbox" id="cbSelect" runat="server" class="cbSelect" /></td>
                             <td align="center" class="td-content td-content-order"><asp:Label ID="lbl_OrderId" runat="server"></asp:Label></td>
-                            <td class="td-content"><asp:Label ID="lbl_UserName" runat="server"></asp:Label></td>
-                            <td class="td-content"><asp:Label ID="lbl_NickName" runat="server"></asp:Label></td>
-                            <td align="center" class="td-content"><asp:Label ID="lbl_Gender" runat="server"></asp:Label></td>
-                            <td align="center" class="td-content"><asp:Label ID="lbl_QQ" runat="server"></asp:Label></td>
-                            <td align="center" class="td-content"><asp:Label ID="lbl_PropertyRoleName" runat="server"></asp:Label></td>
-                            <td class="td-content-last"><asp:Label ID="lbl_Email" runat="server"></asp:Label></td>
+                            <td class="td-content"><div style="width:100px;"><asp:Label ID="lbl_UserName" runat="server"></asp:Label></div></td>
+                            <td class="td-content"><div style="width:100px;"><asp:Label ID="lbl_NickName" runat="server"></asp:Label></div></td>
+                            <td align="center" class="td-content text-center"><div style="width:50px;"><asp:Label ID="lbl_PropertyGender" runat="server"></asp:Label></div></td>
+                            <td align="center" class="td-content"><div style="width:100px;"><asp:Label ID="lbl_QQ" runat="server"></asp:Label></div></td>
+                            <td align="center" class="td-content"><div style="width:100px;"><asp:Label ID="lbl_PropertyRoleName" runat="server"></asp:Label></div></td>
+                            <td class="td-content"><div style="width:100px;"><asp:Label ID="lbl_Email" runat="server"></asp:Label></div></td>
+                            <td class="td-content-last td-content-empty"></td>
                         </tr>
                     </ItemTemplate>
                     </asp:Repeater>
@@ -49,7 +51,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <BS:PagerNavication ID="PagerNavication" PageSizeList="10,15,20,30,50,100" PageSize="10" runat="server" OnPagerIndexChaged="PagerNavication_PagerIndexChanged"></BS:PagerNavication>
+            <BS:PagerNavication ID="PagerNavication" PageSizeList="10,15,20,30,50,100" PageSize="10" runat="server" Refreshable="true" OnPagerIndexChaged="PagerNavication_PagerIndexChanged"></BS:PagerNavication>
         </td>
     </tr>
 </table>

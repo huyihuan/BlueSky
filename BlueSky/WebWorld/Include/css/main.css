@@ -62,6 +62,10 @@ font.font-hintBold
 	font-weight:bold;
 	margin:0px 2px 0px 2px;
 }
+.text-center
+{
+    text-align:center;
+	}
 
 /*容器通用样式*/
 div.content
@@ -223,6 +227,7 @@ DIV.toolBar
     padding-left:0px;
     padding-right:0px;
     background:#E9ECF0 url(../image/title_image.gif) left top repeat-x;
+    white-space:nowrap;
     }
 A.action-normal
 {
@@ -322,7 +327,6 @@ td.td-content,th.td-content
     padding:2px;
     font-size:12px;
     white-space:nowrap;
-    text-overflow: ellipsis;  
 }
 td.td-content-last,th.td-content-last
 {
@@ -333,8 +337,18 @@ td.td-content-last,th.td-content-last
     padding:2px;
     font-size:12px;
     white-space:nowrap;
-    text-overflow: ellipsis;  
 }
+td.td-content div,td.td-content-last div
+{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	}
+td.td-content-empty,th.td-content-empty
+{
+	border:none;
+	background:#FFFFFF;
+	}
 td.td-header-select,th.td-header-select
 {
 	width:25px;
@@ -367,7 +381,8 @@ tr.tr-row-active
 }
 tr.tr-row-selected
 {
-    background:#EEEEEE;
+    /*background:#EEEEEE;*/
+	background:#EDF2FA;
 }
 div.action-search-panel
 {
@@ -401,6 +416,7 @@ A.pager_first{ background:url(../image/first.gif) center center no-repeat; }
 A.pager_prev{ background:url(../image/prev.gif) center center no-repeat; }
 A.pager_next{ background:url(../image/next.gif) center center no-repeat; }
 A.pager_last{ background:url(../image/last.gif) center center no-repeat; }
+A.pager_refresh{ background:url(../image/arrow_refresh.png) center center no-repeat; }
 A.pager_first_disabled{ background:url(../image/first.gif) center center no-repeat;cursor:auto; }
 A.pager_prev_disabled{ background:url(../image/prev.gif) center center no-repeat;cursor:default; }
 A.pager_next_disabled{ background:url(../image/next.gif) center center no-repeat;cursor:default; }

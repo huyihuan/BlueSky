@@ -54,7 +54,7 @@
 		  <Height>400</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -76,7 +76,7 @@
 		  <Height>400</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -98,7 +98,7 @@
 		  <Height></Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -120,7 +120,7 @@
 		  <Height>400</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -170,10 +170,10 @@
 		  <EntityCount>0</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>450</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -192,10 +192,10 @@
 		  <EntityCount>1</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>450</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
     </Action>
@@ -217,7 +217,7 @@
           <Height>250</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -239,7 +239,7 @@
           <Height>400</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -258,10 +258,10 @@
 		  <EntityCount>1</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>500</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -279,11 +279,11 @@
           <Target>top</Target>
           <EntityCount>1</EntityCount>
           <IsPopup>1</IsPopup>
-          <Width>700</Width>
+          <Width>600</Width>
           <Height>400</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -380,7 +380,7 @@
 		  <Height>300</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -402,7 +402,7 @@
 		  <Height>300</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -421,10 +421,10 @@
 		  <EntityCount>1</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>500</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -442,11 +442,11 @@
           <Target>top</Target>
           <EntityCount>1</EntityCount>
           <IsPopup>1</IsPopup>
-          <Width>700</Width>
+          <Width>600</Width>
           <Height>400</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -468,7 +468,7 @@
 		  <Height></Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -518,10 +518,10 @@
 		  <EntityCount>0</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>450</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -540,10 +540,10 @@
 		  <EntityCount>1</EntityCount>
 		  <IsPopup>1</IsPopup>
 		  <Width>500</Width>
-		  <Height>600</Height>
+		  <Height>450</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -565,7 +565,7 @@
 		  <Height>200</Height>
 		  <IsResize>1</IsResize>
 		  <IsMove>1</IsMove>
-		  <IsIncludeMinBox>1</IsIncludeMinBox>
+		  <IsIncludeMinBox>2</IsIncludeMinBox>
 		  <IsIncludeMaxBox>1</IsIncludeMaxBox>
 		  <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -640,7 +640,7 @@
           <Height>520</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>
@@ -662,7 +662,7 @@
           <Height>200</Height>
           <IsResize>1</IsResize>
           <IsMove>1</IsMove>
-          <IsIncludeMinBox>1</IsIncludeMinBox>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
           <IsIncludeMaxBox>1</IsIncludeMaxBox>
           <IsShowInTaskBar>1</IsShowInTaskBar>
         </Action>

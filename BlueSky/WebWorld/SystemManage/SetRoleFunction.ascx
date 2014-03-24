@@ -14,6 +14,8 @@
         windowArguments.resize = true;
         windowArguments.move = true;
         top.windowFactory.topFocusForm(windowArguments);
+
+        Utils.eventPrevent();
     }
 </script>
 

@@ -4,13 +4,14 @@
 <html>
 <head>
     <title></title>
+    <script src="Include/js/Bluesky.js" type="text/javascript"></script>
     <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/graybox.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/graybox.js" type="text/javascript"></script>
     <link href="Include/css/layout.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/layout.js" type="text/javascript"></script>
     <link href="Include/css/window.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/window.js" type="text/javascript"></script>
+    <script src="Include/js/Bluesky.window.js" type="text/javascript"></script>
     <script src="Include/js/utils.js" type="text/javascript"></script>
     <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/tabs.js" type="text/javascript"></script>

@@ -8,10 +8,9 @@
 * formUtil.actionDone(_actionArguments):action操作的执行方法。
 ************************************************************************************
 */
-(function(w) { w.formUtil = new Object(); })(window);
-
-(function(w) {
-    w.formUtil.initCheckBox = function(_listArguments) {
+(function(_argument) {
+    var _ = _argument;
+    _.initCheckBox = function(_listArguments) {
         if (undefined == _listArguments || null == _listArguments)
             return;
         var listElement = $(_listArguments.listElement);
@@ -36,10 +35,10 @@
                     }
                 }
                 if (_listArguments.rememberValue == true && cbChecked)
-                    formUtil.addSelectedItem($(this).val());
+                    _.addSelectedItem($(this).val());
             });
             if (_listArguments.rememberValue == true && !cbChecked)
-                formUtil.setSelectedItems("");
+                _.setSelectedItems("");
         });
 
         $(cbSelect).bind("click", function(event) {
@@ -60,9 +59,9 @@
             }
             if (_listArguments.rememberValue == true) {
                 if (bChecked)
-                    formUtil.addSelectedItem($(this).val());
+                    _.addSelectedItem($(this).val());
                 else
-                    formUtil.removeSelectedItem($(this).val());
+                    _.removeSelectedItem($(this).val());
             }
             event.stopPropagation();
         });
@@ -93,9 +92,9 @@
                 }
                 if (_listArguments.rememberValue == true) {
                     if (bChecked)
-                        formUtil.addSelectedItem($(cbSelectSingle).val());
+                        _.addSelectedItem($(cbSelectSingle).val());
                     else
-                        formUtil.removeSelectedItem($(cbSelectSingle).val());
+                        _.removeSelectedItem($(cbSelectSingle).val());
                 }
                 event.stopPropagation();
             });
@@ -116,15 +115,15 @@
                 }
                 if (_listArguments.rememberValue == true) {
                     if (bChecked)
-                        formUtil.addSelectedItem($(this).val());
+                        _.addSelectedItem($(this).val());
                     else
-                        formUtil.removeSelectedItem($(this).val());
+                        _.removeSelectedItem($(this).val());
                 }
             });
         }
     }
-    w.formUtil.hiddenSelect = null;
-    w.formUtil.addSelectedItem = function(_item) {
+    _.hiddenSelect = null;
+    _.addSelectedItem = function(_item) {
         if (!_item || "" == _item)
             return;
         if (!this.hiddenSelect) {
@@ -136,7 +135,7 @@
         }
     }
 
-    w.formUtil.removeSelectedItem = function(_item) {
+    _.removeSelectedItem = function(_item) {
         if (!_item || "" == _item)
             return;
         if (!this.hiddenSelect) {
@@ -164,49 +163,49 @@
         }
     }
 
-    w.formUtil.setSelectedItems = function(_items) {
+    _.setSelectedItems = function(_items) {
         if (!this.hiddenSelect) {
             this.hiddenSelect = document.getElementById("hiddenSelectedValue");
         }
         this.hiddenSelect.value = _items;
     }
 
-    w.formUtil.listObject = null;
-    w.formUtil.initList = function(_listArguments) {
-        this.listObject = $(_listArguments.listObject);
-        if (!this.listObject)
+    _.listObject = null;
+    _.initList = function(_listArguments) {
+        _.listObject = $(_listArguments.listObject);
+        if (!_.listObject)
             return;
-        if (_listArguments.height) {
-            this.listObject.height(_listArguments.height);
+        if (undefined != _listArguments.height) {
+            _.listObject.height(_listArguments.height);
         }
-        else if (_listArguments.minusHeight && _listArguments.minusHeight >= 0) {
-            this.listObject.height($(window).height() - _listArguments.minusHeight);
+        else if (undefined != _listArguments.minusHeight && _listArguments.minusHeight >= 0) {
+            _.listObject.height($(window).height() - _listArguments.minusHeight);
         }
-        if (_listArguments.width) {
-            this.listObject.width(_listArguments.width);
+        if (undefined != _listArguments.width) {
+            _.listObject.width(_listArguments.width);
         }
-        else if (_listArguments.minusWidth && _listArguments.minusWidth >= 0) {
-            this.listObject.width($(window).width() - _listArguments.minusWidth);
+        else if (undefined != _listArguments.minusWidth && _listArguments.minusWidth >= 0) {
+            _.listObject.width($(window).width() - _listArguments.minusWidth);
         }
 
         if (_listArguments.resize == true) {
             $(window).bind("resize", function() {
-            if (_listArguments.minusHeight && _listArguments.minusHeight >= 0) {
-                    window.formUtil.listObject.height($(window).height() - _listArguments.minusHeight);
+                if (undefined != _listArguments.minusHeight && _listArguments.minusHeight >= 0) {
+                    _.listObject.height($(window).height() - _listArguments.minusHeight);
                 }
-                if (_listArguments.minusWidth && _listArguments.minusWidth >= 0) {
-                    window.formUtil.listObject.width($(window).width() - _listArguments.minusWidth);
+                if (undefined != _listArguments.minusWidth && _listArguments.minusWidth >= 0) {
+                    _.listObject.width($(window).width() - _listArguments.minusWidth);
                 }
             });
         }
     }
 
-    w.formUtil.refreshWindow = function() {
+    _.refreshWindow = function() {
         window.location.href = window.location.href;
     }
 
     //存在bug需要完善：显示查询panel之后，如果改变浏览器窗口大小，那么列表尺寸就又会发生变化
-    w.formUtil.toggleSearch = function(event) {
+    _.toggleSearch = function(event) {
         var searchPanel = $(".action-search-panel");
         if (!searchPanel)
             return;
@@ -236,17 +235,17 @@
         }
     }
 
-    w.formUtil.actionDone = function(_actionArguments) {
+    _.actionDone = function(_actionArguments) {
         if (!_actionArguments)
             return;
         if (undefined == _actionArguments.actionType || null == _actionArguments.actionKey) {
             alert("操作无效！");
             return;
         }
-        var selids = "";
+        var selectValue = "";
         if (_actionArguments.entityCount != 0) {
-            selids = $("#hiddenSelectedValue").val() + "";
-            var ncount = "" == selids ? 0 : selids.split(';').length;
+            selectValue = $("#hiddenSelectedValue").val() + "";
+            var ncount = "" == selectValue ? 0 : selectValue.split(';').length;
             if (_actionArguments.entityCount == -1 && ncount == 0) {
                 alert("请选择要操作的记录！");
                 return;
@@ -256,29 +255,33 @@
                 return;
             }
         }
+        //如果是弹出窗体，则存储窗体相关变量
+        var oArg = new Object();
+        if (_actionArguments.popup == true) {
+            oArg.width = _actionArguments.width;
+            oArg.height = _actionArguments.height;
+            oArg.title = _actionArguments.title;
+            oArg.target = "top";
+            oArg.resize = _actionArguments.resize;
+            oArg.maxbox = _actionArguments.maxbox;
+            oArg.minbox = _actionArguments.minbox;
+            oArg.move = _actionArguments.move;
+            oArg.iconURL = _actionArguments.iconURL;
+        }
+
         if (_actionArguments.actionType == 'normal') {
             var strUrl = "Window.aspx?fn=" + _actionArguments.fn + "&akey=" + _actionArguments.actionKey;
             if (undefined != _actionArguments.addinParameters && "" != _actionArguments.addinParameters)
                 strUrl += "&" + _actionArguments.addinParameters;
             if (_actionArguments.entityCount != 0) {
-                strUrl += (_actionArguments.entityCount == 1 ? "&id=" : "&ids=") + selids;
+                strUrl += (_actionArguments.entityCount == 1 ? "&id=" : "&ids=") + selectValue;
             }
             var strExtraParaeters = $("#hiddenExtraParameters").val();
             if (undefined != strExtraParaeters && null != strExtraParaeters && "" != strExtraParaeters)
                 strUrl += "&" + strExtraParaeters;
             if (_actionArguments.popup == true) {
-                var windowArguments = new Object();
-                windowArguments.width = _actionArguments.width;
-                windowArguments.height = _actionArguments.height;
-                windowArguments.title = _actionArguments.title;
-                windowArguments.url = strUrl;
-                windowArguments.target = "top";
-                windowArguments.resize = _actionArguments.resize;
-                windowArguments.maxbox = _actionArguments.maxbox;
-                windowArguments.minbox = _actionArguments.minbox;
-                windowArguments.move = _actionArguments.move;
-                windowArguments.iconURL = _actionArguments.iconURL;
-                top.windowFactory.topFocusForm(windowArguments);
+                oArg.url = strUrl;
+                top.windowFactory.topFocusForm(oArg);
             }
             else {
                 window.location.href = strUrl;
@@ -287,9 +290,18 @@
         else if (_actionArguments.actionType == 'javascript') {
             eval(_actionArguments.actionValue);
         }
+        else if (_actionArguments.actionType == 'http') {
+            if (_actionArguments.popup == true) {
+                oArg.url = _actionArguments.actionValue;
+                top.bs_event_createWorkWindow(oArg);
+            }
+            else {
+                window.location.href = _actionArguments.actionValue; ;
+            }
+        }
         else {
             alert("未识别的action类型！");
             return;
         }
     }
-})(window);
+})(window.formUtil = window.formUtil || {});

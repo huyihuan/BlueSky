@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Reflection;
 using System.Text;
-using DataBase.DBHelper;
+using DataBase.DBAccess;
 using System.Data;
 using System.Collections;
 
@@ -14,44 +14,6 @@ namespace DataBase
     {
         static string[] alInt = new string[] { "int32", "int", "double", "long" };
         static string[] alString = new string[] { "string", "datetime" };
-
-        //private object __currentObj;
-        //private Type __currentType;
-        //private FieldInfo[] __alFields;
-        //private string __currentKeyName;
-        //private object __currentKeyValue;
-        //private string __currentTableName;
-
-        //public object CurrentObj
-        //{
-        //    get { return this.__currentObj; }
-        //    set { this.__currentObj = value; }
-        //}
-        //public Type CurrentType
-        //{
-        //    get { return this.__currentType; }
-        //    set { this.__currentType = value; }
-        //}
-        //public FieldInfo[] CurrentFields
-        //{
-        //    get { return this.__alFields; }
-        //    set { this.__alFields = value; }
-        //}
-        //public string CurrentKeyName
-        //{
-        //    get { return this.__currentKeyName; }
-        //    set { this.__currentKeyName = value; }
-        //}
-        //public object CurrentKeyValue
-        //{
-        //    get { return this.__currentKeyValue; }
-        //    set { this.__currentKeyValue = value; }
-        //}
-        //public string CurrentTableName
-        //{
-        //    get { return this.__currentTableName; }
-        //    set { this.__currentTableName = value; }
-        //}
 
         private ActiveEntity _activeEntity;
 
@@ -155,23 +117,40 @@ namespace DataBase
 
         public int EntityCount()
         {
+            string strWhere = _CreateSelectWhere(this);
+            string strCacheKey = string.Format("{0}-count-{1}", this._activeEntity.TableName, strWhere);
+            if (CacheUtil.IsExistCache(strCacheKey))
+            {
+                object oCache = CacheUtil.GetValue(strCacheKey);
+                if (null != oCache)
+                    return (int)oCache;
+            }
             HSqlFactory query = new HSqlFactory();
             query.SqlType = HSqlType.Select;
             query.SqlTableName = this._activeEntity.TableName;
             query.SqlContent = "count(1)";
-            query.SqlWhereString = _CreateSelectWhere(this);
+            query.SqlWhereString = strWhere;
             object oCount = HDBOperation.QueryScalar(query.ToString());
+            CacheUtil.SetValue(strCacheKey, oCount);
             return (int)oCount;
         }
 
         public int EntityCount(string _strFilter)
         {
+            string strCacheKey = string.Format("{0}-count-{1}", this._activeEntity.TableName, _strFilter);
+            if (CacheUtil.IsExistCache(strCacheKey))
+            {
+                object oCache = CacheUtil.GetValue(strCacheKey);
+                if (null != oCache)
+                    return (int)oCache;
+            }
             HSqlFactory query = new HSqlFactory();
             query.SqlType = HSqlType.Select;
             query.SqlTableName = this._activeEntity.TableName;
             query.SqlContent = "count(1)";
             query.SqlWhereString = _strFilter;
             object oCount = HDBOperation.QueryScalar(query.ToString());
+            CacheUtil.SetValue(strCacheKey, oCount);
             return (int)oCount;
         }
 
@@ -182,20 +161,17 @@ namespace DataBase
             if (CacheUtil.IsExistCache(strCacheKey))
             {
                 object oCache = CacheUtil.GetValue(strCacheKey);
-                if (null != oCache)
-                    return (object[])oCache;
+                //if (null != oCache)
+                return (object[])oCache;
             }
-            List<string> lt = new List<string>();
-            for (int i = 0; i < this._activeEntity.ObjectFields.Length; i++)
-                lt.Add(string.Format("[{0}]", this._activeEntity.ObjectFields[i].Name));
             HSqlFactory query = new HSqlFactory();
             query.SqlType = HSqlType.Select;
             query.SqlTableName = this._activeEntity.TableName;
-            query.SqlContent = string.Join(",", lt.ToArray());
+            query.SqlContent = this._activeEntity.SelectContent;
             query.SqlWhereString = strWhere;
             DataSet ds = HDBOperation.QueryDataSet(query.ToString());
             object[] alObjects = ChangeTableToEntitys(this, ds.Tables[0]);
-            CacheUtil.SetValue(this._activeEntity.TableName, alObjects);
+            CacheUtil.SetValue(strCacheKey, alObjects);
             return alObjects;
         }
 
@@ -208,13 +184,10 @@ namespace DataBase
                 if (null != oCache)
                     return (object[])oCache;
             }
-            List<string> lt = new List<string>();
-            for (int i = 0; i < this._activeEntity.ObjectFields.Length; i++)
-                lt.Add(string.Format("[{0}]", this._activeEntity.ObjectFields[i].Name));
             HSqlFactory query = new HSqlFactory();
             query.SqlType = HSqlType.Select;
             query.SqlTableName = this._activeEntity.TableName;
-            query.SqlContent = string.Join(",", lt.ToArray());
+            query.SqlContent = this._activeEntity.SelectContent;
             query.SqlWhereString = _strFilter;
             DataSet ds = HDBOperation.QueryDataSet(query.ToString());
             object[] alObjects = ChangeTableToEntitys(this, ds.Tables[0]);
@@ -238,30 +211,44 @@ namespace DataBase
                 if (null != oCache)
                     return (object[])oCache;
             }
-            List<string> lt = new List<string>();
-            for (int i = 0; i < this._activeEntity.ObjectFields.Length; i++)
-                lt.Add(string.Format("[{0}]", this._activeEntity.ObjectFields[i].Name));
             HSqlFactory query = new HSqlFactory();
             query.SqlType = HSqlType.Select;
             query.SqlTableName = this._activeEntity.TableName;
 
-            #region 分页方案(not in),在百万条数据内效率高
-            //query.SqlContent = string.Format("top {0} {1}", _nPageSize, string.Join(",", lt.ToArray()));
-            //if (!string.IsNullOrEmpty(_strFilter))
-            //    query.SqlWhereString += _strFilter + " and ";
-            //query.SqlWhereString += string.Format("{0} not in (select top (({1} - 1) * {2}) {0} from {3} order by {0} )", this._activeEntity.KeyName, _nPageIndex, _nPageSize, this._activeEntity.TableName);
-            //if (!string.IsNullOrEmpty(_strSort))
-            //    query.SqlWhereString += " order by " + _strSort;
-            #endregion
-
-            #region 分页方案(ROW_NUMBER()),在百万条数据以上效率高
-            query.SqlContent = string.Format("{0} from (select ROW_NUMBER() over(order by {1}) as nRow,{0}", string.Join(",", lt.ToArray()), this._activeEntity.KeyName);
             if (!string.IsNullOrEmpty(_strFilter))
-                query.SqlWhereString += string.Format("where {0} ", _strFilter);
-            query.SqlWhereString += string.Format(") xTemp where nRow >= (({0} - 1) * {1} + 1) and nRow <= ({0}*{1})", _nPageIndex, _nPageSize);
-            if (!string.IsNullOrEmpty(_strSort))
-                query.SqlWhereString += " order by " + _strSort;
-            #endregion
+                _strFilter = string.Format("({0})", _strFilter);
+            if (_nPageIndex == 1)
+            {
+                #region 如果查询第一页的数据采用top方式，提高效率
+                query.SqlContent = string.Format("top {0} {1}", _nPageSize, this._activeEntity.SelectContent);
+                if (!string.IsNullOrEmpty(_strFilter))
+                    query.SqlWhereString = _strFilter;
+                if (!string.IsNullOrEmpty(_strSort))
+                    query.SqlWhereString += " order by " + _strSort;
+                #endregion
+            }
+            else if (_nPageIndex * _nPageSize <= 1000000)
+            {
+                #region 分页方案(not in),在百万条数据内效率高
+                query.SqlContent = string.Format("top {0} {1}", _nPageSize, this._activeEntity.SelectContent);
+                if (!string.IsNullOrEmpty(_strFilter))
+                    query.SqlWhereString += _strFilter + " and ";
+                query.SqlWhereString += string.Format("{0} not in (select top (({1} - 1) * {2}) {0} from {3}{4} order by {0})", this._activeEntity.KeyName, _nPageIndex, _nPageSize, this._activeEntity.TableName, string.IsNullOrEmpty(_strFilter) ? "" : (" where " + _strFilter));
+                if (!string.IsNullOrEmpty(_strSort))
+                    query.SqlWhereString += " order by " + _strSort;
+                #endregion
+            }
+            else
+            {
+                #region 分页方案(ROW_NUMBER()),在百万条数据以上效率高
+                query.SqlContent = string.Format("{0} from (select ROW_NUMBER() over(order by {1}) as nRow,{0}", this._activeEntity.SelectContent, this._activeEntity.KeyName);
+                if (!string.IsNullOrEmpty(_strFilter))
+                    query.SqlWhereString += string.Format("where {0} ", _strFilter);
+                query.SqlWhereString += string.Format(") xTemp where nRow >= (({0} - 1) * {1} + 1) and nRow <= ({0}*{1})", _nPageIndex, _nPageSize);
+                if (!string.IsNullOrEmpty(_strSort))
+                    query.SqlWhereString += " order by " + _strSort;
+                #endregion
+            }
 
             DataSet ds = HDBOperation.QueryDataSet(query.ToString());
             object[] alObjects = ChangeTableToEntitys(this, ds.Tables[0]);
@@ -272,15 +259,15 @@ namespace DataBase
         public int EntitySave()
         {
             bool IsEntity = this._activeEntity.ActiveObject is DataBase.Interface.IEntity;
-            if (!IsEntity || null == this._activeEntity.KeyName || "" == this._activeEntity.KeyName)
+            if (!IsEntity || string.IsNullOrEmpty(this._activeEntity.KeyName))
                 return -1;
             int nKeyValue = Util.ParseInt(this._activeEntity.KeyValue + "", -1);
+            int nNum = this._activeEntity.ObjectFields.Length;
+            if (nNum == 0)
+                return -1;
             if (nKeyValue <= 0)
             {
                 //insert
-                int nNum = this._activeEntity.ObjectFields.Length;
-                if (nNum == 0)
-                    return -1;
                 int nMaxId = GetNextKey();
                 StringBuilder sbContent = new StringBuilder();
                 StringBuilder sbWhere = new StringBuilder();
@@ -325,11 +312,6 @@ namespace DataBase
             else
             {
                 //old obj to update
-                int nNum = this._activeEntity.ObjectFields.Length;
-                if (nNum == 0)
-                {
-                    return -1;
-                }
                 string strUpdateKey = string.Format("{0}={1}", this._activeEntity.KeyName, this._activeEntity.KeyValue);
                 StringBuilder sb = new StringBuilder();
                 string strSingle = "";
@@ -375,7 +357,7 @@ namespace DataBase
         public int EntityDelete()
         {
             bool IsEntity = this._activeEntity.ActiveObject is DataBase.Interface.IEntity;
-            if (!IsEntity || null == this._activeEntity.KeyName || "" == this._activeEntity.KeyName)
+            if (!IsEntity || string.IsNullOrEmpty(this._activeEntity.KeyName))
                 return -1;
             int nKeyValue = Util.ParseInt(this._activeEntity.KeyValue + "", -1);
             if (nKeyValue <= 0)
@@ -401,9 +383,7 @@ namespace DataBase
             query.SqlContent = string.Format("Max([{0}])", this._activeEntity.KeyName);
             query.SqlWhereString = "";
             object oValue = HDBOperation.QueryScalar(query.ToString());
-            int nMax = Util.ParseInt(oValue + "", 0);
-            nMax++;
-            return nMax;
+            return Util.ParseInt(oValue + "", 0) + 1;
         }
 
     }
@@ -416,6 +396,7 @@ namespace DataBase
         public string KeyName;
         public object KeyValue;
         public string TableName;
+        public string SelectContent;
 
         private static Hashtable htTypeInformation = new Hashtable();
         private static string strCacheTypeKey = "BlueSky_EntityTypeList";
@@ -434,6 +415,7 @@ namespace DataBase
 
         public ActiveEntity()
         { }
+
         public ActiveEntity(object _oE)
         {
             this.ActiveObject = _oE;
@@ -443,28 +425,32 @@ namespace DataBase
             {
                 Hashtable htType = (Hashtable)htTypeInformation[this.ObjectType.Name];
                 this.ObjectFields = (FieldInfo[])htType["ObjectFields"];
-                this.KeyName = htType["KeyName"] + "";
-                this.TableName = htType["TableName"] + "";
+                this.KeyName = (string)htType["KeyName"];
+                this.TableName = (string)htType["TableName"];
+                this.SelectContent = (string)htType["SelectContent"];
             }
             else
             {
                 FieldInfo[] alAllFields = this.ObjectType.GetFields();
                 List<FieldInfo> ltFields = new List<FieldInfo>(alAllFields);
+                List<string> ltSelect = new List<string>();
                 foreach (FieldInfo field in alAllFields)
                 {
                     if (field.IsStatic)
                         ltFields.Remove(field);
+                    else
+                        ltSelect.Add(string.Format("[{0}]", field.Name));
                 }
-                this.ObjectFields = ltFields.ToArray();
-                MethodInfo e = this.ObjectType.GetMethod("GetKeyName");
-                this.KeyName = e.Invoke(_oE, null) + "";
-                e = this.ObjectType.GetMethod("GetTableName");
-                this.TableName = e.Invoke(_oE, null) + "";
-                //add to cache
                 Hashtable htType = new Hashtable();
+                this.ObjectFields = ltFields.ToArray();
+                this.KeyName = this.ObjectType.GetMethod("GetKeyName").Invoke(_oE, null) + "";
+                this.TableName = this.ObjectType.GetMethod("GetTableName").Invoke(_oE, null) + "";
+                this.SelectContent = string.Join(",", ltSelect.ToArray());
+                //add to cache
                 htType["ObjectFields"] = this.ObjectFields;
                 htType["KeyName"] =  this.KeyName;
                 htType["TableName"] =  this.TableName;
+                htType["SelectContent"] = this.SelectContent;
                 htTypeInformation[this.ObjectType.Name] = htType;
             }
             FieldInfo key = this.ObjectType.GetField(this.KeyName);

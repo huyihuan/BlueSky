@@ -19,6 +19,7 @@ namespace WebSystemBase.UserControls
         private TextBox _txtPageIndex;
         private LinkButton _lbtnNext;
         private LinkButton _lbtnLast;
+        private LinkButton _lbRefresh;
 
         //默认每页记录条数
         private int _DefaultSize = 10;
@@ -105,6 +106,20 @@ namespace WebSystemBase.UserControls
             }
         }
 
+        public bool Refreshable
+        {
+            get
+            {
+                if (null == this.ViewState["Refreshable"])
+                    return false;
+                return (bool)this.ViewState["Refreshable"];
+            }
+            set
+            {
+                this.ViewState["Refreshable"] = value;
+            }
+        }
+
         #endregion
 
         #region ControlCreatedMethods
@@ -161,6 +176,7 @@ namespace WebSystemBase.UserControls
                 this._lbtnFirst.Click += new EventHandler(_lbtnFirst_Click);
             }
             this.Controls.Add(_lbtnFirst);
+
             //向前一页
             this._lbtnPrev = new LinkButton();
             this._lbtnPrev.ID = "PrevIndex";
@@ -203,6 +219,7 @@ namespace WebSystemBase.UserControls
                 this._lbtnNext.Click += new EventHandler(_lbtnNext_Click);
             }
             this.Controls.Add(_lbtnNext);
+
             //尾页
             this._lbtnLast = new LinkButton();
             this._lbtnLast.ID = "LastIndex";
@@ -218,6 +235,17 @@ namespace WebSystemBase.UserControls
                 this._lbtnLast.Click += new EventHandler(_lbtnLast_Click);
             }
             this.Controls.Add(_lbtnLast);
+
+            //刷新按钮
+            if (this.Refreshable)
+            {
+                this._lbRefresh = new LinkButton();
+                this._lbRefresh.ID = "Refresh";
+                this._lbRefresh.ToolTip = "刷新列表";
+                this._lbRefresh.CssClass = "pager_refresh";
+                this._lbRefresh.Click +=new EventHandler(_lbRefresh_Click);
+                this.Controls.Add(_lbRefresh);
+            }
 
             this.ChildControlsCreated = true;
         }
@@ -274,6 +302,21 @@ namespace WebSystemBase.UserControls
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
             _lbtnLast.RenderControl(writer);
             writer.RenderEndTag();
+
+            if (this.Refreshable)
+            {
+                writer.AddAttribute(HtmlTextWriterAttribute.Nowrap, "nowrap");
+                writer.AddAttribute(HtmlTextWriterAttribute.Valign, "middle");
+                writer.RenderBeginTag(HtmlTextWriterTag.Td);
+                writer.Write("&nbsp;|&nbsp;");
+                writer.RenderEndTag();
+
+                writer.AddAttribute(HtmlTextWriterAttribute.Nowrap, "nowrap");
+                writer.AddAttribute(HtmlTextWriterAttribute.Valign, "middle");
+                writer.RenderBeginTag(HtmlTextWriterTag.Td);
+                _lbRefresh.RenderControl(writer);
+                writer.RenderEndTag();
+            }
 
             writer.AddAttribute(HtmlTextWriterAttribute.Width, "100%");
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
@@ -368,6 +411,11 @@ namespace WebSystemBase.UserControls
         protected void _lbtnLast_Click(object sender, EventArgs e)
         {
             this.PageIndex = this.PageCount;
+            DoEvent();
+        }
+
+        protected void _lbRefresh_Click(object sender, EventArgs e)
+        {
             DoEvent();
         }
 

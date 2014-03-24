@@ -23,9 +23,12 @@ namespace WebWorld.SystemManage
         {
             string strFilter =  txt_Filter.Value.Trim();
             UserInformation userObj = new UserInformation();
-            PagerNavication.RecordsCount = DataBase.HEntityCommon.HEntity(userObj).EntityCount();
             if (!string.IsNullOrEmpty(strFilter))
+            {
                 strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%' or Email like '%{0}%' or QQ like '%{0}%' or CardID like '%{0}%'", strFilter);
+                //strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%'", strFilter);
+            }
+            PagerNavication.RecordsCount = DataBase.HEntityCommon.HEntity(userObj).EntityCount(strFilter);
             UserInformation[] al = UserInformation.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();

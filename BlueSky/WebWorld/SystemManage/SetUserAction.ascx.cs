@@ -28,7 +28,10 @@ namespace WebWorld.SystemManage
                 return;
             SystemAction[] actionList = SystemAction.GetFunctionAction(nFunctionId);
             if (null == actionList || actionList.Length == 0)
+            {
+                btnSave.Disabled = true;
                 return;
+            }
             _InitExistPermission();
             cbl_Actions.Items.Clear();
             foreach (SystemAction oAction in actionList)

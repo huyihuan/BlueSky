@@ -69,7 +69,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <BS:PagerNavication ID="PagerNavication" PageSizeList="10,30,50" PageSize="10" runat="server" OnPagerIndexChaged="PagerNavication_PagerIndexChanged"></BS:PagerNavication>
+            <BS:PagerNavication ID="PagerNavication" PageSizeList="10,30,50" PageSize="10" runat="server" Refreshable="true" OnPagerIndexChaged="PagerNavication_PagerIndexChanged"></BS:PagerNavication>
         </td>
     </tr>
 </table>

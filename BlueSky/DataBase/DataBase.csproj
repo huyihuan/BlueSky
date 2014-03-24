@@ -64,9 +64,9 @@
     <Compile Include="DataUtil\CacheUtil.cs" />
     <Compile Include="DataUtil\Constants.cs" />
     <Compile Include="DataUtil\Util.cs" />
-    <Compile Include="DBHelper\HDataBase.cs" />
-    <Compile Include="DBHelper\HDBOperation.cs" />
-    <Compile Include="DBHelper\HSqlFactory.cs" />
+    <Compile Include="DBAccess\HDataBase.cs" />
+    <Compile Include="DBAccess\HDBOperation.cs" />
+    <Compile Include="DBAccess\HSqlFactory.cs" />
     <Compile Include="EntityAccess\HEntityCommon.cs" />
     <Compile Include="Interface\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -140,7 +140,9 @@ namespace DataBase
         public static bool IsExistCache(string _CacheKey)
         {
             string strKey = GetCustomerKey(_CacheKey);
-            return null != htCache[strKey];
+
+            //return null != htCache[strKey]; 排除缓存存在但是值为Null的情况，用Key来查找缓存值即ContainsKey，忽略Value是否为Null
+            return htCache.ContainsKey(strKey);
         }
     }
 

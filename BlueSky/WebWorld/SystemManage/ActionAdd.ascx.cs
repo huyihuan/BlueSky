@@ -27,7 +27,6 @@ namespace WebWorld.SystemManage
         private static string[] astrActionTypeNeedValue = new string[] { SystemAction.CONST_ACTIONTYPE_JAVASCRIPT, SystemAction.CONST_ACTIONTYPE_HTTP };
         protected void InitForm()
         {
-
             if (nFunctionId > 0)
             {
                 SystemFunction oFunction = SystemFunction.Get(nFunctionId);
@@ -47,6 +46,9 @@ namespace WebWorld.SystemManage
                     img_IconName.Attributes["title"] = oAction.IconName;
                 }
                 sel_ActionType_SelectedIndexChanaged(null, null);
+
+                SystemFunction oFunction = SystemFunction.Get(oAction.FunctionId);
+                lbl_FunctionNmae.Text = oFunction.Name;
             }
         }
 

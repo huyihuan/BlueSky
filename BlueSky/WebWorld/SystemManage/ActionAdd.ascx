@@ -42,6 +42,13 @@
         <td><input type="text" class="txt-normal" id="txt_ControlName" runat="server" size="30" /></td>
     </tr>
     <tr>
+        <td align="right"><font class="font-hint">*</font>操作类型：</td>
+        <td>
+            <asp:DropDownList runat="server" ID="sel_ActionType" AutoPostBack="true" OnSelectedIndexChanged="sel_ActionType_SelectedIndexChanaged"></asp:DropDownList>
+            <input type="text" class="txt-normal" id="txt_ActionValue" runat="server" size="15" />
+        </td>
+    </tr>
+    <tr>
         <td align="right"><font class="font-hint">*</font>操作实体数量：</td>
         <td><input type="text" class="txt-normal" id="txt_EntityCount" runat="server" size="10" /></td>
     </tr>
@@ -50,13 +57,6 @@
         <td>
             <input type="text" class="txt-normal" id="txt_IconName" runat="server" size="15" /><input type="button" id="btn_SelectActionImage" class="btn-normal btn-select-noleft" onclick="selectActionImage();" title="点击选择操作图片" value="..." />
             <img runat="server" id="img_IconName" align="absMiddle" style="width:16px;height:16px;" />
-        </td>
-    </tr>
-    <tr>
-        <td align="right"><font class="font-hint">*</font>操作类型：</td>
-        <td>
-            <asp:DropDownList runat="server" ID="sel_ActionType" AutoPostBack="true" OnSelectedIndexChanged="sel_ActionType_SelectedIndexChanaged"></asp:DropDownList>
-            <input type="text" class="txt-normal" id="txt_ActionValue" runat="server" size="15" />
         </td>
     </tr>
     <tr>

@@ -49,6 +49,11 @@ namespace WebSystemBase.SystemClass
             }
         }
 
+        public string PropertyGender
+        {
+            get { return Gender == 1 ? "男" : "女"; }
+        }
+
         public static UserInformation Get(int _nId)
         {
             if (_nId <= 0)

@@ -168,7 +168,10 @@ namespace WebSystemBase.Utilities
             return SystemUtil.ResovleSingleFormUrl(nFn, _strControlName, _strExtraParameters);
         }
 
-        
+        public static string ResovleModuleUploadPath(string _strModuleName)
+        {
+            return GetVirtualSysUploadPath() + _strModuleName;
+        }
 
         public static void VCodeSaveCurrent(string _strVCode)
         {

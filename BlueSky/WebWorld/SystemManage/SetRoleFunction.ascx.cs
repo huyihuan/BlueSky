@@ -89,7 +89,7 @@ namespace WebWorld.SystemManage
                 lbl.Text = e.Item.ItemIndex + 1 + "";
 
                 lbl = e.Item.FindControl("lbl_FunctionName") as Label;
-                lbl.Text = oItem.ParentId == -1 ? string.Format("<b>{0}</b>", oItem.Name) : string.Format("{0}{1}", " ".PadLeft((oItem.Level - 1) * 4, '　'), htExistIds.ContainsKey(oItem.Id) ? string.Format("<a href='javascript:selectAction(\"{0}\",\"{1}\");'>{1}</a>", SystemUtil.ResovleSingleFormUrl(nFunctionId, "SetRoleAction",string.Format("setfn={0}&roleid={1}", oItem.Id, nRoleId)), oItem.Name) : oItem.Name);
+                lbl.Text = oItem.ParentId == -1 ? string.Format("<b>{0}</b>", oItem.Name) : string.Format("{0}{1}", " ".PadLeft((oItem.Level - 1) * 4, '　'), htExistIds.ContainsKey(oItem.Id) ? string.Format("<a href='javascript:selectAction(\"{0}\",\"{1}\");' onclick='Utils.eventPrevent();'>{1}</a>", SystemUtil.ResovleSingleFormUrl(nFunctionId, "SetRoleAction", string.Format("setfn={0}&roleid={1}", oItem.Id, nRoleId)), oItem.Name) : oItem.Name);
                 
             }
         }

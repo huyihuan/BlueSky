@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BlueSkyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="BlueSkyModelStoreContainer">
+          <EntitySet Name="Music" EntityType="BlueSkyModel.Store.Music" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserInformation" EntityType="BlueSkyModel.Store.UserInformation" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Music_UserInformation_Id" Association="BlueSkyModel.Store.FK_Music_UserInformation_Id">
+            <End Role="UserInformation" EntitySet="UserInformation" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MusicName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="MusicURL" Type="nvarchar" Nullable="false" MaxLength="1024" />
+          <Property Name="MusicType" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="UserInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Nickname" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="CardID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostCode" Type="varchar" MaxLength="6" />
+          <Property Name="MSN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Country" Type="nvarchar" MaxLength="255" />
+          <Property Name="QQ" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Music_UserInformation_Id">
+          <End Role="UserInformation" Type="BlueSkyModel.Store.UserInformation" Multiplicity="1" />
+          <End Role="Music" Type="BlueSkyModel.Store.Music" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInformation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Music">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BlueSkyModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="BlueSkyEntities">
+          <EntitySet Name="Music" EntityType="BlueSkyModel.Music" />
+          <EntitySet Name="UserInformation" EntityType="BlueSkyModel.UserInformation" />
+          <AssociationSet Name="FK_Music_UserInformation_Id" Association="BlueSkyModel.FK_Music_UserInformation_Id">
+            <End Role="UserInformation" EntitySet="UserInformation" />
+            <End Role="Music" EntitySet="Music" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MusicName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MusicURL" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
+          <Property Name="MusicType" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UserInformation" Relationship="BlueSkyModel.FK_Music_UserInformation_Id" FromRole="Music" ToRole="UserInformation" />
+        </EntityType>
+        <EntityType Name="UserInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Nickname" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="CardID" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PostCode" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="MSN" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="QQ" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Music" Relationship="BlueSkyModel.FK_Music_UserInformation_Id" FromRole="UserInformation" ToRole="Music" />
+        </EntityType>
+        <Association Name="FK_Music_UserInformation_Id">
+          <End Role="UserInformation" Type="BlueSkyModel.UserInformation" Multiplicity="1" />
+          <End Role="Music" Type="BlueSkyModel.Music" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="BlueSkyModelStoreContainer" CdmEntityContainer="BlueSkyEntities">
+          <EntitySetMapping Name="Music">
+            <EntityTypeMapping TypeName="IsTypeOf(BlueSkyModel.Music)">
+              <MappingFragment StoreEntitySet="Music">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusicName" ColumnName="MusicName" />
+                <ScalarProperty Name="MusicURL" ColumnName="MusicURL" />
+                <ScalarProperty Name="MusicType" ColumnName="MusicType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInformation">
+            <EntityTypeMapping TypeName="IsTypeOf(BlueSkyModel.UserInformation)">
+              <MappingFragment StoreEntitySet="UserInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CardID" ColumnName="CardID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="MSN" ColumnName="MSN" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Music_UserInformation_Id" TypeName="BlueSkyModel.FK_Music_UserInformation_Id" StoreEntitySet="Music">
+            <EndProperty Name="UserInformation">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Music">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="BlueSky">
+        <EntityTypeShape EntityType="BlueSkyModel.Music" Width="1.5" PointX="3" PointY="1.625" Height="1.7908333333333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BlueSkyModel.UserInformation" Width="1.5" PointX="0.75" PointY="1" Height="3.1397916666666661" IsExpanded="true" />
+        <AssociationConnector Association="BlueSkyModel.FK_Music_UserInformation_Id" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.5204166666666667" />
+          <ConnectorPoint PointX="3" PointY="2.5204166666666667" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

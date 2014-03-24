@@ -3,102 +3,112 @@
 * copyright huyihuan 2013
 * date: 2013-11-12
 **********************************************/
-if (null == Utils || undefined == Utils)
-    var Utils = new Object();
-Utils.mousePosition = function(_targetWindow,e) {
-    var xPos, yPos;
-    e = e || _targetWindow.event;
-    if (e.pageX) {
-        xPos = e.pageX;
-        yPos = e.pageY;
-    } else {
-        xPos = e.clientX + _targetWindow.document.body.scrollLeft - _targetWindow.document.body.clientLeft;
-        yPos = e.clientY + _targetWindow.document.body.scrollTop - _targetWindow.document.body.clientTop;
-    }
-    return {X:xPos, Y:yPos};
-}
-Utils.documentSize = function(_documentRef) {
-    var size = new Object;
-    size.width = document.body.clientWidth;
-    size.height = document.body.clientHeight;
-    return size;
-}
-Utils.parseInt = function(_strValue, _defaultValue) {
-    var parseValue = parseInt(_strValue);
-    if (isNaN(parseValue) || parseValue == undefined || parseValue == null)
-        return _defaultValue;
-    return parseValue;
-}
-Utils.parseDouble = function(_strValue, _defaultValue) {
-    var parseValue = parseFloat(_strValue);
-    if (isNaN(parseValue) || parseValue == undefined || parseValue == null)
-        return _defaultValue;
-    return parseValue;
-}
-
-/*表单验证*/
-Utils.vType = {
-    Empty: "Empty",
-    Email: "Email",
-    Post: "Post",
-    IDCard: "IDCard",
-    Chinese: "Chinese",
-    English: "English",
-    Integer: "Integer"
-}
-Utils.vText = function(_vArguments) {
-    _vArguments.vtarget = _vArguments.vtarget || window;
-    var txtReference = _vArguments.vtarget.document.getElementById(_vArguments.vid);
-    var strValue = txtReference.value;
-    if (_vArguments.vtype == Utils.vType.Empty) {
-        if ("" == strValue || !strValue) {
-            txtReference.focus();
-            if (_vArguments.ishint == true) {
-                txtReference.className = txtReference.className + " txt-hint";
-            }
-            if (_vArguments.message) {
-                alert(_vArguments.message);
-            }
-            return false;
+(function(_util) {
+    _util.mousePosition = function(_targetWindow, e) {
+        var xPos, yPos;
+        e = e || _targetWindow.event;
+        if (e.pageX) {
+            xPos = e.pageX;
+            yPos = e.pageY;
+        } else {
+            xPos = e.clientX + _targetWindow.document.body.scrollLeft - _targetWindow.document.body.clientLeft;
+            yPos = e.clientY + _targetWindow.document.body.scrollTop - _targetWindow.document.body.clientTop;
         }
-        if (_vArguments.ishint == true) {
+        return { X: xPos, Y: yPos };
+    }
+    _util.documentSize = function(_documentRef) {
+        var size = new Object;
+        size.width = document.body.clientWidth;
+        size.height = document.body.clientHeight;
+        return size;
+    }
+    _util.parseInt = function(_strValue, _defaultValue) {
+        var parseValue = parseInt(_strValue);
+        if (isNaN(parseValue) || parseValue == undefined || parseValue == null)
+            return _defaultValue;
+        return parseValue;
+    }
+    _util.parseDouble = function(_strValue, _defaultValue) {
+        var parseValue = parseFloat(_strValue);
+        if (isNaN(parseValue) || parseValue == undefined || parseValue == null)
+            return _defaultValue;
+        return parseValue;
+    }
+
+    /*表单验证*/
+    _util.vType = {
+        Empty: "Empty",
+        Email: "Email",
+        Post: "Post",
+        IDCard: "IDCard",
+        Chinese: "Chinese",
+        English: "English",
+        Integer: "Integer"
+    }
+    _util.vText = function(_vArguments) {
+        _vArguments.vtarget = _vArguments.vtarget || window;
+        var txtReference = _vArguments.vtarget.document.getElementById(_vArguments.vid);
+        var strValue = txtReference.value;
+        if (_vArguments.vtype == _util.vType.Empty) {
+            if ("" == strValue || !strValue) {
+                txtReference.focus();
+                if (_vArguments.ishint == true) {
+                    txtReference.className = txtReference.className + " txt-hint";
+                }
+                if (_vArguments.message) {
+                    alert(_vArguments.message);
+                }
+                return false;
+            }
+            if (_vArguments.ishint == true) {
+                txtReference.className = txtReference.className.replace(" txt-hint", "");
+            }
+            return true;
+        }
+        else if (_vArguments.vtype == _util.vType.Integer) {
+            var reg = /^\d*$/;
+            if ("" == strValue || !strValue || null == strValue.match(reg)) {
+                txtReference.focus();
+                if (_vArguments.ishint == true) {
+                    txtReference.className = txtReference.className + " txt-hint";
+                }
+                if (_vArguments.message) {
+                    alert(_vArguments.message);
+                }
+                return false;
+            }
             txtReference.className = txtReference.className.replace(" txt-hint", "");
+            return true;
         }
-        return true;
+        //如果未说明验证类型则返回false
+        return false;
     }
-    else if (_vArguments.vtype == Utils.vType.Integer) {
-        var reg = /^\d*$/;
-        if ("" == strValue || !strValue || null == strValue.match(reg)) {
-            txtReference.focus();
-            if (_vArguments.ishint == true) {
-                txtReference.className = txtReference.className + " txt-hint";
-            }
-            if (_vArguments.message) {
-                alert(_vArguments.message);
-            }
-            return false;
-        }
-        txtReference.className = txtReference.className.replace(" txt-hint", "");
-        return true;
-    }
-    //如果未说明验证类型则返回false
-    return false;
-}
 
-Utils.xmlHttpRequest = function() {
-    if (XMLHttpRequest)
-        return new XMLHttpRequest();
-    var arrXHRS = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
-    var nXHRCount = arrXHRS.length;
-    var xhrObject = new Object();
-    for (var i = 0; i < nXHRCount; i++) {
-        try {
-            xhrObject = new ActiveXObject(arrXHRS[i]);
-            break;
+    _util.xmlHttpRequest = function() {
+        if (XMLHttpRequest)
+            return new XMLHttpRequest();
+        var arrXHRS = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"];
+        var nXHRCount = arrXHRS.length;
+        var xhrObject = new Object();
+        for (var i = 0; i < nXHRCount; i++) {
+            try {
+                xhrObject = new ActiveXObject(arrXHRS[i]);
+                break;
+            }
+            catch (e) { }
         }
-        catch (e) { }
+        if (typeof xhrObject != undefined)
+            return xhrObject;
+        alert("Ajax not supported!");
     }
-    if (typeof xhrObject != undefined)
-        return xhrObject;
-    alert("Ajax not supported!");
-}
+
+    _util.eventPrevent = function() {
+        if (e && e.preventDefault)
+            e.preventDefault();
+        
+        if (e && e.stopPropagation)
+            e.stopPropagation();
+        else
+            window.event.cancelBubble = true;
+    }
+})(window.Utils = window.Utils || {});

@@ -1,0 +1,2 @@
+--用户角色表
+create index Index_SystemUserRole_UserId on SystemUserRole(UserId);

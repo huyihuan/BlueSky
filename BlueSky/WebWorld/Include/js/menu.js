@@ -70,7 +70,7 @@ function createWindowArguments(_nodeRef) {
     //窗口的宽度，整型，最小值200
     var width = _nodeRef.getAttribute("_width");
     if (width && undefined != width && null != width && "" != width) {
-        var nWidth = top.Utils.parseInt(width, 200);
+        var nWidth = BlueSky.util.parseInt(width, 200);
         if (nWidth < 200)
             nWidth = 200;
         windowArguments.width = nWidth;
