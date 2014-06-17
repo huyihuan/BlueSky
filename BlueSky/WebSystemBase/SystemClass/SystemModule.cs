@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataBase;
+
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemModule : DataBase.Interface.IEntity
+    public class SystemModule : IEntity
     {
         public int Id;
         public string Name;
@@ -92,7 +94,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemModule[] List()
         {
-            SystemModule[] alist = (SystemModule[])DataBase.HEntityCommon.HEntity(new SystemModule()).EntityList();
+            SystemModule[] alist = (SystemModule[])HEntityCommon.HEntity(new SystemModule()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -101,7 +103,7 @@ namespace WebSystemBase.SystemClass
         public static SystemModule[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemModule oList = new SystemModule();
-            SystemModule[] alist = (SystemModule[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemModule[] alist = (SystemModule[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataBase;
+
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemUserFunctionPermission : DataBase.Interface.IEntity
+    public class SystemUserFunctionPermission : IEntity
     {
 
         public int Id;
@@ -65,12 +67,12 @@ namespace WebSystemBase.SystemClass
             SystemUserFunctionPermission oDel = Get(_nId);
             if (null == oDel)
                 return;
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static SystemUserFunctionPermission[] List()
         {
-            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])DataBase.HEntityCommon.HEntity(new SystemUserFunctionPermission()).EntityList();
+            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])HEntityCommon.HEntity(new SystemUserFunctionPermission()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -78,7 +80,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemUserFunctionPermission[] List(string _strFilter)
         {
-            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])DataBase.HEntityCommon.HEntity(new SystemUserFunctionPermission()).EntityList(_strFilter);
+            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])HEntityCommon.HEntity(new SystemUserFunctionPermission()).EntityList(_strFilter);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -87,7 +89,7 @@ namespace WebSystemBase.SystemClass
         public static SystemUserFunctionPermission[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemUserFunctionPermission oList = new SystemUserFunctionPermission();
-            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemUserFunctionPermission[] alist = (SystemUserFunctionPermission[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

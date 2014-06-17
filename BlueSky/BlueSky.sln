@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSky", "DataBase\BlueSky.csproj", "{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebWorld", "WebWorld\WebWorld.csproj", "{1323F955-E05A-42BE-A8D3-2766B10CD263}"
 EndProject

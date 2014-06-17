@@ -4,8 +4,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
-using DataBase;
+
 using WebSystemBase.Utilities;
+using BlueSky.Utilities;
 
 namespace WebSystemBase.UserControls
 {
@@ -74,7 +75,7 @@ namespace WebSystemBase.UserControls
         {
             get
             {
-                return DataBase.Util.ParseInt(Math.Ceiling((double)this.RecordsCount / (this.PageSize == 0 ? _DefaultSize : this.PageSize)) + "", 0);
+                return BlueSky.Utilities.TypeUtil.ParseInt(Math.Ceiling((double)this.RecordsCount / (this.PageSize == 0 ? _DefaultSize : this.PageSize)) + "", 0);
             }
         }
 
@@ -390,7 +391,7 @@ namespace WebSystemBase.UserControls
 
         protected void _txtPageIndex_TextChanged(object sender, EventArgs e)
         {
-            int nIndex = Util.ParseInt(_txtPageIndex.Text.Trim(), -1);
+            int nIndex = TypeUtil.ParseInt(_txtPageIndex.Text.Trim(), -1);
             if (nIndex == -1 || nIndex == this.PageIndex)
                 return;
             if (nIndex <= 0 || nIndex > this.PageCount)

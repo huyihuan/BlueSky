@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using DataBase;
+
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemRoleActionPermission : DataBase.Interface.IEntity
+    public class SystemRoleActionPermission : IEntity
     {
         public int Id;
         public int RoleId;
@@ -71,7 +73,7 @@ namespace WebSystemBase.SystemClass
         public static SystemRoleActionPermission[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemRoleActionPermission oList = new SystemRoleActionPermission();
-            SystemRoleActionPermission[] alist = (SystemRoleActionPermission[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemRoleActionPermission[] alist = (SystemRoleActionPermission[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -79,7 +81,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemRoleActionPermission[] List()
         {
-            SystemRoleActionPermission[] alist = (SystemRoleActionPermission[])DataBase.HEntityCommon.HEntity(new SystemRole()).EntityList();
+            SystemRoleActionPermission[] alist = (SystemRoleActionPermission[])HEntityCommon.HEntity(new SystemRole()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -90,7 +92,7 @@ namespace WebSystemBase.SystemClass
             SystemRoleActionPermission oDel = Get(_nId);
             if (null == oDel)
                 return;
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static int Save(SystemRoleActionPermission _saveObj)

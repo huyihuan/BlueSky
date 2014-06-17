@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Web;
 using System.Collections;
 using System.Text;
-using DataBase;
+
 using System.Web.UI.WebControls;
 using WebSystemBase.Utilities;
+using BlueSky.Utilities;
 
 namespace WebSystemBase.SystemClass
 {
@@ -93,8 +94,8 @@ namespace WebSystemBase.SystemClass
          */
         private static string __CreateTree(SystemFunction __FunctionNode, int __NodeIndex)
         {
-            int nSonCount = Util.ParseInt(htParentIdToCount[__FunctionNode.Id] + "", 0);
-            int nFriendCount = Util.ParseInt(htParentIdToCount[__FunctionNode.ParentId] + "", 0);
+            int nSonCount = TypeUtil.ParseInt(htParentIdToCount[__FunctionNode.Id] + "", 0);
+            int nFriendCount = TypeUtil.ParseInt(htParentIdToCount[__FunctionNode.ParentId] + "", 0);
             Hashtable ht = new Hashtable();
             ht["index"] = __NodeIndex;
             ht["friend"] = nFriendCount;
@@ -126,8 +127,8 @@ namespace WebSystemBase.SystemClass
             string strTip = function.Description;
 
             Hashtable ht = (Hashtable)htIdToProperty[function.Id];
-            int nFriendsCount = Util.ParseInt(ht["friend"] + "", 0);
-            int nIndex = Util.ParseInt(ht["index"] + "", 0);
+            int nFriendsCount = TypeUtil.ParseInt(ht["friend"] + "", 0);
+            int nIndex = TypeUtil.ParseInt(ht["index"] + "", 0);
             int nLevel = function.Level;
             StringBuilder sbNode = new StringBuilder();
 
@@ -138,15 +139,15 @@ namespace WebSystemBase.SystemClass
                 {
                     SystemFunction parentFunction = (SystemFunction)htIdToFunction[nParentId];
                     Hashtable htParent = (Hashtable)htIdToProperty[parentFunction.Id];
-                    int nPCount = Util.ParseInt(htParent["friend"] + "", 0);
-                    int nPIndex = Util.ParseInt(htParent["index"] + "", 0);
+                    int nPCount = TypeUtil.ParseInt(htParent["friend"] + "", 0);
+                    int nPIndex = TypeUtil.ParseInt(htParent["index"] + "", 0);
                     bool bLast = nPCount == nPIndex;
                     string strBranchClassName = bLast ? node_branch_empty : node_branch_line;
                     sbNode.Insert(0, __CreateSpan(SystemFunctionUtil.node_branch_common + " " + strBranchClassName, ""));
                     nParentId = parentFunction.ParentId;
                 }
             }
-            int nChildrenCount = Util.ParseInt(htParentIdToCount[function.Id] + "", -1);
+            int nChildrenCount = TypeUtil.ParseInt(htParentIdToCount[function.Id] + "", -1);
 
             if (nChildrenCount > 0)//父节点
             {
@@ -216,7 +217,7 @@ namespace WebSystemBase.SystemClass
         {
             if (null == _FuncObj)
                 return "";
-            int nChildrenCount = Util.ParseInt(htParentIdToCount[_FuncObj.Id] + "", -1);
+            int nChildrenCount = TypeUtil.ParseInt(htParentIdToCount[_FuncObj.Id] + "", -1);
             string strNodeType = nChildrenCount > 0 ? SystemFunctionUtil.NodeType_Parent : SystemFunctionUtil.NodeType_Son;
             StringBuilder sbTag = new StringBuilder();
             sbTag.Append(string.Format(" _tag=\"{0}\"", _FuncObj.Id));

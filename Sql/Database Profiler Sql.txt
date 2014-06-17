@@ -1,2 +1,9 @@
 --用户角色表
 create index Index_SystemUserRole_UserId on SystemUserRole(UserId);
+
+--用户信息表
+create index Index_UserInformation_UserName on UserInformation(UserName);
+create index Index_UserInformation_UserName_Password on UserInformation(UserName,Password);
+
+alter table UserInformation alter column UserName nvarchar(64) not null;
+alter table UserInformation alter column Password nvarchar(64) not null;

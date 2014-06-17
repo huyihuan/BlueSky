@@ -1,0 +1,7 @@
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.Services\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.View\bin\WebWorld.Modules.MyMusic.Services.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.View\bin\WebWorld.Modules.MyMusic.Services.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.Services\obj\Debug\WebWorld.Modules.MyMusic.Services.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.Services\obj\Debug\WebWorld.Modules.MyMusic.Services.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.Services.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.Services.pdb

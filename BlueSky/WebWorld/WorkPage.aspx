@@ -5,10 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>工作区</title>
+    <script src="Include/js/Bluesky.js" type="text/javascript"></script>
     <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/window.css" rel="stylesheet" type="text/css" />
-    <link href="Include/css/graybox.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/graybox.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
     <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/tabs.js" type="text/javascript"></script>
     <link href="Include/css/panel.css" rel="stylesheet" type="text/css" />

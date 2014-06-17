@@ -14,11 +14,11 @@ E:\MySelf\HYHCode\BlueSky\DataBase\obj\Debug\DataBase.dll
 E:\MySelf\HYHCode\BlueSky\DataBase\obj\Debug\DataBase.pdb
 E:\MySelf\HYHCode\BlueSky\WebWorld\UsingDll\DataBase.dll
 E:\MySelf\HYHCode\BlueSky\WebWorld\UsingDll\DataBase.pdb
+E:\Applications\HYHCode\BlueSky\DataBase\bin\DataBase.dll
+E:\Applications\HYHCode\BlueSky\DataBase\bin\DataBase.pdb
+E:\Applications\HYHCode\BlueSky\DataBase\bin\MySql.Data.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\DataBase.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\DataBase.pdb
 E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\ResolveAssemblyReference.cache
 E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\DataBase.dll
 E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\DataBase.pdb
-E:\Applications\HYHCode\BlueSky\DataBase\bin\DataBase.dll
-E:\Applications\HYHCode\BlueSky\DataBase\bin\DataBase.pdb
-E:\Applications\HYHCode\BlueSky\DataBase\bin\MySql.Data.dll

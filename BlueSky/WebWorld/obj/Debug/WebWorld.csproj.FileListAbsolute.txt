@@ -8,12 +8,12 @@ E:\MySelf\HYHCode\BlueSky\WebWorld\bin\MySql.Data.dll
 E:\MySelf\HYHCode\BlueSky\WebWorld\bin\DataBase.pdb
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebWorld.pdb
-E:\Applications\HYHCode\BlueSky\WebWorld\bin\DataBase.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\BlueSky.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\Newtonsoft.Json.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebSystemBase.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\MySql.Data.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\bin\WebSystemBase.pdb
-E:\Applications\HYHCode\BlueSky\WebWorld\bin\DataBase.pdb
+E:\Applications\HYHCode\BlueSky\WebWorld\bin\BlueSky.pdb
 E:\Applications\HYHCode\BlueSky\WebWorld\obj\Debug\ResolveAssemblyReference.cache
 E:\Applications\HYHCode\BlueSky\WebWorld\obj\Debug\WebWorld.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\obj\Debug\WebWorld.pdb

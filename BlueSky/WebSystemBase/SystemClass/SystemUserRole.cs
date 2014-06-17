@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using DataBase;
+
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemUserRole : DataBase.Interface.IEntity
+    public class SystemUserRole : IEntity
     {
         public int Id;
         public int UserId;
@@ -45,7 +47,7 @@ namespace WebSystemBase.SystemClass
             SystemUserRole oDel = Get(_nId);
             if (null == oDel)
                 return;
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static int Save(SystemUserRole _saveObj)
@@ -58,7 +60,7 @@ namespace WebSystemBase.SystemClass
         public static SystemUserRole[] GetUserRoles(int _nUserId)
         {
             string strFilter = "UserId=" + _nUserId;
-            SystemUserRole[] alist = (SystemUserRole[])DataBase.HEntityCommon.HEntity(new SystemUserRole()).EntityList(strFilter);
+            SystemUserRole[] alist = (SystemUserRole[])HEntityCommon.HEntity(new SystemUserRole()).EntityList(strFilter);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

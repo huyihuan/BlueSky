@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using DataBase;
+
+using BlueSky.Interfaces;
 using System.Web.UI.WebControls;
+using BlueSky.EntityAccess;
+using BlueSky.Utilities;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemRole : DataBase.Interface.IEntity
+    public class SystemRole : IEntity
     {
         public int Id;
         public string Name;
@@ -37,7 +40,7 @@ namespace WebSystemBase.SystemClass
             SystemRole oDel = Get(_nId);
             if (null == oDel)
                 return;
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static bool Exist(string _strName)
@@ -56,7 +59,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemRole[] List()
         {
-            SystemRole[] alist = (SystemRole[])DataBase.HEntityCommon.HEntity(new SystemRole()).EntityList();
+            SystemRole[] alist = (SystemRole[])HEntityCommon.HEntity(new SystemRole()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -65,7 +68,7 @@ namespace WebSystemBase.SystemClass
         public static SystemRole[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemRole oList = new SystemRole();
-            SystemRole[] alist = (SystemRole[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemRole[] alist = (SystemRole[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

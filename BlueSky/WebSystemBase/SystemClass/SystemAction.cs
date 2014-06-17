@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using DataBase;
+using BlueSky.Interfaces;
 using System.Collections;
 using System.Web.UI.WebControls;
 using System.Text;
 using WebSystemBase.Utilities;
+using BlueSky.Utilities;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemAction : DataBase.Interface.IEntity, IComparer<SystemAction>
+    public class SystemAction : IEntity, IComparer<SystemAction>
     {
 	    public int Id;
 	    public string Name;
@@ -226,7 +228,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemAction[] List()
         {
-            SystemAction[] alist = (SystemAction[])DataBase.HEntityCommon.HEntity(new SystemAction()).EntityList();
+            SystemAction[] alist = (SystemAction[])HEntityCommon.HEntity(new SystemAction()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -234,7 +236,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemAction[] List(string _strFilter)
         {
-            SystemAction[] alist = (SystemAction[])DataBase.HEntityCommon.HEntity(new SystemAction()).EntityList(_strFilter);
+            SystemAction[] alist = (SystemAction[])HEntityCommon.HEntity(new SystemAction()).EntityList(_strFilter);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -243,7 +245,7 @@ namespace WebSystemBase.SystemClass
         public static SystemAction[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemAction oList = new SystemAction();
-            SystemAction[] alist = (SystemAction[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemAction[] alist = (SystemAction[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

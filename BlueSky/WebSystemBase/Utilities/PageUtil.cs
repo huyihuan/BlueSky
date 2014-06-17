@@ -5,8 +5,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.Collections;
 using System.Web.UI.HtmlControls;
-using DataBase;
 using System.Reflection;
+using BlueSky.Utilities;
 
 namespace WebSystemBase.Utilities
 {
@@ -21,7 +21,7 @@ namespace WebSystemBase.Utilities
         public static int GetQueryInt(HttpRequest _httpRequest, string _strKey, int _nDefaultValue)
         {
             string strValue = _httpRequest.QueryString[_strKey] + "";
-            return Util.ParseInt(strValue, _nDefaultValue);
+            return TypeUtil.ParseInt(strValue, _nDefaultValue);
         }
 
         public static int GetQueryId(HttpRequest _httpRequest, int _nDefaultValue)
@@ -52,7 +52,7 @@ namespace WebSystemBase.Utilities
             {
                 foreach (string s in al)
                 {
-                    lt.Add(Util.ParseInt(s, _nDefaultValue));
+                    lt.Add(TypeUtil.ParseInt(s, _nDefaultValue));
                 }
             }
             return lt.ToArray();
@@ -82,6 +82,28 @@ namespace WebSystemBase.Utilities
             _Page.ClientScript.RegisterClientScriptBlock(_Page.GetType(), "script", string.Format("<script type=\"text/javascript\">{0}</script>", _Script));
         }
 
+        public static void PageRefreshLayout(System.Web.UI.Page _Page)
+        {
+            PageAppendScript(_Page, "top.window.location.href = top.window.location.href;");
+        }
+
+        public static void PageRefreshActiveWindow(System.Web.UI.Page _Page)
+        {
+            PageAppendScript(_Page, "top.layout.refreshActiveWindow();");
+        }
+
+        public static void PageClosePopupWindow(System.Web.UI.Page _Page)
+        {
+            PageClosePopupWindow(_Page, false);
+        }
+
+        public static void PageClosePopupWindow(System.Web.UI.Page _Page, bool _isRefreshParentWindow)
+        {
+            if (_isRefreshParentWindow)
+                PageRefreshActiveWindow(_Page);
+            PageAppendScript(_Page, "top.windowFactory.closeTopFocusForm();");
+        }
+
         public static object PageSelectHiddenValue(System.Web.UI.Page _Page,bool _bNeedArray)
         {
             HtmlInputHidden hiddenSelectedValue = _Page.FindControl("hiddenSelectedValue") as HtmlInputHidden;
@@ -106,17 +128,28 @@ namespace WebSystemBase.Utilities
         {
             if (null == _Page || null == _FillObj)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_FillObj, true);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_FillObj, true);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strConrolId = "";
-            Hashtable htFieldValue = Util.GetObjectFieldValueHash(_FillObj);
+            Hashtable htFieldValue = ReflectionUtil.GetObjectFieldValueHash(_FillObj);
             foreach (string strFieldName in astrFields)
             {
                 strConrolId = "lbl_" + strFieldName;
                 Label lblControl = _Page.FindControl(strConrolId) as Label;
                 if (null != lblControl)
+                {
                     lblControl.Text = htFieldValue[strFieldName] + "";
+                    continue;
+                }
+
+                strConrolId = "lit_" + strFieldName;
+                Literal litControl = _Page.FindControl(strConrolId) as Literal;
+                if (null != litControl)
+                {
+                    litControl.Text = htFieldValue[strFieldName] + "";
+                    continue;
+                }
             }
         }
 
@@ -124,17 +157,28 @@ namespace WebSystemBase.Utilities
         {
             if (null == _ParentControl || null == _FillObj)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_FillObj, true);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_FillObj, true);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strConrolId = "";
-            Hashtable htFieldValue = Util.GetObjectFieldValueHash(_FillObj);
+            Hashtable htFieldValue = ReflectionUtil.GetObjectFieldValueHash(_FillObj);
             foreach (string strFieldName in astrFields)
             {
                 strConrolId = "lbl_" + strFieldName;
                 Label lblControl = _ParentControl.FindControl(strConrolId) as Label;
                 if (null != lblControl)
+                {
                     lblControl.Text = htFieldValue[strFieldName] + "";
+                    continue;
+                }
+
+                strConrolId = "lit_" + strFieldName;
+                Literal litControl = _ParentControl.FindControl(strConrolId) as Literal;
+                if (null != litControl)
+                {
+                    litControl.Text = htFieldValue[strFieldName] + "";
+                    continue;
+                }
             }
         }
 
@@ -142,11 +186,11 @@ namespace WebSystemBase.Utilities
         {
             if (null == _Page || null == _FillObj)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_FillObj, true);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_FillObj, true);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strControlId = "";
-            Hashtable htFieldValue = Util.GetObjectFieldValueHash(_FillObj);
+            Hashtable htFieldValue = ReflectionUtil.GetObjectFieldValueHash(_FillObj);
             foreach (string strFieldName in astrFields)
             {
                 string strValue = htFieldValue[strFieldName] + "";
@@ -198,13 +242,13 @@ namespace WebSystemBase.Utilities
                 HtmlInputCheckBox cbControlHtml = _Page.FindControl(strControlId) as HtmlInputCheckBox;
                 if (null != cbControlHtml)
                 {
-                    cbControlHtml.Checked = Util.ParseInt(strValue, -1) == Constants.Yes;
+                    cbControlHtml.Checked = TypeUtil.ParseInt(strValue, -1) == Constants.Yes;
                     continue;
                 }
                 CheckBox cbControl = _Page.FindControl(strControlId) as CheckBox;
                 if (null != cbControl)
                 {
-                    cbControl.Checked = Util.ParseInt(strValue, -1) == Constants.Yes;
+                    cbControl.Checked = TypeUtil.ParseInt(strValue, -1) == Constants.Yes;
                     continue;
                 }
             }
@@ -214,11 +258,11 @@ namespace WebSystemBase.Utilities
         {
             if (null == _ParentControl || null == _FillObj)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_FillObj, true);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_FillObj, true);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strControlId = "";
-            Hashtable htFieldValue = Util.GetObjectFieldValueHash(_FillObj);
+            Hashtable htFieldValue = ReflectionUtil.GetObjectFieldValueHash(_FillObj);
             foreach (string strFieldName in astrFields)
             {
                 string strValue = htFieldValue[strFieldName] + "";
@@ -270,13 +314,13 @@ namespace WebSystemBase.Utilities
                 HtmlInputCheckBox cbControlHtml = _ParentControl.FindControl(strControlId) as HtmlInputCheckBox;
                 if (null != cbControlHtml)
                 {
-                    cbControlHtml.Checked = Util.ParseInt(strValue, -1) == Constants.Yes;
+                    cbControlHtml.Checked = TypeUtil.ParseInt(strValue, -1) == Constants.Yes;
                     continue;
                 }
                 CheckBox cbControl = _ParentControl.FindControl(strControlId) as CheckBox;
                 if (null != cbControl)
                 {
-                    cbControl.Checked = Util.ParseInt(strValue, -1) == Constants.Yes;
+                    cbControl.Checked = TypeUtil.ParseInt(strValue, -1) == Constants.Yes;
                     continue;
                 }
             }
@@ -286,7 +330,7 @@ namespace WebSystemBase.Utilities
         {
             if (null == _ParentControl || null == _oE)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_oE, false);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_oE, false);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strControlId = "", strValue = "";
@@ -299,7 +343,7 @@ namespace WebSystemBase.Utilities
                     if (txtControlHtml.Disabled)
                         continue;
                     strValue = txtControlHtml.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 TextBox txtControl = _ParentControl.FindControl(strControlId) as TextBox;
@@ -308,14 +352,14 @@ namespace WebSystemBase.Utilities
                     if (!txtControl.Enabled)
                         continue;
                     strValue = txtControl.Text.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlTextArea areaControlHtml = _ParentControl.FindControl(strControlId) as HtmlTextArea;
                 if (null != areaControlHtml)
                 {
                     strValue = areaControlHtml.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlInputPassword txtPassword = _ParentControl.FindControl(strControlId) as HtmlInputPassword;
@@ -324,7 +368,7 @@ namespace WebSystemBase.Utilities
                     if (txtPassword.Disabled)
                         continue;
                     strValue = txtPassword.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -335,7 +379,7 @@ namespace WebSystemBase.Utilities
                     if (!ddlControl.Enabled)
                         continue;
                     strValue = ddlControl.SelectedValue.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlSelect ddlControlHtml = _ParentControl.FindControl(strControlId) as HtmlSelect;
@@ -347,7 +391,7 @@ namespace WebSystemBase.Utilities
                     if (null == LiSelected)
                         continue;
                     strValue = LiSelected.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -358,7 +402,7 @@ namespace WebSystemBase.Utilities
                     if (cbControlHtml.Disabled)
                         continue;
                     strValue = (cbControlHtml.Checked ? Constants.Yes : Constants.No) + "";
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 CheckBox cbControl = _ParentControl.FindControl(strControlId) as CheckBox;
@@ -367,7 +411,7 @@ namespace WebSystemBase.Utilities
                     if (!cbControl.Enabled)
                         continue;
                     strValue = (cbControl.Checked ? Constants.Yes : Constants.No) + "";
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -378,7 +422,7 @@ namespace WebSystemBase.Utilities
         {
             if (null == _Page || null == _oE)
                 return;
-            string[] astrFields = Util.GetObjectFieldsList(_oE, false);
+            string[] astrFields = ReflectionUtil.GetObjectFieldsList(_oE, false);
             if (null == astrFields || astrFields.Length == 0)
                 return;
             string strControlId = "", strValue = "";
@@ -391,7 +435,7 @@ namespace WebSystemBase.Utilities
                     if (txtControlHtml.Disabled)
                         continue;
                     strValue = txtControlHtml.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 TextBox txtControl = _Page.FindControl(strControlId) as TextBox;
@@ -400,14 +444,14 @@ namespace WebSystemBase.Utilities
                     if (!txtControl.Enabled)
                         continue;
                     strValue = txtControl.Text.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlTextArea areaControlHtml = _Page.FindControl(strControlId) as HtmlTextArea;
                 if (null != areaControlHtml)
                 {
                     strValue = areaControlHtml.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlInputPassword txtPassword = _Page.FindControl(strControlId) as HtmlInputPassword;
@@ -416,7 +460,7 @@ namespace WebSystemBase.Utilities
                     if (txtPassword.Disabled)
                         continue;
                     strValue = txtPassword.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -427,7 +471,7 @@ namespace WebSystemBase.Utilities
                     if (!ddlControl.Enabled)
                         continue;
                     strValue = ddlControl.SelectedValue.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlSelect ddlControlHtml = _Page.FindControl(strControlId) as HtmlSelect;
@@ -439,7 +483,7 @@ namespace WebSystemBase.Utilities
                     if (null == LiSelected)
                         continue;
                     strValue = LiSelected.Value.Trim();
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -450,7 +494,7 @@ namespace WebSystemBase.Utilities
                     if (cbControlHtml.Disabled)
                         continue;
                     strValue = (cbControlHtml.Checked ? Constants.Yes : Constants.No) + "";
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 CheckBox cbControl = _Page.FindControl(strControlId) as CheckBox;
@@ -459,7 +503,7 @@ namespace WebSystemBase.Utilities
                     if (!cbControl.Enabled)
                         continue;
                     strValue = (cbControl.Checked ? Constants.Yes : Constants.No) + "";
-                    Util.SetObjectFieldValue(_oE, strFieldName, strValue);
+                    ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 

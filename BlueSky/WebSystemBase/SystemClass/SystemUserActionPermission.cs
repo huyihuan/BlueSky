@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataBase;
+
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemUserActionPermission : DataBase.Interface.IEntity
+    public class SystemUserActionPermission : IEntity
     {
 
         public int Id;
@@ -62,12 +64,12 @@ namespace WebSystemBase.SystemClass
             SystemUserActionPermission oDel = Get(_nId);
             if (null == oDel)
                 return;
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static SystemUserActionPermission[] List()
         {
-            SystemUserActionPermission[] alist = (SystemUserActionPermission[])DataBase.HEntityCommon.HEntity(new SystemUserActionPermission()).EntityList();
+            SystemUserActionPermission[] alist = (SystemUserActionPermission[])HEntityCommon.HEntity(new SystemUserActionPermission()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -76,7 +78,7 @@ namespace WebSystemBase.SystemClass
         public static SystemUserActionPermission[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemUserActionPermission oList = new SystemUserActionPermission();
-            SystemUserActionPermission[] alist = (SystemUserActionPermission[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemUserActionPermission[] alist = (SystemUserActionPermission[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

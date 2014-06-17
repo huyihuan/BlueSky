@@ -3,7 +3,7 @@
 * @copyright huyihuan 2013
 * date: 2013-11-12
 **********************************************/
-if(undefined == BlueSky || null == BlueSky) 
+if (undefined == BlueSky || null == BlueSky)
     var BlueSky = new Object();
 BlueSky.tabContainers = new Object();
 BlueSky.tabContainersArry = new Array();
@@ -163,7 +163,7 @@ BlueSky.TabContainer.prototype.removeTab = function(_tabItem) {
 }
 
 BlueSky.TabContainer.prototype.clear = function() {
-    
+
 }
 
 BlueSky.TabContainer.prototype.setTabActive = function(_tabItem) {

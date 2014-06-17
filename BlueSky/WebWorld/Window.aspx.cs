@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using DataBase;
+
 using WebSystemBase.SystemClass;
 using WebSystemBase.Utilities;
 
@@ -54,6 +54,19 @@ namespace WebWorld
                         strActionKey = action.Key;
                         break;
                     }
+                }
+
+                if (!IsPostBack)
+                {
+                    //记录用户操作日志
+                    SystemLog oLog = new SystemLog();
+                    oLog.UserId = SystemUtil.GetCurrentUserId();
+                    oLog.AccessFunctionName = oFunction.Name;
+                    oLog.AccessActionName = SystemAction.Get(strActionKey).Name;
+                    oLog.AccessTime = DateTime.Now;
+                    oLog.AccessURL = this.Page.Request.Url.AbsoluteUri;
+                    oLog.Remark = string.Format("[ControlName：{0}][IP:{1}]", strControlName, this.Request.ServerVariables["REMOTE_ADDR"]);
+                    SystemLog.Save(oLog);
                 }
             }
 

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Collections;
-using DataBase;
+
+using BlueSky.Interfaces;
 using System.Web.UI.WebControls;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemFunction : DataBase.Interface.IEntity, IComparer<SystemFunction>
+    public class SystemFunction : IEntity, IComparer<SystemFunction>
     {
         public int Id;
         public string Name;
@@ -175,7 +177,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemFunction[] List(string _strFilter)
         {
-            SystemFunction[] alist = (SystemFunction[])DataBase.HEntityCommon.HEntity(new SystemFunction()).EntityList(_strFilter);
+            SystemFunction[] alist = (SystemFunction[])HEntityCommon.HEntity(new SystemFunction()).EntityList(_strFilter);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;

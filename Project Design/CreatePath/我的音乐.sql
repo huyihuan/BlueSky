@@ -2,7 +2,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('[Music]') AND  OBJ
 DROP TABLE [Music];
 
 CREATE TABLE [Music] ( 
-	[Id] int NOT NULL,
+	[Id] int identity(1,1)  NOT NULL,
 	[UserId] int NOT NULL,
 	[MusicName] nvarchar(255) NOT NULL,
 	[MusicURL] nvarchar(1024) NOT NULL,

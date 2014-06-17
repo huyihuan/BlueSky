@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using DataBase;
+using BlueSky.Interfaces;
+using BlueSky.EntityAccess;
 
 namespace WebSystemBase.SystemClass
 {
-    public class SystemRoleFunctionPermission : DataBase.Interface.IEntity
+    public class SystemRoleFunctionPermission : IEntity
     {
         public int Id;
         public int RoleId;
@@ -57,7 +58,7 @@ namespace WebSystemBase.SystemClass
         public static SystemRoleFunctionPermission[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             SystemRoleFunctionPermission oList = new SystemRoleFunctionPermission();
-            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -65,7 +66,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemRoleFunctionPermission[] List()
         {
-            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])DataBase.HEntityCommon.HEntity(new SystemRoleFunctionPermission()).EntityList();
+            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])HEntityCommon.HEntity(new SystemRoleFunctionPermission()).EntityList();
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -73,7 +74,7 @@ namespace WebSystemBase.SystemClass
 
         public static SystemRoleFunctionPermission[] List(string _strFilter)
         {
-            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])DataBase.HEntityCommon.HEntity(new SystemRoleFunctionPermission()).EntityList(_strFilter);
+            SystemRoleFunctionPermission[] alist = (SystemRoleFunctionPermission[])HEntityCommon.HEntity(new SystemRoleFunctionPermission()).EntityList(_strFilter);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -91,7 +92,7 @@ namespace WebSystemBase.SystemClass
             for (int i = 0; i < nCount; i++)
                 SystemRoleActionPermission.Delete(alActions[i].Id);
 
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
     }

@@ -25,7 +25,7 @@ function desktopInit() {
         return;
     setDesktopHeight();
     //隐藏loading层
-    setTimeout(function() { bs_event_hideLoadingLayer(window.top.document); }, 0);
+    setTimeout(function() { Bluesky.component.Masklayer.remove(); }, 0);
     clearInterval(timerInterval);
 }
 

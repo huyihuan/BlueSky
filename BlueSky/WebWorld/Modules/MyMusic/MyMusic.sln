@@ -1,7 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic", "MyMusic.csproj", "{6FC70526-21D3-4586-A1BD-B3394525CBB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.DataAccess", "MyMusic.DataAccess\MyMusic.DataAccess.csproj", "{79FC8816-03CC-4507-A833-2925EC1C9AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Services", "MyMusic.Services\MyMusic.Services.csproj", "{5A0CBD9A-9700-414E-92C9-080479655A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.Domain", "MyMusic.Domain\MyMusic.Domain.csproj", "{29B10E87-1B16-46AF-8352-50772808ECB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMusic.View", "MyMusic.View\MyMusic.View.csproj", "{6FC70526-21D3-4586-A1BD-B3394525CBB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,6 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79FC8816-03CC-4507-A833-2925EC1C9AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79FC8816-03CC-4507-A833-2925EC1C9AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79FC8816-03CC-4507-A833-2925EC1C9AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79FC8816-03CC-4507-A833-2925EC1C9AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0CBD9A-9700-414E-92C9-080479655A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0CBD9A-9700-414E-92C9-080479655A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0CBD9A-9700-414E-92C9-080479655A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0CBD9A-9700-414E-92C9-080479655A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B10E87-1B16-46AF-8352-50772808ECB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B10E87-1B16-46AF-8352-50772808ECB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B10E87-1B16-46AF-8352-50772808ECB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B10E87-1B16-46AF-8352-50772808ECB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6FC70526-21D3-4586-A1BD-B3394525CBB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FC70526-21D3-4586-A1BD-B3394525CBB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FC70526-21D3-4586-A1BD-B3394525CBB9}.Release|Any CPU.ActiveCfg = Release|Any CPU

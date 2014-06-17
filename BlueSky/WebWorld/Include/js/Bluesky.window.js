@@ -188,7 +188,11 @@ bs_Window.prototype.createWindow = function() {
         windowFrame.src = this.url;
         var _windowArguments = this.windowArguments;
         //iframe.onload事件和window.onload事件执行顺序 window.onload 早于 iframe.onload，所以在调用window.windowArguments时需要setTimeout(loadfn,0);来延迟调用页面参数
-        bs_event_AddEvent(windowFrame, "load", function() { windowFrame.window.windowArguments = _windowArguments; });
+        bs_event_AddEvent(windowFrame, "load", function() {
+            if (null != windowFrame.window && undefined !== windowFrame.window) {
+                windowFrame.window.windowArguments = _windowArguments;
+            }
+        });
         windowMain.appendChild(windowFrame);
     }
 
@@ -1211,9 +1215,12 @@ windowFactory.topAlert = function(content, yesFunction) {
     alertWindow.isMove = false;
     alertWindow.isHtmlContent = true;
     var addFunction = function() {
-        if(yesFunction && null != yesFunction && undefined != yesFunction)
+        if (yesFunction && null != yesFunction && undefined != yesFunction)
             yesFunction();
         bs_event_hideGrayBox(top.window.document);
+        if (top.Bluesky.component.Masklayer) {
+            top.Bluesky.component.Masklayer.remove();
+        }
         top.window.document.ondragstart = null;
         top.window.document.onselectstart = null;
         top.window.document.onselect = null;
@@ -1247,7 +1254,10 @@ windowFactory.topAlert = function(content, yesFunction) {
     arrContent[1] = buttonDiv;
 
     alertWindow.htmlContent = arrContent;
-    bs_event_showGrayBox(top.window.document);
+    //bs_event_showGrayBox(top.window.document);
+    if (top.Bluesky.component.Masklayer) {
+        top.Bluesky.component.Masklayer.create();
+    }
     alertWindow.createWindow();
     //inputButton.focus();
 }
@@ -1268,7 +1278,10 @@ windowFactory.targetAlert = function(targetWindow, content, yesFunction) {
     var addFunction = function() {
         if (yesFunction && null != yesFunction && undefined != yesFunction)
             yesFunction();
-        bs_event_hideGrayBox(targetWindow.document);
+        //bs_event_hideGrayBox(targetWindow.document);
+        if (targetWindow.Bluesky.component.Masklayer) {
+            targetWindow.Bluesky.component.Masklayer.remove();
+        }
         targetWindow.document.ondragstart = null;
         targetWindow.document.onselectstart = null;
         targetWindow.document.onselect = null;
@@ -1298,14 +1311,17 @@ windowFactory.targetAlert = function(targetWindow, content, yesFunction) {
     contentDiv.appendChild(buttonDiv);
 
     alertWindow.htmlContent = contentDiv;
-    bs_event_showGrayBox(targetWindow.document);
+    //bs_event_showGrayBox(targetWindow.document);
+    if (targetWindow.Bluesky.component.Masklayer) {
+        targetWindow.Bluesky.component.Masklayer.create();
+    }
     alertWindow.createWindow();
 
     inputButton.focus();
     targetWindow.document.getElementById(alertWindow.id).style.cursor = "default";
 }
 
-windowFactory.targetConfirm = function(_windowArguments,targetWindow, content, yesFunction) {
+windowFactory.targetConfirm = function(_windowArguments, targetWindow, content, yesFunction) {
     _windowArguments.zindex = 9999;
     _windowArguments.resize = false;
     _windowArguments.maxbox = false;
@@ -1326,7 +1342,10 @@ windowFactory.targetConfirm = function(_windowArguments,targetWindow, content, y
     confirmWindow.isMove = false;
     confirmWindow.isHtmlContent = true;
     var addFunction = function() {
-        bs_event_hideGrayBox(targetWindow.document);
+        //bs_event_hideGrayBox(targetWindow.document);
+        if (targetWindow.Bluesky.component.Masklayer) {
+            targetWindow.Bluesky.component.Masklayer.remove();
+        }
         targetWindow.document.ondragstart = null;
         targetWindow.document.onselectstart = null;
         targetWindow.document.onselect = null;
@@ -1372,7 +1391,10 @@ windowFactory.targetConfirm = function(_windowArguments,targetWindow, content, y
     contentDiv.appendChild(buttonDiv);
 
     confirmWindow.htmlContent = contentDiv;
-    bs_event_showGrayBox(targetWindow.document);
+    //bs_event_showGrayBox(targetWindow.document);
+    if (targetWindow.Bluesky.component.Masklayer) {
+        targetWindow.Bluesky.component.Masklayer.create();
+    }
     confirmWindow.createWindow();
 
     inputButton.focus();
@@ -1405,10 +1427,16 @@ windowFactory.targetFocusForm = function(_windowArguments) {
         if (targetForm.targetWindow == top.window) {
             windowFactory.topWindowArray.splice(windowFactory.topWindowArray.length - 1, 1);
         }
-        bs_event_hideGrayBox(targetForm.targetDocument);
+        //bs_event_hideGrayBox(targetForm.targetDocument);
+        if (targetForm.targetWindow.Bluesky.component.Masklayer) {
+            targetForm.targetWindow.Bluesky.component.Masklayer.remove();
+        }
     }
 
-    bs_event_showGrayBox(targetForm.targetDocument);
+    //bs_event_showGrayBox(targetForm.targetDocument);
+    if (targetForm.targetWindow.Bluesky.component.Masklayer) {
+        targetForm.targetWindow.Bluesky.component.Masklayer.create();
+    }
     targetForm.createWindow();
 
     if (targetForm.targetWindow == top.window) {

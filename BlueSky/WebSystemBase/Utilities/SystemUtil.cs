@@ -8,22 +8,33 @@ namespace WebSystemBase.Utilities
 {
     public class SystemUtil
     {
-        public static void SaveLoginUser(Hashtable _htUserInformation)
+        public const string SYSTEM_SESSIONKEY_USERNAME = "bluesky_userinfo_username";
+        public const string SYSTEM_SESSIONKEY_USERID = "bluesky_userinfo_userid";
+        public static void LoginUser(UserInformation _oUser)
         {
-            HttpContext.Current.Session["bs_login_username"] = _htUserInformation["UserName"] + "";
-            HttpContext.Current.Session["bs_login_userid"] = (int)_htUserInformation["Id"];
+            if (null == _oUser)
+                return;
+            HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERNAME] = _oUser.UserName;
+            HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERID] = _oUser.Id;
         }
+
+        public static void LogoutUser()
+        {
+            HttpContext.Current.Session.Remove(SYSTEM_SESSIONKEY_USERNAME);
+            HttpContext.Current.Session.Remove(SYSTEM_SESSIONKEY_USERID);
+        }
+
 
         public static string GetCurrentUserName()
         {
-            return HttpContext.Current.Session["bs_login_username"] + "";
+            return HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERNAME] + "";
         }
 
         public static int GetCurrentUserId()
         {
-            if (null == HttpContext.Current.Session["bs_login_userid"])
+            if (null == HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERID])
                 return -1;
-            return (int)HttpContext.Current.Session["bs_login_userid"];
+            return (int)HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERID];
         }
 
         public static string ApplicationPath
@@ -59,7 +70,8 @@ namespace WebSystemBase.Utilities
             if (string.IsNullOrEmpty(_strModuleFullName))
                 return "";
             _strModuleFullName = _strModuleFullName.Replace("WebWorld.","");
-            _strModuleFullName = _strModuleFullName.Replace(".", "\\");
+            string[] alParts = _strModuleFullName.Split('.');
+            _strModuleFullName = string.Format("{0}\\{1}.View\\", _strModuleFullName.Replace(".", "\\") , alParts[alParts.Length - 1]);
             return _strModuleFullName;
         }
 

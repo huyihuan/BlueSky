@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Collections;
-using DataBase;
+
+using BlueSky.Interfaces;
 using System.Web.UI.WebControls;
+using BlueSky.EntityAccess;
+using BlueSky.Utilities;
 
 namespace WebSystemBase.SystemClass
 {
-    public class UserInformation : DataBase.Interface.IEntity
+    public class UserInformation : IEntity
     {
         public int Id;
 		public string UserName;
@@ -59,12 +62,7 @@ namespace WebSystemBase.SystemClass
             if (_nId <= 0)
                 return null;
             UserInformation oGet = new UserInformation();
-            UserInformation[] alist = (UserInformation[])HEntityCommon.HEntity(oGet).EntityList("Id=" + _nId);
-            if (null == alist || alist.Length == 0)
-                return null;
-            if (alist.Length > 1)
-                throw new Exception(string.Format("{0}-{1}:{2} exist mutil records", oGet.GetTableName(), oGet.GetKeyName(), _nId));
-            return alist[0];
+            return (UserInformation)HEntityCommon.HEntity(oGet).EntityGet(_nId);
         }
 
         public static UserInformation Get(string _strUserName)
@@ -82,7 +80,7 @@ namespace WebSystemBase.SystemClass
         public static UserInformation[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
         {
             UserInformation oList = new UserInformation();
-            UserInformation[] alist = (UserInformation[])DataBase.HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
+            UserInformation[] alist = (UserInformation[])HEntityCommon.HEntity(oList).EntityList(__strFilter, "", __nPageIndex, __nPageSize);
             if (null == alist || alist.Length == 0)
                 return null;
             return alist;
@@ -126,7 +124,7 @@ namespace WebSystemBase.SystemClass
             }
 
             //3、删除用户
-            DataBase.HEntityCommon.HEntity(oDel).EntityDelete();
+            HEntityCommon.HEntity(oDel).EntityDelete();
         }
 
         public static int Save(UserInformation _saveObj)
@@ -154,7 +152,7 @@ namespace WebSystemBase.SystemClass
                 return false;
             UserInformation oExist = new UserInformation();
             oExist.UserName = _strUserName;
-            oExist.Password = Util.MD5Encrypt(_strPassword);
+            oExist.Password = CryptUtil.MD5Encrypt(_strPassword);
             int nCount = HEntityCommon.HEntity(oExist).EntityCount();
             if (nCount > 1)
                 throw new Exception(string.Format("{0}(UserName:{1}) exist mutil records！", oExist, _strUserName));

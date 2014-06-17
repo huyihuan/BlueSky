@@ -1,0 +1,5 @@
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\BlueSky.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\BlueSky.pdb
+E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\BlueSky.dll
+E:\Applications\HYHCode\BlueSky\DataBase\obj\Debug\BlueSky.pdb

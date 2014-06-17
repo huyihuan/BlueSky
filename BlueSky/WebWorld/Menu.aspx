@@ -7,10 +7,11 @@
     <title></title>
     <script src="Include/js/Bluesky.js" type="text/javascript"></script>
     <link href="Include/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="Include/js/menu.js" type="text/javascript"></script>
-    <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/tabs.js" type="text/javascript"></script>
+    <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/form.js" type="text/javascript"></script>
     
     <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
@@ -21,38 +22,61 @@
             var nodeType = Bluesky(_node).attr("_type");
             if(nodeType == "son") {
                 var windowArguments = createWindowArguments(_node);
-                top.goWindow(windowArguments);
+                top.layout.goWindow(windowArguments);
             }
         }
+        var tabsWrapper,tabs;
+        //Bluesky.ready(function() {
+        window.onload = function() {
+            tabsWrapper = Bluesky("#tabs");
+            tabs = Bluesky.component.Tabs.create({
+                renderTo: "#tabs",
+                width: tabsWrapper.width(),
+                height: tabsWrapper.height(),
+                activeIndex: 0,
+                items: [
+			                {
+			                    title: "",
+			                    tip: "系统功能",
+			                    sliding: true,
+			                    closeable: false,
+			                    showIcon: true,
+			                    iconURL: "include/image/icons/house.png",
+			                    contentElement: "#tab_nav"
+			                },
+			                {
+			                    title: "",
+			                    tip: "日常办公",
+			                    sliding: true,
+			                    closeable: false,
+			                    showIcon: true,
+			                    iconURL: "include/image/icons/clock.png",
+			                    contentElement: "#tab_work"
+			                },
+			                {
+			                    title: "",
+			                    tip: "邮箱",
+			                    sliding: true,
+			                    closeable: false,
+			                    showIcon: true,
+			                    iconURL: "include/image/icons/email.png",
+			                    contentElement: "#tab_email"
+			                }
+                        ]
+            });
+        };
 
-        Bluesky.ready(function() {
-            var tabContainer = new BlueSky.TabContainer();
-            tabContainer.init({ tWindow: window, parent: "divTabContainer" });
-
-            var tab = new BlueSky.Tab();
-            tab.init({ tabContent: "导航",key:"navigation", frameTarget: "divMenuFrames", frameUrl: "", isClose: false, initActive: true });
-            tabContainer.addTab(tab);
-
-            var tab1 = new BlueSky.Tab();
-            tab1.init({ tabContent: "日常", key: "usually", frameTarget: "divMenuFrames", frameUrl: "", isClose: false, initActive: false });
-            tabContainer.addTab(tab1);
-            var tab2 = new BlueSky.Tab();
-            tab2.init({ tabContent: "邮箱", key: "email", frameTarget: "divMenuFrames", frameUrl: "", initActive: false });
-            tabContainer.addTab(tab2);
-
-            window.formUtil.initList({ listObject: ".treelist", minusHeight: 34, resize: true });
+        Bluesky(window).addEvent("resize", function() {
+            tabs.resize({ width: tabsWrapper.width(), height: tabsWrapper.height() });
         });
-        
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <table cellpadding="0" cellspacing="0" height="100%">
-    <tr><td height="5"></td></tr>
-        <tr><td height="27"><div id="divTabContainer"></div><div></td></tr>
-        <tr><td height="1"><div id="divMenuFrames" style="height:1px;overflow:hidden;"></div></td></tr>
-        <tr><td height="100%"><asp:PlaceHolder ID="ph_MenuContainer" runat="server"></asp:PlaceHolder></td></tr>
-    </table>
+    <div id="tabs" class="box-fixed"></div>
+    <div id="tab_nav" class="box-fixed"><asp:PlaceHolder ID="ph_MenuContainer" runat="server"></asp:PlaceHolder></div>
+    <div id="tab_work" class="box-fixed">工作相关功能</div>
+    <div id="tab_email" class="box-fixed">邮箱</div>
     </form>
 </body>
 </html>

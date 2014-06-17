@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BlueSky, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>UsingDll\DataBase.dll</HintPath>
+      <HintPath>UsingDll\BlueSky.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,10 +68,13 @@
     <Content Include="Desktop.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.html" />
+    <Content Include="Include\css\Bluesky.Panel.css" />
+    <Content Include="Include\css\Bluesky.SplitPanel.css" />
+    <Content Include="Include\css\Bluesky.Tabs.css" />
     <Content Include="Include\css\contextmenu.css" />
     <Content Include="Include\css\desktop.css" />
     <Content Include="Include\css\desktopmain.css" />
-    <Content Include="Include\css\graybox.css" />
+    <Content Include="Include\css\Bluesky.Masklayer.css" />
     <Content Include="Include\css\layout.css" />
     <Content Include="Include\css\main.css" />
     <Content Include="Include\css\menu.css" />
@@ -95,11 +98,14 @@
     <Content Include="Include\image\TreeImages\onePlus.gif" />
     <Content Include="Include\image\TreeImages\plus.gif" />
     <Content Include="Include\js\Bluesky.js" />
+    <Content Include="Include\js\Bluesky.Panel.js" />
+    <Content Include="Include\js\Bluesky.SplitPanel.js" />
+    <Content Include="Include\js\Bluesky.Tabs.js" />
     <Content Include="Include\js\Bluesky.window.js" />
     <Content Include="Include\js\contextmenu.js" />
     <Content Include="Include\js\desktop.js" />
     <Content Include="Include\js\form.js" />
-    <Content Include="Include\js\graybox.js" />
+    <Content Include="Include\js\Bluesky.Masklayer.js" />
     <Content Include="Include\js\jquery.json.js" />
     <Content Include="Include\js\layout.js" />
     <Content Include="Include\js\jquery-1.7.2.min.js" />
@@ -111,34 +117,42 @@
     <Content Include="Index.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="ModuleConfig.aspx" />
-    <Content Include="SystemManage\ActionAdd.ascx" />
-    <Content Include="SystemManage\ActionDelete.ascx" />
-    <Content Include="SystemManage\ActionImage.ascx" />
-    <Content Include="SystemManage\ActionList.ascx" />
-    <Content Include="SystemManage\FunctionAdd.ascx" />
-    <Content Include="SystemManage\FunctionDelete.ascx" />
-    <Content Include="SystemManage\FunctionSelect.ascx" />
-    <Content Include="SystemManage\FunctionsManage.ascx" />
-    <Content Include="SystemManage\FunctionsTree.ascx" />
-    <Content Include="SystemManage\Login.ascx" />
-    <Content Include="SystemManage\ModuleAdd.ascx" />
-    <Content Include="SystemManage\ModuleList.ascx" />
-    <Content Include="SystemManage\ModuleUpdate.ascx" />
-    <Content Include="SystemManage\RoleAdd.ascx" />
-    <Content Include="SystemManage\RoleList.ascx" />
-    <Content Include="SystemManage\SetRoleAction.ascx" />
-    <Content Include="SystemManage\SetRoleActionFrame.ascx" />
-    <Content Include="SystemManage\SetRoleFunction.ascx" />
-    <Content Include="SystemManage\SetUserAction.ascx" />
-    <Content Include="SystemManage\SetUserActionFrame.ascx" />
-    <Content Include="SystemManage\SetUserFunction.ascx" />
-    <Content Include="SystemManage\SetUserPassword.ascx" />
-    <Content Include="SystemManage\SetUserRole.ascx" />
-    <Content Include="SystemManage\SystemManage.cfg.xml" />
-    <Content Include="SystemManage\UserAdd.ascx" />
-    <Content Include="SystemManage\UserDelete.ascx" />
-    <Content Include="SystemManage\UserList.ascx" />
-    <Content Include="SystemManage\UserManage.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ActionAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ActionDelete.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ActionImage.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ActionList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\FunctionAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\FunctionDelete.ascx" />
+    <Content Include="SystemManage\SystemManage.View\FunctionSelect.ascx" />
+    <Content Include="SystemManage\SystemManage.View\FunctionsManage.ascx" />
+    <Content Include="SystemManage\SystemManage.View\FunctionsTree.ascx" />
+    <Content Include="SystemManage\SystemManage.View\Login.ascx" />
+    <Content Include="SystemManage\SystemManage.View\Logout.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ModuleAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ModuleList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\ModuleUpdate.ascx" />
+    <Content Include="SystemManage\SystemManage.View\OrganizationAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\OrganizationList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\OrganizationTypeAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\OrganizationTypeList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\RoleAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\RoleList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetRoleAction.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetRoleActionFrame.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetRoleFunction.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetUserAction.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetUserActionFrame.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetUserFunction.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetUserPassword.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SetUserRole.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SystemLogDelete.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SystemLogList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\SystemManage.cfg.xml" />
+    <Content Include="SystemManage\SystemManage.View\SystemSettings.ascx" />
+    <Content Include="SystemManage\SystemManage.View\UserAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\UserDelete.ascx" />
+    <Content Include="SystemManage\SystemManage.View\UserList.ascx" />
+    <Content Include="SystemManage\SystemManage.View\UserManage.ascx" />
     <Content Include="Web.config" />
     <Content Include="Window.aspx" />
     <Content Include="WorkPage.aspx" />
@@ -183,193 +197,249 @@
       <DependentUpon>ModuleConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemManage\ActionAdd.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionAdd.ascx.cs">
       <DependentUpon>ActionAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ActionAdd.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionAdd.ascx.designer.cs">
       <DependentUpon>ActionAdd.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ActionDelete.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionDelete.ascx.cs">
       <DependentUpon>ActionDelete.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ActionDelete.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionDelete.ascx.designer.cs">
       <DependentUpon>ActionDelete.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ActionImage.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionImage.ascx.cs">
       <DependentUpon>ActionImage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ActionImage.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionImage.ascx.designer.cs">
       <DependentUpon>ActionImage.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ActionList.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionList.ascx.cs">
       <DependentUpon>ActionList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ActionList.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ActionList.ascx.designer.cs">
       <DependentUpon>ActionList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\FunctionAdd.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionAdd.ascx.cs">
       <DependentUpon>FunctionAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\FunctionAdd.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionAdd.ascx.designer.cs">
       <DependentUpon>FunctionAdd.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\FunctionDelete.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionDelete.ascx.cs">
       <DependentUpon>FunctionDelete.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\FunctionDelete.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionDelete.ascx.designer.cs">
       <DependentUpon>FunctionDelete.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\FunctionSelect.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionSelect.ascx.cs">
       <DependentUpon>FunctionSelect.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\FunctionSelect.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionSelect.ascx.designer.cs">
       <DependentUpon>FunctionSelect.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\FunctionsManage.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionsManage.ascx.cs">
       <DependentUpon>FunctionsManage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\FunctionsManage.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionsManage.ascx.designer.cs">
       <DependentUpon>FunctionsManage.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\FunctionsTree.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionsTree.ascx.cs">
       <DependentUpon>FunctionsTree.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\FunctionsTree.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\FunctionsTree.ascx.designer.cs">
       <DependentUpon>FunctionsTree.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\Login.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\Login.ascx.cs">
       <DependentUpon>Login.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\Login.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\Login.ascx.designer.cs">
       <DependentUpon>Login.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ModuleAdd.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\Logout.ascx.cs">
+      <DependentUpon>Logout.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\Logout.ascx.designer.cs">
+      <DependentUpon>Logout.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\ModuleAdd.ascx.cs">
       <DependentUpon>ModuleAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ModuleAdd.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ModuleAdd.ascx.designer.cs">
       <DependentUpon>ModuleAdd.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ModuleList.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ModuleList.ascx.cs">
       <DependentUpon>ModuleList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ModuleList.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ModuleList.ascx.designer.cs">
       <DependentUpon>ModuleList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\ModuleUpdate.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\ModuleUpdate.ascx.cs">
       <DependentUpon>ModuleUpdate.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\ModuleUpdate.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\ModuleUpdate.ascx.designer.cs">
       <DependentUpon>ModuleUpdate.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\RoleAdd.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\OrganizationAdd.ascx.cs">
+      <DependentUpon>OrganizationAdd.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationAdd.ascx.designer.cs">
+      <DependentUpon>OrganizationAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationList.ascx.cs">
+      <DependentUpon>OrganizationList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationList.ascx.designer.cs">
+      <DependentUpon>OrganizationList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationTypeAdd.ascx.cs">
+      <DependentUpon>OrganizationTypeAdd.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationTypeAdd.ascx.designer.cs">
+      <DependentUpon>OrganizationTypeAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationTypeList.ascx.cs">
+      <DependentUpon>OrganizationTypeList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\OrganizationTypeList.ascx.designer.cs">
+      <DependentUpon>OrganizationTypeList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\RoleAdd.ascx.cs">
       <DependentUpon>RoleAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\RoleAdd.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\RoleAdd.ascx.designer.cs">
       <DependentUpon>RoleAdd.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\RoleList.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\RoleList.ascx.cs">
       <DependentUpon>RoleList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\RoleList.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\RoleList.ascx.designer.cs">
       <DependentUpon>RoleList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetRoleAction.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleAction.ascx.cs">
       <DependentUpon>SetRoleAction.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetRoleAction.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleAction.ascx.designer.cs">
       <DependentUpon>SetRoleAction.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetRoleActionFrame.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleActionFrame.ascx.cs">
       <DependentUpon>SetRoleActionFrame.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetRoleActionFrame.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleActionFrame.ascx.designer.cs">
       <DependentUpon>SetRoleActionFrame.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetRoleFunction.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleFunction.ascx.cs">
       <DependentUpon>SetRoleFunction.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetRoleFunction.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetRoleFunction.ascx.designer.cs">
       <DependentUpon>SetRoleFunction.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetUserAction.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserAction.ascx.cs">
       <DependentUpon>SetUserAction.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetUserAction.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserAction.ascx.designer.cs">
       <DependentUpon>SetUserAction.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetUserActionFrame.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserActionFrame.ascx.cs">
       <DependentUpon>SetUserActionFrame.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetUserActionFrame.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserActionFrame.ascx.designer.cs">
       <DependentUpon>SetUserActionFrame.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetUserFunction.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserFunction.ascx.cs">
       <DependentUpon>SetUserFunction.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetUserFunction.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserFunction.ascx.designer.cs">
       <DependentUpon>SetUserFunction.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetUserPassword.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserPassword.ascx.cs">
       <DependentUpon>SetUserPassword.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetUserPassword.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserPassword.ascx.designer.cs">
       <DependentUpon>SetUserPassword.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\SetUserRole.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserRole.ascx.cs">
       <DependentUpon>SetUserRole.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\SetUserRole.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\SetUserRole.ascx.designer.cs">
       <DependentUpon>SetUserRole.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\UserAdd.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\SystemLogDelete.ascx.cs">
+      <DependentUpon>SystemLogDelete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\SystemLogDelete.ascx.designer.cs">
+      <DependentUpon>SystemLogDelete.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\SystemLogList.ascx.cs">
+      <DependentUpon>SystemLogList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\SystemLogList.ascx.designer.cs">
+      <DependentUpon>SystemLogList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\SystemSettings.ascx.cs">
+      <DependentUpon>SystemSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\SystemSettings.ascx.designer.cs">
+      <DependentUpon>SystemSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\UserAdd.ascx.cs">
       <DependentUpon>UserAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\UserAdd.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserAdd.ascx.designer.cs">
       <DependentUpon>UserAdd.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\UserDelete.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserDelete.ascx.cs">
       <DependentUpon>UserDelete.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\UserDelete.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserDelete.ascx.designer.cs">
       <DependentUpon>UserDelete.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\UserList.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserList.ascx.cs">
       <DependentUpon>UserList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\UserList.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserList.ascx.designer.cs">
       <DependentUpon>UserList.ascx</DependentUpon>
     </Compile>
-    <Compile Include="SystemManage\UserManage.ascx.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserManage.ascx.cs">
       <DependentUpon>UserManage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SystemManage\UserManage.ascx.designer.cs">
+    <Compile Include="SystemManage\SystemManage.View\UserManage.ascx.designer.cs">
       <DependentUpon>UserManage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Window.aspx.cs">

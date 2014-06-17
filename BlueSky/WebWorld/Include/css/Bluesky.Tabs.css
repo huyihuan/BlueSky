@@ -1,0 +1,128 @@
+﻿/* Bluesky.Tabs */
+DIV.bluesky-tabs-wrapper
+{
+	width:100%;
+	border:solid 1px #BBBBBB;
+	padding-top:3px;
+	overflow:hidden;
+	background:#F3F5F5;
+}
+DIV.bluesky-tabs-bar
+{
+	width:5000px;
+	height:25px;
+	border:0px;
+	padding:0px;
+	margin:0px;
+	z-index:2px;
+	position:relative;
+	left:0;
+	top:0;
+}
+DIV.bluesky-tabs-bottom
+{
+	width:100%;
+	height:3px;
+	padding:0px;
+	margin:0px;
+	border:none;
+	background-color:#F5F5F5;
+	border-top:1px solid #BBBBBB;
+	z-index:1px;
+}
+DIV.bluesky-tabs-content-node
+{
+	width:100%;
+	height:100%;
+	border:0;
+	padding:0px;
+	margin:0px;
+	overflow:auto;
+	
+	
+}
+DIV.bluesky-tabs-content-wrapper
+{
+	width:100%;
+	height:auto;
+	border:solid 1px #BBBBBB;
+	border-top:none;
+	padding:0px;
+	margin:0px;
+	background:#FFFFFF url(../image/txt_backimage.gif) left top repeat-x;
+	font-size:12px;
+	color:#000000;
+	overflow:hidden;
+}
+DIV.bluesky-tabs-content-slider
+{
+    position:relative;
+    left:0px;
+    top:0px;
+}
+A.bluesky-tab
+{
+	width:auto;
+	height:24px;
+	display:block;
+	float:left;
+	margin-left:3px;
+	padding-left:8px;
+	padding-right:8px;
+	font-size:12px;
+	font-weight:normal;
+	line-height:24px;
+    vertical-align:middle;
+	color:#000000;
+	cursor:default;
+	text-decoration:none;
+	border-radius:3px 3px 0px 0px;
+	-moz-border-radius:3px 3px 0px 0px;
+}
+IMG.bluesky-tab-icon
+{
+	width:16px;
+	height:16px;	
+}
+
+IMG.bluesky-tab-icon-only
+{
+	margin-top:4px;
+}
+	
+A.bluesky-tab:hover
+{
+	text-decoration:none;
+}
+
+A.bluesky-tab-normal
+{
+	border:1px solid #BBBBBB;
+	border-bottom:none;
+	background:#F5F5F5 url(../image/Panel/panel_title_bg.gif) left top repeat-x;
+}
+
+A.bluesky-tab-active
+{
+	border:1px solid #BBBBBB;
+	border-bottom-color:#F5F5F5;
+	background:#F5F5F5 url(../image/Panel/panel_title_bg_o2o.gif) left top repeat-x;
+	text-decoration:none;
+}
+
+A.bluesky-tab-close
+{
+	width:auto;
+	height:auto;
+	font-size:13px;
+	margin-left:7px;
+	font-weight:bold;
+	color:#CCCCCC;
+	cursor:pointer;
+}
+
+A.bluesky-tab-close:hover
+{
+	color:#FF0000;
+	text-decoration:underline;
+}
