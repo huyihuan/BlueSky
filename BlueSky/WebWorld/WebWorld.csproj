@@ -68,6 +68,7 @@
     <Content Include="Desktop.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.html" />
+    <Content Include="Include\css\BlueSky.Button.css" />
     <Content Include="Include\css\Bluesky.Panel.css" />
     <Content Include="Include\css\Bluesky.SplitPanel.css" />
     <Content Include="Include\css\Bluesky.Tabs.css" />

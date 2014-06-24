@@ -13,32 +13,40 @@ namespace WebWorld
 {
     public partial class Window : System.Web.UI.Page
     {
-        public int nFunctionId = -1;
+        //public int nFunctionId = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Session过期后，进入登陆界面
-            if (SystemUtil.GetCurrentUserId() <= 0)
+            int nCurrrentUserId = SystemUtil.GetCurrentUserId();
+            if (nCurrrentUserId <= 0)
             {
                 Control loginControl = TemplateControl.LoadControl(SystemUtil.ResovleControlPath("SystemManage", "Login"));
                 ph.Controls.Add(loginControl);
                 return;
             }
 
-            nFunctionId = PageUtil.GetQueryInt(this.Request, "fn", -1);
+            int nFunctionId = PageUtil.GetQueryInt(this.Request, "fn", -1);
+            int nModuleId = PageUtil.GetQueryInt(this.Request, "m", -1);
+            if (nFunctionId <= 0 && nModuleId <= 0)
+                return;
+            SystemFunction oFunction = new SystemFunction();
+            if (nFunctionId >= 1)
+            {
+                oFunction = SystemFunction.Get(nFunctionId);
+                if (null == oFunction)
+                    return;
+                nModuleId = oFunction.ModuleId;
+            }
+            SystemModule oModule = SystemModule.Get(nModuleId);
+            if (null == oModule)
+                return;
             string strSingleForm = PageUtil.GetQueryString(this.Request, "fm");
             string strActionKey = PageUtil.GetQueryString(this.Request, "akey");
-            SystemFunction oFunction = SystemFunction.Get(nFunctionId);
-            if (null == oFunction || nFunctionId <= 0)
-                return;
-            SystemModule module = SystemModule.Get(oFunction.ModuleId);
-            if (null == module)
-                return;
-
             string strControlName = strSingleForm;
             SystemAction[] alActions = null;
             if (string.IsNullOrEmpty(strControlName))
             {
-                alActions = SystemAction.GetUserAction(SystemUtil.GetCurrentUserId(), nFunctionId);
+                alActions = SystemAction.GetUserAction(nCurrrentUserId, nFunctionId);
                 if (null == alActions)
                     return;
                 foreach (SystemAction action in alActions)
@@ -60,7 +68,7 @@ namespace WebWorld
                 {
                     //记录用户操作日志
                     SystemLog oLog = new SystemLog();
-                    oLog.UserId = SystemUtil.GetCurrentUserId();
+                    oLog.UserId = nCurrrentUserId;
                     oLog.AccessFunctionName = oFunction.Name;
                     oLog.AccessActionName = SystemAction.Get(strActionKey).Name;
                     oLog.AccessTime = DateTime.Now;
@@ -77,7 +85,7 @@ namespace WebWorld
                 return;
             }
 
-            string strControlPath = string.IsNullOrEmpty(strOtherUrl) ? SystemUtil.ResovleControlPath(module.Controller, strControlName) : strOtherUrl;
+            string strControlPath = string.IsNullOrEmpty(strOtherUrl) ? SystemUtil.ResovleControlPath(oModule.Controller, strControlName) : strOtherUrl;
             Control loadControl = null;
             try
             {

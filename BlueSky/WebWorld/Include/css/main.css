@@ -131,12 +131,15 @@ Input.btn-normal
     padding-right:5px;
     border:solid 1px #888;
     filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff',endColorstr='#d7d7d7',GradientType=0 );
-    background:rgb(243, 243, 243);
+    background-color:rgb(243, 243, 243);
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAcCAMAAACgTerKAAAAA3NCSVQICAjb4U/gAAAASFBMVEX+/v79/f38/Pz7+/v6+vr4+Pj39/f29vb19fX09PTz8/Px8fHw8PDv7+/u7u7t7e3s7Ozr6+vp6eno6Ojn5+fm5ubl5eX///8jGyilAAAAGHRSTlP//////////////////////////////wDNEy7qAAAACXBIWXMAAArwAAAK8AFCrDSYAAAAFnRFWHRDcmVhdGlvbiBUaW1lADA0LzEyLzEyiu5yJQAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNAay06AAAABNSURBVEiJ3c/XFYAgAMDAWFBUitj2H9Ut8sEtkBfoxiBgFDAJnMgsIAhYBKwCooBNwC7gEJAEZAFFQBVwCmgCLgG3wIk8Al4Bn6Cfkx/Rg3w59D7HjwAAAABJRU5ErkJggg==);
+    background-repeat:repeat-x;
     height:22px;
-    border-radius:0px;
     line-height:22px;
     width:auto;
     -min-width:50px;
+    border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px 4px 4px 4px;
 }
 Input.btn-command
 {
@@ -171,6 +174,8 @@ Input.btn-select-noleft
 {
 	height:21px;
 	border-left:none;
+	border-radius:0px 2px 2px 0px;
+	-moz-border-radius:0px 2px 2px 0px;
 }
 Input.btn-select
 {
@@ -190,6 +195,8 @@ Input.txt-normal
 	padding-left:2px;
 	line-height:19px;
 	vertical-align:middle;
+	border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
 }
 Input.txt-hint
 {
@@ -228,6 +235,8 @@ Textarea.txt-mutil
 	font-size:12px;
 	overflow:auto;
 	padding:3px;
+	border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
 }
 Textarea.txt-noborder
 {
@@ -274,6 +283,8 @@ A.action-normal
     border-style:solid;
     border-width:1px;
     border-color:Transparent;
+    border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px 4px 4px 4px;
 }
 A.action-active
 {
@@ -294,6 +305,8 @@ A.action-active
     border-bottom:solid 1px #FFFFFF;
     border-left:solid 1px #999999;
     border-top:solid 1px #999999;
+    border-radius:4px 4px 4px 4px;
+	-moz-border-radius:4px 4px 4px 4px;
 }
 A.action-normal span,A.action-active span
 {

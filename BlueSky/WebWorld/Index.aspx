@@ -17,16 +17,37 @@
     <script src="Include/js/utils.js" type="text/javascript"></script>
     <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/tabs.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.Button.css" rel="stylesheet" type="text/css" />
 </head>
+<script type="text/javascript">
+    function userView() {
+        top.windowFactory.targetFocusForm({
+            title: "用户信息",
+            url: "<%=strUserInfomationURL %>",
+            width: 500,
+            height: 450,
+            target: window
+        });
+    }
+</script>
 <body>
     <form id="form1" runat="server">
     <script type="text/javascript">
         setTimeout(function() { Bluesky.component.Masklayer.loading(); }, 0);
     </script>
     <div id="divTop">
-        <font class="font-title float-left">Bule Sky</font>
-        <a href="javascript:layout.logout();"  class="float-right">【退出】</a>
-        <a href="javascript:layout.moduleSetting();" class="float-right">【系统模块配置】</a>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+            <tr>
+                <td><font class="font-title float-left">Bule Sky</font></td>
+                <td align="right" valign="middle">
+                    <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="userView();">当前用户：<asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
+                    <a class="bluesky-button buttonMode-normal buttonCombination-both icon-exist iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.logout();" href="javascript:void(0);">退出</a>
+                    <a class="bluesky-button buttonMode-normal buttonCombination-both icon-set iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.moduleSetting();" href="javascript:void(0);">配置</a>&nbsp;
+                    <%--<a class="bluesky-button buttonMode-plain buttonCombination-image icon-exist buttonHighten-3px" onclick="layout.logout();" href="javascript:void(0);"></a>
+                    <a class="bluesky-button buttonMode-plain buttonCombination-image icon-set buttonHighten-3px" onclick="layout.moduleSetting();" href="javascript:void(0);"></a>&nbsp;--%>
+                </td>
+            </tr>
+        </table>
     </div>
     <div id="divButtom">
         <div id="divLeft">

@@ -104,6 +104,24 @@ namespace WebWorld.SystemManage {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Email;
         
         /// <summary>
+        /// txt_Password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txt_Password;
+        
+        /// <summary>
+        /// txt_Password2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txt_Password2;
+        
+        /// <summary>
         /// lb_RoleList control.
         /// </summary>
         /// <remarks>

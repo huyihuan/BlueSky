@@ -78,6 +78,8 @@ if (Bluesky && Bluesky.component) {
                 tab = this.component.Tab.create(tabArgs),
                 tabs = this;
             tab.tabNode.addEvent("click", function() {
+                if (tab.disabled == true)
+                    return;
                 tabs.setActiveTab(tab);
             });
             if (tab.isActive === true) {

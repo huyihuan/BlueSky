@@ -2,7 +2,8 @@
 <script type="text/javascript">
     var tabsUserInformation, wrapper, tabWrapper, remark;
     Bluesky.ready(function() {
-        wrapper = Bluesky("#tabs");
+    wrapper = Bluesky("#tabs");
+        var bIsPermission = "<%=bIsPermission %>".toLowerCase() == "true";
         var sizeW = { width: wrapper.width(), height: wrapper.height() };
         tabWrapper = Bluesky("#tabs_node");
         tabsUserInformation = Bluesky.component.Tabs.create({
@@ -13,7 +14,7 @@
             sliding: true,
             viewstate: "#<%=hidden_TabsViewState.ClientID %>",
             iconFolder: "include\\image\\icons",
-            items: [
+            items:  [
 				{
 				    title: "基本信息",
 				    sliding: true,
@@ -23,25 +24,35 @@
 				    closeable: false
 				},
 				{
+				    title: "密码设置",
+				    sliding: true,
+				    showIcon: true,
+				    iconURL: "information.png",
+				    contentElement: "#tab_password",
+				    closeable: false
+				},
+				{
 				    title: "角色设置",
 				    sliding: true,
 				    showIcon: true,
 				    iconURL: "group.png",
 				    contentElement: "#tab_role",
-				    closeable: false
+				    closeable: false,
+				    disabled: !bIsPermission
 				},
 				{
 				    title: "权限",
 				    showIcon: true,
 				    iconURL: "key.png",
 				    closeable: false,
+				    disabled: !bIsPermission,
 				    loader: {
 				        url: "<%=strPermissionURL %>",
 				        autoLoad: false
 				    }
 				},
 				{
-				    title: "",
+				    title: "备注",
 				    tip: "备注",
 				    sliding: true,
 				    showIcon: true,
@@ -95,7 +106,19 @@
         <td><input type="text" class="txt-normal" id="txt_Email" runat="server" size="25" /></td>
     </tr>
 </table>
-<table id="tab_role" cellpadding="5" cellspacing="5" border="0">
+<table id="tab_password" cellpadding="5" cellspacing="5" border="0" width="100%">
+    <tr><td colspan="2" height="10"></td></tr>
+    <tr>
+        <td align="right">密 码：</td>
+        <td><input type="password" id="txt_Password" runat="server" size="25" class="txt-normal" /></td>
+    </tr>
+    <tr><td colspan="2" height="10"></td></tr>
+    <tr>
+        <td align="right">确认密码：</td>
+        <td><input type="password" id="txt_Password2" runat="server" size="25" class="txt-normal" /></td>
+    </tr>
+</table>
+<table id="tab_role" cellpadding="5" cellspacing="5" border="0" width="100%">
     <tr><td colspan="5" height="10"></td></tr>
     <tr>
         <td><asp:ListBox ID="lb_RoleList" runat="server" Width="100" Height="150" ToolTip="可选择角色列表"></asp:ListBox></td>

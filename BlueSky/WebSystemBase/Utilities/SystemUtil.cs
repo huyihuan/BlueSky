@@ -180,6 +180,27 @@ namespace WebSystemBase.Utilities
             return SystemUtil.ResovleSingleFormUrl(nFn, _strControlName, _strExtraParameters);
         }
 
+        public static string ResovleSingleFormUrl(string _strModuleKey, string _strControlName)
+        {
+            SystemModule oModule = SystemModule.Get(_strModuleKey);
+            if (null == oModule)
+                return "";
+            return SystemUtil.ResolveUrl(string.Format("~/Window.aspx?m={0}&fm={1}", oModule.Id, _strControlName));
+        }
+
+        public static string ResovleSingleFormUrl(string _strModuleKey, string _strControlName, string _strExtraParameters)
+        {
+            string strURL = ResovleSingleFormUrl(_strModuleKey, _strControlName);
+            if(!string.IsNullOrEmpty(_strExtraParameters))
+                strURL += _strExtraParameters.StartsWith("&") ? _strExtraParameters : ("&" + _strExtraParameters);
+            return strURL;
+        }
+
+        public static bool IsFromPermission(System.Web.HttpRequest _hRequest)
+        {
+            return string.IsNullOrEmpty(_hRequest.QueryString.Get("m"));
+        }
+
         public static string ResovleModuleUploadPath(string _strModuleName)
         {
             return GetVirtualSysUploadPath() + _strModuleName;

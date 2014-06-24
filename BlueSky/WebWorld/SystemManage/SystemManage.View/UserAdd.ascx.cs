@@ -15,9 +15,11 @@ namespace WebWorld.SystemManage
     {
         public int nId = -1;
         public string strPermissionURL = "";
+        public bool bIsPermission = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             nId = PageUtil.GetQueryInt(this.Request, "id", -1);
+            bIsPermission = SystemUtil.IsFromPermission(this.Request);
             strPermissionURL = SystemUtil.ResovleActionFormURL(this.Request, "UserFunction", "id=" + PageUtil.GetQueryId(this.Request));
             if (IsPostBack)
                 return;
