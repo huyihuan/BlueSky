@@ -1,0 +1,8 @@
+E:\Applications\HYHCode\BlueSky\WebSystemBase\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebBase.dll
+E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebBase.pdb
+E:\Applications\HYHCode\BlueSky\WebSystemBase\obj\Debug\WebBase.dll
+E:\Applications\HYHCode\BlueSky\WebSystemBase\obj\Debug\WebBase.pdb
+E:\Applications\HYHCode\BlueSky\WebBase\obj\Debug\ResolveAssemblyReference.cache
+E:\Applications\HYHCode\BlueSky\WebBase\obj\Debug\WebBase.dll
+E:\Applications\HYHCode\BlueSky\WebBase\obj\Debug\WebBase.pdb

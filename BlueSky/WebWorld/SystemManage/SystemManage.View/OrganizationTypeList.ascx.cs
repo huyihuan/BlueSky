@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 using System.Web.UI.HtmlControls;
 using BlueSky.EntityAccess;
 
@@ -22,14 +22,13 @@ namespace WebWorld.SystemManage
 
         private void _BindData()
         {
-            SystemOrganizationType oModule = new SystemOrganizationType();
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(oModule).EntityCount();
+            PagerNavication.RecordsCount = EntityAccess<SystemOrganizationType>.Access.Count();
             SystemOrganizationType[] al = SystemOrganizationType.List("", "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

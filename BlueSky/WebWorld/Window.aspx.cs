@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 
 namespace WebWorld
 {
@@ -75,6 +75,7 @@ namespace WebWorld
                     oLog.AccessURL = this.Page.Request.Url.AbsoluteUri;
                     oLog.Remark = string.Format("[ControlName：{0}][IP:{1}]", strControlName, this.Request.ServerVariables["REMOTE_ADDR"]);
                     SystemLog.Save(oLog);
+
                 }
             }
 

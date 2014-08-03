@@ -32,6 +32,51 @@ namespace WebWorld.SystemManage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl toolBar;
         
         /// <summary>
+        /// cb_EnableDebuggingOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cb_EnableDebuggingOn;
+        
+        /// <summary>
+        /// txt_DebuggUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_DebuggUserName;
+        
+        /// <summary>
+        /// txt_DebuggPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_DebuggPassword;
+        
+        /// <summary>
+        /// btn_DebuggingOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_DebuggingOn;
+        
+        /// <summary>
+        /// btn_DebuggingSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_DebuggingSave;
+        
+        /// <summary>
         /// lit_Message control.
         /// </summary>
         /// <remarks>
@@ -66,5 +111,59 @@ namespace WebWorld.SystemManage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_Cancel;
+        
+        /// <summary>
+        /// btn_ClearCache control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_ClearCache;
+        
+        /// <summary>
+        /// btn_CacheMoniter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_CacheMoniter;
+        
+        /// <summary>
+        /// btn_ClearEntity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_ClearEntity;
+        
+        /// <summary>
+        /// btn_ClearList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_ClearList;
+        
+        /// <summary>
+        /// lt_CacheInformation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lt_CacheInformation;
+        
+        /// <summary>
+        /// rptItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptItems;
     }
 }

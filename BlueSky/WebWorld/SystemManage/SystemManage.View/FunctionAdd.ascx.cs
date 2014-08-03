@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 
 namespace WebWorld.SystemManage
 {

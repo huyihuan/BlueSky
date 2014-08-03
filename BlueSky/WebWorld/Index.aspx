@@ -17,7 +17,7 @@
     <script src="Include/js/utils.js" type="text/javascript"></script>
     <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/tabs.js" type="text/javascript"></script>
-    <link href="Include/css/Bluesky.Button.css" rel="stylesheet" type="text/css" />
+    <link href="BlueSky/themes/gray/Bluesky.Button.css" rel="stylesheet" type="text/css" />
 </head>
 <script type="text/javascript">
     function userView() {
@@ -41,7 +41,8 @@
                 <td><font class="font-title float-left">Bule Sky</font></td>
                 <td align="right" valign="middle">
                     <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="userView();">当前用户：<asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
-                    <a class="bluesky-button buttonMode-normal buttonCombination-both icon-exist iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.logout();" href="javascript:void(0);">退出</a>
+                    <a class="bluesky-button buttonMode-normal buttonCombination-both icon-exist iconPosition-left buttonHighten-5px buttonNormalBorder-single" onclick="layout.logout();" href="javascript:void(0);">退出</a>
+                    <a class="bluesky-button buttonMode-normal buttonCombination-both icon-refresh iconPosition-left buttonHighten-5px buttonNormalBorder-3D" runat="server" onserverclick="btnRefresh_Click" href="javascript:void(0);">重新登陆</a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-set iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.moduleSetting();" href="javascript:void(0);">配置</a>&nbsp;
                     <%--<a class="bluesky-button buttonMode-plain buttonCombination-image icon-exist buttonHighten-3px" onclick="layout.logout();" href="javascript:void(0);"></a>
                     <a class="bluesky-button buttonMode-plain buttonCombination-image icon-set buttonHighten-3px" onclick="layout.moduleSetting();" href="javascript:void(0);"></a>&nbsp;--%>

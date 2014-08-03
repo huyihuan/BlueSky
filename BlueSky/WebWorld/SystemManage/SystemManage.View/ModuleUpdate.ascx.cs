@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.Utilities;
-using WebSystemBase.SystemClass;
+using WebBase.Utilities;
+using WebBase.SystemClass;
 using System.Xml;
 
 using System.Collections;
@@ -127,7 +127,7 @@ namespace WebWorld.SystemManage
                 //    return;
                 string strFnKey = _GetChildNodeText(nodeRootFn, "Key");
                 SystemFunction oFnExist = SystemFunction.Get(strFnKey);
-                bool bFnAdd = bModuleAdd || null == oFnExist;
+                bool bFnAdd = null == oFnExist;
                 if (bFnAdd)
                 {
                     oFnExist = new SystemFunction();
@@ -147,9 +147,10 @@ namespace WebWorld.SystemManage
                     continue;
                 }
                 _setMessage(string.Format("功能“{0}”信息保存成功！", oFnExist.Name), true);
-
-                htFns[strFnKey] = 1;
-
+                if (!bModuleAdd)
+                {
+                    htFns[strFnKey] = 1;
+                }
                 //功能Action信息保存
                 Hashtable htActions = new Hashtable();
                 XmlNodeList nlActions = nodeRootFn.SelectNodes("Actions/Action");
@@ -159,7 +160,7 @@ namespace WebWorld.SystemManage
                     //    return;
                     string strActionKey = _GetChildNodeText(nodeAction, "Key");
                     SystemAction oActionExist = SystemAction.Get(strActionKey);
-                    bool bActionAdd = bModuleAdd || bFnAdd || null == oActionExist;
+                    bool bActionAdd = null == oActionExist;
                     if (bActionAdd)
                     {
                         oActionExist = new SystemAction();
@@ -191,7 +192,10 @@ namespace WebWorld.SystemManage
                         _setMessage(string.Format("功能“{0}”的动作“{1}”信息保存失败！", oFnExist.Name, oActionExist.Name), true);
                         continue;
                     }
-                    htActions[strActionKey] = 1;
+                    if (!bFnAdd)
+                    {
+                        htActions[strActionKey] = 1;
+                    }
                 }
 
                 //删除该功能下的冗余操作（Action）

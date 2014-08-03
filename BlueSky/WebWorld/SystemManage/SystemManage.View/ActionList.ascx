@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActionList.ascx.cs" Inherits="WebWorld.SystemManage.ActionList" %>
-<%@ Register TagPrefix="BS" Namespace="WebSystemBase.UserControls" Assembly="WebSystemBase" %>
+<%@ Register TagPrefix="BS" Namespace="WebBase.UserControls" Assembly="WebBase" %>
 <script type="text/javascript">
     $(document).ready(function() {
         window.formUtil.initList({ listObject: ".list-container", minusHeight: 58, minusWidth: 0, resize: true });

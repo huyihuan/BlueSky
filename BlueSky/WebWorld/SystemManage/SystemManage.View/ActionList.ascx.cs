@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.Utilities;
-using WebSystemBase.SystemClass;
+using WebBase.Utilities;
+using WebBase.SystemClass;
 using System.Web.UI.HtmlControls;
 using BlueSky.EntityAccess;
 
@@ -28,14 +28,13 @@ namespace WebWorld.SystemManage
         private void _BindData()
         {
             string strFilter = nFunctionId > 0 ? "FunctionId=" + nFunctionId : "";
-            SystemAction oAction = new SystemAction();
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(oAction).EntityCount(strFilter);
+            PagerNavication.RecordsCount = EntityAccess<SystemAction>.Access.Count(strFilter);
             SystemAction[] al = SystemAction.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }
@@ -65,9 +64,5 @@ namespace WebWorld.SystemManage
         {
             _BindData();
         }
-
-
-
-
     }
 }

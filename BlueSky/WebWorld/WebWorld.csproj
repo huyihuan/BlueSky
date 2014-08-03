@@ -59,9 +59,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
-    <Reference Include="WebSystemBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>UsingDll\WebSystemBase.dll</HintPath>
+      <HintPath>UsingDll\WebBase.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

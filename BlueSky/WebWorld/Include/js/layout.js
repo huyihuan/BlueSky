@@ -21,6 +21,7 @@ var layout = {
             items: [
 				        {
 				            title: "工作及日程区",
+				            key:"tabCalendar" + Math.random(),
 				            sliding: true,
 				            closeable: false,
 				            showIcon: true,
@@ -86,6 +87,8 @@ var layout = {
         this.tabs.add({
             title: _windowArguments.title,
             tip: _windowArguments.title,
+            key: _windowArguments.windowKey,
+            isRunMutil:false,
             showIcon: true,
             loader: {
                 url: _windowArguments.url,

@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 using System.Text;
 using System.Collections;
 
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 
 namespace WebWorld.SystemManage
 {

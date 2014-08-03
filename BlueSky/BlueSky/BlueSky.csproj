@@ -1,0 +1,135 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C0CF395-1403-4C45-90DF-3D831BE7B7CE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlueSky</RootNamespace>
+    <AssemblyName>BlueSky</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\WebWorld\UsingDll\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>UsingDll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>UsingDll\System.Data.OracleClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlueSky.Attribute\EntityAttribue.cs" />
+    <Compile Include="BlueSky.Attribute\EntityFieldAttribute.cs" />
+    <Compile Include="BlueSky.Cache\Cache.cs" />
+    <Compile Include="BlueSky.Cache\CacheInfomation.cs" />
+    <Compile Include="BlueSky.Cache\CacheItem.cs" />
+    <Compile Include="BlueSky.Cache\EntityCache.cs" />
+    <Compile Include="BlueSky.Cache\EntityListCache.cs" />
+    <Compile Include="BlueSky.Cache\MetaCache.cs" />
+    <Compile Include="BlueSky.DataAccess\DatabaseType.cs" />
+    <Compile Include="BlueSky.DataAccess\DbBase.cs" />
+    <Compile Include="BlueSky.DataAccess\DbSession.cs" />
+    <Compile Include="BlueSky.DataAccess\SqlServer.cs" />
+    <Compile Include="BlueSky.DataAccess\SqlServerSession.cs" />
+    <Compile Include="BlueSky.EntityAccess\EntityAccess.cs" />
+    <Compile Include="BlueSky.EntityAccess\EntityField.cs" />
+    <Compile Include="BlueSky.EntityAccess\EntityMeta.cs" />
+    <Compile Include="BlueSky.Interfaces\ICacheItem.cs" />
+    <Compile Include="BlueSky.Interfaces\IDatabase.cs" />
+    <Compile Include="BlueSky.Interfaces\IDbSession.cs" />
+    <Compile Include="BlueSky.Interfaces\IEntityCache.cs" />
+    <Compile Include="BlueSky.Interfaces\IEntityField.cs" />
+    <Compile Include="BlueSky.Interfaces\IEntityMeta.cs" />
+    <Compile Include="BlueSky.Utilities\CryptUtil.cs" />
+    <Compile Include="BlueSky.Utilities\ReflectionUtil.cs" />
+    <Compile Include="BlueSky.Utilities\StringUtil.cs" />
+    <Compile Include="BlueSky.Utilities\TypeUtil.cs" />
+    <Compile Include="BlueSky.Utilities\Constants.cs" />
+    <Compile Include="BlueSky.DataAccess\HDataBase.cs" />
+    <Compile Include="BlueSky.DataAccess\HDBOperation.cs" />
+    <Compile Include="BlueSky.Interfaces\IEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UsingDll\MySql.Data.dll" />
+    <Content Include="UsingDll\System.Data.OracleClient.dll" />
+    <Content Include="UsingDll\System.Data.SQLite.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2320</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

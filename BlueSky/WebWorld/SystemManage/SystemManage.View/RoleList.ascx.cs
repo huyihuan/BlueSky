@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using System.Web.UI.HtmlControls;
-using WebSystemBase.SystemClass;
-using WebSystemBase.UserControls;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.UserControls;
+using WebBase.Utilities;
 using BlueSky.EntityAccess;
 
 namespace WebWorld.SystemManage
@@ -24,8 +24,7 @@ namespace WebWorld.SystemManage
 
         protected void BindData()
         {
-            SystemRole userObj = new SystemRole();
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(userObj).EntityCount();
+            PagerNavication.RecordsCount = EntityAccess<SystemRole>.Access.Count();
             SystemRole[] al = SystemRole.List("", "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();

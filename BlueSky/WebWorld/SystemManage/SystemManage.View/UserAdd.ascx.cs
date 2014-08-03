@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using System.Collections;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 
 namespace WebWorld.SystemManage
 {
@@ -38,6 +38,7 @@ namespace WebWorld.SystemManage
                 txt_UserName.Disabled = true;
                 rb_GenderMale.Checked = oGet.Gender == 1;
                 rb_GenderFemale.Checked = oGet.Gender == 2;
+                txt_Password.Value = "";
                 SystemUserRole[] alUserRoles = SystemUserRole.GetUserRoles(oGet.Id);
                 if (null != alUserRoles && alUserRoles.Length > 0)
                 {

@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 using System.Web.UI.HtmlControls;
 using System.Collections;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 using BlueSky.Utilities;
 using BlueSky.EntityAccess;
 
@@ -118,7 +118,7 @@ namespace WebWorld.SystemManage
                     SystemRoleFunctionPermission addItem = new SystemRoleFunctionPermission();
                     addItem.RoleId = nRoleId;
                     addItem.FunctionId = nId;
-                    HEntityCommon.HEntity(addItem).EntitySave();
+                    SystemRoleFunctionPermission.Save(addItem);
                 }
             }
             PageUtil.PageAlert(this.Page, "保存成功！");

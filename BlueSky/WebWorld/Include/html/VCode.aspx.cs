@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
-using WebSystemBase.Utilities;
+using WebBase.Utilities;
 
 namespace WebWorld.Include.html
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.Utilities;
+using WebBase.Utilities;
 using System.IO;
 using System.Text;
 
@@ -47,7 +47,7 @@ namespace WebWorld.SystemManage
             lbl_ImageList.Text = sbImage.ToString();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

@@ -20,7 +20,7 @@ namespace WebWorld.SystemManage {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebSystemBase.UserControls.PagerNavication PagerNavication;
+        protected global::WebBase.UserControls.PagerNavication PagerNavication;
         
         /// <summary>
         /// hiddenFunctionSelected control.

@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 using BlueSky.EntityAccess;
 
 namespace WebWorld.SystemManage
@@ -29,13 +29,13 @@ namespace WebWorld.SystemManage
                 strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%' or Email like '%{0}%' or QQ like '%{0}%' or CardID like '%{0}%'", strFilter);
                 //strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%'", strFilter);
             }
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(userObj).EntityCount(strFilter);
+            PagerNavication.RecordsCount = EntityAccess<UserInformation>.Access.Count(strFilter);
             UserInformation[] al = UserInformation.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

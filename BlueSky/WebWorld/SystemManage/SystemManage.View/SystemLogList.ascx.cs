@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 using System.Web.UI.HtmlControls;
 
 using BlueSky.EntityAccess;
@@ -24,8 +24,7 @@ namespace WebWorld.SystemManage
 
         private void _BindData()
         {
-            SystemLog oModule = new SystemLog();
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(oModule).EntityCount("");
+            PagerNavication.RecordsCount = EntityAccess<SystemLog>.Access.Count();
             SystemLog[] al = SystemLog.List("", "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
@@ -53,7 +52,7 @@ namespace WebWorld.SystemManage
                     litOrderId.Text = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1 + "";
             }
         }
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

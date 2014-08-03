@@ -6,8 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using System.Collections;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
+using WebBase.Config;
+using BlueSky.Utilities;
 
 namespace WebWorld.SystemManage
 {
@@ -15,7 +17,17 @@ namespace WebWorld.SystemManage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                ConfigAccess oCinfig = new ConfigAccess();
+                string strIsEnable = oCinfig.GetAppSetting(ConfigAccess.APPSETTINGKEY_EnableDebuggingOn);
+                if (strIsEnable == Constants.Yes.ToString())
+                {
+                    txt_UserName.Value = oCinfig.GetAppSetting(ConfigAccess.APPSETTINGKEY_DebuggingUserName);
+                    txt_Password.Value = oCinfig.GetAppSetting(ConfigAccess.APPSETTINGKEY_DebuggingPassword);
+                    btnLogin_Click(null, null);
+                }
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -23,9 +35,9 @@ namespace WebWorld.SystemManage
             string strUserName = txt_UserName.Value.Trim();
             string strPassword = txt_Password.Value;
             string strVCode = txt_VCode.Value;
-            if ("" == strUserName || "" == strPassword || "" == strVCode)
+            if (null != sender && ("" == strUserName || "" == strPassword || "" == strVCode))
                 return;
-            if (!strVCode.ToLower().Equals(SystemUtil.VCodeGetCurrent().ToLower()))
+            if (null != sender && !strVCode.ToLower().Equals(SystemUtil.VCodeGetCurrent().ToLower()))
             {
                 PageUtil.PageAlert(this.Page, "验证码错误！");
                 return;

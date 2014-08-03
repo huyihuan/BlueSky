@@ -110,12 +110,12 @@
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
         <td align="right">密 码：</td>
-        <td><input type="password" id="txt_Password" runat="server" size="25" class="txt-normal" /></td>
+        <td><input type="text" id="txt_Password" runat="server" size="25" class="txt-normal" /></td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
         <td align="right">确认密码：</td>
-        <td><input type="password" id="txt_Password2" runat="server" size="25" class="txt-normal" /></td>
+        <td><input type="text" id="txt_Password2" runat="server" size="25" class="txt-normal" /></td>
     </tr>
 </table>
 <table id="tab_role" cellpadding="5" cellspacing="5" border="0" width="100%">

@@ -10,7 +10,7 @@
     <tr><td colspan="2" height="5"></td></tr>
     <tr>
         <td colspan="2" valign="top" style="padding:5px;">
-            <asp:CheckBoxList ID="cbl_Actions" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal" re></asp:CheckBoxList>
+            <asp:CheckBoxList ID="cbl_Actions" runat="server" RepeatLayout="Table"  RepeatDirection="Horizontal" RepeatColumns="3"></asp:CheckBoxList>
         </td>
     </tr>
 </table>

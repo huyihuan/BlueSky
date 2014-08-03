@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.SystemClass;
+using WebBase.SystemClass;
 
 using System.Web.UI.HtmlControls;
-using WebSystemBase.Utilities;
+using WebBase.Utilities;
 using BlueSky.EntityAccess;
 using BlueSky.Utilities;
 
@@ -25,13 +25,13 @@ namespace WebWorld.SystemManage
         private void _BindData()
         {
             SystemModule oModule = new SystemModule();
-            PagerNavication.RecordsCount = HEntityCommon.HEntity(oModule).EntityCount();
+            PagerNavication.RecordsCount = EntityAccess<SystemModule>.Access.Count();
             SystemModule[] al = SystemModule.List("", "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

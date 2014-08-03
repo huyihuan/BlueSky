@@ -7,8 +7,8 @@
 	margin:0px;
 	cursor:pointer;
 	text-decoration:none;
-	border-radius:5px 5px 5px 5px;
-	-moz-border-radius:5px 5px 5px 5px;
+	border-radius:3px 3px 3px 3px;
+	-moz-border-radius:3px 3px 3px 3px;
 	font-size:12px;
 	letter-spacing:2px;
 	font-weight:normal;
@@ -190,7 +190,10 @@ A.icon-close
 A.icon-set
 {
     background-image:url("../image/icons/cog.png");
-
+}
+A.icon-refresh
+{
+	background-image:url("../image/icons/arrow_refresh.png");
 }
 A.icon-user
 {

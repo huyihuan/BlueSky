@@ -929,9 +929,9 @@
       </Actions>
     </Function>
     <Function>
-      <Name>系统日志</Name>
-      <Description>系统日志</Description>
-      <Key>SystemLogManage</Key>
+      <Name>系统设置</Name>
+      <Description>系统设置</Description>
+      <Key>SystemSettingManage</Key>
       <OrderId>8</OrderId>
       <IconName>functions.gif</IconName>
       <Actions>
@@ -941,7 +941,7 @@
           <Description>日志列表</Description>
           <ActionType>normal</ActionType>
           <ActionValue></ActionValue>
-          <IsDefault>1</IsDefault>
+          <IsDefault>2</IsDefault>
           <ControlName>SystemLogList</ControlName>
           <Tip>日志列表</Tip>
           <IconName>list.png</IconName>

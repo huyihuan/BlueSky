@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BlueSky.Interfaces;
+using BlueSky.Attribute;
 
 namespace WebWorld.Modules.MyMusic.Domain
 {
-    public class Music : BlueSky.Interfaces.IEntity
+    public class Music : IEntity
     {
-        public int Id;
-        public int UserId;
-        public string MusicName;
-        public string MusicURL;
-        public string MusicType;
-
-        #region IEntity
-
-        public string GetTableName() { return "Music"; }
-        public string GetKeyName() { return "Id"; }
-
-        #endregion
+        [EntityFieldAttribute(IsPrimaryKey = true)]
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string MusicName { get; set; }
+        public string MusicURL { get; set; }
+        public string MusicType { get; set; }
     }
 }

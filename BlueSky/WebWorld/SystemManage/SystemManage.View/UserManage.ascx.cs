@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WebSystemBase.SystemClass;
-using WebSystemBase.Utilities;
+using WebBase.SystemClass;
+using WebBase.Utilities;
 
 using BlueSky.EntityAccess;
 using BlueSky.Utilities;
@@ -18,7 +18,7 @@ namespace WebWorld.SystemManage
         {
             if (!IsPostBack)
             {
-                lbl_Message.InnerHtml = string.Format("当前系统用户数量 <b>{0}</b> 个。", HEntityCommon.HEntity(new UserInformation()).EntityCount());
+                lbl_Message.InnerHtml = string.Format("当前系统用户数量 <b>{0}</b> 个。", EntityAccess<UserInformation>.Access.Count());
                 SystemRole.BindList(sel_Role, true, false, true);
             }
         }
@@ -32,7 +32,7 @@ namespace WebWorld.SystemManage
                 return;
             }
             Server.ScriptTimeout = nAdd;
-            int nId = HEntityCommon.HEntity(new UserInformation()).EntityCount();
+            int nId = EntityAccess<UserInformation>.Access.Count();
             nAdd += nId;
             DateTime dtBegin = DateTime.Now;
             int nRoleId = TypeUtil.ParseInt(sel_Role.SelectedValue, -1);
@@ -59,7 +59,7 @@ namespace WebWorld.SystemManage
                     SystemUserRole.Save(oUserRole);
                 }
             }
-            lbl_Message.InnerHtml = string.Format("<br />新增完成，当前系统用户数量 <b>{0}</b> 个。", HEntityCommon.HEntity(new UserInformation()).EntityCount());
+            lbl_Message.InnerHtml = string.Format("<br />新增完成，当前系统用户数量 <b>{0}</b> 个。", EntityAccess<UserInformation>.Access.Count());
             TimeSpan tsDuring = new TimeSpan(DateTime.Now.Ticks - dtBegin.Ticks);
             lbl_Message.InnerHtml += string.Format("<br />共用时 <b>{0}</b>s。", tsDuring.TotalSeconds);
         }
