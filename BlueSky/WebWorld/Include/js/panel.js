@@ -75,7 +75,7 @@ BlueSky.Panel.prototype.setSplitPanel = function(_splitPanel) {
             tFrame.setAttribute("scrolling", "no");
             divContent.appendChild(tFrame);
         }
-        setTimeout(function() { tFrame.src = _splitPanel.url }, 0);
+        setTimeout(function() { tFrame.src = _splitPanel.url }, 1);
     }
 }
 BlueSky.Panel.prototype.init = function(_arg) {
@@ -122,12 +122,12 @@ BlueSky.Panel.prototype.init = function(_arg) {
             var divContent = document.createElement("div");
             divContent.className = "panel-content";
             //设置divContent的宽度和高度，目前设置为100%但是无法出现滚动条
-            //            if (panelArg.width && panelArg.width.indexOf("%") == -1) {
-            //                divContent.style.width = parseInt(panelArg.width) + "px";
-            //            }
-            //            else if (panelArg.width && panelArg.width.indexOf("%") > -1) {
-            //                divContent.style.width = parseInt(panelArg.width.replace("%", "")) * this.width + "px";
-            //            }
+//            if (panelArg.width && panelArg.width.indexOf("%") == -1) {
+//                divContent.style.width = parseInt(panelArg.width) + "px";
+//            }
+//            else if (panelArg.width && panelArg.width.indexOf("%") > -1) {
+//                divContent.style.width = parseInt(panelArg.width.replace("%", "")) * this.width + "px";
+//            }
             if (this.height && this.height.indexOf("%") == -1) {
                 divContent.style.height = (parseInt(this.height) - 30) + "px";
             }
@@ -198,7 +198,7 @@ BlueSky.Panel.prototype.splitMove = function(e) {
     movePanel.className = "window-move-panel";
     document.body.appendChild(movePanel);
 
-    
+
     document.ondragstart = "return false;";
     document.onselectstart = "return false;";
     document.onselect = "document.selection.empty();";
@@ -208,10 +208,12 @@ BlueSky.Panel.prototype.splitMove = function(e) {
     document.onmousemove = function(e) {
         var e = e ? e : window.event;
         var moveX = e.clientX - tempX;
-        if (!isNaN(leftWidth))
+        if (!isNaN(leftWidth)) {
             tdLeftSplit.setAttribute("width", leftWidth + moveX);
-        if (!isNaN(rightWidth))
+        }
+        if (!isNaN(rightWidth)) {
             tdRightSplit.setAttribute("width", rightWidth - moveX);
+        }
     }
 
     document.onmouseup = function(e) {

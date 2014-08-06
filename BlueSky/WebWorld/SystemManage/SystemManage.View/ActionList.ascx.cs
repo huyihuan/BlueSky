@@ -8,6 +8,7 @@ using WebBase.Utilities;
 using WebBase.SystemClass;
 using System.Web.UI.HtmlControls;
 using BlueSky.EntityAccess;
+using BlueSky.Extensions;
 
 namespace WebWorld.SystemManage
 {
@@ -27,7 +28,13 @@ namespace WebWorld.SystemManage
 
         private void _BindData()
         {
-            string strFilter = nFunctionId > 0 ? "FunctionId=" + nFunctionId : "";
+            string strFilter = "1=1" + (nFunctionId > 0 ? " and FunctionId=" + nFunctionId : "");
+            string strName = txt_Name.Value.Trim();
+            string strKey = txt_Key.Value.Trim();
+            if (!strName.IsNullOrEmpty())
+                strFilter += string.Format(" and Name like '%{0}%'", strName);
+            if (!strKey.IsNullOrEmpty())
+                strFilter += string.Format(" and [Key] like '%{0}%'", strKey);
             PagerNavication.RecordsCount = EntityAccess<SystemAction>.Access.Count(strFilter);
             SystemAction[] al = SystemAction.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;

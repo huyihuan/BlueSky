@@ -110,14 +110,16 @@ div.list-container
 }
 fieldset.fieldset-normal
 {
-	border:dashed 1px #999999;
+	border:solid 1px #AAAAAA;
 	background-color:#FFFFFF;
 	}
 fieldset.fieldset-normal legend
 {
-	border:dashed 1px #999999;
+	border:solid 1px #AAAAAA;
+	border-left-color:#F1F1F1;
+	border-top-color:#F1F1F1;
 	background-color:#EEEEEE;
-	padding:3px;
+	padding:4px;
 	}
 
 /*按钮通用样式*/

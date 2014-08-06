@@ -648,23 +648,23 @@
           <Name>删除</Name>
           <Key>RoleDelete</Key>
           <Description>删除角色基本信息</Description>
-          <ActionType>javascript</ActionType>
-          <ActionValue>roleDelete()</ActionValue>
+          <ActionType>normal</ActionType>
+          <ActionValue></ActionValue>
           <IsDefault>2</IsDefault>
-          <ControlName>RoleList</ControlName>
+          <ControlName>RoleDelete</ControlName>
           <Tip>删除角色</Tip>
           <IconName>delete.gif</IconName>
           <OrderId>6</OrderId>
           <Target>top</Target>
           <EntityCount>-1</EntityCount>
-          <IsPopup>2</IsPopup>
-          <Width></Width>
-          <Height></Height>
-          <IsResize>1</IsResize>
-          <IsMove>1</IsMove>
+          <IsPopup>1</IsPopup>
+          <Width>300</Width>
+          <Height>150</Height>
+          <IsResize>2</IsResize>
+          <IsMove>2</IsMove>
           <IsIncludeMinBox>2</IsIncludeMinBox>
-          <IsIncludeMaxBox>1</IsIncludeMaxBox>
-          <IsShowInTaskBar>1</IsShowInTaskBar>
+          <IsIncludeMaxBox>2</IsIncludeMaxBox>
+          <IsShowInTaskBar>2</IsShowInTaskBar>
         </Action>
       </Actions>
     </Function>

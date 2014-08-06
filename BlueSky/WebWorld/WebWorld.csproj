@@ -137,6 +137,7 @@
     <Content Include="SystemManage\SystemManage.View\OrganizationTypeAdd.ascx" />
     <Content Include="SystemManage\SystemManage.View\OrganizationTypeList.ascx" />
     <Content Include="SystemManage\SystemManage.View\RoleAdd.ascx" />
+    <Content Include="SystemManage\SystemManage.View\RoleDelete.ascx" />
     <Content Include="SystemManage\SystemManage.View\RoleList.ascx" />
     <Content Include="SystemManage\SystemManage.View\SetRoleAction.ascx" />
     <Content Include="SystemManage\SystemManage.View\SetRoleActionFrame.ascx" />
@@ -330,6 +331,13 @@
     </Compile>
     <Compile Include="SystemManage\SystemManage.View\RoleAdd.ascx.designer.cs">
       <DependentUpon>RoleAdd.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\RoleDelete.ascx.cs">
+      <DependentUpon>RoleDelete.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SystemManage\SystemManage.View\RoleDelete.ascx.designer.cs">
+      <DependentUpon>RoleDelete.ascx</DependentUpon>
     </Compile>
     <Compile Include="SystemManage\SystemManage.View\RoleList.ascx.cs">
       <DependentUpon>RoleList.ascx</DependentUpon>

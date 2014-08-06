@@ -13,10 +13,10 @@ namespace BlueSky.Utilities
 			double dReturnValue = 0.0;
 			return double.TryParse(_strSource, out dReturnValue) ? dReturnValue : _dDefault;
 		}
-		public static double ParseLong(string _strSource, long _lDefault)
+		public static float ParseLong(string _strSource, long _lDefault)
 		{
 			long lReturnValue = 0L;
-			return (double)(long.TryParse(_strSource, out lReturnValue) ? lReturnValue : _lDefault);
+            return (float)(long.TryParse(_strSource, out lReturnValue) ? lReturnValue : _lDefault);
 		}
 	}
 }

@@ -41,6 +41,12 @@ namespace WebBase.SystemClass
 			SystemRole oDel = SystemRole.Get(_nId);
 			if (null != oDel)
 			{
+                SystemUserRole[] alRoleUsers = SystemUserRole.GetRoleUsers(_nId);
+                if (null != alRoleUsers && alRoleUsers.Length >= 1)
+                {
+                    foreach (SystemUserRole oUserRole in alRoleUsers)
+                        SystemUserRole.Delete(oUserRole.Id);
+                }
 				EntityAccess<SystemRole>.Access.Delete(oDel);
 			}
 		}

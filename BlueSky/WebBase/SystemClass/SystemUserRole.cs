@@ -68,6 +68,10 @@ namespace WebBase.SystemClass
 		{
 			return EntityAccess<SystemUserRole>.Access.List("UserId=" + _nUserId);
 		}
+        public static SystemUserRole[] GetRoleUsers(int _nRoleId)
+        {
+            return EntityAccess<SystemUserRole>.Access.List("RoleId=" + _nRoleId);
+        }
 		public static void DeleteUserRoles(int _nUserId)
 		{
 			SystemUserRole[] alist = SystemUserRole.GetUserRoles(_nUserId);

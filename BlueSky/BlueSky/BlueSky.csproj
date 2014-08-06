@@ -77,6 +77,7 @@
     <Compile Include="BlueSky.EntityAccess\EntityAccess.cs" />
     <Compile Include="BlueSky.EntityAccess\EntityField.cs" />
     <Compile Include="BlueSky.EntityAccess\EntityMeta.cs" />
+    <Compile Include="BlueSky.Extensions\StringExtensions.cs" />
     <Compile Include="BlueSky.Interfaces\ICacheItem.cs" />
     <Compile Include="BlueSky.Interfaces\IDatabase.cs" />
     <Compile Include="BlueSky.Interfaces\IDbSession.cs" />

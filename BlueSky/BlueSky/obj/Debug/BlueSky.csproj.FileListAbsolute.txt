@@ -3,3 +3,8 @@ E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\BlueSky.pdb
 E:\Applications\HYHCode\BlueSky\BlueSky\obj\Debug\ResolveAssemblyReference.cache
 E:\Applications\HYHCode\BlueSky\BlueSky\obj\Debug\BlueSky.dll
 E:\Applications\HYHCode\BlueSky\BlueSky\obj\Debug\BlueSky.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\BlueSky.dll
+E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\BlueSky.pdb
+E:\GitHub\BlueSky\BlueSky\BlueSky\obj\Debug\ResolveAssemblyReference.cache
+E:\GitHub\BlueSky\BlueSky\BlueSky\obj\Debug\BlueSky.dll
+E:\GitHub\BlueSky\BlueSky\BlueSky\obj\Debug\BlueSky.pdb
