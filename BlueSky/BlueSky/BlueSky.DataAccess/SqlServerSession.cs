@@ -7,6 +7,9 @@ namespace BlueSky.DataAccess
 {
     public class SqlServerSession : DbSession
     {
-         
+        public SqlServerSession()
+        {
+            base.Database = new SqlServer();
+        }
     }
 }

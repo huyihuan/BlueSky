@@ -38,6 +38,10 @@ namespace BlueSky.DataAccess
         {
             get
             {
+                if (string.IsNullOrEmpty(this._ConnectionString))
+                {
+                    this._ConnectionString = this.Database.ConnectionString;
+                }
                 return this._ConnectionString;
             }
             set

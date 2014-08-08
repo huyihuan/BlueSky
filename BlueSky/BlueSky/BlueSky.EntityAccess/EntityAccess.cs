@@ -21,8 +21,10 @@ namespace BlueSky.EntityAccess
                 Meta = new EntityMeta<TEntity>();
             }
         }
+        public IDbSession DbSession;
         public EntityAccess()
         {
+            DbSession = new SqlServerSession();
         }
         public static EntityAccess<TEntity> Access
         {
@@ -201,7 +203,7 @@ namespace BlueSky.EntityAccess
             string strQuery = string.Format("SELECT COUNT(1) FROM {0}", Meta.EntityName);
             if (!string.IsNullOrEmpty(_strFilter))
                 strQuery += " WHERE " + _strFilter;
-            int nCount = (int)HDBOperation.QueryScalar(strQuery);
+            int nCount = this.DbSession.ExecuteScale<int>(strQuery);
             if (Meta.EnableCache)
             {
                 EntityListCache<TEntity>.AddCount(_strFilter, nCount);
