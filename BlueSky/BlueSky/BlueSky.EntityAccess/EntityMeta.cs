@@ -3,6 +3,7 @@ using BlueSky.Interfaces;
 using System.Reflection;
 using System.Collections.Generic;
 using BlueSky.Attribute;
+using BlueSky.DataAccess;
 
 namespace BlueSky.EntityAccess
 {
@@ -22,6 +23,9 @@ namespace BlueSky.EntityAccess
                 return this.EntityType.Name;
             }
         }
+        public string TableName { get; set; }
+        public string ConnectionName { get; set; }
+        public DatabaseType DbType { get; set; }
         public bool EnableCache { get; set; }
         public IEntityField KeyField { get; set; }
         public IEntityField[] EntityFields { get; set; }
@@ -32,7 +36,17 @@ namespace BlueSky.EntityAccess
             object[] alEAttributes = this.EntityType.GetCustomAttributes(typeof(EntityAttribue), true);
             if (null != alEAttributes && alEAttributes.Length >= 1)
             {
-                this.EnableCache = ((EntityAttribue)alEAttributes[0]).EnableCache;
+                foreach (EntityAttribue ea in alEAttributes)
+                {
+                    this.EnableCache = ea.EnableCache;
+                    this.TableName = ea.TableName;
+                    this.ConnectionName = ea.ConectionName;
+                    this.DbType = ea.DbType;
+                }
+            }
+            if (string.IsNullOrEmpty(this.TableName))
+            {
+                this.TableName = this.EntityName;
             }
             PropertyInfo[] alProperties = this.EntityType.GetProperties();
             List<EntityField> ltFields = new List<EntityField>();

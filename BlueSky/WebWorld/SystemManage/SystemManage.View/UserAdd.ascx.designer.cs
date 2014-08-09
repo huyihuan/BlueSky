@@ -41,6 +41,15 @@ namespace WebWorld.SystemManage {
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_Cancel;
         
         /// <summary>
+        /// tab_baseInformation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tab_baseInformation;
+        
+        /// <summary>
         /// txt_UserName control.
         /// </summary>
         /// <remarks>
@@ -104,6 +113,60 @@ namespace WebWorld.SystemManage {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Email;
         
         /// <summary>
+        /// txt_CardID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_CardID;
+        
+        /// <summary>
+        /// txt_PostCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_PostCode;
+        
+        /// <summary>
+        /// txt_MSN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_MSN;
+        
+        /// <summary>
+        /// txt_Tel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Tel;
+        
+        /// <summary>
+        /// txt_Address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Address;
+        
+        /// <summary>
+        /// tab_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable tab_password;
+        
+        /// <summary>
         /// txt_Password control.
         /// </summary>
         /// <remarks>
@@ -156,5 +219,14 @@ namespace WebWorld.SystemManage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lb_RoleSelect;
+        
+        /// <summary>
+        /// txt_Remark control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_Remark;
     }
 }

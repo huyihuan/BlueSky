@@ -9,7 +9,7 @@ namespace BlueSky.Interfaces
 		string ConnectionString
 		{
 			get;
-			set;
+            set;
 		}
 		DatabaseType DbType
 		{

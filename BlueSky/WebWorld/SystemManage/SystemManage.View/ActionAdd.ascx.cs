@@ -76,7 +76,7 @@ namespace WebWorld.SystemManage
                 oAction = new SystemAction();
                 oAction.FunctionId = nFunctionId;
             }
-            PageUtil.PageFillEntity(this, oAction);
+            PageUtil.PageFillEntity<SystemAction>(this, oAction);
             SystemAction.Save(oAction);
             PageUtil.PageAlert(this.Page, "保存成功！");
         }

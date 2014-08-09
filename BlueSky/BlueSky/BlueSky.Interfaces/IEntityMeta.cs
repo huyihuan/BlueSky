@@ -1,4 +1,5 @@
 using System;
+using BlueSky.DataAccess;
 namespace BlueSky.Interfaces
 {
 	public interface IEntityMeta<TEntity> where TEntity : IEntity
@@ -11,6 +12,9 @@ namespace BlueSky.Interfaces
 		{
 			get;
 		}
+        string TableName { get; set; }
+        string ConnectionName { get; set; }
+        DatabaseType DbType { get; set; }
 		bool EnableCache
 		{
 			get;

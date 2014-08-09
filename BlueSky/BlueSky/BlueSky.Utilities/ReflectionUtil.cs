@@ -6,7 +6,7 @@ namespace BlueSky.Utilities
 {
 	public class ReflectionUtil
 	{
-		public static string[] GetObjectFieldsList(object _oSource, bool _bIncludeProperty)
+		public static string[] GetObjectFieldsList(object _oSource, bool _bIncludeProperty, bool _bOnlyCanWrite)
 		{
 			string[] result;
 			if (null == _oSource)
@@ -18,10 +18,9 @@ namespace BlueSky.Utilities
 				List<string> ltReturnList = new List<string>();
 				Type oTp = _oSource.GetType();
 				FieldInfo[] alFields = oTp.GetFields();
-				FieldInfo[] array = alFields;
-				for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < alFields.Length; i++)
 				{
-					FieldInfo item = array[i];
+                    FieldInfo item = alFields[i];
 					if (!item.IsStatic)
 					{
 						ltReturnList.Add(item.Name);
@@ -30,11 +29,13 @@ namespace BlueSky.Utilities
 				if (_bIncludeProperty)
 				{
 					PropertyInfo[] alProperties = oTp.GetProperties();
-					PropertyInfo[] array2 = alProperties;
-					for (int i = 0; i < array2.Length; i++)
+                    for (int i = 0; i < alProperties.Length; i++)
 					{
-						PropertyInfo item2 = array2[i];
-						ltReturnList.Add(item2.Name);
+                        if (_bOnlyCanWrite && !alProperties[i].CanWrite)
+                        {
+                            continue;
+                        }
+                        ltReturnList.Add(alProperties[i].Name);
 					}
 				}
 				result = ltReturnList.ToArray();
@@ -53,20 +54,18 @@ namespace BlueSky.Utilities
 				Hashtable htFieldValue = new Hashtable();
 				Type oTp = _oSource.GetType();
 				FieldInfo[] alFields = oTp.GetFields();
-				FieldInfo[] array = alFields;
-				for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < alFields.Length; i++)
 				{
-					FieldInfo item = array[i];
+                    FieldInfo item = alFields[i];
 					if (!item.IsStatic)
 					{
 						htFieldValue[item.Name] = item.GetValue(_oSource);
 					}
 				}
 				PropertyInfo[] alProperties = oTp.GetProperties();
-				PropertyInfo[] array2 = alProperties;
-				for (int i = 0; i < array2.Length; i++)
+                for (int i = 0; i < alProperties.Length; i++)
 				{
-					PropertyInfo item2 = array2[i];
+                    PropertyInfo item2 = alProperties[i];
 					htFieldValue[item2.Name] = item2.GetValue(_oSource, null);
 				}
 				result = htFieldValue;
@@ -104,32 +103,42 @@ namespace BlueSky.Utilities
 				if (null != field)
 				{
 					object oValue = new object();
-					if (field.FieldType == typeof(int))
+                    TypeCode oTc = Type.GetTypeCode(field.FieldType);
+                    if (oTc == TypeCode.Int16 || oTc == TypeCode.Int32)
 					{
 						oValue = TypeUtil.ParseInt(string.Concat(_oValue), 0);
 					}
-					else
+					else if (oTc == TypeCode.String)
 					{
-						if (field.FieldType == typeof(string))
-						{
-							oValue = string.Concat(_oValue);
-						}
-						else
-						{
-							if (field.FieldType == typeof(double))
-							{
-								oValue = TypeUtil.ParseDouble(string.Concat(_oValue), 0.0);
-							}
-							else
-							{
-								if (field.FieldType == typeof(long))
-								{
-									oValue = TypeUtil.ParseLong(string.Concat(_oValue), 0L);
-								}
-							}
-						}
+						oValue = string.Concat(_oValue);
 					}
-					field.SetValue(_oSource, oValue);
+                    else if (oTc == TypeCode.Double)
+					{
+						oValue = TypeUtil.ParseDouble(string.Concat(_oValue), 0.0);
+					}
+					else if(oTc == TypeCode.Int64)
+					{
+						oValue = TypeUtil.ParseLong(string.Concat(_oValue), 0L);
+					}
+                    else if (oTc == TypeCode.DateTime)
+                    { 
+                        DateTime dt = new DateTime();
+                        if (!DateTime.TryParse(_oValue.ToString(), out dt))
+                        {
+                            return;    
+                        }
+                        oValue = dt;
+                    }
+                    else if (oTc == TypeCode.Boolean)
+                    {
+                        Boolean b = true;
+                        if (!Boolean.TryParse(_oValue.ToString(),out b))
+                        {
+                            return;
+                        }
+                        oValue = b;
+                    }
+				    field.SetValue(_oSource, oValue);
 				}
 			}
 		}

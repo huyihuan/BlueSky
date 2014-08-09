@@ -69,6 +69,21 @@ namespace WebBase.SystemClass
 			get;
 			set;
 		}
+        public string Tel
+        {
+            get;
+            set;
+        }
+        public string Address
+        {
+            get;
+            set;
+        }
+        public string Remark
+        {
+            get;
+            set;
+        }
 		public string PropertyRoleName
 		{
 			get

@@ -48,7 +48,7 @@ namespace BlueSky.EntityAccess
         }
         public void SetValue<TEntity>(TEntity _Entity,object _oValue) where TEntity : IEntity
         {
-            this.Meta.SetValue(_Entity, _oValue, null);
+            this.Meta.SetValue(_Entity, Convert.ChangeType(_oValue, this.Type), null);
         }
     }
 }

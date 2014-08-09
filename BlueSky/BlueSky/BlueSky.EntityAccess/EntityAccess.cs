@@ -165,7 +165,7 @@ namespace BlueSky.EntityAccess
             TEntity[] oEntities = List(string.Format("[{0}]={1}", Meta.KeyField.FieldName, _oKey));
             if (null != oEntities && oEntities.Length >= 2)
             {
-                throw new Exception(string.Format("TableName:{0},Key:{1},Value:{2} Exist Mutil Records!", Meta.EntityName, Meta.KeyField.FieldName, _oKey));
+                throw new Exception(string.Format("TableName:{0},Key:{1},Value:{2} Exist Mutil Records!", Meta.TableName, Meta.KeyField.FieldName, _oKey));
             }
             if (null != oEntities && oEntities.Length == 1)
             {
@@ -200,7 +200,7 @@ namespace BlueSky.EntityAccess
             {
                 return EntityListCache<TEntity>.FindCount(_strFilter);
             }
-            string strQuery = string.Format("SELECT COUNT(1) FROM {0}", Meta.EntityName);
+            string strQuery = string.Format("SELECT COUNT(1) FROM {0}", Meta.TableName);
             if (!string.IsNullOrEmpty(_strFilter))
                 strQuery += " WHERE " + _strFilter;
             int nCount = this.DbSession.ExecuteScale<int>(strQuery);
@@ -224,7 +224,7 @@ namespace BlueSky.EntityAccess
             {
                 return EntityListCache<TEntity>.Find(_strFilter);
             }
-            string strQuery = string.Format("SELECT {0} FROM {1}", Meta.Selects, Meta.EntityName);
+            string strQuery = string.Format("SELECT {0} FROM {1}", Meta.Selects, Meta.TableName);
             if (!string.IsNullOrEmpty(_strFilter))
                 strQuery += " WHERE " + _strFilter;
             DataSet ds = HDBOperation.QueryDataSet(strQuery);
@@ -254,7 +254,7 @@ namespace BlueSky.EntityAccess
             if (_nPageIndex == 1)
             {
                 #region 如果查询第一页的数据采用top方式，提高效率
-                strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.EntityName);
+                strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.TableName);
                 if (!string.IsNullOrEmpty(_strFilter))
                     strQuery += " WHERE " + _strFilter;
                 if (!string.IsNullOrEmpty(_strSort))
@@ -264,8 +264,8 @@ namespace BlueSky.EntityAccess
             else if (_nPageIndex * _nPageSize <= 1000000)
             {
                 #region 分页方案(not in),在百万条数据内效率高
-                strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.EntityName);
-                strQuery += string.Format(" WHERE {0} NOT IN (SELECT TOP (({1} - 1) * {2}) {0} FROM {3}{4} ORDER BY {0})", Meta.KeyField.FieldName, _nPageIndex, _nPageSize, Meta.EntityName, string.IsNullOrEmpty(_strFilter) ? "" : (" WHERE " + _strFilter));
+                strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.TableName);
+                strQuery += string.Format(" WHERE {0} NOT IN (SELECT TOP (({1} - 1) * {2}) {0} FROM {3}{4} ORDER BY {0})", Meta.KeyField.FieldName, _nPageIndex, _nPageSize, Meta.TableName, string.IsNullOrEmpty(_strFilter) ? "" : (" WHERE " + _strFilter));
                 if (!string.IsNullOrEmpty(_strFilter))
                     strQuery += string.Format(" AND ", _strFilter);
                 if (!string.IsNullOrEmpty(_strSort))
@@ -275,7 +275,7 @@ namespace BlueSky.EntityAccess
             else
             {
                 #region 分页方案(ROW_NUMBER()),在百万条数据以上效率高
-                strQuery = string.Format("SELECT {0} FROM (SELECT ROW_NUMBER() OVER(ORDER BY {1}) AS nRow,{0} FROM {2}", Meta.Selects, Meta.KeyField.FieldName, Meta.EntityName);
+                strQuery = string.Format("SELECT {0} FROM (SELECT ROW_NUMBER() OVER(ORDER BY {1}) AS nRow,{0} FROM {2}", Meta.Selects, Meta.KeyField.FieldName, Meta.TableName);
                 if (!string.IsNullOrEmpty(_strFilter))
                     strQuery += string.Format(" WHERE {0} ", _strFilter);
                 strQuery += string.Format(") tTemp WHERE nRow >= (({0} - 1) * {1} + 1) and nRow <= ({0}*{1})", _nPageIndex, _nPageSize);
@@ -314,7 +314,7 @@ namespace BlueSky.EntityAccess
                     }
                     ltInsertField.Add(string.Format("[{0}]", oEF.FieldName));
                 }
-                string strOperate = string.Format("SET IDENTITY_INSERT {0} ON;INSERT INTO {0}({1}) VALUES({2});SET IDENTITY_INSERT {0} OFF;", Meta.EntityName, string.Join(",", ltInsertField.ToArray()), string.Join(",", ltInsertValue.ToArray()));
+                string strOperate = string.Format("SET IDENTITY_INSERT {0} ON;INSERT INTO {0}({1}) VALUES({2});SET IDENTITY_INSERT {0} OFF;", Meta.TableName, string.Join(",", ltInsertField.ToArray()), string.Join(",", ltInsertValue.ToArray()));
                 try
                 {
                     HDBOperation.QueryNonQuery(strOperate);
@@ -337,7 +337,7 @@ namespace BlueSky.EntityAccess
                         continue;
                     ltUpdateValue.Add(string.Format("[{0}]={1}", oEF.FieldName, FormatSetValue(oEF.FieldValue(_Entity), oEF)));
                 }
-                string strOperate = string.Format("UPDATE {0} SET {1} WHERE [{2}]={3};", Meta.EntityName, string.Join(",", ltUpdateValue.ToArray()), Meta.KeyField.FieldName, Meta.KeyField.FieldValue(_Entity));
+                string strOperate = string.Format("UPDATE {0} SET {1} WHERE [{2}]={3};", Meta.TableName, string.Join(",", ltUpdateValue.ToArray()), Meta.KeyField.FieldName, Meta.KeyField.FieldValue(_Entity));
                 try
                 {
                     HDBOperation.QueryNonQuery(strOperate);
@@ -368,7 +368,7 @@ namespace BlueSky.EntityAccess
             int nKeyValue = TypeUtil.ParseInt(Meta.KeyField.FieldValue(_Entity) + "", -1);
             if (nKeyValue <= 0)
                 return -1;
-            string strQuery = string.Format("DELETE FROM [{0}] WHERE [{1}]={2}", Meta.EntityName, Meta.KeyField.FieldName, nKeyValue);
+            string strQuery = string.Format("DELETE FROM [{0}] WHERE [{1}]={2}", Meta.TableName, Meta.KeyField.FieldName, nKeyValue);
             HDBOperation.QueryNonQuery(strQuery);
             if (Meta.EnableCache)
             {
@@ -380,7 +380,7 @@ namespace BlueSky.EntityAccess
         }
         public int GetNextKey()
         {
-            string strQuery = string.Format("SELECT MAX([{0}]) FROM [{1}]", Meta.KeyField.FieldName, Meta.EntityName);
+            string strQuery = string.Format("SELECT MAX([{0}]) FROM [{1}]", Meta.KeyField.FieldName, Meta.TableName);
             object oMax = HDBOperation.QueryScalar(strQuery);
             return TypeUtil.ParseInt(oMax + "", 0) + 1;
         }

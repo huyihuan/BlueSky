@@ -20,6 +20,10 @@ namespace BlueSky.DataAccess
         {
             get
             {
+                if (null == this._Database)
+                {
+                    this._Database = this.CreateDatabase();
+                }
                 return this._Database;
             }
             set
@@ -185,6 +189,11 @@ namespace BlueSky.DataAccess
             this.AutoClose();
             return 0;
         }
+        public virtual IDatabase CreateDatabase()
+        {
+            return this._Database = this.OnCreateDatabase();
+        }
+        public abstract IDatabase OnCreateDatabase();
         public DbCommand Command()
         {
             DbCommand cmd = this.DbFactory.CreateCommand();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BlueSky.DataAccess;
 
 namespace BlueSky.Attribute
 {
@@ -10,6 +11,7 @@ namespace BlueSky.Attribute
     {
         private string _TableName;
         private string _ConectionName;
+        private DatabaseType _DbType;
         private bool _EnableCache = true;
         public string TableName
         {
@@ -33,6 +35,7 @@ namespace BlueSky.Attribute
                 this._ConectionName = value;
             }
         }
+        public DatabaseType DbType { get; set; }
         public bool EnableCache
         {
             get
@@ -56,10 +59,17 @@ namespace BlueSky.Attribute
             this.TableName = _TableName;
             this.ConectionName = _ConectionName;
         }
-        public EntityAttribue(string _TableName, string _ConectionName, bool _EnableCache)
+        public EntityAttribue(string _TableName, string _ConectionName, DatabaseType _DbType)
         {
             this.TableName = _TableName;
             this.ConectionName = _ConectionName;
+            this.DbType = _DbType;
+        }
+        public EntityAttribue(string _TableName, string _ConectionName, DatabaseType _DbType, bool _EnableCache)
+        {
+            this.TableName = _TableName;
+            this.ConectionName = _ConectionName;
+            this.DbType = _DbType;
             this.EnableCache = _EnableCache;
         }
 

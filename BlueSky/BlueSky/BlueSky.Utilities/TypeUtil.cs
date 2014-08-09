@@ -18,5 +18,20 @@ namespace BlueSky.Utilities
 			long lReturnValue = 0L;
             return (float)(long.TryParse(_strSource, out lReturnValue) ? lReturnValue : _lDefault);
 		}
+        public static T ParseTo<T>(object _oValue, T _TDefault)
+        {
+            if (null == _oValue || _oValue is DBNull)
+            {
+                return default(T);
+            }
+            try
+            {
+                return (T)Convert.ChangeType(_oValue, typeof(T));
+            }
+            catch(Exception ee)
+            {
+                return _TDefault;
+            }
+        }
 	}
 }

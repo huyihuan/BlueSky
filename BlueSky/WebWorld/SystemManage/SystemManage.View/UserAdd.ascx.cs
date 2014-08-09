@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using System.Collections;
 using WebBase.SystemClass;
 using WebBase.Utilities;
+using BlueSky.Extensions;
+using BlueSky.Utilities;
 
 namespace WebWorld.SystemManage
 {
@@ -34,11 +35,10 @@ namespace WebWorld.SystemManage
             UserInformation oGet = UserInformation.Get(nId);
             if (null != oGet)
             {
-                PageUtil.PageFillEdit(this, oGet);
+                PageUtil.PageFillEdit(tab_baseInformation, oGet);
                 txt_UserName.Disabled = true;
                 rb_GenderMale.Checked = oGet.Gender == 1;
                 rb_GenderFemale.Checked = oGet.Gender == 2;
-                txt_Password.Value = "";
                 SystemUserRole[] alUserRoles = SystemUserRole.GetUserRoles(oGet.Id);
                 if (null != alUserRoles && alUserRoles.Length > 0)
                 {
@@ -50,6 +50,7 @@ namespace WebWorld.SystemManage
                     }
                 }
             }
+            txt_Password.Value = "";
         }
 
         protected void btnSelectRole_Click(object sender, EventArgs e)
@@ -93,12 +94,16 @@ namespace WebWorld.SystemManage
             {
                 addItem = new UserInformation();
                 addItem.UserName = strUserName;
+                addItem.Password = CryptUtil.MD5Encrypt(UserInformation.CONST_STR_DEFAULTPASSWORD);
             }
-            addItem.NickName = strNickName;
-            //addItem.Password = Util.MD5Encrypt(UserInformation.CONST_strDefaultPassword);
+            PageUtil.PageFillEntity<UserInformation>(tab_baseInformation, addItem);
+            string strPassword = txt_Password.Value.Trim();
+            if (!strPassword.IsNullOrEmpty())
+            {
+                addItem.Password = CryptUtil.MD5Encrypt(strPassword);
+            }
             addItem.Gender = rb_GenderMale.Checked ? 1 : 2;
-            addItem.QQ = txt_QQ.Value.Trim();
-            addItem.Email = txt_Email.Value.Trim();
+            addItem.Remark = txt_Remark.Value;
             int nNewId = UserInformation.Save(addItem);
             if (nNewId <= 0)
             {

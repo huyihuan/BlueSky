@@ -64,7 +64,7 @@ namespace WebWorld.SystemManage
                 oFunction.ParentId = nParentId;
                 oFunction.Level = nParentId == -1 ? 1 : (SystemFunction.Get(nParentId).Level + 1);
             }
-            PageUtil.PageFillEntity(this, oFunction);
+            PageUtil.PageFillEntity<SystemFunction>(this, oFunction);
             bool bSuccess = SystemFunction.Save(oFunction) > 0;
             PageUtil.PageAlert(this.Page, bSuccess ? "保存成功！" : "保存失败！");
         }
