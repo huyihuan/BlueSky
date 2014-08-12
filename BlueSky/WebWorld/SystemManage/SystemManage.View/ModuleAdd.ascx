@@ -11,11 +11,11 @@
     </tr>
     <tr>
         <td align="right"><font class="font-hint">*</font>Controller：</td>
-        <td><input type="text" class="txt-normal" id="txt_Controller" runat="server" size="30" /><asp:Label ID="lbl_Controller" runat="server"></asp:Label>（请填写英文）</td>
+        <td><input type="text" class="txt-normal" id="txt_Controller" runat="server" size="40" /><asp:Label ID="lbl_Controller" runat="server"></asp:Label>（请填写英文）</td>
     </tr>
     <tr>
         <td align="right">描述：</td>
-        <td><asp:TextBox ID="txt_Description" runat="server" CssClass="txt-mutil" TextMode="MultiLine" Rows="5" Columns="30"></asp:TextBox></td>
+        <td><asp:TextBox ID="txt_Description" runat="server" CssClass="txt-mutil" TextMode="MultiLine" Rows="10" Columns="60"></asp:TextBox></td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>

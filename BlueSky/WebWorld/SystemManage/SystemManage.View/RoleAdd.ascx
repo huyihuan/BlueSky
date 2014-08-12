@@ -4,11 +4,11 @@
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
         <td align="right" nowrap><font class="font-hint">*</font>角色名称：</td>
-        <td><input type="text" id="txt_Name" class="txt-normal" runat="server" size="30" /></td>
+        <td><input type="text" id="txt_Name" class="txt-normal" runat="server" size="35" /></td>
     </tr>
     <tr>
         <td align="right">描述：</td>
-        <td><textarea class="txt-mutil" id="txt_Description" runat="server" cols="25" rows="5"></textarea></td>
+        <td><textarea class="txt-mutil" id="txt_Description" runat="server" cols="40" rows="8"></textarea></td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>

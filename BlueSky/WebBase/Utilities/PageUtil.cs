@@ -16,8 +16,7 @@ namespace WebBase.Utilities
     {
         public static string GetQueryString(HttpRequest _httpRequest, string _strKey)
         {
-            string strValue = _httpRequest.QueryString[_strKey] + "";
-            return strValue;
+            return _httpRequest.QueryString[_strKey] + "";
         }
         public static int GetQueryInt(HttpRequest _httpRequest, string _strKey, int _nDefaultValue)
         {

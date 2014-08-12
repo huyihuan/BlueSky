@@ -28,6 +28,8 @@
                         <td align="center" class="td-header" width="100">QQ</td>
                         <td align="center" class="td-header" width="100">角色</td>
                         <td align="center" class="td-header" width="100">Email</td>
+                        <td align="center" class="td-header" width="100">联系电话</td>
+                        <td align="center" class="td-header" width="100">身份证号</td>
                         <td class="td-header-last"></td>
                     </tr>
                     <asp:Repeater ID="rptItems" runat="server" OnItemDataBound="rptItems_ItemDataBound">
@@ -41,6 +43,8 @@
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_QQ" runat="server"></asp:Literal></div></td>
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_PropertyRoleName" runat="server"></asp:Literal></div></td>
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_Email" runat="server"></asp:Literal></div></td>
+                            <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_Tel" runat="server"></asp:Literal></div></td>
+                            <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_IDCard" runat="server"></asp:Literal></div></td>
                             <td class="td-content-last td-content-empty"></td>
                         </tr>
                     </ItemTemplate>

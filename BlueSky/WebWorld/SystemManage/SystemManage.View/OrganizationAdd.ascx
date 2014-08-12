@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td align="right">描述：</td>
-        <td><asp:TextBox ID="txt_Remark" runat="server" CssClass="txt-mutil" TextMode="MultiLine" Rows="5" Columns="30"></asp:TextBox></td>
+        <td><asp:TextBox ID="txt_Remark" runat="server" CssClass="txt-mutil" TextMode="MultiLine" Rows="10" Columns="50"></asp:TextBox></td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>

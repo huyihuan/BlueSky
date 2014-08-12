@@ -8,7 +8,7 @@ using System.Web.UI.HtmlControls;
 
 using WebBase.SystemClass;
 using WebBase.Utilities;
-
+using BlueSky.Extensions;
 namespace WebWorld
 {
     public partial class Window : System.Web.UI.Page
@@ -64,6 +64,12 @@ namespace WebWorld
                     }
                 }
 
+                if (strActionKey.IsNullOrEmpty())
+                {
+                    this.ShowException("您还没有改功能的操作权限，请您联系系统管理人员解决！");
+                    return;
+                }
+
                 if (!IsPostBack)
                 {
                     //记录用户操作日志
@@ -95,9 +101,7 @@ namespace WebWorld
             }
             catch(Exception ex)
             {
-                Label lbHint = new Label();
-                lbHint.Text = string.Format("<div style='width:100%;height:100%;text-align:center;color:#ff0000;'>控件加载失败!<br /><br />原因：{0}</div>", ex.Message);
-                ph.Controls.Add(lbHint);
+                this.ShowException(string.Format("控件加载失败!<br /><br />原因：{0}", ex.Message));
                 return;
             }
 
@@ -133,6 +137,13 @@ namespace WebWorld
             //页面刷新后清空选择的复选框
             hiddenSelectedValue.Value = "";
 
+        }
+
+        protected void ShowException(string _strHtml)
+        {
+            Label lbHint = new Label();
+            lbHint.Text = string.Format("<div style='width:100%;height:100%;text-align:center;color:#ff0000;'>{0}</div>", _strHtml);
+            ph.Controls.Add(lbHint);
         }
     }
 }

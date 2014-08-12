@@ -186,7 +186,7 @@ if (Bluesky && Bluesky.component) {
         tip: "",
         html: " ",
         key: "",
-        isRunMutil:false,
+        isRunMutil: false,
         disabled: false,
         showIcon: false,
         iconURL: "include/image/application.png",
@@ -210,6 +210,7 @@ if (Bluesky && Bluesky.component) {
             }
             if (this.disabled === true) {
                 this.tabNode.attr("disabled", true);
+                this.tabNode.addClass("bluesky-tab-disabled");
             }
             if (this.closeable === true) {
                 this.closeNode = Bluesky.create("a", { className: "bluesky-tab-close", html: "x", title: "关闭" });
@@ -255,7 +256,7 @@ if (Bluesky && Bluesky.component) {
                 var top = parseFloat(this.contentNode.css("top").toString());
                 if (typeof top === "number" && !isNaN(top) && top != 0) {
                     this.contentNode.animate({ "top": 0 }, 200);
-                } 
+                }
             }
             this.isActive = true;
             return this;

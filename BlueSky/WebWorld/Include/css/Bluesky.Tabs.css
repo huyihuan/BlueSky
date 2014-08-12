@@ -109,7 +109,16 @@ A.bluesky-tab-active
 	background:#F5F5F5 url(../image/Panel/panel_title_bg_o2o.gif) left top repeat-x;
 	text-decoration:none;
 }
-
+A.bluesky-tab-disabled
+{
+	color:#A0A0A0;
+}
+A.bluesky-tab-disabled img
+{
+	filter:alpha(Opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+}
 A.bluesky-tab-close
 {
 	width:auto;
