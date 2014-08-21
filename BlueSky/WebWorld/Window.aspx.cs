@@ -134,7 +134,7 @@ namespace WebWorld
                 }
             }
 
-            //页面刷新后清空选择的复选框
+            //页面Postback后清空复选框选择值隐藏域
             hiddenSelectedValue.Value = "";
 
         }

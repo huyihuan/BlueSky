@@ -72,6 +72,7 @@
     <Compile Include="BlueSky.DataAccess\DatabaseType.cs" />
     <Compile Include="BlueSky.DataAccess\DbBase.cs" />
     <Compile Include="BlueSky.DataAccess\DbSession.cs" />
+    <Compile Include="BlueSky.DataAccess\DbSessionFactory.cs" />
     <Compile Include="BlueSky.DataAccess\SqlServer.cs" />
     <Compile Include="BlueSky.DataAccess\SqlServerSession.cs" />
     <Compile Include="BlueSky.EntityAccess\EntityAccess.cs" />

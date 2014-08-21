@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using WebBase.SystemClass;
 using WebBase.Utilities;
 using BlueSky.EntityAccess;
+using BlueSky.Extensions;
 
 namespace WebWorld.SystemManage
 {
@@ -22,13 +23,23 @@ namespace WebWorld.SystemManage
 
         private void _BindData()
         {
-            string strFilter =  txt_Filter.Value.Trim();
-            UserInformation userObj = new UserInformation();
-            if (!string.IsNullOrEmpty(strFilter))
+            string strFilter = "1=1";
+            string strUserName = txt_UserName.Value.Trim();
+            if (!strUserName.IsNullOrEmpty())
             {
-                strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%' or Email like '%{0}%' or QQ like '%{0}%' or CardID like '%{0}%'", strFilter);
-                //strFilter = string.Format("UserName like '%{0}%' or NickName like '%{0}%'", strFilter);
+                strFilter += string.Format(" and UserName like '%{0}%'", strFilter);
             }
+            string strNickName = txt_NickName.Value.Trim();
+            if (!strNickName.IsNullOrEmpty())
+            {
+                strFilter += string.Format(" and NickName like '%{0}%'", strNickName);
+            }
+            string strCardID = txt_CardID.Value.Trim();
+            if (!strCardID.IsNullOrEmpty())
+            {
+                strFilter += string.Format(" and CardID like '%{0}%'", strCardID);
+            }
+
             PagerNavication.RecordsCount = EntityAccess<UserInformation>.Access.Count(strFilter);
             UserInformation[] al = UserInformation.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;

@@ -150,7 +150,9 @@ namespace BlueSky.Cache
 		}
 		public static bool Exist(string _strKey)
 		{
-			return Cache<TValue>.dicCache.ContainsKey(Cache.FormatKey(_strKey));
+            if (!Cache<TValue>.dicCache.ContainsKey(Cache.FormatKey(_strKey)))
+                return false;
+            return null != Cache<TValue>.Find(_strKey);
 		}
 	}
 }

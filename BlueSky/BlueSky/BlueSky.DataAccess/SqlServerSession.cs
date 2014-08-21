@@ -6,8 +6,12 @@ using BlueSky.Interfaces;
 
 namespace BlueSky.DataAccess
 {
-    public class SqlServerSession : DbSession
+    public class SqlServerSession : DbSession, IDbSession
     {
+        static SqlServerSession()
+        {
+            DbSessionFactory.Register(DatabaseType.SqlServer, typeof(SqlServerSession));
+        }
         public override IDatabase OnCreateDatabase()
         {
             return new SqlServer();

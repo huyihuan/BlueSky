@@ -11,12 +11,24 @@
     <tr>
         <td><div id="toolBar" runat="server"></div></td>
         <td nowrap class="td-search-single" width="200">
-            <input type="text" id="txt_Filter" runat="server" class="txt-normal" size="20" />
+            <input type="text" id="txt_UserName" runat="server" class="txt-normal" size="20" />
             <input type="button" id="btn_Search" runat="server" class="btn-normal" value="查 询" onserverclick="btn_Search_Click" />
         </td>
     </tr>
     <tr>
         <td valign="top" colspan="2">
+            <div class="action-search-panel" minusHeight="34" minusObject=".list-container">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td nowrap>
+                            姓名：<input type="text" class="txt-normal" id="txt_NickName" runat="server" />&nbsp;&nbsp;
+                            身份证号：<input type="text" class="txt-normal"  id="txt_CardID" runat="server" />&nbsp;&nbsp;
+                            角色：<input type="text" class="txt-normal" id="txt_RoleName" runat="server" /><input type="button" class="btn-normal btn-select-noleft" id="btn_SelectFunction" value="..." onclick="selectFunction();" />&nbsp;&nbsp;
+                            <input type="button" id="btn_SearchAdvance" runat="server" class="btn-normal" onserverclick="btn_Search_Click" value="查 询" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <div class="list-container">
                 <table class="table-list table-list-topline" cellpadding="0" cellspacing="0" width="100%">
                     <tr>

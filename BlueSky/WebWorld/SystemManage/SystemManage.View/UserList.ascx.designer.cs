@@ -23,13 +23,13 @@ namespace WebWorld.SystemManage {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl toolBar;
         
         /// <summary>
-        /// txt_Filter control.
+        /// txt_UserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Filter;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_UserName;
         
         /// <summary>
         /// btn_Search control.
@@ -39,6 +39,42 @@ namespace WebWorld.SystemManage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_Search;
+        
+        /// <summary>
+        /// txt_NickName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_NickName;
+        
+        /// <summary>
+        /// txt_CardID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_CardID;
+        
+        /// <summary>
+        /// txt_RoleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_RoleName;
+        
+        /// <summary>
+        /// btn_SearchAdvance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btn_SearchAdvance;
         
         /// <summary>
         /// rptItems control.

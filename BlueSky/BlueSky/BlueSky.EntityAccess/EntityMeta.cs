@@ -48,6 +48,10 @@ namespace BlueSky.EntityAccess
             {
                 this.TableName = this.EntityName;
             }
+            if (null == this.DbType)
+            {
+                this.DbType = DatabaseType.SqlServer;
+            }
             PropertyInfo[] alProperties = this.EntityType.GetProperties();
             List<EntityField> ltFields = new List<EntityField>();
             List<string> ltSelect = new List<string>();
@@ -59,6 +63,7 @@ namespace BlueSky.EntityAccess
                     eField.FieldName = oProperty.Name;
                     eField.Meta = oProperty;
                     eField.Type = oProperty.PropertyType;
+                    eField.TypeCode = Type.GetTypeCode(eField.Type);
                     EntityFieldAttribute EFAttribute = (EntityFieldAttribute)System.Attribute.GetCustomAttribute(oProperty, typeof(EntityFieldAttribute));
                     if (null != EFAttribute)
                     {

@@ -24,7 +24,7 @@ namespace BlueSky.EntityAccess
         public IDbSession DbSession;
         public EntityAccess()
         {
-            DbSession = new SqlServerSession();
+            DbSession = (IDbSession)Activator.CreateInstance(DbSessionFactory.Map(Meta.DbType));
         }
         public static EntityAccess<TEntity> Access
         {
