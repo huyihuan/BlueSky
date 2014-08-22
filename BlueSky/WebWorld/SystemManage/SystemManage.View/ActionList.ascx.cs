@@ -50,20 +50,14 @@ namespace WebWorld.SystemManage
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                SystemAction oItem = (SystemAction)e.Item.DataItem;
-                if (null == oItem)
+                SystemAction oEntity = (SystemAction)e.Item.DataItem;
+                if (null == oEntity)
                     return;
-                PageUtil.PageFillView(e.Item, oItem);
+                int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
+                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
 
-                HtmlInputCheckBox cbSelect = e.Item.FindControl("cbSelect") as HtmlInputCheckBox;
-                if (null != cbSelect)
-                    cbSelect.Value = oItem.Id + "";
-
-                Label lbl = e.Item.FindControl("lbl_OrderId") as Label;
-                lbl.Text = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1 + "";
-
-                Label lblImage = e.Item.FindControl("lbl_IconName") as Label;
-                lblImage.Text = string.Format("<img src='{0}' align='absMiddle' />", SystemUtil.ResovleActionImagePath(oItem.IconName));
+                Literal lblImage = e.Item.FindControl("lit_IconName") as Literal;
+                lblImage.Text = string.Format("<img src='{0}' align='absMiddle' />", SystemUtil.ResovleActionImagePath(oEntity.IconName));
             }
         }
 

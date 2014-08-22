@@ -34,22 +34,15 @@ namespace WebWorld.SystemManage
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                SystemLog oItem = (SystemLog)e.Item.DataItem;
-                if (null == oItem)
+                SystemLog oEntity = (SystemLog)e.Item.DataItem;
+                if (null == oEntity)
                     return;
-                PageUtil.PageFillView(e.Item, oItem);
-
-                HtmlInputCheckBox cbSelect = e.Item.FindControl("cbSelect") as HtmlInputCheckBox;
-                if (null != cbSelect)
-                    cbSelect.Value = oItem.Id + "";
+                int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
+                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
 
                 Literal litURL = e.Item.FindControl("lit_AccessURL") as Literal;
                 if (null != litURL)
-                    litURL.Text = StringUtil.FixLegth(oItem.AccessURL, 40);
-
-                Literal litOrderId = e.Item.FindControl("lit_OrderId") as Literal;
-                if(null != litOrderId)
-                    litOrderId.Text = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1 + "";
+                    litURL.Text = StringUtil.FixLegth(oEntity.AccessURL, 40);
             }
         }
         protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)

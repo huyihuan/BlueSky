@@ -31,17 +31,10 @@ namespace WebWorld.SystemManage
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                SystemOrganization oItem = (SystemOrganization)e.Item.DataItem;
-                if (null == oItem)
+                SystemOrganization oEntity = (SystemOrganization)e.Item.DataItem;
+                if (null == oEntity)
                     return;
-                PageUtil.PageFillView(e.Item, oItem);
-
-                HtmlInputCheckBox cbSelect = e.Item.FindControl("cbSelect") as HtmlInputCheckBox;
-                if (null != cbSelect)
-                    cbSelect.Value = oItem.Id + "";
-
-                Label lbl = e.Item.FindControl("lbl_OrderId") as Label;
-                lbl.Text = e.Item.ItemIndex + 1 + "";
+                PageUtil.PageFillListItem(e.Item, oEntity, true, e.Item.ItemIndex + 1, true, oEntity.Id.ToString());
             }
         }
     }

@@ -55,17 +55,11 @@ namespace WebWorld.SystemManage
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                UserInformation userItem = (UserInformation)e.Item.DataItem;
-                if (null == userItem)
+                UserInformation oEntity = (UserInformation)e.Item.DataItem;
+                if (null == oEntity)
                     return;
-                PageUtil.PageFillView(e.Item, userItem);
-
-                HtmlInputCheckBox cbSelect = e.Item.FindControl("cbSelect") as HtmlInputCheckBox;
-                if (null != cbSelect)
-                    cbSelect.Value = userItem.Id + "";
-
-                Literal lit = e.Item.FindControl("lit_OrderId") as Literal;
-                lit.Text = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1 + "";
+                int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
+                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
             }
         }
 

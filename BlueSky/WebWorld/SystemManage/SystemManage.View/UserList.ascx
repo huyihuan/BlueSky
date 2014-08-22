@@ -56,7 +56,7 @@
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_PropertyRoleName" runat="server"></asp:Literal></div></td>
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_Email" runat="server"></asp:Literal></div></td>
                             <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_Tel" runat="server"></asp:Literal></div></td>
-                            <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_IDCard" runat="server"></asp:Literal></div></td>
+                            <td class="td-content td-align-center"><div style="width:100px;"><asp:Literal ID="lit_CardID" runat="server"></asp:Literal></div></td>
                             <td class="td-content-last td-content-empty"></td>
                         </tr>
                     </ItemTemplate>

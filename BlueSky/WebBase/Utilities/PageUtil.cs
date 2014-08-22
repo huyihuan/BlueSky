@@ -52,7 +52,7 @@ namespace WebBase.Utilities
             }
             return lt.ToArray();
         }
-        public static void PageSetExtraParameters(System.Web.UI.Page _Page, string _strParameters)
+        public static void PageSetExtraParameters(Page _Page, string _strParameters)
         {
             HtmlInputHidden hiddenParameters = _Page.FindControl("hiddenExtraParameters") as HtmlInputHidden;
             if (null == hiddenParameters)
@@ -61,37 +61,37 @@ namespace WebBase.Utilities
                 _strParameters = _strParameters.Remove(0, 1);
             hiddenParameters.Value = _strParameters;
         }
-        public static void PageAlert(System.Web.UI.Page _Page, string _MessageContent)
+        public static void PageAlert(Page _Page, string _MessageContent)
         {
             if (null == _Page)
                 return;
             _Page.ClientScript.RegisterClientScriptBlock(_Page.GetType(), "alert", string.Format("alert('{0}')", _MessageContent), true);
         }
-        public static void PageAppendScript(System.Web.UI.Page _Page, string _Script)
+        public static void PageAppendScript(Page _Page, string _Script)
         {
             if (null == _Page)
                 return;
             _Page.ClientScript.RegisterClientScriptBlock(_Page.GetType(), "script", string.Format("<script type=\"text/javascript\">{0}</script>", _Script));
         }
-        public static void PageRefreshLayout(System.Web.UI.Page _Page)
+        public static void PageRefreshLayout(Page _Page)
         {
             PageAppendScript(_Page, "top.window.location.href = top.window.location.href;");
         }
-        public static void PageRefreshActiveWindow(System.Web.UI.Page _Page)
+        public static void PageRefreshActiveWindow(Page _Page)
         {
             PageAppendScript(_Page, "top.layout.refreshActiveWindow();");
         }
-        public static void PageClosePopupWindow(System.Web.UI.Page _Page)
+        public static void PageClosePopupWindow(Page _Page)
         {
             PageClosePopupWindow(_Page, false);
         }
-        public static void PageClosePopupWindow(System.Web.UI.Page _Page, bool _isRefreshParentWindow)
+        public static void PageClosePopupWindow(Page _Page, bool _isRefreshParentWindow)
         {
             if (_isRefreshParentWindow)
                 PageRefreshActiveWindow(_Page);
             PageAppendScript(_Page, "top.windowFactory.closeTopFocusForm();");
         }
-        public static object PageSelectHiddenValue(System.Web.UI.Page _Page,bool _bNeedArray)
+        public static object PageSelectHiddenValue(Page _Page,bool _bNeedArray)
         {
             HtmlInputHidden hiddenSelectedValue = _Page.FindControl("hiddenSelectedValue") as HtmlInputHidden;
             if (null == hiddenSelectedValue || string.IsNullOrEmpty(hiddenSelectedValue.Value))
@@ -109,7 +109,7 @@ namespace WebBase.Utilities
             if (null != liExist)
                 liExist.Selected = true;
         }
-        public static void PageFillView(System.Web.UI.Page _Page,object _FillObj)
+        public static void PageFillView(Page _Page,object _FillObj)
         {
             if (null == _Page || null == _FillObj)
                 return;
@@ -137,7 +137,59 @@ namespace WebBase.Utilities
                 }
             }
         }
-        public static void PageFillView(System.Web.UI.Control _ParentControl, object _FillObj)
+        public static void PageFillListItem(RepeaterItem _Item, object _FillObj, bool bFillRowIndex, int _nIndex, bool bFillSelectValue, string _Value)
+        {
+            PageFillView(_Item, _FillObj);
+            if (bFillRowIndex)
+            {
+                Label lblControl = _Item.FindControl("lbl_OrderId") as Label;
+                if (null != lblControl)
+                {
+                    lblControl.Text = _nIndex + "";
+                }
+
+                Literal litControl = _Item.FindControl("lit_OrderId") as Literal;
+                if (null != litControl)
+                {
+                    litControl.Text = _nIndex + "";
+                }
+            }
+            if (bFillSelectValue)
+            {
+                HtmlInputCheckBox cbSelect = _Item.FindControl("cbSelect") as HtmlInputCheckBox;
+                if (null != cbSelect)
+                    cbSelect.Value = _Value;
+            }
+        }
+        public static void PageFillView<TEntity>(Page _Page, TEntity _oE) where TEntity : IEntity, new()
+        {
+            if (null == _Page || null == _oE)
+                return;
+            IEntityField[] astrFields = EntityAccess<TEntity>.Meta.EntityFields;
+            if (null == astrFields || astrFields.Length == 0)
+                return;
+            string strConrolId = "";
+            foreach (IEntityField iEF in astrFields)
+            {
+                string strFieldName = iEF.FieldName;
+                strConrolId = "lbl_" + strFieldName;
+                Label lblControl = _Page.FindControl(strConrolId) as Label;
+                if (null != lblControl)
+                {
+                    lblControl.Text = iEF.FieldValue(_oE) + "";
+                    continue;
+                }
+
+                strConrolId = "lit_" + strFieldName;
+                Literal litControl = _Page.FindControl(strConrolId) as Literal;
+                if (null != litControl)
+                {
+                    litControl.Text = iEF.FieldValue(_oE) + "";
+                    continue;
+                }
+            }
+        }
+        public static void PageFillView(Control _ParentControl, object _FillObj)
         {
             if (null == _ParentControl || null == _FillObj)
                 return;
@@ -165,7 +217,35 @@ namespace WebBase.Utilities
                 }
             }
         }
-        public static void PageFillEdit(System.Web.UI.Page _Page, object _FillObj)
+        public static void PageFillView<TEntity>(Control _ParentControl, TEntity _oE) where TEntity : IEntity, new()
+        {
+            if (null == _ParentControl || null == _oE)
+                return;
+            IEntityField[] astrFields = EntityAccess<TEntity>.Meta.EntityFields;
+            if (null == astrFields || astrFields.Length == 0)
+                return;
+            string strConrolId = "";
+            foreach (IEntityField iEF in astrFields)
+            {
+                string strFieldName = iEF.FieldName;
+                strConrolId = "lbl_" + strFieldName;
+                Label lblControl = _ParentControl.FindControl(strConrolId) as Label;
+                if (null != lblControl)
+                {
+                    lblControl.Text = iEF.FieldValue(_oE) + "";
+                    continue;
+                }
+
+                strConrolId = "lit_" + strFieldName;
+                Literal litControl = _ParentControl.FindControl(strConrolId) as Literal;
+                if (null != litControl)
+                {
+                    litControl.Text = iEF.FieldValue(_oE) + "";
+                    continue;
+                }
+            }
+        }
+        public static void PageFillEdit(Page _Page, object _FillObj)
         {
             if (null == _Page || null == _FillObj)
                 return;
@@ -236,7 +316,7 @@ namespace WebBase.Utilities
                 }
             }
         }
-        public static void PageFillEdit(System.Web.UI.Control _ParentControl, object _FillObj)
+        public static void PageFillEdit(Control _ParentControl, object _FillObj)
         {
             if (null == _ParentControl || null == _FillObj)
                 return;
@@ -307,7 +387,7 @@ namespace WebBase.Utilities
                 }
             }
         }
-        public static void PageFillEntity(System.Web.UI.Control _ParentControl, object _oE)
+        public static void PageFillEntity(Control _ParentControl, object _oE)
         {
             if (null == _ParentControl || null == _oE)
                 return;
@@ -398,7 +478,7 @@ namespace WebBase.Utilities
 
             }
         }
-        public static void PageFillEntity(System.Web.UI.Page _Page, object _oE)
+        public static void PageFillEntity(Page _Page, object _oE)
         {
             if (null == _Page || null == _oE)
                 return;
@@ -489,7 +569,7 @@ namespace WebBase.Utilities
 
             }
         }
-        public static void PageFillEntity<TEntity>(System.Web.UI.Control _ParentControl, TEntity _oE) where TEntity : IEntity,new()
+        public static void PageFillEntity<TEntity>(Control _ParentControl, TEntity _oE) where TEntity : IEntity,new()
         {
             if (null == _ParentControl || null == _oE)
                 return;
@@ -589,7 +669,7 @@ namespace WebBase.Utilities
 
             }
         }
-        public static void PageFillEntity<TEntity>(System.Web.UI.Page _Page, TEntity _oE) where TEntity : IEntity,new()
+        public static void PageFillEntity<TEntity>(Page _Page, TEntity _oE) where TEntity : IEntity,new()
         {
             if (null == _Page || null == _oE)
                 return;

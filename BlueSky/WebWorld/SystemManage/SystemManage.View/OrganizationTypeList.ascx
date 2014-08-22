@@ -24,9 +24,9 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center" class="td-content td-content-select"><input type="checkbox" id="cbSelect" runat="server" class="cbSelect" /></td>
-                            <td align="center" class="td-content td-content-order"><asp:Label ID="lbl_OrderId" runat="server"></asp:Label></td>
-                            <td class="td-content"><asp:Label ID="lbl_Name" runat="server"></asp:Label></td>
-                            <td class="td-content-last"><asp:Label ID="lbl_Remark" runat="server"></asp:Label></td>
+                            <td align="center" class="td-content td-content-order"><asp:Literal ID="lit_OrderId" runat="server"></asp:Literal></td>
+                            <td class="td-content"><asp:Literal ID="lit_Name" runat="server"></asp:Literal></td>
+                            <td class="td-content-last"><asp:Literal ID="lit_Remark" runat="server"></asp:Literal></td>
                         </tr>
                     </ItemTemplate>
                     </asp:Repeater>
