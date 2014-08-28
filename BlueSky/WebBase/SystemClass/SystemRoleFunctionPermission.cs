@@ -71,7 +71,7 @@ namespace WebBase.SystemClass
 		}
 		public static SystemRoleFunctionPermission[] List(string _strFilter)
 		{
-			return EntityAccess<SystemRoleFunctionPermission>.Access.List();
+            return EntityAccess<SystemRoleFunctionPermission>.Access.List(_strFilter);
 		}
 		public static void Delete(int _nId)
 		{

@@ -2,9 +2,10 @@ using BlueSky.Attribute;
 using BlueSky.EntityAccess;
 using BlueSky.Interfaces;
 using System;
+using BlueSky.DataAccess;
 namespace WebBase.SystemClass
 {
-	[EntityAttribue(EnableCache = false)]
+	[EntityAttribue(EnableCache = false, ConectionName="BlueSkyLog", DbType=DatabaseType.SqlServer)]
 	public class SystemLog : IEntity
 	{
 		[EntityField(FieldName = "Id", IsPrimaryKey = true)]
@@ -48,16 +49,11 @@ namespace WebBase.SystemClass
 			get
 			{
 				UserInformation oItem = UserInformation.Get(this.UserId);
-				string result;
 				if (null == oItem)
 				{
-					result = "";
+					return "";
 				}
-				else
-				{
-					result = oItem.UserName;
-				}
-				return result;
+                return oItem.UserName;
 			}
 		}
 		public string FormattingAccessTime

@@ -25,6 +25,10 @@ namespace BlueSky.EntityAccess
         public EntityAccess()
         {
             DbSession = (IDbSession)Activator.CreateInstance(DbSessionFactory.Map(Meta.DbType));
+            if (!string.IsNullOrEmpty(Meta.ConnectionName))
+            {
+                DbSession.Database.ConnectionName = Meta.ConnectionName;
+            }
         }
         public static EntityAccess<TEntity> Access
         {
@@ -161,7 +165,11 @@ namespace BlueSky.EntityAccess
         public TEntity Get(object _oKey)
         {
             if (Meta.EnableCache && EntityCache<TEntity>.Exist(_oKey))
-                return EntityCache<TEntity>.Find(_oKey);
+            {
+                TEntity oEntity = EntityCache<TEntity>.Find(_oKey);
+                if (null != oEntity)
+                    return oEntity;
+            }
             TEntity[] oEntities = List(string.Format("[{0}]={1}", Meta.KeyField.FieldName, _oKey));
             if (null != oEntities && oEntities.Length >= 2)
             {
@@ -222,12 +230,14 @@ namespace BlueSky.EntityAccess
         {
             if (Meta.EnableCache && EntityListCache<TEntity>.Exist(_strFilter))
             {
-                return EntityListCache<TEntity>.Find(_strFilter);
+                TEntity[] tCaches = EntityListCache<TEntity>.Find(_strFilter);
+                if (null != tCaches)
+                    return tCaches;
             }
             string strQuery = string.Format("SELECT {0} FROM {1}", Meta.Selects, Meta.TableName);
             if (!string.IsNullOrEmpty(_strFilter))
                 strQuery += " WHERE " + _strFilter;
-            DataSet ds = HDBOperation.QueryDataSet(strQuery);
+            DataSet ds = this.DbSession.Query(strQuery);
             TEntity[] oList = this.ToEntitys(ds.Tables[0]);
             if (Meta.EnableCache)
             {
@@ -246,7 +256,9 @@ namespace BlueSky.EntityAccess
             string strCacheFilter = string.Format("{0}-{1}-{2}", _strFilter, _nPageIndex, _nPageSize);
             if (Meta.EnableCache && EntityListCache<TEntity>.Exist(strCacheFilter))
             {
-                return EntityListCache<TEntity>.Find(strCacheFilter);
+                TEntity[] tCaches = EntityListCache<TEntity>.Find(strCacheFilter);
+                if (null != tCaches)
+                    return tCaches;
             }
             if (!string.IsNullOrEmpty(_strFilter))
                 _strFilter = string.Format("({0})", _strFilter);
@@ -267,7 +279,7 @@ namespace BlueSky.EntityAccess
                 strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.TableName);
                 strQuery += string.Format(" WHERE {0} NOT IN (SELECT TOP (({1} - 1) * {2}) {0} FROM {3}{4} ORDER BY {0})", Meta.KeyField.FieldName, _nPageIndex, _nPageSize, Meta.TableName, string.IsNullOrEmpty(_strFilter) ? "" : (" WHERE " + _strFilter));
                 if (!string.IsNullOrEmpty(_strFilter))
-                    strQuery += string.Format(" AND ", _strFilter);
+                    strQuery += string.Format(" AND {0}", _strFilter);
                 if (!string.IsNullOrEmpty(_strSort))
                     strQuery += " ORDER BY " + _strSort;
                 #endregion
@@ -284,7 +296,7 @@ namespace BlueSky.EntityAccess
                 #endregion
             }
 
-            DataSet ds = HDBOperation.QueryDataSet(strQuery);
+            DataSet ds = this.DbSession.Query(strQuery);
             TEntity[] oList = this.ToEntitys(ds.Tables[0]);
             if (Meta.EnableCache)
             {
@@ -317,7 +329,7 @@ namespace BlueSky.EntityAccess
                 string strOperate = string.Format("SET IDENTITY_INSERT {0} ON;INSERT INTO {0}({1}) VALUES({2});SET IDENTITY_INSERT {0} OFF;", Meta.TableName, string.Join(",", ltInsertField.ToArray()), string.Join(",", ltInsertValue.ToArray()));
                 try
                 {
-                    HDBOperation.QueryNonQuery(strOperate);
+                    this.DbSession.Execute(strOperate);
                     if (Meta.EnableCache)
                     {
                         EntityListCache<TEntity>.ClearCount();
@@ -340,7 +352,7 @@ namespace BlueSky.EntityAccess
                 string strOperate = string.Format("UPDATE {0} SET {1} WHERE [{2}]={3};", Meta.TableName, string.Join(",", ltUpdateValue.ToArray()), Meta.KeyField.FieldName, Meta.KeyField.FieldValue(_Entity));
                 try
                 {
-                    HDBOperation.QueryNonQuery(strOperate);
+                    this.DbSession.Execute(strOperate);
                 }
                 catch (Exception ee)
                 {
@@ -369,7 +381,7 @@ namespace BlueSky.EntityAccess
             if (nKeyValue <= 0)
                 return -1;
             string strQuery = string.Format("DELETE FROM [{0}] WHERE [{1}]={2}", Meta.TableName, Meta.KeyField.FieldName, nKeyValue);
-            HDBOperation.QueryNonQuery(strQuery);
+            this.DbSession.Execute(strQuery);
             if (Meta.EnableCache)
             {
                 EntityListCache<TEntity>.Clear();
@@ -381,8 +393,8 @@ namespace BlueSky.EntityAccess
         public int GetNextKey()
         {
             string strQuery = string.Format("SELECT MAX([{0}]) FROM [{1}]", Meta.KeyField.FieldName, Meta.TableName);
-            object oMax = HDBOperation.QueryScalar(strQuery);
-            return TypeUtil.ParseInt(oMax + "", 0) + 1;
+            int nMax = this.DbSession.ExecuteScale<int>(strQuery);
+            return ++nMax;
         }
     }
 }

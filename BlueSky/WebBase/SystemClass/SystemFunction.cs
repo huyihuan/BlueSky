@@ -163,41 +163,33 @@ namespace WebBase.SystemClass
 				SystemRoleFunctionPermission[] alRoleFns = SystemRoleFunctionPermission.GetByFunctionId(_nId);
 				if (alRoleFns != null && alRoleFns.Length > 0)
 				{
-					SystemRoleFunctionPermission[] array = alRoleFns;
-					for (int i = 0; i < array.Length; i++)
+                    for (int i = 0; i < alRoleFns.Length; i++)
 					{
-						SystemRoleFunctionPermission permission = array[i];
-						SystemRoleFunctionPermission.Delete(permission.Id);
+                        SystemRoleFunctionPermission.Delete(alRoleFns[i].Id);
 					}
 				}
 				SystemUserFunctionPermission[] alUserFns = SystemUserFunctionPermission.GetByFunctionId(_nId);
 				if (alUserFns != null && alUserFns.Length > 0)
 				{
-					SystemUserFunctionPermission[] array2 = alUserFns;
-					for (int i = 0; i < array2.Length; i++)
+					for (int i = 0; i < alUserFns.Length; i++)
 					{
-						SystemUserFunctionPermission permission2 = array2[i];
-						SystemUserFunctionPermission.Delete(permission2.Id);
+						SystemUserFunctionPermission.Delete(alUserFns[i].Id);
 					}
 				}
 				SystemAction[] alAcions = SystemAction.GetFunctionAction(_nId);
 				if (alAcions != null && alAcions.Length > 0)
 				{
-					SystemAction[] array3 = alAcions;
-					for (int i = 0; i < array3.Length; i++)
+                    for (int i = 0; i < alAcions.Length; i++)
 					{
-						SystemAction action = array3[i];
-						SystemAction.Delete(action.Id);
+                        SystemAction.Delete(alAcions[i].Id);
 					}
 				}
 				SystemFunction[] alSonFns = SystemFunction.GetFunctions(_nId, false);
 				if (alSonFns != null && alSonFns.Length > 0)
 				{
-					SystemFunction[] array4 = alSonFns;
-					for (int i = 0; i < array4.Length; i++)
+                    for (int i = 0; i < alSonFns.Length; i++)
 					{
-						SystemFunction fn = array4[i];
-						SystemFunction.Delete(fn.Id);
+                        SystemFunction.Delete(alSonFns[i].Id);
 					}
 				}
 				EntityAccess<SystemFunction>.Access.Delete(oDel);

@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using BlueSky.Interfaces;
 using BlueSky.Extensions;
+using System.Configuration;
 
 namespace BlueSky.DataAccess
 {
@@ -26,19 +27,28 @@ namespace BlueSky.DataAccess
             }
         }
         private string _ConnectionString;
+        protected override string DefaultConncetionName
+        {
+            get 
+            {
+                return "SqlServerConnectionString";
+            }
+        }
         public override string ConnectionString
         {
             get
             {
-                if (this._ConnectionString.IsNullOrEmpty())
+                if (base.ConnectionString.IsNullOrEmpty())
                 {
-                    this._ConnectionString = System.Configuration.ConfigurationManager.AppSettings[base.ConnectionName = "ConnectionString"];
+                    if (this.ConnectionName.IsNullOrEmpty())
+                        this.ConnectionName = this.DefaultConncetionName;
+                    base.ConnectionString = ConfigurationManager.AppSettings[this.ConnectionName];
                 }
-                return this._ConnectionString;
+                return base.ConnectionString;
             }
             set
             {
-                this._ConnectionString = value;
+                base.ConnectionString = value;
             }
         }
     }

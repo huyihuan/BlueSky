@@ -13,6 +13,7 @@ namespace BlueSky.DataAccess
         private string _ConnectionName;
         private DatabaseType _DbType;
         private DbProviderFactory _DbFactory;
+        protected abstract string DefaultConncetionName { get; }
         public virtual string ConnectionString
         {
             get

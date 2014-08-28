@@ -13,7 +13,7 @@ namespace BlueSky.DataAccess
         private IDatabase _Database;
         private string _ConnectionString;
         private DbConnection _Connection;
-        private bool _IsAutoClose;
+        private bool _IsAutoClose = true;
         private DbTransaction _Trans;
         private int _TransCount;
         public IDatabase Database

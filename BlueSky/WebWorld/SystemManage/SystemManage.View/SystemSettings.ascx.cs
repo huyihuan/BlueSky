@@ -12,6 +12,7 @@ using BlueSky.Utilities;
 using System.Collections;
 using System.Web.UI.HtmlControls;
 using BlueSky.Cache;
+using BlueSky.Interfaces;
 
 namespace WebWorld.SystemManage
 {
@@ -28,7 +29,8 @@ namespace WebWorld.SystemManage
         protected void btnGo_ServerClick(object sender, EventArgs e)
         {
             string strSql = txt_OperSql.Value.Trim();
-            HDBOperation.QueryNonQuery(strSql);
+            IDbSession dbSession = new SqlServerSession();
+            dbSession.Execute(strSql);
             lit_Message.Text = "Success!";
         }
 

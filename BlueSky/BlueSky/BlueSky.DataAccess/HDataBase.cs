@@ -29,7 +29,7 @@ namespace BlueSky.DataAccess
             htDBType["oracle"] = HDBType.Oracle;
 
             //初始化数据库连接字符串，以及数据库类型
-            _strConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            _strConnectionString = ConfigurationManager.AppSettings["SqlServerConnectionString"];
             string strDBType = ConfigurationManager.AppSettings["DbType"];
             if (string.IsNullOrEmpty(strDBType))
                 strDBType = "sqlserver";

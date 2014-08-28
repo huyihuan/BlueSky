@@ -582,7 +582,7 @@ namespace WebBase.Utilities
                 string strFieldName = iEF.FieldName;
                 strControlId = "txt_" + strFieldName;
                 HtmlInputText txtControlHtml = _ParentControl.FindControl(strControlId) as HtmlInputText;
-                if (null != txtControlHtml)
+                if (null != txtControlHtml && _ParentControl.Controls.Contains(txtControlHtml))
                 {
                     if (txtControlHtml.Disabled)
                         continue;
@@ -592,7 +592,7 @@ namespace WebBase.Utilities
                     continue;
                 }
                 TextBox txtControl = _ParentControl.FindControl(strControlId) as TextBox;
-                if (null != txtControl)
+                if (null != txtControl && _ParentControl.Controls.Contains(txtControl))
                 {
                     if (!txtControl.Enabled)
                         continue;
@@ -602,7 +602,7 @@ namespace WebBase.Utilities
                     continue;
                 }
                 HtmlTextArea areaControlHtml = _ParentControl.FindControl(strControlId) as HtmlTextArea;
-                if (null != areaControlHtml)
+                if (null != areaControlHtml && _ParentControl.Controls.Contains(areaControlHtml))
                 {
                     strValue = areaControlHtml.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
@@ -610,7 +610,7 @@ namespace WebBase.Utilities
                     continue;
                 }
                 HtmlInputPassword txtPassword = _ParentControl.FindControl(strControlId) as HtmlInputPassword;
-                if (null != txtPassword)
+                if (null != txtPassword && _ParentControl.Controls.Contains(txtPassword))
                 {
                     if (txtPassword.Disabled)
                         continue;
@@ -622,7 +622,7 @@ namespace WebBase.Utilities
 
                 strControlId = "sel_" + strFieldName;
                 DropDownList ddlControl = _ParentControl.FindControl(strControlId) as DropDownList;
-                if (null != ddlControl)
+                if (null != ddlControl && _ParentControl.Controls.Contains(ddlControl))
                 {
                     if (!ddlControl.Enabled)
                         continue;
@@ -632,7 +632,7 @@ namespace WebBase.Utilities
                     continue;
                 }
                 HtmlSelect ddlControlHtml = _ParentControl.FindControl(strControlId) as HtmlSelect;
-                if (null != ddlControlHtml)
+                if (null != ddlControlHtml && _ParentControl.Controls.Contains(ddlControlHtml))
                 {
                     if (ddlControlHtml.Disabled)
                         continue;
@@ -647,7 +647,7 @@ namespace WebBase.Utilities
 
                 strControlId = "cb_" + strFieldName;
                 HtmlInputCheckBox cbControlHtml = _ParentControl.FindControl(strControlId) as HtmlInputCheckBox;
-                if (null != cbControlHtml)
+                if (null != cbControlHtml && _ParentControl.Controls.Contains(cbControlHtml))
                 {
                     if (cbControlHtml.Disabled)
                         continue;
@@ -659,7 +659,7 @@ namespace WebBase.Utilities
                 CheckBox cbControl = _ParentControl.FindControl(strControlId) as CheckBox;
                 if (null != cbControl)
                 {
-                    if (!cbControl.Enabled)
+                    if (!cbControl.Enabled && _ParentControl.Controls.Contains(cbControl))
                         continue;
                     strValue = (cbControl.Checked ? Constants.Yes : Constants.No) + "";
                     iEF.SetValue<TEntity>(_oE, strValue);

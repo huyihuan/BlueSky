@@ -90,8 +90,6 @@
     <Compile Include="BlueSky.Utilities\StringUtil.cs" />
     <Compile Include="BlueSky.Utilities\TypeUtil.cs" />
     <Compile Include="BlueSky.Utilities\Constants.cs" />
-    <Compile Include="BlueSky.DataAccess\HDataBase.cs" />
-    <Compile Include="BlueSky.DataAccess\HDBOperation.cs" />
     <Compile Include="BlueSky.Interfaces\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
