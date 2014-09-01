@@ -220,7 +220,7 @@
         $(".action-search-panel").attr("display", bDisplay == "hidden" ? "visible" : "hidden");
         //如果事件源是Action，那么改变Action的状态
         event = event ? event : window.event;
-        var _eventSender = event.srcElement ? event.srcElement : event.target;
+        var _eventSender = document.attachEvent ? event.srcElement : event.target;
         if (_eventSender) {
             var cName = _eventSender.className;
             if (cName.indexOf("action") == -1) {

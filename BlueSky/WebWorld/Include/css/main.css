@@ -367,7 +367,7 @@ Td.td-content,th.td-content
     height:20px;
     line-height:20px;
     border-right:solid 1px #D8D8D8;
-    border-bottom:solid 1px #D8D8D8;
+    border-bottom:solid 1px #EAEAEA;
     padding:2px;
     font-size:12px;
     white-space:nowrap;
@@ -478,8 +478,8 @@ Table.pager
 Table.pager a
 {
     display:block;
-    width:20px;
-    height:20px;
+    width:25px;
+    height:25px;
     font-size:1px;
     cursor:pointer;
 }
@@ -492,3 +492,12 @@ A.pager_first_disabled{ background:url(../image/first.gif) center center no-repe
 A.pager_prev_disabled{ background:url(../image/prev.gif) center center no-repeat;cursor:default; }
 A.pager_next_disabled{ background:url(../image/next.gif) center center no-repeat;cursor:default; }
 A.pager_last_disabled{ background:url(../image/last.gif) center center no-repeat;cursor:default; }
+
+A.pager_first:hover,A.pager_prev:hover,A.pager_next:hover,A.pager_last:hover,A.pager_refresh:hover
+{
+	background-color:#C9D8F0;
+	border-radius:3px 3px 3px 3px;
+	-moz-border-radius:3px 3px 3px 3px;
+	box-shadow:inset 0px 0px 3px 1px #B5B6B9;
+	-moz-box-shadow:inset 0px 0px 3px 1px #B5B6B9;
+}

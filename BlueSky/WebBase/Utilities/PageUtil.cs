@@ -588,7 +588,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtControlHtml.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 TextBox txtControl = _ParentControl.FindControl(strControlId) as TextBox;
@@ -598,7 +597,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtControl.Text.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlTextArea areaControlHtml = _ParentControl.FindControl(strControlId) as HtmlTextArea;
@@ -606,7 +604,6 @@ namespace WebBase.Utilities
                 {
                     strValue = areaControlHtml.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlInputPassword txtPassword = _ParentControl.FindControl(strControlId) as HtmlInputPassword;
@@ -616,7 +613,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtPassword.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -628,7 +624,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = ddlControl.SelectedValue.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlSelect ddlControlHtml = _ParentControl.FindControl(strControlId) as HtmlSelect;
@@ -641,7 +636,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = LiSelected.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -653,7 +647,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = (cbControlHtml.Checked ? Constants.Yes : Constants.No) + "";
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 CheckBox cbControl = _ParentControl.FindControl(strControlId) as CheckBox;
@@ -663,7 +656,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = (cbControl.Checked ? Constants.Yes : Constants.No) + "";
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -673,7 +665,6 @@ namespace WebBase.Utilities
         {
             if (null == _Page || null == _oE)
                 return;
-            //string[] astrFields = ReflectionUtil.GetObjectFieldsList(_oE, true, true);
             IEntityField[] astrFields = EntityAccess<TEntity>.Meta.EntityFields;
             if (null == astrFields || astrFields.Length == 0)
                 return;
@@ -689,7 +680,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtControlHtml.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 TextBox txtControl = _Page.FindControl(strControlId) as TextBox;
@@ -699,7 +689,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtControl.Text.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlTextArea areaControlHtml = _Page.FindControl(strControlId) as HtmlTextArea;
@@ -707,7 +696,6 @@ namespace WebBase.Utilities
                 {
                     strValue = areaControlHtml.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlInputPassword txtPassword = _Page.FindControl(strControlId) as HtmlInputPassword;
@@ -717,7 +705,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = txtPassword.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -729,7 +716,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = ddlControl.SelectedValue.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 HtmlSelect ddlControlHtml = _Page.FindControl(strControlId) as HtmlSelect;
@@ -742,7 +728,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = LiSelected.Value.Trim();
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 
@@ -754,7 +739,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = (cbControlHtml.Checked ? Constants.Yes : Constants.No) + "";
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
                 CheckBox cbControl = _Page.FindControl(strControlId) as CheckBox;
@@ -764,7 +748,6 @@ namespace WebBase.Utilities
                         continue;
                     strValue = (cbControl.Checked ? Constants.Yes : Constants.No) + "";
                     iEF.SetValue<TEntity>(_oE, strValue);
-                    //ReflectionUtil.SetObjectFieldValue(_oE, strFieldName, strValue);
                     continue;
                 }
 

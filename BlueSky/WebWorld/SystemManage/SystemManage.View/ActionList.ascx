@@ -7,14 +7,15 @@
     });
 
     function selectFunction() {
-        var windowArguments = new Object();
-        windowArguments.width = 400;
-        windowArguments.height = 400;
-        windowArguments.title = "选择系统功能";
-        windowArguments.url = "<%=strFunctionSelectUrl %>";
-        windowArguments.resize = false;
-        windowArguments.move = true;
-        top.windowFactory.topFocusForm(windowArguments);
+        var configs = {
+            width : 400,
+            height : 400,
+            title : "选择系统功能",
+            url : "<%=strFunctionSelectUrl %>",
+            resize : false,
+            move : true
+        }
+        top.windowFactory.topFocusForm(configs);
     }
 </script>
 <table  cellpadding="0" cellspacing="0" width="100%">

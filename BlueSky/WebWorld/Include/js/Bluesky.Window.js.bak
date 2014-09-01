@@ -7,6 +7,7 @@
 //popWindowParent-active:9996;
 //popWindowTop-normal:9997;
 //popWindowTop-active:9998;
+
 function bs_event_createWorkWindow(_windowArguments) {
     var appWindow = new bs_Window();
     

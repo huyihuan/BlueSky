@@ -166,9 +166,7 @@ namespace BlueSky.EntityAccess
         {
             if (Meta.EnableCache && EntityCache<TEntity>.Exist(_oKey))
             {
-                TEntity oEntity = EntityCache<TEntity>.Find(_oKey);
-                if (null != oEntity)
-                    return oEntity;
+                return EntityCache<TEntity>.Find(_oKey);
             }
             TEntity[] oEntities = List(string.Format("[{0}]={1}", Meta.KeyField.FieldName, _oKey));
             if (null != oEntities && oEntities.Length >= 2)
@@ -230,9 +228,7 @@ namespace BlueSky.EntityAccess
         {
             if (Meta.EnableCache && EntityListCache<TEntity>.Exist(_strFilter))
             {
-                TEntity[] tCaches = EntityListCache<TEntity>.Find(_strFilter);
-                if (null != tCaches)
-                    return tCaches;
+                return EntityListCache<TEntity>.Find(_strFilter);
             }
             string strQuery = string.Format("SELECT {0} FROM {1}", Meta.Selects, Meta.TableName);
             if (!string.IsNullOrEmpty(_strFilter))
@@ -256,9 +252,7 @@ namespace BlueSky.EntityAccess
             string strCacheFilter = string.Format("{0}-{1}-{2}", _strFilter, _nPageIndex, _nPageSize);
             if (Meta.EnableCache && EntityListCache<TEntity>.Exist(strCacheFilter))
             {
-                TEntity[] tCaches = EntityListCache<TEntity>.Find(strCacheFilter);
-                if (null != tCaches)
-                    return tCaches;
+                return EntityListCache<TEntity>.Find(strCacheFilter);
             }
             if (!string.IsNullOrEmpty(_strFilter))
                 _strFilter = string.Format("({0})", _strFilter);

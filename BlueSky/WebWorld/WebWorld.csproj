@@ -81,7 +81,7 @@
     <Content Include="Include\css\menu.css" />
     <Content Include="Include\css\panel.css" />
     <Content Include="Include\css\tab.css" />
-    <Content Include="Include\css\window.css" />
+    <Content Include="Include\css\BlueSky.Window.css" />
     <Content Include="Include\html\VCode.aspx" />
     <Content Include="Include\image\TreeImages\firstLine.gif" />
     <Content Include="Include\image\TreeImages\firstMinus.gif" />
@@ -102,7 +102,8 @@
     <Content Include="Include\js\Bluesky.Panel.js" />
     <Content Include="Include\js\Bluesky.SplitPanel.js" />
     <Content Include="Include\js\Bluesky.Tabs.js" />
-    <Content Include="Include\js\Bluesky.window.js" />
+    <Content Include="Include\js\Bluesky.Window.Do.js" />
+    <Content Include="Include\js\Bluesky.Window.js" />
     <Content Include="Include\js\contextmenu.js" />
     <Content Include="Include\js\desktop.js" />
     <Content Include="Include\js\form.js" />

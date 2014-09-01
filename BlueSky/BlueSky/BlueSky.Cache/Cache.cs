@@ -150,7 +150,13 @@ namespace BlueSky.Cache
 		}
 		public static bool Exist(string _strKey)
 		{
-            return Cache<TValue>.dicCache.ContainsKey(Cache.FormatKey(_strKey));
+            _strKey = Cache.FormatKey(_strKey);
+            if (Cache<TValue>.dicCache.ContainsKey(_strKey))
+            {
+                CacheItem<TValue> oCache = Cache<TValue>.dicCache[_strKey];
+                return oCache.ExpirationTime > DateTime.Now;
+            }
+            return false;
 		}
 	}
 }

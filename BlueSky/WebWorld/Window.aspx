@@ -11,13 +11,12 @@
     <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
-    <link href="Include/css/window.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/utils.js" type="text/javascript"></script>
-    
-    <link href="Include/css/menu.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/menu.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
+    <script src="Include/js/utils.js" type="text/javascript"></script>
+    <link href="Include/css/menu.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/menu.js" type="text/javascript"></script>
     <link href="Include/css/panel.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/panel.js" type="text/javascript"></script>
     <script src="Include/js/form.js" type="text/javascript"></script>
