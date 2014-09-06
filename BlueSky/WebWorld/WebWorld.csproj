@@ -83,6 +83,7 @@
     <Content Include="Include\css\tab.css" />
     <Content Include="Include\css\BlueSky.Window.css" />
     <Content Include="Include\html\VCode.aspx" />
+    <Content Include="Include\html\Window.html" />
     <Content Include="Include\image\TreeImages\firstLine.gif" />
     <Content Include="Include\image\TreeImages\firstMinus.gif" />
     <Content Include="Include\image\TreeImages\firstPlus.gif" />

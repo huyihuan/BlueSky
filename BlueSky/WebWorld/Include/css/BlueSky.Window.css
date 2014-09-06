@@ -154,7 +154,51 @@ div.window-button-close-over
 {
     background-position:-65px -31px;
 }
-
+/*A 窗体按钮*/
+a.window-button
+{
+	display:block;
+    width:16px;
+    height:16px;
+    border:none;
+    float:right;
+    margin:4px 5px 0 0;
+    _margin:4px 3px 0 0;
+    background-image:url(../image/pop_window_button_bg.png);
+    cursor:pointer;
+}
+a.window-button-min
+{
+    background-position:-7px -61px;
+}
+a.window-button-min:hover
+{
+    background-position:-7px -32px;
+}
+a.window-button-normal
+{
+    background-position:-95px -61px;
+}
+a.window-button-normal:hover
+{
+    background-position:-95px -32px;
+}
+a.window-button-max
+{
+    background-position:-36px -61px;
+}
+a.window-button-max:hover
+{
+    background-position:-36px -31px;
+}
+a.window-button-close
+{
+    background-position:-65px -61px;
+}
+a.window-button-close:hover
+{
+    background-position:-65px -31px;
+}
 /*Window Resize Styles*/
 div.window-resize-border
 {
