@@ -149,6 +149,8 @@
         },
         close: function() {
             this.nodes.self.remove();
+            var dd = this;
+            setTimeout(function() { dd = null; }, 0);
         },
         toggleStatus: function() {
             var s = this.static.status;

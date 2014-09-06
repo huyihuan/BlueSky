@@ -27,6 +27,7 @@
         function del() {
             if (arr.length >= 1) {
                 arr[arr.length - 1].close();
+				arr.removeAt(arr.length - 1);
                 setTimeout(del, 100);
             }
         }
