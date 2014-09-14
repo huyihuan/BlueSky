@@ -249,8 +249,42 @@
             isFunction: function(_object) {
                 return typeof _object === "function";
             }
-        }
+        },
+        getEventArg: function(e) {
+            return e ? e : window.event;
+        },
+        getPosition: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e.PageX || e.PageY) {
+                return { x: e.PageX, y: e.PageY };
+            }
+            else {
+                return {
+                    x: e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft,
+                    y: e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+                };
+            }
+        },
+        stopPropagation: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e && e.stopPropagation) {
+                //因此它支持W3C的stopPropagation()方法　　
+                e.stopPropagation();
+            }
+            else {
+                e.cancelBubble = true;
+            }
 
+        },
+        stopDefault: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            else {
+                e.returnValue = false;
+            }
+        }
     });
 
     BlueSky.instance.extend({
@@ -346,7 +380,7 @@
                 });
             }
         },
-        
+
         disabled: function(_value) {
             if (typeof _value !== "undefined") {
                 return this.foreach(function(_el) {
@@ -553,6 +587,12 @@
                 for (var i = length - 1; i >= 0; i--) {
                     _parent.insertBefore(bFirst ? _els[i] : _els[i].cloneNode(true), _parent.firstChild);
                 }
+            });
+        },
+
+        parent: function() {
+            return this.actionOne(function(_el) {
+                return Bluesky(_el.parentNode);
             });
         }
     });

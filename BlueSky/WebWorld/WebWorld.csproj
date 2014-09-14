@@ -69,7 +69,9 @@
     <Content Include="Global.asax" />
     <Content Include="Default.html" />
     <Content Include="Include\css\BlueSky.Button.css" />
+    <Content Include="Include\css\Bluesky.Drag.css" />
     <Content Include="Include\css\Bluesky.Panel.css" />
+    <Content Include="Include\css\Bluesky.Resizer.css" />
     <Content Include="Include\css\Bluesky.SplitPanel.css" />
     <Content Include="Include\css\Bluesky.Tabs.css" />
     <Content Include="Include\css\contextmenu.css" />
@@ -99,8 +101,10 @@
     <Content Include="Include\image\TreeImages\oneMinus.gif" />
     <Content Include="Include\image\TreeImages\onePlus.gif" />
     <Content Include="Include\image\TreeImages\plus.gif" />
+    <Content Include="Include\js\Bluesky.Drag.js" />
     <Content Include="Include\js\Bluesky.js" />
     <Content Include="Include\js\Bluesky.Panel.js" />
+    <Content Include="Include\js\Bluesky.Resizer.js" />
     <Content Include="Include\js\Bluesky.SplitPanel.js" />
     <Content Include="Include\js\Bluesky.Tabs.js" />
     <Content Include="Include\js\Bluesky.Window.Do.js" />
