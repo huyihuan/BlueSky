@@ -6,10 +6,10 @@
         document.onselect = function() { document.selection.empty(); };
         document.onmousemove = function(e) {
             if (!context.isResizing) {
-                context.isResizing = true;
                 context.masklayer = Bluesky.create("div", { className: "resizer-mask" });
                 context.movelayer = Bluesky.create("div", { className: "resizer-panel" }).css({ width: context.startSize.width + "px", height: context.startSize.height + "px", top: context.startPosition.y + "px", left: context.startPosition.x + "px" });
                 context.target.parent().append(context.masklayer).append(context.movelayer);
+                context.isResizing = true;
             }
             action.call(context, e);
         };

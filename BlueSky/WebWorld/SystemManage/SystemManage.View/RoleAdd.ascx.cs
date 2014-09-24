@@ -61,6 +61,7 @@ namespace WebWorld.SystemManage
             addItem.Description = strRemark;
             int nNewId = SystemRole.Save(addItem);
             PageUtil.PageAlert(this.Page, nNewId > 0 ? "保存成功！" : "保存失败！");
+            PageUtil.PageClosePopupWindow(this.Page, true);
         }
     }
 }

@@ -43,11 +43,12 @@
         onDragEnd: null,
         draging: function(e) {
             if (!this.isMoving) {
-                this.isMoving = true;
-                var size = { width: this.mover.width(), height: this.mover.height() };
                 this.masklayer = Bluesky.create("div", { className: "drag-mask" });
+                this.mover.parent().append(this.masklayer);
+                var size = { width: this.mover.width(), height: this.mover.height() };
                 this.movelayer = Bluesky.create("div", { className: "drag-panel" }).css({ width: size.width + "px", height: size.height + "px", top: this.startPosition.y + "px", left: this.startPosition.x + "px" });
-                this.mover.parent().append(this.masklayer).append(this.movelayer);
+                this.mover.parent().append(this.movelayer);
+                this.isMoving = true;
             }
             var position = Bluesky.getPosition(e);
             this.movelayer.css({ left: this.startPosition.x + (position.x - this.ePosition.x) + "px", top: this.startPosition.y + (position.y - this.ePosition.y) + "px" });

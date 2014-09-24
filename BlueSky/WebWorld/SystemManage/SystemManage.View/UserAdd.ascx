@@ -77,7 +77,7 @@
     <div id="tabs_node" style="padding:5px;"></div>
     <div style="width:100%;height:28px;margin-bottom:3px;line-height:28px;text-align:right;">
         <input type="button" id="btn_Save" class="btn-normal" runat="server" value=" 保 存 " onclick="if(!save()) return false;" onserverclick="btnSave_ServerClick" />
-        <input type="button" id="btn_Cancel" class="btn-normal" runat="server" value=" 返 回 " onclick="top.windowFactory.closeTopFocusForm();" />&nbsp;
+        <input type="button" id="btn_Cancel" class="btn-normal" runat="server" value=" 返 回 " onclick="top.layout.closeActiveWindow();" />&nbsp;
     </div>
 </div>
 <table id="tab_baseInformation" cellpadding="5" cellspacing="5" border="0" width="100%" runat="server">

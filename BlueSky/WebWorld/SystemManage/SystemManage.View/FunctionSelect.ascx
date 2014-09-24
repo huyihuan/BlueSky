@@ -9,7 +9,7 @@
     <tr><td colspan="2" height="5"></td></tr>
     <tr>
         <td width="50%" valign="middle">
-            &nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.windowFactory.closeTopFocusForm();"  />
+            &nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.layout.closeActiveWindow();"  />
         </td>
         <td width="50%" align="right"><input id="btn_OK" type="button" value="确 定" onclick="save();" class="btn-normal" />&nbsp;</td>
     </tr>

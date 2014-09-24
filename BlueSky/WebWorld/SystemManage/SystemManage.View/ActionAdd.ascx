@@ -1,25 +1,29 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ActionAdd.ascx.cs" Inherits="WebWorld.SystemManage.ActionAdd" %>
 <script type="text/javascript">
     function selectActionImage() {
-        var windowArguments = new Object();
-        windowArguments.width = 400;
-        windowArguments.height = 400;
-        windowArguments.title = "选择操作图标";
-        windowArguments.url = "<%=strImageFormUrl %>";
-        windowArguments.resize = false;
-        windowArguments.move = true;
+        var args = {
+            width: 400,
+            height: 400,
+            title: "选择操作图标",
+            renderTo: top.document.body,
+            loader: {
+                url: "<%=strImageFormUrl %>"
+            },
+            moveable : true,
+            mask:true
+        }
         var imgSelect = document.getElementById("<%=img_IconName.ClientID %>");
         if (imgSelect.src && "" != imgSelect.src) {
-            windowArguments.windowArguments = { src: imgSelect.src, imageName: imgSelect.title }
+            args.arguments = { src: imgSelect.src, imageName: imgSelect.title }
         }
-        windowArguments.closeFunction = function(_windowResult, _windowReturnValue) {
-            if (_windowResult == top.windowFactory.windowResult.cancel)
+        args.onClosed = function(_dialogResult) {
+        if (_dialogResult == top.Bluesky.component.Window.dialogResult.Cancel)
                 return;
-            document.getElementById("<%=txt_IconName.ClientID %>").value = _windowReturnValue.imageName;
-            imgSelect.src = _windowReturnValue.src;
-            imgSelect.title = _windowReturnValue.imageName;
+            document.getElementById("<%=txt_IconName.ClientID %>").value = _dialogResult.imageName;
+            imgSelect.src = _dialogResult.src;
+            imgSelect.title = _dialogResult.imageName;
         }
-        top.windowFactory.topFocusForm(windowArguments);
+        top.Bluesky.component.create("Window", args);
     }
 </script>
 
@@ -106,7 +110,7 @@
     <tr>
         <td colspan="2" align="center">
             <input type="button" id="btn_Save" class="btn-normal" runat="server" value=" 保 存 " onclick="if(!save()) return false;" onserverclick="btnSave_ServerClick" />
-            <input type="button" id="btn_Cancel" class="btn-normal" runat="server" value=" 返 回 " onclick="top.windowFactory.closeTopFocusForm();" />
+            <input type="button" id="btn_Cancel" class="btn-normal" runat="server" value=" 返 回 " onclick="top.layout.closeActiveWindow();" />
         </td>
     </tr>
 </table>

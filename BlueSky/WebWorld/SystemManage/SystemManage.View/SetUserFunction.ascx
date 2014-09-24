@@ -19,7 +19,7 @@
 <table  cellpadding="0" cellspacing="0" height="100%" width="100%">
     <tr><td colspan="2" height="5"></td></tr>
     <tr>
-        <td width="50%" align="left">&nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.windowFactory.closeTopFocusForm();"  /></td>
+        <td width="50%" align="left">&nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.layout.closeActiveWindow();"  /></td>
         <td width="50%" align="right"><input id="Button1" type="button" value="保 存" class="btn-normal" runat="server" onserverclick="btnSave_Click" />&nbsp;</td>
     </tr>
     <tr><td colspan="2" height="5"></td></tr>

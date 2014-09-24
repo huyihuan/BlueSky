@@ -12,22 +12,15 @@
     <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
     <link href="Include/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Window.js" type="text/javascript"></script>
+    <script src="Include/js/Bluesky.Drag.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.Drag.css" rel="stylesheet" type="text/css" />
+    <link href="Include/css/Bluesky.Resizer.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.Resizer.js" type="text/javascript"></script>
     <link href="BlueSky/themes/gray/Bluesky.Button.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/layout.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/layout.js" type="text/javascript"></script>
     <script src="Include/js/utils.js" type="text/javascript"></script>
 </head>
-<script type="text/javascript">
-    function userView() {
-        top.windowFactory.targetFocusForm({
-            title: "用户信息",
-            url: "<%=strUserInfomationURL %>",
-            width: 500,
-            height: 450,
-            target: window
-        });
-    }
-</script>
 <body>
     <form id="form1" runat="server">
     <script type="text/javascript">
@@ -38,7 +31,7 @@
             <tr>
                 <td><font class="font-title float-left">Bule Sky</font></td>
                 <td align="right" valign="middle">
-                    <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="userView();">当前用户：<asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
+                    <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="layout.userView('<%=strUserInfomationURL %>');">当前用户：<asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-exist iconPosition-left buttonHighten-5px buttonNormalBorder-single" onclick="layout.logout();" href="javascript:void(0);">退出</a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-refresh iconPosition-left buttonHighten-5px buttonNormalBorder-3D" runat="server" onserverclick="btnRefresh_Click" href="javascript:void(0);">重新登陆</a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-set iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.moduleSetting();" href="javascript:void(0);">配置</a>&nbsp;

@@ -167,7 +167,6 @@ if (Bluesky && Bluesky.component) {
             this._contentsNode.height(this.height - 35).width(this.width - 2);
             this._wrapper.width(this.width).height(this.height);
         }
-
     });
 
     Bluesky.extend(false, Bluesky.component.Tabs, {
@@ -272,7 +271,11 @@ if (Bluesky && Bluesky.component) {
             autoLoad: true,
             _loaded: false,
             params: " "
+        },
+        refresh: function() {
+            this.contentNode.attr("src", this.loader.url);
         }
+
     });
 
     Bluesky.extend(false, Bluesky.component.Tabs.Tab, {

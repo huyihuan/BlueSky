@@ -6,7 +6,7 @@
     <tr>
         <td align="center" valign="middle">
             <input type="button" class="btn-normal" value=" 删 除 " runat="server" id="btnDelete" onserverclick="btnDelete_Click" />
-            <input type="button" class="btn-normal" value=" 返 回 " onclick="top.windowFactory.closeTopFocusForm();" />
+            <input type="button" class="btn-normal" value=" 返 回 " onclick="top.layout.closeActiveWindow();" />
         </td>
     </tr>
 </table>

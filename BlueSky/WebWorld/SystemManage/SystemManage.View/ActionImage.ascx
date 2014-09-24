@@ -9,8 +9,8 @@
         else {
             //调用window.windowArguments参数时，需要调用setTimeout函数来延时调用
             setTimeout(function() {
-                if (null != window.windowArguments) {
-                    selectedImage(window.windowArguments.imageName);
+                if (null != window.arguments) {
+                    selectedImage(window.arguments.imageName);
                 }
             }, 200);
         }
@@ -24,10 +24,8 @@
     }
     function save(){
         var imgSelect = document.getElementById("<%=img_Selected.ClientID %>");
-        window.windowReturnValue = { imageName: imgSelect.title, src: imgSelect.src };
-        window.windowResult = top.windowFactory.windowResult.ok;
-        //top.windowFactory.setWindowReturnValue({ imageName: imgSelect.title, src: imgSelect.src });
-        top.windowFactory.closeTopFocusForm();
+        window.dialogResult = { imageName: imgSelect.title, src: imgSelect.src };
+        top.layout.closeActiveWindow();
     }
 </script>
 <style type="text/css">
@@ -39,7 +37,7 @@
     <tr><td colspan="2" height="5"></td></tr>
     <tr>
         <td width="60%" align="left" valign="middle">
-            &nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.windowFactory.closeTopFocusForm();"  />
+            &nbsp;<input type="button" value="返 回" class="btn-normal" onclick="top.layout.closeActiveWindow();"  />
             &nbsp;当前选择图片：<img id="img_Selected" style="width:16px;height:16px;" align="absMiddle" runat="server" src="" title="" />
         </td>
         <td width="40%" align="right"><input id="btn_OK" type="button" value="确 定" onclick="save();" class="btn-normal" />&nbsp;</td>

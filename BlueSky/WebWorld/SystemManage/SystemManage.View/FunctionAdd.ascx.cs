@@ -28,7 +28,7 @@ namespace WebWorld.SystemManage
             if (nParentId <= 0)
             {
                 PageUtil.PageAlert(this.Page, "请选择父级功能后新增功能！");
-                PageUtil.PageAppendScript(this.Page, "top.windowFactory.closeTopFocusForm();");
+                PageUtil.PageClosePopupWindow(Page, false);
                 return;
             }
             SystemFunction oFunction = SystemFunction.Get(nId);
@@ -37,7 +37,7 @@ namespace WebWorld.SystemManage
                 if (oFunction.ParentId == -1)
                 {
                     PageUtil.PageAlert(this.Page, "不能修改模块信息！");
-                    PageUtil.PageAppendScript(this.Page, "top.windowFactory.closeTopFocusForm();");
+                    PageUtil.PageClosePopupWindow(Page, false);
                     return;
                 }
                 PageUtil.PageFillEdit(this, oFunction);

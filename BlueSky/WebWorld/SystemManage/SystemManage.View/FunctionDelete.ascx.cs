@@ -37,7 +37,7 @@ namespace WebWorld.SystemManage
                 return;
             SystemFunction.Delete(nDeleteId);
             PageUtil.PageAlert(this.Page, "删除成功！");
-            PageUtil.PageAppendScript(this.Page, "top.windowFactory.closeTopFocusForm();");
+            PageUtil.PageClosePopupWindow(Page, true);
         }
     }
 }

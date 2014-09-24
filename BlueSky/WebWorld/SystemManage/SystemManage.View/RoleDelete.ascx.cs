@@ -32,7 +32,7 @@ namespace WebWorld.SystemManage
                 SystemRole.Delete(nId);
             }
             PageUtil.PageAlert(this.Page, "删除成功！");
-            PageUtil.PageAppendScript(this.Page, "top.windowFactory.closeTopFocusForm();");
+            PageUtil.PageClosePopupWindow(Page, true);
         }
     }
 }

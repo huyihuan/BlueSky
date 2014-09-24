@@ -88,8 +88,10 @@ namespace WebBase.Utilities
         public static void PageClosePopupWindow(Page _Page, bool _isRefreshParentWindow)
         {
             if (_isRefreshParentWindow)
+            {
                 PageRefreshActiveWindow(_Page);
-            PageAppendScript(_Page, "top.windowFactory.closeTopFocusForm();");
+            }
+            PageAppendScript(_Page, "top.layout.closeActiveWindow();");
         }
         public static object PageSelectHiddenValue(Page _Page,bool _bNeedArray)
         {

@@ -91,6 +91,7 @@ if (Bluesky && Bluesky.component) {
         background: "#000000",
         html: " ",
         node: {},
+        zIndex: -1,
         component: Bluesky.component.Masklayer,
         show: function() {
             if (!this.parent)
@@ -103,10 +104,12 @@ if (Bluesky && Bluesky.component) {
             if (this.height > 1) {
                 this.node.css("height", this.height);
             }
+            if (this.zIndex != -1) {
+                this.node.css("z-index", this.zIndex);
+            }
             Bluesky(this.parent.body).prepend(this.node);
-            this.node.animate({ "opacity": 0.4 }, 100);
+            this.node.animate({ "opacity": 0.4 }, 150);
             return this;
-
         },
         remove: function() {
             this.node.remove();

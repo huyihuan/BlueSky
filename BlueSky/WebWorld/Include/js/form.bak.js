@@ -261,16 +261,12 @@
             oArg.width = _actionArguments.width;
             oArg.height = _actionArguments.height;
             oArg.title = _actionArguments.title;
-            oArg.renderTo = top.document.body;
-            oArg.resizeable = _actionArguments.resize;
-            oArg.maximum = _actionArguments.maxbox;
-            oArg.minimum = _actionArguments.minbox;
-            oArg.moveable = _actionArguments.move;
-            oArg.mask = true;
-            oArg.icon = {
-                show: true,
-                url: _actionArguments.iconURL
-            }
+            oArg.target = "top";
+            oArg.resize = _actionArguments.resize;
+            oArg.maxbox = _actionArguments.maxbox;
+            oArg.minbox = _actionArguments.minbox;
+            oArg.move = _actionArguments.move;
+            oArg.iconURL = _actionArguments.iconURL;
         }
 
         if (_actionArguments.actionType == 'normal') {
@@ -284,10 +280,8 @@
             if (undefined != strExtraParaeters && null != strExtraParaeters && "" != strExtraParaeters)
                 strUrl += "&" + strExtraParaeters;
             if (_actionArguments.popup == true) {
-                oArg.loader = {
-                    url: strUrl
-                }
-                top.Bluesky.component.create("Window", oArg);
+                oArg.url = strUrl;
+                top.windowFactory.topFocusForm(oArg);
             }
             else {
                 window.location.href = strUrl;
@@ -298,10 +292,8 @@
         }
         else if (_actionArguments.actionType == 'http') {
             if (_actionArguments.popup == true) {
-                oArg.loader = {
-                    url: strUrl
-                }
-                top.Bluesky.component.create("Window", oArg);
+                oArg.url = _actionArguments.actionValue;
+                top.bs_event_createWorkWindow(oArg);
             }
             else {
                 window.location.href = _actionArguments.actionValue; ;

@@ -6,7 +6,7 @@
     <tr>
         <td align="center" valign="middle">
             <input type="button" class="btn-normal" value=" 安全退出 " runat="server" id="btnLogout" onserverclick="btnLogout_Click" />
-            <input type="button" class="btn-normal" value=" 取 消 " onclick="top.windowFactory.closeTopFocusForm();" />
+            <input type="button" class="btn-normal" value=" 取 消 " onclick="top.layout.closeActiveWindow();" />
         </td>
     </tr>
 </table>

@@ -21,7 +21,7 @@ var layout = {
             items: [
 				        {
 				            title: "工作及日程区",
-				            key: "tabCalendar" + Math.random(),
+				            key:"tabCalendar" + Math.random(),
 				            sliding: true,
 				            closeable: false,
 				            showIcon: true,
@@ -38,16 +38,16 @@ var layout = {
         this.initHeight();
 
         //加载任务栏
-        //        if (bs_field_IsShowTaskBar && bs_field_IsShowTaskBar == true) {
-        //            top.bs_event_ShowTaskBar(top.window, this.footer);
-        //            this.height(this.footer, top.bs_field_TaskBarHeight);
-        //        }
-        //setTimeout(function() {
-        //获取主菜单window引用
-        //top.windowFactory.menuWindow = layout.menuFrame.contentWindow;
-        //获取主工作区的window引用
-        //top.windowFactory.mainWindow = layout.mainFrame.contentWindow;
-        //}, 0);
+        if (bs_field_IsShowTaskBar && bs_field_IsShowTaskBar == true) {
+            top.bs_event_ShowTaskBar(top.window, this.footer);
+            this.height(this.footer, top.bs_field_TaskBarHeight);
+        }
+        setTimeout(function() {
+            //获取主菜单window引用
+            top.windowFactory.menuWindow = layout.menuFrame.contentWindow;
+            //获取主工作区的window引用
+            //top.windowFactory.mainWindow = layout.mainFrame.contentWindow;
+        }, 0);
         setTimeout(function() { Bluesky.component.Masklayer.remove(); }, 100);
     },
 
@@ -56,10 +56,11 @@ var layout = {
         var rightWidth = this.docWidth - this.leftWidth - 5;
         this.docHeight = document.body.clientHeight;
         this.bottomHeight = this.docHeight - this.topHeight - this.nMargin_TopBottom;
-        //        if (bs_field_IsShowTaskBar && bs_field_IsShowTaskBar == true)
-        //            this.bottomHeight = this.bottomHeight - top.bs_field_TaskBarHeight - 1;
+        if (bs_field_IsShowTaskBar && bs_field_IsShowTaskBar == true)
+            this.bottomHeight = this.bottomHeight - top.bs_field_TaskBarHeight - 1;
         this.height(this.bottom, this.bottomHeight);
         this.width(this.rightPane, rightWidth);
+
         this.tabs.resize({ width: rightWidth, height: this.bottomHeight });
     },
 
@@ -78,48 +79,16 @@ var layout = {
     },
 
     moduleSetting: function() {
-        Bluesky.component.create("Window", {
-            title: "模块配置",
-            width: 600,
-            height: 400,
-            renderTo: document.body,
-            mask: true,
-            loader: {
-                url: "ModuleConfig.aspx"
-            },
-            icon: {
-                show: true,
-                url: "/Include/image/ActionImages/role.png"
-            }
-        });
+        var windowArguments = { width: 600, height: 400, title: "模块配置", url: "ModuleConfig.aspx" };
+        top.windowFactory.topFocusForm(windowArguments);
     },
 
-    userView: function(url) {
-        Bluesky.component.create("Window", {
-            title: "用户信息",
-            width: 500,
-            height: 450,
-            renderTo: document.body,
-            mask: true,
-            loader: {
-                url: url
-            },
-            icon: {
-                show: true,
-                url: "/Include/image/ActionImages/role.png"
-            }
-        });
-    },
-    closeActiveWindow: function() {
-        alert("close");
-        Bluesky.component.Window.activeWindow.close();
-    },
     goWindow: function(_windowArguments) {
         this.tabs.add({
             title: _windowArguments.title,
             tip: _windowArguments.title,
             key: _windowArguments.windowKey,
-            isRunMutil: false,
+            isRunMutil:false,
             showIcon: true,
             loader: {
                 url: _windowArguments.url,
@@ -129,23 +98,17 @@ var layout = {
     },
 
     refreshActiveWindow: function() {
-        setTimeout(function() { layout.tabs.activeTab.refresh(); }, 0);
+        setTimeout(function() { layout.tabContainer.refreshTab(layout.tabContainer.activeTab); }, 0);
     },
 
     logout: function() {
-        Bluesky.component.create("Window", {
+        var strLoginUrl = "Window.aspx?fn=1&fm=Logout";
+        top.windowFactory.targetFocusForm({
             title: "退出系统",
+            url: strLoginUrl,
             width: 300,
             height: 150,
-            renderTo: document.body,
-            mask: true,
-            loader: {
-                url: "Window.aspx?fn=1&fm=Logout"
-            },
-            icon: {
-                show: true,
-                url: "/Include/image/ActionImages/role.png"
-            }
+            target: window
         });
     }
 }
