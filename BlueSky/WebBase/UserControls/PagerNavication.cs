@@ -169,6 +169,7 @@ namespace WebBase.UserControls
 			bool bIsLastIndex = this.PageCount == 0 || (this.PageCount != 0 && this.PageIndex == this.PageCount);
 			this._ddlSizeList = new DropDownList();
 			this._ddlSizeList.ID = "SizeList";
+            this._ddlSizeList.CssClass = "select-normal";
 			this._ddlSizeList.ToolTip = "选择每页显示的记录条数！";
 			string strPageSizeList = this.PageSizeList;
 			if ("" == strPageSizeList)

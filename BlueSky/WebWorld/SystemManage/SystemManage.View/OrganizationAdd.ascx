@@ -31,13 +31,17 @@
     }
 
     function typeManage() {
-        var windowArguments = new Object();
-        windowArguments.width = 400;
-        windowArguments.height = 400;
-        windowArguments.title = "组织机构类型管理";
-        windowArguments.url = "<%=strOrganizationTypeUrl %>";
-        windowArguments.resize = false;
-        windowArguments.move = true;
-        top.windowFactory.topFocusForm(windowArguments);
+        var args = {
+            width: 450,
+            height: 400,
+            renderTo: top.document.body,
+            title: "组织机构类型管理",
+            loader: { url: "<%=strOrganizationTypeUrl %>" },
+            icon : { show : false },
+            resizeable: false,
+            moveable: true
+        }
+        //top.windowFactory.topFocusForm(windowArguments);
+        top.Bluesky.component.create("Window", args);
     }
 </script>

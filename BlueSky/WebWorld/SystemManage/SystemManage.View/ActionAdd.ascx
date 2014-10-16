@@ -9,6 +9,9 @@
             loader: {
                 url: "<%=strImageFormUrl %>"
             },
+            icon: {
+                show : false
+            },
             moveable : true,
             mask:true
         }
@@ -48,7 +51,7 @@
     <tr>
         <td align="right"><font class="font-hint">*</font>操作类型：</td>
         <td>
-            <asp:DropDownList runat="server" ID="sel_ActionType" AutoPostBack="true" OnSelectedIndexChanged="sel_ActionType_SelectedIndexChanaged"></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="sel_ActionType" AutoPostBack="true" CssClass="select-normal" OnSelectedIndexChanged="sel_ActionType_SelectedIndexChanaged"></asp:DropDownList>
             <input type="text" class="txt-normal" id="txt_ActionValue" runat="server" size="15" />
         </td>
     </tr>

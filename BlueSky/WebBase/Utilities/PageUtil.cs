@@ -9,6 +9,7 @@ using System.Reflection;
 using BlueSky.Utilities;
 using BlueSky.Interfaces;
 using BlueSky.EntityAccess;
+using BlueSky.Utilities;
 
 namespace WebBase.Utilities
 {
@@ -63,15 +64,24 @@ namespace WebBase.Utilities
         }
         public static void PageAlert(Page _Page, string _MessageContent)
         {
+            PageAlert(_Page, _MessageContent, false);
+        }
+        public static void PageAlert(Page _Page, string _MessageContent, bool _IsCloseActiveWindow)
+        {
             if (null == _Page)
                 return;
-            _Page.ClientScript.RegisterClientScriptBlock(_Page.GetType(), "alert", string.Format("alert('{0}')", _MessageContent), true);
+            string strScript = string.Format("alert('{0}');", _MessageContent);
+            if(_IsCloseActiveWindow)
+                strScript += "top.layout.closeActiveWindow();";
+            PageAppendScript(_Page, strScript);
         }
         public static void PageAppendScript(Page _Page, string _Script)
         {
             if (null == _Page)
                 return;
-            _Page.ClientScript.RegisterClientScriptBlock(_Page.GetType(), "script", string.Format("<script type=\"text/javascript\">{0}</script>", _Script));
+            string strKey = "PostClientScript_" + RandomFactory.GetInteger();
+            _Page.RegisterStartupScript(strKey, string.Format("<script type=\"text/javascript\">{0}</script>", _Script));
+
         }
         public static void PageRefreshLayout(Page _Page)
         {

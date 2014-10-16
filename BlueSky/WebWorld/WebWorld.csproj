@@ -103,6 +103,7 @@
     <Content Include="Include\image\TreeImages\plus.gif" />
     <Content Include="Include\js\Bluesky.Drag.js" />
     <Content Include="Include\js\Bluesky.js" />
+    <Content Include="Include\js\Bluesky.MessageBox.js" />
     <Content Include="Include\js\Bluesky.Panel.js" />
     <Content Include="Include\js\Bluesky.Resizer.js" />
     <Content Include="Include\js\Bluesky.SplitPanel.js" />

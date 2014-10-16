@@ -7,15 +7,20 @@
     });
 
     function selectFunction() {
-        var configs = {
-            width : 400,
-            height : 400,
-            title : "选择系统功能",
-            url : "<%=strFunctionSelectUrl %>",
-            resize : false,
-            move : true
-        }
-        top.windowFactory.topFocusForm(configs);
+        top.Bluesky.component.create("Window", {
+            width: 400,
+            height: 400,
+            title: "选择系统功能",
+            renderTo: top.document.body,
+            loader: {
+                url: "<%=strFunctionSelectUrl %>"
+            },
+            icon: {
+                show : false
+            },
+            resizeable: false,
+            moveable: true
+        });
     }
 </script>
 <table  cellpadding="0" cellspacing="0" width="100%">

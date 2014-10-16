@@ -4,15 +4,17 @@
     $(document).ready(function() {
         window.formUtil.initList({ listObject: ".list-container", minusHeight: 62, resize: false });
         var imgNameExist = document.getElementById("<%=hiddenImageSelected.ClientID %>").value + "";
-        if ("" != imgNameExist)
+        if ("" != imgNameExist) {
             selectedImage(imgNameExist);
+        }
         else {
             //调用window.windowArguments参数时，需要调用setTimeout函数来延时调用
             setTimeout(function() {
+                alert(window.arguments.imageName);
                 if (null != window.arguments) {
                     selectedImage(window.arguments.imageName);
                 }
-            }, 200);
+            }, 1000);
         }
     });
 

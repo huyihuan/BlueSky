@@ -111,7 +111,6 @@ var layout = {
         });
     },
     closeActiveWindow: function() {
-        alert("close");
         Bluesky.component.Window.activeWindow.close();
     },
     goWindow: function(_windowArguments) {
@@ -149,6 +148,7 @@ var layout = {
         });
     }
 }
+
 Bluesky.ready(function() { layout.initLayout(); });
 
 Bluesky(window).addEvent("resize", (function() {

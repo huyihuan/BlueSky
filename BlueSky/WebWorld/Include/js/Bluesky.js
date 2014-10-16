@@ -1,5 +1,5 @@
 ﻿/**********************************************
-* Bluesky.js BlueSky核心库
+* BlueSky核心库
 * copyright huyihuan 2013
 * date: 2013-11-12
 **********************************************/
@@ -112,6 +112,20 @@
         }
         return target;
     };
+	
+	//BlueSky.core
+	BlueSky.extend({
+		String : {
+			trim : function(){
+				if(arguments[0]) {
+					return arguments[0].replace(" ","");
+				}
+			},
+			toUpwer : function(){
+				
+			}
+		}
+	});
 
     BlueSky.extend({
         Bluesky: "Bluesky1.0",
@@ -527,11 +541,11 @@
                         if (aComputedStyle.indexOf(_cssArgs) != -1 && typeof styleValue !== "undefined") {
                             styleValue = styleValue.replace("px", "");
                             var isPersent = styleValue.indexOf("%") !== -1;
-                            if (!isPersent) {
-                                styleValue = BlueSky.util.parseInt(styleValue, 0);
-                            }
-                            if (isPersent) {
+                            if (isPersent || styleValue === "auto") {
                                 styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
+                            }
+                            else if (!isPersent && styleValue !== "auto") {
+                                styleValue = BlueSky.util.parseInt(styleValue, 0);
                             }
                         }
                         return styleValue;

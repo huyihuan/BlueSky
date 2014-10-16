@@ -253,6 +253,7 @@ Select.select-normal
 {
 	height:21px;
 	width:auto;
+	background:#FFFFFF url(../image/txt_backimage.gif) left top repeat-x;
 	border-right:solid 1px #aaaaaa;
 	border-bottom:solid 1px #aaaaaa;
 	border-top:solid 1px #666666;
@@ -481,17 +482,36 @@ Table.pager a
     width:25px;
     height:25px;
     font-size:1px;
-    cursor:pointer;
 }
-A.pager_first{ background:url(../image/first.gif) center center no-repeat; }
-A.pager_prev{ background:url(../image/prev.gif) center center no-repeat; }
-A.pager_next{ background:url(../image/next.gif) center center no-repeat; }
-A.pager_last{ background:url(../image/last.gif) center center no-repeat; }
-A.pager_refresh{ background:url(../image/arrow_refresh.png) center center no-repeat; }
-A.pager_first_disabled{ background:url(../image/first.gif) center center no-repeat;cursor:auto; }
-A.pager_prev_disabled{ background:url(../image/prev.gif) center center no-repeat;cursor:default; }
-A.pager_next_disabled{ background:url(../image/next.gif) center center no-repeat;cursor:default; }
-A.pager_last_disabled{ background:url(../image/last.gif) center center no-repeat;cursor:default; }
+A.pager_first 
+{
+	background:url(../image/first.gif) center center no-repeat;
+	cursor:pointer;
+               }
+A.pager_prev 
+{
+	background:url(../image/prev.gif) center center no-repeat; 
+	cursor:pointer;
+	}
+A.pager_next 
+{
+	background:url(../image/next.gif) center center no-repeat; 
+	cursor:pointer;
+	}
+A.pager_last 
+{
+	background:url(../image/last.gif) center center no-repeat; 
+	cursor:pointer;
+	}
+A.pager_refresh 
+{
+	background:url(../image/arrow_refresh.png) center center no-repeat; 
+	cursor:pointer;
+	}
+A.pager_first_disabled{ background:url(../image/first.gif) center center no-repeat;}
+A.pager_prev_disabled{ background:url(../image/prev.gif) center center no-repeat;}
+A.pager_next_disabled{ background:url(../image/next.gif) center center no-repeat;}
+A.pager_last_disabled{ background:url(../image/last.gif) center center no-repeat;}
 
 A.pager_first:hover,A.pager_prev:hover,A.pager_next:hover,A.pager_last:hover,A.pager_refresh:hover
 {

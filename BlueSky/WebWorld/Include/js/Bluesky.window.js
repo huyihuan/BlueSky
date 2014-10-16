@@ -78,6 +78,7 @@
             show: true,
             url: ""
         },
+        controls: [],
         onClosing: null,
         onClosed: null,
         show: function() {
@@ -87,7 +88,7 @@
             this.display = this.static.display.Show;
             this.target = Bluesky(this.renderTo);
             if ("" == this.id) {
-                this.id = "Bluesky_Window" + (this.static.items.length + 1);
+                this.id = "BlueskyWindow" + (this.static.items.length + 1);
             }
             if (this.minimum) {
                 this.inTaskBar = true;
@@ -294,6 +295,13 @@
             }
             this.nodes.wrapper.css({ left: p.x + "px", top: p.y + "px" });
             return this;
+        },
+        add: function() {
+            var cs = arguments[0];
+            if (!cs)
+                return;
+            this.controls.push(cs);
+            this.nodes.main.append(cs);
         }
     });
 }
