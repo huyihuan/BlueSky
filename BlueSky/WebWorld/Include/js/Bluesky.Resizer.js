@@ -1,4 +1,11 @@
-﻿(function() {
+﻿/*
+*
+* Bluesky Components Resizer Library v1.0
+* 
+* Copyright 2014, Yihuan Hu
+*
+*/
+(function(Bluesky) {
     var resizing = function(e, context, action) {
         this.resizeStart(e);
         document.ondragstart = function() { return false; };
@@ -153,4 +160,4 @@
             }
         });
     }
-})();
+})(Bluesky);

@@ -15,8 +15,7 @@ div.messagebox-content
 {
 	width:100%;
 	text-align:center;
-	vertical-align:middle;
-	border:0;
+	line-height:20px;
 	overflow:auto;
 }
 input.btn-messagebox-ok

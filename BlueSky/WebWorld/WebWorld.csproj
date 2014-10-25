@@ -75,6 +75,7 @@
     <Content Include="Include\css\Bluesky.SplitPanel.css" />
     <Content Include="Include\css\Bluesky.Tabs.css" />
     <Content Include="Include\css\contextmenu.css" />
+    <Content Include="Include\css\BlueSky.MessageBox.css" />
     <Content Include="Include\css\desktop.css" />
     <Content Include="Include\css\desktopmain.css" />
     <Content Include="Include\css\Bluesky.Masklayer.css" />
@@ -109,7 +110,6 @@
     <Content Include="Include\js\Bluesky.SplitPanel.js" />
     <Content Include="Include\js\Bluesky.Tabs.js" />
     <Content Include="Include\js\Bluesky.Window.js" />
-    <Content Include="Include\js\Bluesky.Window.bak.js" />
     <Content Include="Include\js\contextmenu.js" />
     <Content Include="Include\js\form.bak.js" />
     <Content Include="Include\js\layout.js" />
@@ -208,6 +208,9 @@
       <DependentUpon>ModuleConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\SystemManage\Login.ashx.cs">
+      <DependentUpon>Login.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\SystemManage.View\ActionAdd.ascx.cs">
       <DependentUpon>ActionAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -477,6 +480,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="Server\SystemManage\Login.ashx" />
     <None Include="SQL\BlueSky.sql" />
   </ItemGroup>
   <ItemGroup>

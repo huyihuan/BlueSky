@@ -63,7 +63,7 @@ namespace WebBase.SystemClass
 		}
 		public static SystemRoleFunctionPermission[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
 		{
-			return EntityAccess<SystemRoleFunctionPermission>.Access.List(__strFilter, "", __nPageIndex, __nPageSize);
+            return EntityAccess<SystemRoleFunctionPermission>.Access.List(__strFilter, __strSort, __nPageIndex, __nPageSize);
 		}
 		public static SystemRoleFunctionPermission[] List()
 		{

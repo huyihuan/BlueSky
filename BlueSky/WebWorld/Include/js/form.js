@@ -239,7 +239,7 @@
         if (!_actionArguments)
             return;
         if (undefined == _actionArguments.actionType || null == _actionArguments.actionKey) {
-            alert("操作无效！");
+            top.Bluesky.MessageBox.alert("操作无效！");
             return;
         }
         var selectValue = "";
@@ -247,11 +247,11 @@
             selectValue = $("#hiddenSelectedValue").val() + "";
             var ncount = "" == selectValue ? 0 : selectValue.split(';').length;
             if (_actionArguments.entityCount == -1 && ncount == 0) {
-                alert("请选择要操作的记录！");
+                top.Bluesky.MessageBox.alert("请选择要操作的记录！");
                 return;
             }
             if (_actionArguments.entityCount > 0 && ncount != _actionArguments.entityCount) {
-                alert("请选择 " + _actionArguments.entityCount + " 条记录！");
+                top.Bluesky.MessageBox.alert("请选择 " + _actionArguments.entityCount + " 条记录！");
                 return;
             }
         }

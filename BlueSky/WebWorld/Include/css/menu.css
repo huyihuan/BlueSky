@@ -77,7 +77,7 @@ div.MenuItemActive
     width:auto;
     height:18px;
     border:solid 1px #FFFFFF;
-    background-color:#FFFFFF;
+    background:#FFFFFF;
     cursor:pointer;
     padding-left:2px;
     padding-right:5px;
@@ -88,7 +88,7 @@ div.MenuItemActive
     width:auto;
     height:18px;
     border:solid 1px #999999;
-    background-color:#F5F5F4;
+    background: url(../image/title_image.gif) left top repeat-x;
     cursor:pointer;
     padding-left:2px;
     padding-right:5px;
@@ -99,7 +99,7 @@ div.MenuItemActive
     width:auto;
     height:18px;
     border:solid 1px #999999;
-    background-color:#E8E8E8;
+    background: url(../image/title_image.gif) left top repeat-x;
     cursor:pointer;
     padding-left:2px;
     padding-right:5px;

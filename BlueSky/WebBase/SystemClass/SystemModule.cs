@@ -137,7 +137,7 @@ namespace WebBase.SystemClass
 		}
 		public static SystemModule[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
 		{
-			return EntityAccess<SystemModule>.Access.List(__strFilter, "", __nPageIndex, __nPageSize);
+            return EntityAccess<SystemModule>.Access.List(__strFilter, __strSort, __nPageIndex, __nPageSize);
 		}
 		public static int Save(SystemModule _Entity)
 		{

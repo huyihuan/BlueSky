@@ -85,7 +85,7 @@ namespace WebBase.SystemClass
 		}
 		public static SystemOrganizationType[] List(string __strFilter, string __strSort, int __nPageIndex, int __nPageSize)
 		{
-			return EntityAccess<SystemOrganizationType>.Access.List(__strFilter, "", __nPageIndex, __nPageSize);
+            return EntityAccess<SystemOrganizationType>.Access.List(__strFilter, __strSort, __nPageIndex, __nPageSize);
 		}
 		private static void _BindList(ListControl _ltControl, bool _bClearItems, bool _bIncludeSel, bool _bIncludeAll, int _nParentId, bool _bSelectAll, int _nLevel, ListItem[] _alPrependItems)
 		{

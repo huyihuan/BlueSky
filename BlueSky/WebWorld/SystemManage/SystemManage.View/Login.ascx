@@ -1,10 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Login.ascx.cs" Inherits="WebWorld.SystemManage.Login" %>
 <script type="text/javascript">
-    function getVCode(_imgRef) {
-        if (_imgRef)
-            _imgRef.src = "/Include/html/VCode.aspx?rnd=" + Math.random();
-    }
-
     function loginIn() {
         if (!Utils.vText({ vtype: Utils.vType.Empty, vid: "<%=txt_UserName.ClientID %>", message: "账户名称不能为空！", ishint: true }))
             return false;
@@ -12,12 +7,49 @@
             return false;
         if (!Utils.vText({ vtype: Utils.vType.Empty, vid: "<%=txt_VCode.ClientID %>", message: "验证码不能为空！", ishint: true }))
             return false;
-        return true;
+        var strUserName = Bluesky("#<%=txt_UserName.ClientID %>").value();
+        var strPassword = Bluesky("#<%=txt_Password.ClientID %>").value();
+        var strVCode = Bluesky("#<%=txt_VCode.ClientID %>").value();
+        Bluesky("#btnLogin").disabled(true).value("请稍后...");
+        var ajax = Bluesky.Ajax({
+            type: "get",
+            url: "Server/SystemManage/Login.ashx",
+            data: { action: "Login", uid: strUserName, pwd: strPassword, vcode: strVCode },
+            dataType: "json",
+            success: function(response) {
+                if (response.json.success == true) {
+                    top.location.href = "Index.aspx";
+                }
+                else if (response.json.success == false) {
+                    top.Bluesky.MessageBox.alert(response.json.text);
+                }
+                else {
+                    top.Bluesky.MessageBox.alert(response);
+                }
+                Bluesky("#btnLogin").disabled(false).value("登陆");
+            },
+            fail: function() {
+                Bluesky("#btnLogin").disabled(false).value("登陆");
+                ajax.abort();
+                top.Bluesky.MessageBox.alert("请求失败！");
+
+            }
+        });
     }
 
-    Bluesky.ready(function() { document.getElementById("<%=txt_UserName.ClientID %>").focus(); });
+    Bluesky.ready(function() {
+        Bluesky("#<%=txt_UserName.ClientID %>").focus();
+        Bluesky("#<%=txt_VCode.ClientID %>").addEvent("focus", function() {
+            var tdCode = Bluesky("#td_vcode");
+            if (tdCode.children().length == 0) {
+                tdCode.append(Bluesky.create("img", { id: "vcode", src: "Server/SystemManage/Login.ashx?action=VCode&r=" + Math.random(), title: "看不清，点击更换验证码！" }).addEvent("click", function() {
+                    Bluesky("#vcode").attr("src", "Server/SystemManage/Login.ashx?action=VCode&r=" + Math.random());
+                }));
+            }
+        });
+    });
 </script>
-<table cellpadding="0" cellspacing="5" width="100%">
+<table cellpadding="0" cellspacing="8" width="100%">
     <tr><td colspan="2" height="20"></td></tr>
     <tr>
         <td width="40%" align="right" nowrap>用户名：</td>
@@ -33,13 +65,12 @@
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td><img onclick="getVCode(this);" title="看不清？点击更换验证码！" src="/Include/html/VCode.aspx" /></td>
+        <td id="td_vcode"></td>
     </tr>
-    <tr><td colspan="2" height="10"></td></tr>
     <tr>
         <td></td>
         <td>
-            <input type="submit" id="btnLogin" runat="server" class="btn-normal" onclick="if(!loginIn()) return false;" value="登录" onserverclick="btnLogin_Click" />
+            <input type="submit" id="btnLogin" class="btn-normal" onclick="if(!loginIn()) return false;" value="登录"/>
             <input type="reset" id="btnReset" value="重置" class="btn-normal" />
         </td>
     </tr>

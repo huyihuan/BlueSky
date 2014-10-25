@@ -22,8 +22,8 @@ E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebWorld.pdb
 E:\GitHub\BlueSky\BlueSky\WebWorld\bin\BlueSky.dll
 E:\GitHub\BlueSky\BlueSky\WebWorld\bin\Newtonsoft.Json.dll
 E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBase.dll
-E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBase.pdb
 E:\GitHub\BlueSky\BlueSky\WebWorld\bin\BlueSky.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBase.pdb
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\ResolveAssemblyReference.cache
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\WebWorld.dll
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\WebWorld.pdb

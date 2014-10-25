@@ -11,6 +11,8 @@
     <script src="Include/js/Bluesky.Resizer.js" type="text/javascript"></script>
     <link href="Include/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Window.js" type="text/javascript"></script>
+    <link href="Include/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.MessageBox.js" type="text/javascript"></script>
     <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         Bluesky.ready(function() {
@@ -23,9 +25,9 @@
                 height: 300,
                 renderTo: document.body,
                 closeable: false,
-                maximum: true,
-                minimum: true,
-                resizeable: true,
+                maximum: false,
+                minimum: false,
+                resizeable: false,
                 moveable: true,
                 mask : true,
                 loader: {

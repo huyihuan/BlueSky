@@ -56,11 +56,11 @@
 })();
 
 (function() {
-    //暂存常用的函数与变量中，提高性能
+    //暂存常用的函数
     var hasOwn = Object.prototype.hasOwnProperty,
         toString = Object.prototype.toString;
 
-    //bluesky框架对象
+    //Bluesky框架对象
     var BlueSky = function(_els) {
         this.length = _els && _els.length ? _els.length : 0;
         for (var i = 0; i < this.length; i++) {
@@ -112,20 +112,19 @@
         }
         return target;
     };
-	
-	//BlueSky.core
-	BlueSky.extend({
-		String : {
-			trim : function(){
-				if(arguments[0]) {
-					return arguments[0].replace(" ","");
-				}
-			},
-			toUpwer : function(){
-				
-			}
-		}
-	});
+
+    BlueSky.extend({
+        String: {
+            trim: function() {
+                if (arguments[0]) {
+                    return arguments[0].replace(" ", "");
+                }
+            },
+            toUpwer: function() {
+
+            }
+        }
+    });
 
     BlueSky.extend({
         Bluesky: "Bluesky1.0",
@@ -134,20 +133,23 @@
             isW3C: document.addEventListener ? true : false
         },
 
-        //bluesky框架选择器，需要不断完善
-        get: function(_selector) {
+        //Bluesky框架选择器，需要不断完善
+        G: function(selector) {
             var els;
-            if (typeof _selector === "string") {
-                els = document.querySelectorAll(_selector);
-            } else if (_selector.length) {
-                els = _selector;
-            } else {
-                els = [_selector];
+            if (typeof selector === "string") {
+                els = document.querySelectorAll(selector);
+            } else if ( selector.length !== undefined && typeof selector.length !== "function") {
+                els = selector;
+            } else if (typeof selector.Bluesky === "string") {
+                return selector;
             }
-            return new BlueSky(els);
+            else {
+                els = [selector];
+            }
+            return (new BlueSky(els));
         },
         create: function(_tagName, _attrArgs) {
-            var elm = this.get([document.createElement(_tagName)]);
+            var elm = this.G([document.createElement(_tagName)]);
             if (_attrArgs) {
                 if (_attrArgs.className) {
                     elm.addClass(_attrArgs.className);
@@ -298,17 +300,28 @@
             else {
                 e.returnValue = false;
             }
+        },
+        parseJson: function(toJson) {
+            if (JSON) {
+                return JSON.parse(toJson);
+            }
+            else {
+                return eval("(" + toJson + ")");
+            }
         }
     });
 
     BlueSky.instance.extend({
         Bluesky: "Bluesky1.0",
+        count: function() {
+            return this.length;
+        },
         first: function() {
-            return BlueSky.get(this[0]);
+            return BlueSky.G(this[0]);
         },
 
         last: function() {
-            return BlueSky.get(this[this.length - 1]);
+            return BlueSky.G(this[this.length - 1]);
         },
 
         //循环批量执行函数，并返回函数的执行结果数组
@@ -342,7 +355,14 @@
                 });
             }
         },
-
+        removeAttr: function(_attrName) {
+            if (_attrName && typeof (_attrName) == "string") {
+                return this.foreach(function(_el) {
+                    _el.removeAttribute(_attrName);
+                });
+            }
+            return this;
+        },
         text: function(_text) {
             if (typeof _text !== "undefined") {
                 return this.foreach(function(_el) {
@@ -406,8 +426,13 @@
                     return _el.disabled;
                 });
             }
-        }
+        },
 
+        focus: function() {
+            return this.actionOne(function(_el) {
+                _el.focus();
+            });
+        }
     });
     //数据缓存
     var uniqueCode = BlueSky.Bluesky + Math.random().toString();
@@ -608,6 +633,12 @@
             return this.actionOne(function(_el) {
                 return Bluesky(_el.parentNode);
             });
+        },
+
+        children: function() {
+            return this.actionOne(function(_el) {
+                return Bluesky(_el.childNodes);
+            });
         }
     });
 
@@ -733,7 +764,94 @@
             return this;
         }
     });
+    //异步请求模块
+    function getXmlHttpRequest() {
+        if (typeof XMLHttpRequest != "undefined") {
+            return new XMLHttpRequest();
+        }
+        else {
+            var xNames = { "MSXML2.XMLHTTP.6.0": 0, "MSXML2.XMLHTTP.3.0": 0, "MSXML2.XMLHTTP": 0, "Microsoft.XMLHTTP": 0 };
+            var request;
+            for (var name in xNames) {
+                try {
+                    request = new ActiveXObject(name);
+                    break;
+                }
+                catch (ee) { }
+            }
+            if (typeof request != "undefined") {
+                return request;
+            }
+            else {
+                alert("Ajax not supported!");
+            }
+        }
+    }
+    function getKeyValueEncode() {
+        return encodeURIComponent(arguments[0]) + "=" + encodeURIComponent(arguments[1]);
+    }
+    BlueSky.extend({ Ajax: function(args) {
+        var defaultArgs = {
+            type: "get",
+            url: "",
+            async: true,
+            data: {},
+            success: null,
+            fail: null,
+            complete: null,
+            beforeSend: null,
+            onSended: null,
+            context: null,
+            dataType: "",
+            contentType: ""
+        }
+        args = BlueSky.extend(true, {}, defaultArgs, args);
 
+        var req = getXmlHttpRequest();
+        args.context = args.context || req;
+
+        function readyChange() {
+            if (req.readyState == 4 && req.status == 200) {
+                if (args.success) {
+                    var rObject = req.responseText;
+                    if (args.dataType === "json") {
+                        rObject = { json: Bluesky.parseJson(rObject) };
+                    }
+                    else {
+                        rObject = { text: rObject };
+                    }
+                    args.success.call(args.context, rObject);
+                }
+            }
+            else if (req.readyState == 4 && req.status != 200) {
+                if (args.fail) {
+                    //status:301、304、401、403、404、500
+                    args.fail.call(args.context, { code: req.status });
+                }
+            }
+            if (req.readyState === 4 && args.complete) {
+                args.complete.call(args.context, req);
+            }
+        }
+        for (var key in args.data) {
+            if (args.url.indexOf("?") == -1)
+                args.url += "?";
+            args.url += "&" + getKeyValueEncode(key, args.data[key]);
+        }
+        req.onreadystatechange = readyChange;
+        req.open(args.type, args.url, args.async);
+        if (args.beforeSend) {
+            if (args.beforeSend.call(args.context, req) === false) {
+                return req;
+            }
+        }
+        req.send(args.type.toLowerCase() === "get" ? null : "");
+        if (args.onSended) {
+            args.onSended.call(args.context, req);
+        }
+        return req;
+    }
+    });
 
     //动画模块
     BlueSky.instance.extend({
@@ -816,7 +934,7 @@
     });
 
     //创建别名
-    window.Bluesky = BlueSky.get;
+    window.Bluesky = BlueSky.G;
     for (var key in BlueSky) {
         Bluesky[key] = BlueSky[key];
     }

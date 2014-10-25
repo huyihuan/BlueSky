@@ -25,7 +25,7 @@ namespace WebWorld.SystemManage
         private void _BindData()
         {
             PagerNavication.RecordsCount = EntityAccess<SystemLog>.Access.Count();
-            SystemLog[] al = SystemLog.List("", "", PagerNavication.PageIndex, PagerNavication.PageSize);
+            SystemLog[] al = SystemLog.List("", "AccessTime desc", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;
             rptItems.DataBind();
         }

@@ -132,18 +132,34 @@ var layout = {
     },
 
     logout: function() {
-        Bluesky.component.create("Window", {
+        /*Bluesky.component.create("Window", {
+        title: "退出系统",
+        width: 300,
+        height: 150,
+        renderTo: document.body,
+        mask: true,
+        loader: {
+        url: "Window.aspx?fn=1&fm=Logout"
+        },
+        icon: {
+        show: true,
+        url: "/Include/image/ActionImages/role.png"
+        }
+        });*/
+        Bluesky.MessageBox.confirm({
             title: "退出系统",
-            width: 300,
-            height: 150,
-            renderTo: document.body,
-            mask: true,
-            loader: {
-                url: "Window.aspx?fn=1&fm=Logout"
-            },
-            icon: {
-                show: true,
-                url: "/Include/image/ActionImages/role.png"
+            message: "确认退出系统？",
+            callback: function() {
+                Bluesky.Ajax({
+                    type: "get",
+                    url: "Server/SystemManage/Login.ashx",
+                    data: { action: "Logout" },
+                    success: function(response) {
+                        if (response.text == "true") {
+                            window.history.back();
+                        }
+                    }
+                });
             }
         });
     }
