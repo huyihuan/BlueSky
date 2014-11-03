@@ -138,8 +138,8 @@
             var els;
             if (typeof selector === "string") {
                 els = document.querySelectorAll(selector);
-            } else if ( selector.length !== undefined && typeof selector.length !== "function") {
-                els = selector;
+            //} else if ( selector.length !== undefined && typeof selector.length !== "function") {
+                //els = selector;
             } else if (typeof selector.Bluesky === "string") {
                 return selector;
             }
