@@ -47,9 +47,10 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="WebSystemBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="System.Xml" />
+    <Reference Include="WebBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\UsingDll\WebSystemBase.dll</HintPath>
+      <HintPath>..\..\..\UsingDll\WebBase.dll</HintPath>
     </Reference>
     <Reference Include="WebWorld.Modules.MyMusic.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -61,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ListenMusic.ascx" />
     <Content Include="Module.cfg.xml" />
     <Content Include="MusicAdd.ascx" />
     <Content Include="MusicDelete.ascx" />
@@ -68,6 +70,13 @@
     <Content Include="MyMusicManage.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListenMusic.ascx.cs">
+      <DependentUpon>ListenMusic.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListenMusic.ascx.designer.cs">
+      <DependentUpon>ListenMusic.ascx</DependentUpon>
+    </Compile>
     <Compile Include="MusicAdd.ascx.cs">
       <DependentUpon>MusicAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using WebSystemBase.Utilities;
 using WebWorld.Modules.MyMusic.Domain;
 using WebWorld.Modules.MyMusic.Services;
+using WebBase.Utilities;
 
 namespace WebWorld.Modules.MyMusic.View
 {
@@ -31,7 +31,7 @@ namespace WebWorld.Modules.MyMusic.View
             rptItems.DataBind();
         }
 
-        protected void PagerNavication_PagerIndexChanged(object sender, WebSystemBase.UserControls.PagerIndexChagedEventArgs e)
+        protected void PagerNavication_PagerIndexChanged(object sender, WebBase.UserControls.PagerIndexChagedEventArgs e)
         {
             _BindData();
         }

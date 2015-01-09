@@ -137,9 +137,25 @@
         G: function(selector) {
             var els;
             if (typeof selector === "string") {
-                els = document.querySelectorAll(selector);
-            //} else if ( selector.length !== undefined && typeof selector.length !== "function") {
-                //els = selector;
+                if (document.querySelectorAll) {
+                    els = document.querySelectorAll(selector);
+                }
+                else {
+                    //IE7一下浏览器支持
+                    if (selector.indexOf("#") == 0) {
+                        els = document.getElementById(selector);
+                    }
+                    else if (selector.indexOf(".") == 0) {
+                        var a = document.all, len = a.length, c, ct = selector.replace(".", "");
+                        for (var i = 0; i < len; i++) {
+                            if (a[i].className.indexOf(ct) >= 0) {
+                                //todo...
+                            }
+                        }
+                    }
+                }
+            } else if (Bluesky.isArray(selector)) {
+                els = selector;
             } else if (typeof selector.Bluesky === "string") {
                 return selector;
             }
@@ -221,7 +237,9 @@
             });
             return class2type;
         })(),
-
+        isArray: function() {
+            return toString.call(arguments[0]) === "[object Array]";
+        },
         util: {
             parseInt: function(_strValue, _defaultValue) {
                 var parseValue = parseInt(_strValue);
@@ -316,14 +334,20 @@
         count: function() {
             return this.length;
         },
+        element: function(index) {
+            if (undefined == index)
+                return this[0];
+            return this[index];
+        },
         first: function() {
-            return BlueSky.G(this[0]);
+            return BlueSky.G(this.element());
         },
-
         last: function() {
-            return BlueSky.G(this[this.length - 1]);
+            return BlueSky.G(this.element(this.length - 1));
         },
-
+        eIndex: function(index) {
+            return BlueSky.G(this.element(index));
+        },
         //循环批量执行函数，并返回函数的执行结果数组
         action: function(_callback) {
             var results = [], length = this.length;
@@ -356,7 +380,7 @@
             }
         },
         removeAttr: function(_attrName) {
-            if (_attrName && typeof (_attrName) == "string") {
+            if (_attrName && typeof _attrName == "string") {
                 return this.foreach(function(_el) {
                     _el.removeAttribute(_attrName);
                 });
@@ -501,7 +525,7 @@
             if (typeof _classNames === "string") {
                 _classNames = _classNames;
             }
-            else if (typeof _classNames === "array") {
+            else if (Bluesky.isArray(_classNames)) {
                 _classNames = _classNames.join(" ");
             }
             return this.foreach(function(_el) {
@@ -515,7 +539,7 @@
         removeClass: function(_classNames) {
             if ("" === _classNames)
                 return;
-            var length = typeof _classNames === "array" ? _classNames.length : 1;
+            var length = Bluesky.isArray(_classNames) ? _classNames.length : 1;
             if (typeof _classNames === "string") {
                 _classNames = [_classNames];
             }
@@ -537,6 +561,15 @@
                     }
                 }
                 _el.className = aClassName.join(" ");
+            });
+        },
+
+        toggleClass: function(_className, _flag) {
+            if (_flag === true || _flag === false) {
+                return _flag ? this.addClass(_className) : this.removeClass(_className);
+            }
+            return this.foreach(function(_el) {
+                _el.className.split(" ").indexOf(_className) != -1 ? BlueSky.G(_el).removeClass(_className) : BlueSky.G(_el).addClass(_className);
             });
         },
 
@@ -569,6 +602,10 @@
                             if (isPersent || styleValue === "auto") {
                                 styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
                             }
+                            else if (!isPersent && styleValue === "0") {
+                                styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
+                                styleValue = styleValue != 0 ? styleValue : 0;
+                            }
                             else if (!isPersent && styleValue !== "auto") {
                                 styleValue = BlueSky.util.parseInt(styleValue, 0);
                             }
@@ -596,6 +633,17 @@
 
         height: function(_value) {
             return this.css("height", _value);
+        },
+        position: function() {
+            return this.actionOne(function(_el) {
+                return {
+                    x: _el.offsetParent ? (_el.offsetLeft + BlueSky.G(_el.offsetParent).position().x) : _el.offsetLeft,
+                    y: _el.offsetParent ? (_el.offsetTop + BlueSky.G(_el.offsetParent).position().y) : _el.offsetTop
+                };
+            });
+        },
+        isHidden: function() {
+            return this.css("display") == "none";
         }
     });
 
@@ -637,7 +685,7 @@
 
         children: function() {
             return this.actionOne(function(_el) {
-                return Bluesky(_el.childNodes);
+                return Bluesky(_el.children);
             });
         }
     });
@@ -690,7 +738,13 @@
                     });
                 };
             }
-        })()
+        })(),
+
+        onceEvent: function(_eventName, _fn) {
+            var closure = this;
+            var once = function() { _fn(); closure.removeEvent(_eventName, once); }
+            this.addEvent(_eventName, once);
+        }
     });
 
     //domready

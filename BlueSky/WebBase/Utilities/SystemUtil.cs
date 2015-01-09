@@ -37,6 +37,14 @@ namespace WebBase.Utilities
             return (int)HttpContext.Current.Session[SYSTEM_SESSIONKEY_USERID];
         }
 
+        public static HttpServerUtility Server
+        {
+            get
+            {
+                return HttpContext.Current.Server;
+            }
+        }
+
         public static string ApplicationPath
         {
             get

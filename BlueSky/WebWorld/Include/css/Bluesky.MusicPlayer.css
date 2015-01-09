@@ -1,0 +1,148 @@
+﻿/* Bluesky.MusicPlayer */
+DIV.bluesky-musicplayer-wrapper
+{
+	width:auto;
+	height:auto;
+	border:solid 1px #969696;
+	background:#F0F0F0;
+	position:absolute;
+	z-index:1;
+	left:100px;
+    top:100px;
+    margin:0px;
+    padding:0px;
+    border-radius:5px;
+	-moz-border-radius:5px;
+	box-shadow:10px 10px 50px 20px #888888;
+	-moz-box-shadow:10px 10px 50px 20px #888888;
+	overflow:hidden;
+}
+DIV.bluesky-musicplayer-top
+{
+	width:100%;
+	height:160px;
+	border:0px;
+	border-bottom:solid 1px #CECECE;	
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+}
+DIV.bluesky-musicplayer-list
+{
+	width:100%;
+	height:280px;
+	border:0px;	
+	border-top:solid 1px #FAFAFA;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+}
+
+DIV.bluesky-musicplayer-image
+{
+	width:130px;
+	height:130px;
+    margin:15px 0px 0px 20px;
+    padding:0px;
+    overflow:hidden;
+    background-color:#EAB84D;
+    background-position:center center;
+    float:left;
+}
+
+DIV.bluesky-musicplayer-operaterarea
+{
+	width:205px;
+	height:130px;
+    margin:15px 0px 0px 20px;
+    padding:0px;
+    overflow:hidden;
+    background-color:#EAB84D;
+    float:left;
+}
+DIV.bluesky-musicplayer-titlearea
+{
+	width:100%;
+	height:45px;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+    background-color:#FFFF00;
+}
+DIV.bluesky-musicplayer-programbar
+{
+	width:100%;
+	height:35px;
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+    background-color:#FF00FF;
+}
+DIV.bluesky-musicplayer-buttons
+{
+	width:100%;
+	height:30px;
+    margin:10px 0px 0px 0px;
+    padding:0px;
+    overflow:hidden;
+    background-color:#00FFFF;
+}
+
+FONT.bluesky-musicplayer-title
+{
+	font-size:17px;
+	font-weight:900;
+	color:#333333;
+}
+FONT.bluesky-musicplayer-singer
+{
+	font-size:11px;
+	font-weight:normal;
+	color:#999999;
+	font-family:@宋体;
+}
+
+A.bluesky-musicplayer-previous
+{
+	width:30px;
+	height:30px;
+    display:block;
+    float:left;
+    cursor:pointer;
+    margin:0px;
+    background:url(../image/MusicPlayer/Button_First.png) center center no-repeat;
+	
+}
+A.bluesky-musicplayer-next
+{
+	width:30px;
+	height:30px;
+    display:block;
+    float:left;
+    cursor:pointer;
+    margin:0px 0px 0px 10px;
+    background:url(../image/MusicPlayer/Button_Last.png) center center no-repeat;
+	
+}
+A.bluesky-musicplayer-play
+{
+	width:30px;
+	height:30px;
+    display:block;
+    float:left;
+    cursor:pointer;
+    margin:0px 0px 0px 10px;
+    background:url(../image/MusicPlayer/Button_Play_Pause.png) center center no-repeat;
+	
+}
+A.bluesky-musicplayer-pause
+{
+	width:30px;
+	height:30px;
+    display:block;
+    float:left;
+    cursor:pointer;
+    margin:0px 0px 0px 10px;
+    background:url(../image/MusicPlayer/Button_Rec.png) center center no-repeat;
+	
+}

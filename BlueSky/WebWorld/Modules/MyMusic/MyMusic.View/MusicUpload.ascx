@@ -7,7 +7,7 @@
     <tr>
         <td align="center" valign="middle">
             <input type="button" class="btn-normal" value=" 上 传 " runat="server" id="btnUpload" onserverclick="btnUpload_Click" />
-            <input type="button" class="btn-normal" value=" 返 回 " onclick="top.windowFactory.closeTopFocusForm();" />
+            <input type="button" class="btn-normal" value=" 返 回 " onclick="top.layout.closeActiveWindow();" />
         </td>
     </tr>
 </table>

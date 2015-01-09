@@ -159,6 +159,9 @@
                 //创建主窗体
                 this.nodes.wrapper = Bluesky.create("div", { className: "window-popup window-normal", id: this.id }).height(this.height).width(this.width).css({ left: this.position.x + "px", top: this.position.y + "px" });
                 this.nodes.wrapper.append(this.nodes.title).append(this.nodes.main).addEvent("mousedown", function(e) { closure.toFocus(); Bluesky.stopPropagation(e); });
+                if (this.zIndex > 0) {
+                    this.nodes.wrapper.css("zIndex", this.zIndex);
+                }
                 //创建窗体resize组件
                 if (this.resizeable) {
                     this.resizer = new Bluesky.component.Resizer({
@@ -180,6 +183,7 @@
                     });
                     this.resizer.init();
                 }
+                //创建窗体拖拽组件
                 if (this.moveable) {
                     this.drag = new Bluesky.component.Drag({
                         context: this,
@@ -198,7 +202,18 @@
                     this.drag.init();
                 }
                 if (this.mask === true) {
-                    this.masklayer = Bluesky.component.create("Masklayer", { zIndex: 9990 });
+                    this.masklayer = new Bluesky.component.Masklayer({
+                        zIndex: 9990,
+                        onClick: function() {
+                            var flag = 1, title = closure.nodes.title,
+                            tick = function() {
+                                title.replaceClass("window-title-" + (flag % 2 ? "active" : "normal"), "window-title-" + (flag % 2 ? "normal" : "active"));
+                                flag++ <= 5 || clearInterval(fire);
+                            },
+                            fire = setInterval(function() { tick(); }, 90);
+                        }
+                    });
+                    this.masklayer.show();
                 }
                 this.target.append(this.nodes.wrapper);
                 this.static.items.push(this.static.activeWindow = this.toFocus());
@@ -221,8 +236,17 @@
                 if (this.mask) {
                     this.masklayer.remove();
                 }
-                if (typeof (this.onClosed) == "function") {
+                if (typeof (this.onClosed) === "function") {
                     this.onClosed.call(this, this.dialogResult);
+                }
+                //从数组中删除关闭的窗体对象，并且将数组中默认的第一个Focus
+                var items = this.static.items;
+                var nIndex = items.indexOfProperty(this.id, "id");
+                if (nIndex != -1) {
+                    items.splice(nIndex, 1);
+                }
+                if (items.length >= 1) {
+                    items[items.length - 1].toFocus();
                 }
             },
             toggleStatus: function() {
@@ -310,5 +334,5 @@
                 this.nodes.main.append(cs);
             }
         });
-    } 
+    }
 })(Bluesky);

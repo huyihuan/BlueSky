@@ -39,9 +39,9 @@
 
     Bluesky.ready(function() {
         Bluesky("#<%=txt_UserName.ClientID %>").focus();
-        Bluesky("#<%=txt_VCode.ClientID %>").addEvent("focus", function() {
+        Bluesky("#<%=txt_VCode.ClientID %>").onceEvent("focus", function() {
             var tdCode = Bluesky("#td_vcode");
-            if (tdCode.children().length == 0) {
+            if (!tdCode.firstChild) {
                 tdCode.append(Bluesky.create("img", { id: "vcode", src: "Server/SystemManage/Login.ashx?action=VCode&r=" + Math.random(), title: "看不清，点击更换验证码！" }).addEvent("click", function() {
                     Bluesky("#vcode").attr("src", "Server/SystemManage/Login.ashx?action=VCode&r=" + Math.random());
                 }));

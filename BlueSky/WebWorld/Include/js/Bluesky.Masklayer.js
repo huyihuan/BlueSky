@@ -9,13 +9,9 @@
     if (Bluesky && Bluesky.component) {
         Bluesky.extend(false, Bluesky.component, { Masklayer: function() {
             var args = arguments[0];
-            if (args) {
-                for (var name in args) {
-                    if (this[name] != undefined)
-                        this[name] = args[name];
-                }
-            }
-            this.component.aList.push(this);
+            var com = Bluesky.extend(true, {}, this, args);
+            this.component.aList.push(com);
+            return com;
         }
         });
 
@@ -28,12 +24,13 @@
             html: " ",
             node: {},
             zIndex: -1,
+            onClick: null,
             component: Bluesky.component.Masklayer,
             show: function() {
                 if (!this.parent)
                     return;
                 this.node = Bluesky.create("div", { className: this.className, html: this.html });
-                this.node.css("zIndex", 9998 + (this.component.aList.length - 1) * 2);
+
                 if (this.width > 1) {
                     this.node.css("width", this.width);
                 }
@@ -42,8 +39,13 @@
                 }
                 if (this.zIndex != -1) {
                     this.node.css("zIndex", this.zIndex);
+                } else {
+                    this.node.css("zIndex", this.zIndex = (9989 + (this.component.aList.length - 1) * 2));
                 }
                 Bluesky(this.parent.body).prepend(this.node);
+                if (this.onClick) {
+                    this.node.addEvent("click", this.onClick);
+                }
                 this.node.animate({ "opacity": 0.4 }, 150);
                 return this;
             },

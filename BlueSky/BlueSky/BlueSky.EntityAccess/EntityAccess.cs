@@ -271,7 +271,7 @@ namespace BlueSky.EntityAccess
             {
                 #region 分页方案(not in),在百万条数据内效率高
                 strQuery = string.Format("SELECT TOP {0} {1} FROM {2}", _nPageSize, Meta.Selects, Meta.TableName);
-                strQuery += string.Format(" WHERE {0} NOT IN (SELECT TOP (({1} - 1) * {2}) {0} FROM {3}{4} ORDER BY {0})", Meta.KeyField.FieldName, _nPageIndex, _nPageSize, Meta.TableName, string.IsNullOrEmpty(_strFilter) ? "" : (" WHERE " + _strFilter));
+                strQuery += string.Format(" WHERE {0} NOT IN (SELECT TOP (({1} - 1) * {2}) {0} FROM {3}{4} ORDER BY {5})", Meta.KeyField.FieldName, _nPageIndex, _nPageSize, Meta.TableName, string.IsNullOrEmpty(_strFilter) ? "" : (" WHERE " + _strFilter), string.IsNullOrEmpty(_strSort) ? Meta.KeyField.FieldName : _strSort);
                 if (!string.IsNullOrEmpty(_strFilter))
                     strQuery += string.Format(" AND {0}", _strFilter);
                 if (!string.IsNullOrEmpty(_strSort))

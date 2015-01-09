@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebSystemBase.Utilities;
+using WebBase.Utilities;
 using WebWorld.Modules.MyMusic.DataAccess;
 using WebWorld.Modules.MyMusic.Domain;
 
@@ -14,15 +14,17 @@ namespace WebWorld.Modules.MyMusic.Services
         static MusicServices()
         {
             MusicRootPath = SystemUtil.ResovleModuleUploadPath("MyMusic");
-            //if (!System.IO.Directory.Exists(MusicRootPath))
-                //System.IO.Directory.CreateDirectory(MusicRootPath);
+            string strPhysicPath = SystemUtil.Server.MapPath(MusicRootPath);
+            if (!System.IO.Directory.Exists(strPhysicPath))
+                System.IO.Directory.CreateDirectory(strPhysicPath);
         }
 
         public static string GetUserMusicPath(int _nUserId)
         {
             string strUserMusicPath = string.Format("{0}\\{1}\\", MusicRootPath, _nUserId);
-            //if (!System.IO.Directory.Exists(strUserMusicPath))
-                //System.IO.Directory.CreateDirectory(strUserMusicPath);
+            string strPhysicPath = SystemUtil.Server.MapPath(strUserMusicPath);
+            if (!System.IO.Directory.Exists(strPhysicPath))
+                System.IO.Directory.CreateDirectory(strPhysicPath);
             return strUserMusicPath;
         }
 

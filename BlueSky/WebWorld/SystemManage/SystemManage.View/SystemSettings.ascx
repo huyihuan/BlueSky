@@ -62,11 +62,11 @@
     </tr>
     <tr>
         <td align="right">Login UserName：</td>
-        <td><input type="text" id="txt_DebuggUserName" runat="server" class="txt-normal" /></td>
+        <td><input type="text" id="txt_DebuggUserName" runat="server" class="txt-disabled" /></td>
     </tr>
     <tr>
         <td align="right">Login Password：</td>
-        <td><input type="text" id="txt_DebuggPassword" runat="server" class="txt-normal" /></td>
+        <td><input type="text" id="txt_DebuggPassword" runat="server" class="txt-disabled" /></td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
@@ -140,8 +140,8 @@
 
     function fnEnableChanged() {
         var isEnabled = Bluesky("#<%=cb_EnableDebuggingOn.ClientID %>").checked();
-        Bluesky("#<%=txt_DebuggUserName.ClientID %>").disabled(!isEnabled);
-        Bluesky("#<%=txt_DebuggPassword.ClientID %>").disabled(!isEnabled);
+        Bluesky("#<%=txt_DebuggUserName.ClientID %>").disabled(!isEnabled).replaceClass(!isEnabled ? "txt-normal" : "txt-disabled", isEnabled ? "txt-normal" : "txt-disabled");
+        Bluesky("#<%=txt_DebuggPassword.ClientID %>").disabled(!isEnabled).replaceClass(!isEnabled ? "txt-normal" : "txt-disabled", isEnabled ? "txt-normal" : "txt-disabled"); ;
     }
 
     function fnDebuggingSave(_sender) {
@@ -154,8 +154,7 @@
             }
         }
         if (_sender) {
-            Bluesky(_sender).value("Waitting...");
-            Bluesky(_sender).disabled(true);
+            Bluesky(_sender).value("Waitting...").disabled(true);
         }
         return true;
     }

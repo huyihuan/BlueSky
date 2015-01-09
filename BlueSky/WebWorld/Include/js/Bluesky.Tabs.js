@@ -71,7 +71,7 @@
                     }
                     tabs.add(this);
                 });
-                this._tabsWrapper.append(Bluesky([this._tabsNode[0], Bluesky.create("div", { className: "bluesky-tabs-bottom" })[0]]));
+                this._tabsWrapper.append(Bluesky([this._tabsNode.element(), Bluesky.create("div", { className: "bluesky-tabs-bottom" }).element()]));
                 this._wrapper.append(this._tabsWrapper).append(this._contentsNode);
                 Bluesky(this.renderTo).append(this._wrapper);
                 return this;

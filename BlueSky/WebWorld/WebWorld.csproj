@@ -480,6 +480,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="Include\css\Bluesky.MusicPlayer.css" />
+    <Content Include="Include\js\Bluesky.MusicPlayer.js" />
     <Content Include="Server\SystemManage\Login.ashx" />
     <None Include="SQL\BlueSky.sql" />
   </ItemGroup>

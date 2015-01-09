@@ -36,6 +36,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -44,10 +45,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebSystemBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\UsingDll\WebSystemBase.dll</HintPath>
-    </Reference>
+    <Reference Include="WebBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="WebWorld.Modules.MyMusic.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\UsingDll\WebWorld.Modules.MyMusic.DataAccess.dll</HintPath>

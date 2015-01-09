@@ -200,6 +200,24 @@ Input.txt-normal
 	border-radius:2px 2px 2px 2px;
 	-moz-border-radius:2px 2px 2px 2px;
 }
+Input.txt-disabled
+{
+	height:19px;
+	width:auto;
+	border:none;
+	border-right:solid 1px #aaaaaa;
+	border-bottom:solid 1px #aaaaaa;
+	border-top:solid 1px #666666;
+	border-left:solid 1px #666666;
+	background:#D4D0C8;
+	font-size:12px;
+	padding-left:2px;
+	line-height:19px;
+	vertical-align:middle;
+	border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
+}
+
 Input.txt-hint
 {
 	border-color:#ff0000;	
@@ -259,6 +277,15 @@ Select.select-normal
 	border-top:solid 1px #666666;
 	border-left:solid 1px #666666;
 }
+DIV.footerBar
+{
+	width:100%;
+    height:auto;
+    padding-top:8px;
+    padding-bottom:8px;
+    background:#EDF2FA;
+    text-align:right;
+}
 /* Action Styles for Hyper Link */
 DIV.toolBar
 {
@@ -310,6 +337,8 @@ A.action-active
     border-top:solid 1px #999999;
     border-radius:4px 4px 4px 4px;
 	-moz-border-radius:4px 4px 4px 4px;
+	box-shadow:1px 1px 1px 1px #CCCCCC inset;
+	-moz-box-shadow:1px 1px 1px 1px #CCCCCC inset;
 }
 A.action-normal span,A.action-active span
 {
@@ -318,11 +347,11 @@ A.action-normal span,A.action-active span
 }
 A.action-normal:hover
 {
-    border-left:solid 1px #FFFFFF;
-    border-top:solid 1px #FFFFFF;
-    border-right:solid 1px #999999;
-    border-bottom:solid 1px #999999;
-    }
+    border-right:solid 1px #FFFFFF;
+    border-bottom:solid 1px #FFFFFF;
+    border-left:solid 1px #999999;
+    border-top:solid 1px #999999;
+}
 
 /*图片通用样式*/
 /*列表样式*/

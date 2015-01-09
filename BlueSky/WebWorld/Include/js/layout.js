@@ -132,20 +132,6 @@ var layout = {
     },
 
     logout: function() {
-        /*Bluesky.component.create("Window", {
-        title: "退出系统",
-        width: 300,
-        height: 150,
-        renderTo: document.body,
-        mask: true,
-        loader: {
-        url: "Window.aspx?fn=1&fm=Logout"
-        },
-        icon: {
-        show: true,
-        url: "/Include/image/ActionImages/role.png"
-        }
-        });*/
         Bluesky.MessageBox.confirm({
             title: "退出系统",
             message: "确认退出系统？",
@@ -156,12 +142,32 @@ var layout = {
                     data: { action: "Logout" },
                     success: function(response) {
                         if (response.text == "true") {
-                            window.history.back();
+                            window.location.href = "Default.html";
                         }
                     }
                 });
             }
         });
+    },
+
+    myMusic: function() {
+        if (!layout.musicPlayer) {
+            var target = Bluesky("#link_MyMusic");
+            var pos = target.position();
+            pos.y = pos.y + target.height() + 10;
+            layout.musicPlayer = new Bluesky.component.MusicPlayer({ renderTo: document.body });
+            pos.x = pos.x + target.width() - layout.musicPlayer.width;
+            layout.musicPlayer.position = pos;
+            layout.musicPlayer.init();
+        }
+        else {
+            if (layout.musicPlayer.isHidden()) {
+                layout.musicPlayer.show();
+            }
+            else {
+                layout.musicPlayer.hide();
+            }
+        }
     }
 }
 

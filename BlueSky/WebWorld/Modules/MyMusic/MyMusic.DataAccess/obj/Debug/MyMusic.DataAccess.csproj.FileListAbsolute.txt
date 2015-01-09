@@ -5,3 +5,8 @@ E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.DataAccess\obj\
 E:\Applications\HYHCode\BlueSky\WebWorld\Modules\MyMusic\MyMusic.DataAccess\obj\Debug\WebWorld.Modules.MyMusic.DataAccess.pdb
 E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.DataAccess.dll
 E:\Applications\HYHCode\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.DataAccess.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.DataAccess.dll
+E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebWorld.Modules.MyMusic.DataAccess.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\Modules\MyMusic\MyMusic.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+E:\GitHub\BlueSky\BlueSky\WebWorld\Modules\MyMusic\MyMusic.DataAccess\obj\Debug\WebWorld.Modules.MyMusic.DataAccess.dll
+E:\GitHub\BlueSky\BlueSky\WebWorld\Modules\MyMusic\MyMusic.DataAccess\obj\Debug\WebWorld.Modules.MyMusic.DataAccess.pdb

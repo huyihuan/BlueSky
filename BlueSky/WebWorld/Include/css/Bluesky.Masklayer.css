@@ -10,7 +10,7 @@ div.bluesky-masklayer
 	filter:alpha(opacity=10);
 	opacity:0.1;
 	-moz-opacity:0.1;
-	background-color:#777777;
+	background-color:#666666;
     }
 div.bluesky-masklayer-loading
 {

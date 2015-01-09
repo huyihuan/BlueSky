@@ -81,6 +81,28 @@
           <IsShowInTaskBar>2</IsShowInTaskBar>
         </Action>
         <Action>
+          <Name>播放</Name>
+          <Key>ListenMusic</Key>
+          <Description>播放</Description>
+          <ActionType>normal</ActionType>
+          <ActionValue></ActionValue>
+          <IsDefault>2</IsDefault>
+          <ControlName>ListenMusic</ControlName>
+          <Tip>播放音乐</Tip>
+          <IconName>edit.gif</IconName>
+          <OrderId>4</OrderId>
+          <Target>top</Target>
+          <EntityCount>1</EntityCount>
+          <IsPopup>1</IsPopup>
+          <Width>500</Width>
+          <Height>400</Height>
+          <IsResize>1</IsResize>
+          <IsMove>1</IsMove>
+          <IsIncludeMinBox>2</IsIncludeMinBox>
+          <IsIncludeMaxBox>2</IsIncludeMaxBox>
+          <IsShowInTaskBar>2</IsShowInTaskBar>
+        </Action>
+        <Action>
           <Name>删除</Name>
           <Key>MusicDelete</Key>
           <Description>删除音乐</Description>
@@ -90,7 +112,7 @@
           <ControlName>MusicDelete</ControlName>
           <Tip>删除音乐</Tip>
           <IconName>delete.gif</IconName>
-          <OrderId>4</OrderId>
+          <OrderId>5</OrderId>
           <Target>top</Target>
           <EntityCount>-1</EntityCount>
           <IsPopup>1</IsPopup>
