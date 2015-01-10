@@ -159,6 +159,8 @@ var layout = {
             pos.x = pos.x + target.width() - layout.musicPlayer.width;
             layout.musicPlayer.position = pos;
             layout.musicPlayer.init();
+
+            layout.musicPlayer.add({ title: "", url: "SystemUpload/MyMusic/1/Song Of The Lonely Mountain.mp3", imageURL: "" });
         }
         else {
             if (layout.musicPlayer.isHidden()) {

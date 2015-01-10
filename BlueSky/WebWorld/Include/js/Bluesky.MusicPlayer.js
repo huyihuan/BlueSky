@@ -12,13 +12,23 @@
             return Bluesky.extend(true, {}, this, args);
         }
         });
-
+        Bluesky.extend(false, Bluesky.model, { Music: function() {
+            var args = arguments[0];
+            return Bluesky.extend(true, {}, this, args);
+        }
+        });
+        Bluesky.extend(false, Bluesky.model.Music.prototype, {
+            title: "",
+            url: "",
+            imageURL: ""
+        });
         Bluesky.extend(false, Bluesky.component.MusicPlayer.prototype, {
             renderTo: "",
             id: "",
             width: 390,
             height: 441,
             list: [],
+            activeMusic: null,
             activeIndex: 1,
             position: { x: 50, y: 50 },
             nodes: {
@@ -82,7 +92,13 @@
 
             play: function(url) {
                 this.nodes.play.replaceClass("bluesky-musicplayer-play", "bluesky-musicplayer-pause");
-                this.nodes.player.jsPlay("SystemUpload/MyMusic/1/Song Of The Lonely Mountain.mp3");
+                if (null == this.activeMusic) {
+                    this.activeMusic = this.list[0];
+                    this.nodes.player.jsPlay(this.activeMusic.url);
+                }
+                else {
+                    this.nodes.player.jsPlay();
+                }
             },
             stop: function() {
                 this.nodes.player.jsStop();
@@ -116,8 +132,13 @@
             },
             isHidden: function() {
                 return this.nodes.wrapper.css("left") == "10000px";
+            },
+            add: function(music) {
+                this.list.push(new Bluesky.model.Music(music));
+            },
+            remove: function(music) {
+                this.list.remove(music);
             }
-
         });
     }
 })(Bluesky);

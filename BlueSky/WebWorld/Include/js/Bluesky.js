@@ -973,18 +973,20 @@
         }
     });
     //组件库命名空间
-    BlueSky.extend({ component: {
-        create: function() {
-            var comName = arguments.length >= 1 ? arguments[0] : undefined;
-            if (!comName)
-                return;
-            var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
-            if (com.show) {
-                com.show();
+    BlueSky.extend({
+        component: {
+            create: function() {
+                var comName = arguments.length >= 1 ? arguments[0] : undefined;
+                if (!comName)
+                    return;
+                var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
+                if (com.show) {
+                    com.show();
+                }
+                return com;
             }
-            return com;
-        }
-    }
+        },
+        model: {}
     });
 
     //创建别名
