@@ -480,6 +480,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="BlueSky\plugins\Bluesky.Masklayer.js" />
+    <Content Include="BlueSky\plugins\Bluesky.Panel.js" />
+    <Content Include="BlueSky\plugins\Bluesky.SplitPanel.js" />
+    <Content Include="BlueSky\plugins\Bluesky.Tabs.js" />
+    <Content Include="BlueSky\plugins\Bluesky.window.js" />
+    <Content Include="BlueSky\themes\blue\BlueSky.Button.css" />
+    <Content Include="BlueSky\themes\blue\Bluesky.Masklayer.css" />
+    <Content Include="BlueSky\themes\blue\Bluesky.Panel.css" />
+    <Content Include="BlueSky\themes\blue\Bluesky.SplitPanel.css" />
+    <Content Include="BlueSky\themes\blue\Bluesky.Tabs.css" />
+    <Content Include="BlueSky\themes\blue\Bluesky.Window.css" />
+    <Content Include="BlueSky\themes\gray\BlueSky.Button.css" />
+    <Content Include="BlueSky\themes\gray\Bluesky.Masklayer.css" />
+    <Content Include="BlueSky\themes\gray\Bluesky.Panel.css" />
+    <Content Include="BlueSky\themes\gray\Bluesky.SplitPanel.css" />
+    <Content Include="BlueSky\themes\gray\Bluesky.Tabs.css" />
+    <Content Include="BlueSky\themes\gray\Bluesky.Window.css" />
+    <Content Include="BlueSky\themes\green\BlueSky.Button.css" />
+    <Content Include="BlueSky\themes\green\Bluesky.Masklayer.css" />
+    <Content Include="BlueSky\themes\green\Bluesky.Panel.css" />
+    <Content Include="BlueSky\themes\green\Bluesky.SplitPanel.css" />
+    <Content Include="BlueSky\themes\green\Bluesky.Tabs.css" />
+    <Content Include="BlueSky\themes\green\Bluesky.Window.css" />
     <Content Include="Include\css\Bluesky.MusicPlayer.css" />
     <Content Include="Include\js\Bluesky.MusicPlayer.js" />
     <Content Include="Server\SystemManage\Login.ashx" />
@@ -487,6 +510,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BlueSky\themes\blue\icons\Button\" />
+    <Folder Include="BlueSky\themes\blue\icons\Masklayer\" />
+    <Folder Include="BlueSky\themes\blue\icons\Panel\" />
+    <Folder Include="BlueSky\themes\blue\icons\Tabs\" />
+    <Folder Include="BlueSky\themes\blue\icons\Window\" />
+    <Folder Include="BlueSky\themes\gray\icons\Button\" />
+    <Folder Include="BlueSky\themes\gray\icons\Masklayer\" />
+    <Folder Include="BlueSky\themes\gray\icons\Panel\" />
+    <Folder Include="BlueSky\themes\gray\icons\Tabs\" />
+    <Folder Include="BlueSky\themes\gray\icons\Window\" />
+    <Folder Include="BlueSky\themes\green\icons\Button\" />
+    <Folder Include="BlueSky\themes\green\icons\Masklayer\" />
+    <Folder Include="BlueSky\themes\green\icons\Panel\" />
+    <Folder Include="BlueSky\themes\green\icons\Tabs\" />
+    <Folder Include="BlueSky\themes\green\icons\Window\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

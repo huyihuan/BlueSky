@@ -56,7 +56,12 @@
                     txtReference.className = txtReference.className + " txt-hint";
                 }
                 if (_vArguments.message) {
-                    alert(_vArguments.message);
+                    top.Bluesky.MessageBox.alert({
+                        message: _vArguments.message,
+                        callback: function() {
+                            txtReference.focus();
+                        }
+                    });
                 }
                 return false;
             }
@@ -73,7 +78,12 @@
                     txtReference.className = txtReference.className + " txt-hint";
                 }
                 if (_vArguments.message) {
-                    alert(_vArguments.message);
+                    top.Bluesky.MessageBox.alert({
+                        message: _vArguments.message,
+                        callback: function() {
+                            txtReference.focus();
+                        }
+                    });
                 }
                 return false;
             }
@@ -99,13 +109,13 @@
         }
         if (typeof xhrObject != undefined)
             return xhrObject;
-        alert("Ajax not supported!");
+        top.Bluesky.MessageBox.alert("Ajax not supported!");
     }
 
     _util.eventPrevent = function() {
         if (e && e.preventDefault)
             e.preventDefault();
-        
+
         if (e && e.stopPropagation)
             e.stopPropagation();
         else

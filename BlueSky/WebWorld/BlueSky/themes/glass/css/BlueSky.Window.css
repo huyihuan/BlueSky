@@ -3,7 +3,6 @@ div.window-popup
 {
     width:300px;
     height:200px;
-    background-color:#C6CFD5;
     border:solid 1px #999999;
     position:absolute;
     left:100px;
@@ -19,7 +18,7 @@ div.window-popup
 	overflow:hidden;
 	border-top-color:#FFFFFF;
 	border-left-color:#FFFFFF;
-	/*background:url(../image/WindowImages/Header.png) repeat;*/
+	background:url(../icons/Window/WindowBackground.png) repeat;
 }
 div.window-flicker
 {
@@ -28,12 +27,10 @@ div.window-flicker
 div.window-normal
 {
 	z-index:9990;
-	background-color:#E8ECF1;
 }
 div.window-active
 {
 	z-index:9991;
-	background-color:#C6CFD5;
 }
 div.window-move-border
 {
@@ -84,14 +81,14 @@ div.window-title
 }
 div.window-title-normal
 {
-    background:url(../image/pop_title_bg.gif) left top repeat-x;
+    /*background:url(../icons/Window/pop_title_bg.gif) left top repeat-x;
     filter:alpha(Opacity=50);
 	-moz-opacity:0.5;
-	opacity:0.5;
+	opacity:0.5;*/
 }
 div.window-title-active
 {
-    background:url(../image/pop_title_active_bg.gif) left top repeat-x;
+    /*background:url(../icons/Window/pop_title_active_bg.gif) left top repeat-x;*/
 }
 
 div.window-title-text
@@ -140,7 +137,7 @@ div.window-button
     float:right;
     margin:4px 5px 0 0;
     _margin:4px 3px 0 0;
-    background-image:url(../image/pop_window_button_bg.png);
+    background-image:url(../icons/Window/pop_window_button_bg.png);
     cursor:pointer;
 }
 div.window-button-min-out
@@ -185,7 +182,7 @@ a.window-button
     float:right;
     margin:4px 5px 0 0;
     _margin:4px 3px 0 0;
-    background-image:url(../image/pop_window_button_bg.png);
+    background-image:url(../icons/Window/pop_window_button_bg.png);
     cursor:pointer;
 }
 a.window-button-min
@@ -308,7 +305,7 @@ div.taskbar
     position:absolute;
     border:none;
     border-top:solid 1px #efefff;
-    background:url(../image/topbackgroundimage.png) left top repeat-x;
+    background:url(../icons/Window/topbackgroundimage.png) left top repeat-x;
     margin:0px;
     padding:0px;
     z-index:9993;
@@ -325,7 +322,7 @@ input.btnWindowHome
     margin-top:1px;
     margin-left:2px;
     margin-right:5px;
-    background:#D4D0C8 url(../image/windowsHome.png) center center no-repeat;
+    background:#D4D0C8 url(../icons/Window/windowsHome.png) center center no-repeat;
 }
 
 div.taskitem

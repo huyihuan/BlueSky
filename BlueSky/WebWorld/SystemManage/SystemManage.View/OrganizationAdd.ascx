@@ -39,9 +39,10 @@
             loader: { url: "<%=strOrganizationTypeUrl %>" },
             icon : { show : false },
             resizeable: false,
-            moveable: true
+            moveable: true,
+            mask: true,
+            flicker:true
         }
-        //top.windowFactory.topFocusForm(windowArguments);
         top.Bluesky.component.create("Window", args);
     }
 </script>

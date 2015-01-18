@@ -1,5 +1,5 @@
 ﻿/**********************************************
-* bluesky.js BlueSky核心库
+* BlueSky核心库
 * copyright huyihuan 2013
 * date: 2013-11-12
 **********************************************/
@@ -56,11 +56,11 @@
 })();
 
 (function() {
-    //暂存常用的函数与变量中，提高性能
+    //暂存常用的函数
     var hasOwn = Object.prototype.hasOwnProperty,
         toString = Object.prototype.toString;
 
-    //bluesky框架对象
+    //Bluesky框架对象
     var BlueSky = function(_els) {
         this.length = _els && _els.length ? _els.length : 0;
         for (var i = 0; i < this.length; i++) {
@@ -114,26 +114,58 @@
     };
 
     BlueSky.extend({
+        String: {
+            trim: function() {
+                if (arguments[0]) {
+                    return arguments[0].replace(" ", "");
+                }
+            },
+            toUpwer: function() {
+
+            }
+        }
+    });
+
+    BlueSky.extend({
         Bluesky: "Bluesky1.0",
         browser: {
             isIE: document.attachEvent ? true : false,
             isW3C: document.addEventListener ? true : false
         },
 
-        //bluesky框架选择器，需要不断完善
-        get: function(_selector) {
+        //Bluesky框架选择器，需要不断完善
+        G: function(selector) {
             var els;
-            if (typeof _selector === "string") {
-                els = document.querySelectorAll(_selector);
-            } else if (_selector.length) {
-                els = _selector;
-            } else {
-                els = [_selector];
+            if (typeof selector === "string") {
+                if (document.querySelectorAll) {
+                    els = document.querySelectorAll(selector);
+                }
+                else {
+                    //IE7一下浏览器支持
+                    if (selector.indexOf("#") == 0) {
+                        els = document.getElementById(selector);
+                    }
+                    else if (selector.indexOf(".") == 0) {
+                        var a = document.all, len = a.length, c, ct = selector.replace(".", "");
+                        for (var i = 0; i < len; i++) {
+                            if (a[i].className.indexOf(ct) >= 0) {
+                                //todo...
+                            }
+                        }
+                    }
+                }
+            } else if (Bluesky.isArray(selector)) {
+                els = selector;
+            } else if (typeof selector.Bluesky === "string") {
+                return selector;
             }
-            return new BlueSky(els);
+            else {
+                els = [selector];
+            }
+            return (new BlueSky(els));
         },
         create: function(_tagName, _attrArgs) {
-            var elm = this.get([document.createElement(_tagName)]);
+            var elm = this.G([document.createElement(_tagName)]);
             if (_attrArgs) {
                 if (_attrArgs.className) {
                     elm.addClass(_attrArgs.className);
@@ -205,7 +237,9 @@
             });
             return class2type;
         })(),
-
+        isArray: function() {
+            return toString.call(arguments[0]) === "[object Array]";
+        },
         util: {
             parseInt: function(_strValue, _defaultValue) {
                 var parseValue = parseInt(_strValue);
@@ -249,20 +283,71 @@
             isFunction: function(_object) {
                 return typeof _object === "function";
             }
-        }
+        },
+        getEventArg: function(e) {
+            return e ? e : window.event;
+        },
+        getPosition: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e.PageX || e.PageY) {
+                return { x: e.PageX, y: e.PageY };
+            }
+            else {
+                return {
+                    x: e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft,
+                    y: e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+                };
+            }
+        },
+        stopPropagation: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e && e.stopPropagation) {
+                //因此它支持W3C的stopPropagation()方法　　
+                e.stopPropagation();
+            }
+            else {
+                e.cancelBubble = true;
+            }
 
+        },
+        stopDefault: function(e) {
+            e = Bluesky.getEventArg(e);
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            else {
+                e.returnValue = false;
+            }
+        },
+        parseJson: function(toJson) {
+            if (JSON) {
+                return JSON.parse(toJson);
+            }
+            else {
+                return eval("(" + toJson + ")");
+            }
+        }
     });
 
     BlueSky.instance.extend({
         Bluesky: "Bluesky1.0",
+        count: function() {
+            return this.length;
+        },
+        element: function(index) {
+            if (undefined == index)
+                return this[0];
+            return this[index];
+        },
         first: function() {
-            return BlueSky.get(this[0]);
+            return BlueSky.G(this.element());
         },
-
         last: function() {
-            return BlueSky.get(this[this.length - 1]);
+            return BlueSky.G(this.element(this.length - 1));
         },
-
+        eIndex: function(index) {
+            return BlueSky.G(this.element(index));
+        },
         //循环批量执行函数，并返回函数的执行结果数组
         action: function(_callback) {
             var results = [], length = this.length;
@@ -294,7 +379,14 @@
                 });
             }
         },
-
+        removeAttr: function(_attrName) {
+            if (_attrName && typeof _attrName == "string") {
+                return this.foreach(function(_el) {
+                    _el.removeAttribute(_attrName);
+                });
+            }
+            return this;
+        },
         text: function(_text) {
             if (typeof _text !== "undefined") {
                 return this.foreach(function(_el) {
@@ -346,7 +438,7 @@
                 });
             }
         },
-        
+
         disabled: function(_value) {
             if (typeof _value !== "undefined") {
                 return this.foreach(function(_el) {
@@ -358,8 +450,19 @@
                     return _el.disabled;
                 });
             }
-        }
+        },
 
+        focus: function() {
+            return this.foreach(function(_el) {
+                return _el.focus();
+            });
+        },
+
+        select: function() {
+            return this.foreach(function(_el) {
+                return _el.select();
+            });
+        }
     });
     //数据缓存
     var uniqueCode = BlueSky.Bluesky + Math.random().toString();
@@ -428,7 +531,7 @@
             if (typeof _classNames === "string") {
                 _classNames = _classNames;
             }
-            else if (typeof _classNames === "array") {
+            else if (Bluesky.isArray(_classNames)) {
                 _classNames = _classNames.join(" ");
             }
             return this.foreach(function(_el) {
@@ -442,7 +545,7 @@
         removeClass: function(_classNames) {
             if ("" === _classNames)
                 return;
-            var length = typeof _classNames === "array" ? _classNames.length : 1;
+            var length = Bluesky.isArray(_classNames) ? _classNames.length : 1;
             if (typeof _classNames === "string") {
                 _classNames = [_classNames];
             }
@@ -464,6 +567,15 @@
                     }
                 }
                 _el.className = aClassName.join(" ");
+            });
+        },
+
+        toggleClass: function(_className, _flag) {
+            if (_flag == true || _flag == false) {
+                return _flag ? this.addClass(_className) : this.removeClass(_className);
+            }
+            return this.foreach(function(_el) {
+                _el.className.split(" ").indexOf(_className) != -1 ? BlueSky.G(_el).removeClass(_className) : BlueSky.G(_el).addClass(_className);
             });
         },
 
@@ -493,11 +605,15 @@
                         if (aComputedStyle.indexOf(_cssArgs) != -1 && typeof styleValue !== "undefined") {
                             styleValue = styleValue.replace("px", "");
                             var isPersent = styleValue.indexOf("%") !== -1;
-                            if (!isPersent) {
-                                styleValue = BlueSky.util.parseInt(styleValue, 0);
-                            }
-                            if (styleValue === 0 || isPersent) {
+                            if (isPersent || styleValue === "auto") {
                                 styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
+                            }
+                            else if (!isPersent && styleValue === "0") {
+                                styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
+                                styleValue = styleValue != 0 ? styleValue : 0;
+                            }
+                            else if (!isPersent && styleValue !== "auto") {
+                                styleValue = BlueSky.util.parseInt(styleValue, 0);
                             }
                         }
                         return styleValue;
@@ -523,6 +639,17 @@
 
         height: function(_value) {
             return this.css("height", _value);
+        },
+        position: function() {
+            return this.actionOne(function(_el) {
+                return {
+                    x: _el.offsetParent ? (_el.offsetLeft + BlueSky.G(_el.offsetParent).position().x) : _el.offsetLeft,
+                    y: _el.offsetParent ? (_el.offsetTop + BlueSky.G(_el.offsetParent).position().y) : _el.offsetTop
+                };
+            });
+        },
+        isHidden: function() {
+            return this.css("display") == "none";
         }
     });
 
@@ -553,6 +680,18 @@
                 for (var i = length - 1; i >= 0; i--) {
                     _parent.insertBefore(bFirst ? _els[i] : _els[i].cloneNode(true), _parent.firstChild);
                 }
+            });
+        },
+
+        parent: function() {
+            return this.actionOne(function(_el) {
+                return Bluesky(_el.parentNode);
+            });
+        },
+
+        children: function() {
+            return this.actionOne(function(_el) {
+                return Bluesky(_el.children);
             });
         }
     });
@@ -605,7 +744,13 @@
                     });
                 };
             }
-        })()
+        })(),
+
+        onceEvent: function(_eventName, _fn) {
+            var closure = this;
+            var once = function() { _fn(); closure.removeEvent(_eventName, once); }
+            this.addEvent(_eventName, once);
+        }
     });
 
     //domready
@@ -679,7 +824,94 @@
             return this;
         }
     });
+    //异步请求模块
+    function getXmlHttpRequest() {
+        if (typeof XMLHttpRequest != "undefined") {
+            return new XMLHttpRequest();
+        }
+        else {
+            var xNames = { "MSXML2.XMLHTTP.6.0": 0, "MSXML2.XMLHTTP.3.0": 0, "MSXML2.XMLHTTP": 0, "Microsoft.XMLHTTP": 0 };
+            var request;
+            for (var name in xNames) {
+                try {
+                    request = new ActiveXObject(name);
+                    break;
+                }
+                catch (ee) { }
+            }
+            if (typeof request != "undefined") {
+                return request;
+            }
+            else {
+                alert("Ajax not supported!");
+            }
+        }
+    }
+    function getKeyValueEncode() {
+        return encodeURIComponent(arguments[0]) + "=" + encodeURIComponent(arguments[1]);
+    }
+    BlueSky.extend({ Ajax: function(args) {
+        var defaultArgs = {
+            type: "get",
+            url: "",
+            async: true,
+            data: {},
+            success: null,
+            fail: null,
+            complete: null,
+            beforeSend: null,
+            onSended: null,
+            context: null,
+            dataType: "",
+            contentType: ""
+        }
+        args = BlueSky.extend(true, {}, defaultArgs, args);
 
+        var req = getXmlHttpRequest();
+        args.context = args.context || req;
+
+        function readyChange() {
+            if (req.readyState == 4 && req.status == 200) {
+                if (args.success) {
+                    var rObject = req.responseText;
+                    if (args.dataType === "json") {
+                        rObject = { json: Bluesky.parseJson(rObject) };
+                    }
+                    else {
+                        rObject = { text: rObject };
+                    }
+                    args.success.call(args.context, rObject);
+                }
+            }
+            else if (req.readyState == 4 && req.status != 200) {
+                if (args.fail) {
+                    //status:301、304、401、403、404、500
+                    args.fail.call(args.context, { code: req.status });
+                }
+            }
+            if (req.readyState === 4 && args.complete) {
+                args.complete.call(args.context, req);
+            }
+        }
+        for (var key in args.data) {
+            if (args.url.indexOf("?") == -1)
+                args.url += "?";
+            args.url += "&" + getKeyValueEncode(key, args.data[key]);
+        }
+        req.onreadystatechange = readyChange;
+        req.open(args.type, args.url, args.async);
+        if (args.beforeSend) {
+            if (args.beforeSend.call(args.context, req) === false) {
+                return req;
+            }
+        }
+        req.send(args.type.toLowerCase() === "get" ? null : "");
+        if (args.onSended) {
+            args.onSended.call(args.context, req);
+        }
+        return req;
+    }
+    });
 
     //动画模块
     BlueSky.instance.extend({
@@ -746,13 +978,27 @@
             animation();
         }
     });
-
-    //组件库
-    BlueSky.extend({ component: {} });
+    //组件库命名空间
+    BlueSky.extend({
+        component: {
+            create: function() {
+                var comName = arguments.length >= 1 ? arguments[0] : undefined;
+                if (!comName)
+                    return;
+                var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
+                if (com.show) {
+                    com.show();
+                }
+                return com;
+            }
+        },
+        model: {}
+    });
 
     //创建别名
-    window.Bluesky = BlueSky.get;
-    for (var key in BlueSky)
+    window.Bluesky = BlueSky.G;
+    for (var key in BlueSky) {
         Bluesky[key] = BlueSky[key];
+    }
 
 })();

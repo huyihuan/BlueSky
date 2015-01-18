@@ -453,8 +453,14 @@
         },
 
         focus: function() {
-            return this.actionOne(function(_el) {
-                _el.focus();
+            return this.foreach(function(_el) {
+                return _el.focus();
+            });
+        },
+
+        select: function() {
+            return this.foreach(function(_el) {
+                return _el.select();
             });
         }
     });
@@ -565,7 +571,7 @@
         },
 
         toggleClass: function(_className, _flag) {
-            if (_flag === true || _flag === false) {
+            if (_flag == true || _flag == false) {
                 return _flag ? this.addClass(_className) : this.removeClass(_className);
             }
             return this.foreach(function(_el) {

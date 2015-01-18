@@ -18,10 +18,24 @@
                 autoSize.remove();
                 var height = theight <= 150 ? 150 : theight;
 
-                var bodySize = Bluesky(document.body);
-                var mask = Bluesky.component.Masklayer.create({ width: bodySize.width(), height: bodySize.height() });
-                var alertWindow = Bluesky.component.create("Window", { width: 300, height: height, title: title, renderTo: document.body, icon: { show: false }, zIndex: mask.zIndex + 1 });
-                alertWindow.onClosed = function() { mask.remove(); }
+                //                var bodySize = Bluesky(document.body);
+                //                var mask = Bluesky.component.Masklayer.create({
+                //                    width: bodySize.width(),
+                //                    height: bodySize.height(),
+                //                    onClick: function() {
+                //                        var flag = 1, title = alertWindow.nodes.title, wrap = alertWindow.nodes.wrapper, isActive = title.hasClass("window-title-active"),
+                //                        tick = function() {
+                //                            title.replaceClass("window-title-" + (isActive ? "active" : "normal"), "window-title-" + (isActive ? "normal" : "active"));
+                //                            wrap.toggleClass("window-flicker", isActive);
+                //                            flag++ <= 5 || clearInterval(fire);
+                //                            isActive = !isActive;
+                //                        },
+                //                        fire = setInterval(tick, 90);
+                //                    }
+                //                });
+                //var alertWindow = Bluesky.component.create("Window", { width: 300, height: height, title: title, renderTo: document.body, icon: { show: false }, zIndex: mask.zIndex + 1 });
+                var alertWindow = Bluesky.component.create("Window", { width: 300, height: height, title: title, renderTo: document.body, icon: { show: false }, mask: true, flicker: true });
+                //alertWindow.onClosed = function() { mask.remove(); }
                 alertWindow.add(Bluesky.create("div", { html: message, className: "messagebox-content" }).width(270).css("margin", "15px 0 0 15px"));
                 //添加确定按钮
                 var btnOk = Bluesky.create("input", { type: "button", value: "确定", className: "btn-normal btn-messagebox-ok" });
@@ -46,8 +60,22 @@
                 var height = theight <= 150 ? 150 : theight;
 
                 var bodySize = Bluesky(document.body);
-                var mask = Bluesky.component.Masklayer.create({ width: bodySize.width(), height: bodySize.height(), zIndex: 9990 });
-                var alertWindow = Bluesky.component.create("Window", { width: 300, height: height, title: title, renderTo: document.body, icon: { show: false} });
+                var mask = Bluesky.component.Masklayer.create({
+                    width: bodySize.width(),
+                    height: bodySize.height(),
+                    zIndex: 9990,
+                    onClick: function() {
+                        var flag = 1, title = alertWindow.nodes.title, wrap = alertWindow.nodes.wrapper, isActive = title.hasClass("window-title-active"),
+                        tick = function() {
+                            title.replaceClass("window-title-" + (isActive ? "active" : "normal"), "window-title-" + (isActive ? "normal" : "active"));
+                            wrap.toggleClass("window-flicker", isActive);
+                            flag++ <= 5 || clearInterval(fire);
+                            isActive = !isActive;
+                        },
+                        fire = setInterval(tick, 90);
+                    }
+                });
+                var alertWindow = Bluesky.component.create("Window", { width: 300, height: height, title: title, renderTo: document.body, icon: { show: false }, zIndex: mask.zIndex + 1 });
                 alertWindow.add(Bluesky.create("div", { html: message, className: "messagebox-content" }).width(270).css("margin", "15px 0 0 15px"));
                 alertWindow.onClosed = function() { mask.remove(); }
                 //添加确定按钮
