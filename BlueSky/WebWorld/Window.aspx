@@ -8,7 +8,7 @@
     <script src="Include/js/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="Include/js/jquery.json.js" type="text/javascript"></script>
     <script src="Include/js/Bluesky.js" type="text/javascript"></script>
-    <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/form.js" type="text/javascript"></script>
     <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>

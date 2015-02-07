@@ -138,7 +138,7 @@
                 //创建窗体主体部分
                 this.nodes.main = Bluesky.create("div", { className: "window-main" }).height(this.height - this.static.configs.titleHeight - 1 - this.static.configs.borderWidth).width(this.width - 2 * this.static.configs.borderWidth).css("margin", "0px 0px 0px " + (this.static.configs.borderWidth - 1) + "px");
                 if (this.loader && this.loader.url) {
-                    this.nodes.frame = Bluesky.create("iframe", { width: "100%", height: "100%", frameborder: "0" });
+                    this.nodes.frame = Bluesky.create("iframe", { width: "100%", height: "100%", frameBorder: "0" });
                     this.nodes.frame.addEvent("focus", function() {
                         closure.toFocus();
                     });

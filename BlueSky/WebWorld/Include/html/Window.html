@@ -79,10 +79,14 @@
         }
 
         function Trim() {
-            Bluesky.MessageBox.confirm({ title: "用户管理提示", message: "请填写请填写您的名称!请填写请填写您请填写请填写您的名称!的名称!" });
+            //Bluesky.MessageBox.confirm({ title: "用户管理提示", message: "请填写请填写您的名称!请填写请填写您请填写请填写您的名称!的名称!" });
 			//Bluesky.MessageBox.confirm({title:"用户管理提示",message:"请填写您的名称!"});
 			var txt = Bluesky("#txt_strTrim");
-			txt.value(txt.value().trim());
+			var val = txt.value();
+			for(var i=0;i<=100000;i++)
+				val.trim();
+			txt.value(val.trim());
+			alert(val.length);
 		}
 		function toggle() {
 		    var datestart = (new Date()).getMilliseconds();
@@ -90,7 +94,7 @@
 		    alert((new Date()).getMilliseconds() - datestart);
 		}
 		Bluesky.ready(function() {
-		    
+		    return;
 		    var body = Bluesky(document.body);
 		    for (var c = 1000, i = 0; i < c; i++) {
 		        body.append(Bluesky.create("input", { type: "button", value: "保存", className: "btn-normal" }));
@@ -101,7 +105,7 @@
 </head>
 <body style="overflow:hidden;">
     <input type="button" value="弹出window" onclick="ss();" /><input type="button" value="测试" onclick=" crateWin();" />
-	<input type="text" id="txt_strTrim" /><input type="button" value="Trim" onclick="toggle(this);" class="btn-normal" />
+	<input type="text" id="txt_strTrim" class="txt-normal" /><input type="button" value="Trim" onclick="Trim();" class="btn-normal" />
     <div id="cc" style="position:absolute;width:800px;height:700px;overflow:hidden;background-color:red;"></div>
 </body>
 </html>

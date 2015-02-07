@@ -5,15 +5,15 @@
 <head>
     <title></title>
     <script src="Include/js/Bluesky.js" type="text/javascript"></script>
-    <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
     <link href="Include/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
-    <%--<link href="Include/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Window.js" type="text/javascript"></script>--%>
-    <link href="BlueSky/themes/glass/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="BlueSky/themes/glass/plugins/Bluesky.Window.js" type="text/javascript"></script>
+    <link href="Include/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.Window.js" type="text/javascript"></script>
+    <%--<link href="BlueSky/themes/glass/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/themes/glass/plugins/Bluesky.Window.js" type="text/javascript"></script>--%>
     <link href="Include/css/BlueSky.MessageBox.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.MessageBox.js" type="text/javascript"></script>
     <script src="Include/js/Bluesky.Drag.js" type="text/javascript"></script>

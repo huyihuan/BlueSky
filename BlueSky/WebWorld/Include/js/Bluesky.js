@@ -4,7 +4,7 @@
 * date: 2013-11-12
 **********************************************/
 (function() {
-    //Array类原型扩展
+    //Array类原型扩展: indexOf , indexOfProperty , remove , removeAt
     if (typeof Array.prototype.indexOf !== "function") {
         Array.prototype.indexOf = function(_item) {
             var length = this.length;
@@ -48,9 +48,25 @@
         }
     }
 
-    //String类型原型扩展
+    //String类型原型扩展: trim
     if (typeof String.prototype.trim !== "function") {
-        return this.toString().replace(" ", "");
+        String.prototype.trim = function() {
+            if ("" === this || " " === this) {
+                return "";
+            }
+            var temp = this, bStart = temp.charAt(0) === ' ', bEnd = temp.charAt(temp.length) === ' ';
+            while (bStart || bEnd) {
+                if (bStart) {
+                    temp = temp.slice(1);
+                }
+                if (bEnd) {
+                    temp = temp(0, temp.length);
+                }
+                bStart = temp.charAt(0) === ' ';
+                bEnd = temp.charAt(temp.length) === ' ';
+            }
+            return temp;
+        } 
     }
 
 })();
@@ -117,7 +133,7 @@
         String: {
             trim: function() {
                 if (arguments[0]) {
-                    return arguments[0].replace(" ", "");
+                    return arguments[0].trim();
                 }
             },
             toUpwer: function() {
@@ -141,9 +157,9 @@
                     els = document.querySelectorAll(selector);
                 }
                 else {
-                    //IE7一下浏览器支持
+                    //IE7及以下浏览器支持
                     if (selector.indexOf("#") == 0) {
-                        els = document.getElementById(selector);
+                        els = document.getElementById(selector.replace("#", ""));
                     }
                     else if (selector.indexOf(".") == 0) {
                         var a = document.all, len = a.length, c, ct = selector.replace(".", "");
@@ -450,18 +466,6 @@
                     return _el.disabled;
                 });
             }
-        },
-
-        focus: function() {
-            return this.foreach(function(_el) {
-                return _el.focus();
-            });
-        },
-
-        select: function() {
-            return this.foreach(function(_el) {
-                return _el.select();
-            });
         }
     });
     //数据缓存
@@ -750,6 +754,27 @@
             var closure = this;
             var once = function() { _fn(); closure.removeEvent(_eventName, once); }
             this.addEvent(_eventName, once);
+        },
+
+        click: function(_fn) {
+            if (undefined != _fn) {
+                return this.addEvent("click", _fn);
+            }
+            return this.foreach(function(_el) {
+                _el.click();
+            });
+        },
+
+        focus: function() {
+            return this.foreach(function(_el) {
+                return _el.focus();
+            });
+        },
+
+        select: function() {
+            return this.foreach(function(_el) {
+                return _el.select();
+            });
         }
     });
 

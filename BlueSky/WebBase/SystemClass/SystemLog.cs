@@ -98,16 +98,11 @@ namespace WebBase.SystemClass
 		}
 		public static int Save(SystemLog _Entity)
 		{
-			int result;
-			if (null == _Entity)
+			if (null != _Entity)
 			{
-				result = -1;
+				return EntityAccess<SystemLog>.Access.Save(_Entity);
 			}
-			else
-			{
-				result = EntityAccess<SystemLog>.Access.Save(_Entity);
-			}
-			return result;
+			return -1;
 		}
 	}
 }

@@ -45,6 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemClass\SystemFunctionUtil.cs" />
     <Compile Include="SystemClass\SystemLog.cs" />
+    <Compile Include="SystemClass\SystemNotice.cs" />
     <Compile Include="SystemClass\SystemOrganization.cs" />
     <Compile Include="SystemClass\SystemOrganizationType.cs" />
     <Compile Include="SystemClass\SystemSetting.cs" />

@@ -62,7 +62,7 @@
     <tr>
         <td align="right"><font class="font-hint">*</font>操作图标：</td>
         <td>
-            <input type="text" class="txt-normal" id="txt_IconName" runat="server" size="15" /><input type="button" id="btn_SelectActionImage" class="btn-normal btn-select-noleft" onclick="selectActionImage();" title="点击选择操作图片" value="..." />
+            <input type="text" class="txt-normal txt-normal-select" id="txt_IconName" runat="server" size="15" /><input type="button" id="btn_SelectActionImage" class="btn-normal btn-select-noleft" onclick="selectActionImage();" title="点击选择操作图片" value="..." />
             <img runat="server" id="img_IconName" align="absMiddle" style="width:16px;height:16px;" />
         </td>
     </tr>

@@ -24,6 +24,7 @@
                     top.Bluesky.MessageBox.alert({
                         message: response.json.text,
                         callback: function() {
+                            Bluesky("#vcode").click();
                             oVCode.focus().select();
                         }
                     });
