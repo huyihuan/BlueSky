@@ -31,9 +31,8 @@
     }
     if (Bluesky && Bluesky.component) {
         Bluesky.extend(false, Bluesky.component, { Resizer: function() {
-            var args = arguments[0];
-            return Bluesky.extend(true, {}, this, args);
-        }
+                return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
+            }
         });
 
         Bluesky.extend(true, Bluesky.component.Resizer.prototype, {

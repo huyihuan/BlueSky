@@ -23,7 +23,7 @@
     <link href="Include/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.MessageBox.js" type="text/javascript"></script>
 </head>
-<body onload="setTimeout(function() { Bluesky.component.Masklayer.remove(); }, 100);">
+<body onload="setTimeout(function() { Bluesky.component.Masklayer.remove(); }, 50);">
     <form id="form1" runat="server" onsubmit="setTimeout(function() { Bluesky.component.Masklayer.loading(); }, 0);">
         <script type="text/javascript">setTimeout(function() { Bluesky.component.Masklayer.loading(); }, 0);</script>
         <asp:PlaceHolder ID="ph" runat="server"></asp:PlaceHolder>

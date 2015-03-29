@@ -8,8 +8,7 @@
 (function(Bluesky) {
     if (Bluesky && Bluesky.component) {
         Bluesky.extend(false, Bluesky.component, { Tabs: function() {
-            var args = arguments[0];
-            return Bluesky.extend(true, {}, this, args);
+            return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
         }
         });
 
@@ -24,9 +23,15 @@
             component: Bluesky.component.Tabs,
             viewstate: "",
             iconFolder: "",
+            left: 0,
             _viewNode: {},
             _wrapper: {},
             _tabsWrapper: {},
+            node: {
+                tabsBarWrapper: null,
+                leftMover: null,
+                rightMover: null
+            },
             _tabsNode: {},
             _contentsNode: {},
             _setWidth: function() {
@@ -52,7 +57,11 @@
                 this._setWidth(this.width)._setHeight(this.height);
                 this._wrapper = Bluesky.create("div", { className: "bluesky-wrapper" }).width(this.width).height(this.height);
                 this._tabsWrapper = Bluesky.create("div", { className: "bluesky-tabs-wrapper" }).width(this.width - 2);
+                this.node.tabsBarWrapper = Bluesky.create("div", { className: "bluesky-tabs-barwrapper" });
+
+
                 this._tabsNode = Bluesky.create("div", { className: "bluesky-tabs-bar" });
+
 
                 this._contentsNode = Bluesky.create("div", { className: "bluesky-tabs-content-wrapper" });
                 this._contentsNode.height(this.height - 35).width(this.width - 2);
@@ -71,7 +80,8 @@
                     }
                     tabs.add(this);
                 });
-                this._tabsWrapper.append(Bluesky([this._tabsNode.element(), Bluesky.create("div", { className: "bluesky-tabs-bottom" }).element()]));
+                this.node.tabsBarWrapper.append(this._tabsNode);
+                this._tabsWrapper.append(Bluesky([this.node.tabsBarWrapper.element(), Bluesky.create("div", { className: "bluesky-tabs-bottom" }).element()]));
                 this._wrapper.append(this._tabsWrapper).append(this._contentsNode);
                 Bluesky(this.renderTo).append(this._wrapper);
                 return this;
@@ -169,13 +179,32 @@
                 this._tabsWrapper.width(this.width - 2);
                 this._contentsNode.height(this.height - 35).width(this.width - 2);
                 this._wrapper.width(this.width).height(this.height);
+            },
+            showMover: function() {
+                if (this.node.leftMover == null) {
+
+                    this.node.leftMover = Bluesky.create("div", { className: "bluesky-tabs-leftMover" });
+                    this.node.rightMover = Bluesky.create("div", { className: "bluesky-tabs-rightMover" });
+                    var clouser = this;
+                    var moverWidth = 15;
+                    this.node.leftMover.addEvent("click", function(e) {
+                        clouser.left = clouser.left - 5;
+                        clouser._tabsNode.css("left", clouser.left + "px");
+                    });
+                    this.node.rightMover.addEvent("click", function(e) {
+                        if (clouser.left < moverWidth) {
+                            clouser.left = clouser.left + 5 >= moverWidth ? moverWidth : clouser.left + 5;
+                            clouser._tabsNode.css("left", clouser.left + "px");
+                        }
+                    });
+                }
+                this.node.tabsBarWrapper.prepend(this.node.leftMover).append(this.node.rightMover);
             }
         });
 
         Bluesky.extend(false, Bluesky.component.Tabs, {
             Tab: function() {
-                var args = arguments[0];
-                return Bluesky.extend(true, {}, this, args);
+                return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
             },
             create: function() {
                 var tabs = new this(arguments[0]);
@@ -246,6 +275,7 @@
             remove: function() {
                 this.contentNode.remove();
                 this.tabNode.remove();
+                this.dispose();
             },
             toActive: function() {
                 this.tabNode.replaceClass("bluesky-tab-normal", "bluesky-tab-active");

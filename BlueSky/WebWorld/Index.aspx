@@ -7,11 +7,11 @@
     <script src="Include/js/Bluesky.js" type="text/javascript"></script>
     <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
+    <script src="Include/js/Bluesky.Masklayer.js?r=234934852834.23445" type="text/javascript"></script>
     <link href="Include/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
     <link href="Include/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Window.js" type="text/javascript"></script>
+    <script src="Include/js/Bluesky.Window.js?r=234934852834.23445" type="text/javascript"></script>
     <%--<link href="BlueSky/themes/glass/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
     <script src="BlueSky/themes/glass/plugins/Bluesky.Window.js" type="text/javascript"></script>--%>
     <link href="Include/css/BlueSky.MessageBox.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
             <tr>
                 <td><font class="font-title float-left">Bule Sky</font></td>
                 <td align="right" valign="middle">
-                    <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="layout.userView('<%=strUserInfomationURL %>');">当前用户：<asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
+                    <a class="bluesky-button buttonMode-plain buttonCombination-both icon-user iconPosition-left buttonHighten-5px buttonPlainBorder-dashed" onclick="layout.userView('<%=strUserInfomationURL %>');"><asp:Literal ID="lt_CurrentUserName" runat="server"></asp:Literal></a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-exist iconPosition-left buttonHighten-5px buttonNormalBorder-single" onclick="layout.logout();" href="javascript:void(0);">退出</a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-refresh iconPosition-left buttonHighten-5px buttonNormalBorder-3D" runat="server" onserverclick="btnRefresh_Click" href="javascript:void(0);">重新登陆</a>
                     <a class="bluesky-button buttonMode-normal buttonCombination-both icon-set iconPosition-left buttonHighten-5px buttonNormalBorder-3D" onclick="layout.moduleSetting();" href="javascript:void(0);">配置</a>

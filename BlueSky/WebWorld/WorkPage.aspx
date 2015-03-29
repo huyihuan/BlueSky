@@ -27,7 +27,7 @@
 
             var panel2 = new BlueSky.Panel();
             panel2.init({
-            parent: "panel2",
+                parent: "panel2",
                 width: "100%",
                 height: "100%",
                 splitPanel: [{ title: "博客园", url: "http://m.cnblogs.com"}]
@@ -35,13 +35,15 @@
 
             var panel3 = new BlueSky.Panel();
             panel3.init({
-            parent: "panel3",
+                parent: "panel3",
                 width: "100%",
                 height: "100%",
                 splitPanel: [{ title: "百度新闻", url: "http://m.cnblogs.com"}]
             });
-            
-            
+
+            delete panel;
+            delete panel2;
+            delete panel3;
         });
     </script>
 </head>

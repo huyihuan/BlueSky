@@ -34,7 +34,7 @@ namespace WebWorld.SystemManage
                 SystemOrganization oEntity = (SystemOrganization)e.Item.DataItem;
                 if (null == oEntity)
                     return;
-                PageUtil.PageFillListItem(e.Item, oEntity, true, e.Item.ItemIndex + 1, true, oEntity.Id.ToString());
+                PageUtil.PageFillListItem(e.Item, oEntity, e.Item.ItemIndex + 1, oEntity.Id.ToString());
             }
         }
     }

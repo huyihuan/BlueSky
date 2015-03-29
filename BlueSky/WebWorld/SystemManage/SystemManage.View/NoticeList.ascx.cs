@@ -42,7 +42,18 @@ namespace WebWorld.SystemManage
                 if (null == oEntity)
                     return;
                 int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
-                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
+                PageUtil.PageFillListItem(e.Item, oEntity, nIndex, oEntity.Id.ToString());
+
+                Literal ltBeginTime = e.Item.FindControl("lit_BeginTime") as Literal;
+                if (null != ltBeginTime)
+                {
+                    ltBeginTime.Text = oEntity.BeginTime.ToString(BlueSky.Utilities.Constants.DateTimeFormatStandard);
+                }
+                Literal ltEndTime = e.Item.FindControl("lit_EndTime") as Literal;
+                if (null != ltEndTime)
+                {
+                    ltEndTime.Text = oEntity.EndTime.ToString(BlueSky.Utilities.Constants.DateTimeFormatStandard);
+                }
             }
         }
     }

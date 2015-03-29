@@ -41,7 +41,7 @@ namespace WebWorld.SystemManage
                 if (null == oEntity)
                     return;
                 int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
-                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
+                PageUtil.PageFillListItem(e.Item, oEntity, nIndex, oEntity.Id.ToString());
             }
         }
     }

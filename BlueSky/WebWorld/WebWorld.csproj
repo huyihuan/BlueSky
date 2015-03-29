@@ -501,6 +501,7 @@
   <ItemGroup>
     <None Include="BlueSky\Bluesky.min.js.bak" />
     <None Include="ClassDiagram1.cd" />
+    <Content Include="BlueSky\Bluesky.css" />
     <Content Include="BlueSky\Bluesky.js" />
     <Content Include="BlueSky\icons\accept.png" />
     <Content Include="BlueSky\icons\add.png" />

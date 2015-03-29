@@ -1005,19 +1005,28 @@
     });
     //组件库命名空间
     BlueSky.extend({
-        component: {
-            create: function() {
-                var comName = arguments.length >= 1 ? arguments[0] : undefined;
-                if (!comName)
-                    return;
-                var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
-                if (com.show) {
-                    com.show();
-                }
-                return com;
-            }
-        },
+        component: function() { },
         model: {}
+    });
+    BlueSky.extend(false, BlueSky.component, {
+        create: function() {
+            var comName = arguments.length >= 1 ? arguments[0] : undefined;
+            if (!comName)
+                return;
+            var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
+            if (com.show) {
+                com.show();
+            }
+            return com;
+        }
+    });
+    BlueSky.extend(false, BlueSky.component.prototype, {
+        dispose: function() {
+            for (name in this) {
+                this[name] = null;
+                delete this[name];
+            }
+        }
     });
 
     //创建别名

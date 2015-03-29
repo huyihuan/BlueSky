@@ -8,8 +8,7 @@
 (function(Bluesky) {
     if (Bluesky && Bluesky.component) {
         Bluesky.extend(false, Bluesky.component, { Masklayer: function() {
-            var args = arguments[0];
-            var com = Bluesky.extend(true, {}, this, args);
+            var com = Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
             this.component.aList.push(com);
             return com;
         }
@@ -52,6 +51,7 @@
             remove: function() {
                 this.node.remove();
                 this.component.aList.pop(this);
+                this.dispose();
             }
         });
 

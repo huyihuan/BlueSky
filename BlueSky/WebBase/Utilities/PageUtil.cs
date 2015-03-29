@@ -149,29 +149,48 @@ namespace WebBase.Utilities
                 }
             }
         }
-        public static void PageFillListItem(RepeaterItem _Item, object _FillObj, bool bFillRowIndex, int _nIndex, bool bFillSelectValue, string _Value)
+        public static void PageFillListItem(RepeaterItem _Item, object _FillObj, int _nRowIndex)
         {
             PageFillView(_Item, _FillObj);
-            if (bFillRowIndex)
+            Label lblControl = _Item.FindControl("lbl_OrderId") as Label;
+            if (null != lblControl)
             {
-                Label lblControl = _Item.FindControl("lbl_OrderId") as Label;
-                if (null != lblControl)
-                {
-                    lblControl.Text = _nIndex + "";
-                }
-
+                lblControl.Text = _nRowIndex + "";
+                return;
+            }
+            Literal litControl = _Item.FindControl("lit_OrderId") as Literal;
+            if (null != litControl)
+            {
+                litControl.Text = _nRowIndex + "";
+                return;
+            }
+        }
+        public static void PageFillListItem(RepeaterItem _Item, object _FillObj, string _SelectValue)
+        {
+            PageFillView(_Item, _FillObj);
+            HtmlInputCheckBox cbSelect = _Item.FindControl("cbSelect") as HtmlInputCheckBox;
+            if (null != cbSelect)
+                cbSelect.Value = _SelectValue;
+        }
+        public static void PageFillListItem(RepeaterItem _Item, object _FillObj, int _nRowIndex, string _SelectValue)
+        {
+            PageFillView(_Item, _FillObj);
+            Label lblControl = _Item.FindControl("lbl_OrderId") as Label;
+            if (null != lblControl)
+            {
+                lblControl.Text = _nRowIndex + "";
+            }
+            else
+            {
                 Literal litControl = _Item.FindControl("lit_OrderId") as Literal;
                 if (null != litControl)
                 {
-                    litControl.Text = _nIndex + "";
+                    litControl.Text = _nRowIndex + "";
                 }
             }
-            if (bFillSelectValue)
-            {
-                HtmlInputCheckBox cbSelect = _Item.FindControl("cbSelect") as HtmlInputCheckBox;
-                if (null != cbSelect)
-                    cbSelect.Value = _Value;
-            }
+            HtmlInputCheckBox cbSelect = _Item.FindControl("cbSelect") as HtmlInputCheckBox;
+            if (null != cbSelect)
+                cbSelect.Value = _SelectValue;
         }
         public static void PageFillView<TEntity>(Page _Page, TEntity _oE) where TEntity : IEntity, new()
         {

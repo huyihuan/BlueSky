@@ -8,8 +8,7 @@
 (function(Bluesky) {
     if (Bluesky && Bluesky.component) {
         Bluesky.extend(false, Bluesky.component, { Window: function() {
-            var args = arguments[0];
-            return Bluesky.extend(true, {}, this, args);
+            return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
         }
         });
         Bluesky.extend(true, Bluesky.component.Window, {
@@ -255,6 +254,10 @@
                 if (items.length >= 1) {
                     items[items.length - 1].toFocus();
                 }
+                else {
+                    this.static.activeWindow = null;
+                }
+                this.dispose();
             },
             toggleStatus: function() {
                 var s = this.static.status;

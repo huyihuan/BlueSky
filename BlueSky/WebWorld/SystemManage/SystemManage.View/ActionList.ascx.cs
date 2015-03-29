@@ -54,7 +54,7 @@ namespace WebWorld.SystemManage
                 if (null == oEntity)
                     return;
                 int nIndex = (PagerNavication.PageIndex - 1) * PagerNavication.PageSize + e.Item.ItemIndex + 1;
-                PageUtil.PageFillListItem(e.Item, oEntity, true, nIndex, true, oEntity.Id.ToString());
+                PageUtil.PageFillListItem(e.Item, oEntity, nIndex, oEntity.Id.ToString());
 
                 Literal lblImage = e.Item.FindControl("lit_IconName") as Literal;
                 lblImage.Text = string.Format("<img src='{0}' align='absMiddle' />", SystemUtil.ResovleActionImagePath(oEntity.IconName));

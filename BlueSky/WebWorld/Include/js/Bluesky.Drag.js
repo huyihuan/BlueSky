@@ -7,10 +7,9 @@
 */
 (function(Bluesky) {
     if (Bluesky && Bluesky.component) {
-        Bluesky.extend(false, Bluesky.component, { Drag: function() {
-            var args = arguments[0];
-            return Bluesky.extend(true, {}, this, args);
-        }
+            Bluesky.extend(false, Bluesky.component, { Drag: function() {
+                return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
+            }
         });
 
         Bluesky.extend(true, Bluesky.component.Drag.prototype, {
