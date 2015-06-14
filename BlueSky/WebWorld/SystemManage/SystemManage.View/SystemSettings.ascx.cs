@@ -29,9 +29,11 @@ namespace WebWorld.SystemManage
         protected void btnGo_ServerClick(object sender, EventArgs e)
         {
             string strSql = txt_OperSql.Value.Trim();
+            if (string.IsNullOrEmpty(strSql))
+                return;
             IDbSession dbSession = new SqlServerSession();
-            dbSession.Execute(strSql);
-            lit_Message.Text = "Success!";
+            int nSuccess = dbSession.Execute(strSql);
+            lit_Message.Text = nSuccess >= 1 ? "Success!" : "Fail!";
         }
 
         protected void btn_Cancel_ServerClick(object sender, EventArgs e)

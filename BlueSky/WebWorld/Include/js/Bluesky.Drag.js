@@ -7,9 +7,9 @@
 */
 (function(Bluesky) {
     if (Bluesky && Bluesky.component) {
-            Bluesky.extend(false, Bluesky.component, { Drag: function() {
-                return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
-            }
+        Bluesky.extend(false, Bluesky.component, { Drag: function() {
+            return Bluesky.extend(true, {}, this, arguments[0], Bluesky.component.prototype);
+        }
         });
 
         Bluesky.extend(true, Bluesky.component.Drag.prototype, {
@@ -26,18 +26,29 @@
                 if (null == this.operater) {
                     this.operater = this.mover;
                 }
-                var closure = this;
+                var closure = this,operater = this.operater.element();
+                
                 Bluesky(this.operater).addEvent("mousedown", function(e) {
                     var result = closure.dragStart(e);
                     if (result == false) {
                         return false;
                     }
+//                    if (operater.setCapture) {
+//                        operater.setCapture();
+//                    } else if (window.captureEvents) {
+//                        window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+//                    }
                     document.ondragstart = function() { return false; };
                     document.onselectstart = function() { return false; };
                     document.onselect = function() { document.selection.empty(); };
-                    document.onmousemove = function(e) { closure.draging(e) };
+                    document.onmousemove = function(e) { closure.draging(e); };
                     document.onmouseup = function(e) {
                         closure.dragEnd(e);
+//                        if (operater.releaseCapture) {
+//                            operater.releaseCapture();
+//                        } else if (window.captureEvents) {
+//                            window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+//                        }
                         document.onmousemove = null;
                         document.onmouseup = null;
                         document.ondragstart = null;
@@ -76,9 +87,10 @@
                 this.ePosition = Bluesky.getPosition(e);
                 this.startPosition = { x: this.mover.css("left"), y: this.mover.css("top") };
                 this.startPosition = {
-                    x: Bluesky.util.parseInt(this.startPosition.x.replace("px", ""), 0),
-                    y: Bluesky.util.parseInt(this.startPosition.y.replace("px", ""), 0)
+                    x: Bluesky.util.parsePx2Int(this.startPosition.x, 0),
+                    y: Bluesky.util.parsePx2Int(this.startPosition.y, 0)
                 };
+                return true;
             },
             dragEnd: function(e) {
                 if (this.isMoving) {

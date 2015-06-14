@@ -66,6 +66,12 @@ namespace WebWorld.Server.SystemManage
             {
                 CreateVCodeImage(context);
             }
+            else if (strAction == "TreeCreate")
+            {
+                context.Response.ContentType = "application/x-javascript";
+                string strTree = "[{ \"text\":\"节点1\", \"value\":\"1\"},{ \"text\":\"节点2\", \"value\":\"2\"}]";
+                context.Response.Write(strTree);
+            }
             context.Response.End();
         }
 
@@ -163,6 +169,10 @@ namespace WebWorld.Server.SystemManage
             }
         }
 
+        public void TreeCreate(HttpContext context)
+        { 
+            
+        }
     }
 
     public class LogParams

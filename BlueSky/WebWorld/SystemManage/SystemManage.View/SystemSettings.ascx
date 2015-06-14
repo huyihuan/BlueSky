@@ -132,7 +132,7 @@
 <script type="text/javascript">
     function go() {
         if (!Utils.vText({ vtype: Utils.vType.Empty, vid: "<%=txt_OperSql.ClientID %>", message: "Please Input The Command！", ishint: true })) {
-            tabsSettings.setActiveTab(0);
+            //tabsSettings.setActiveTab(0);
             return false;
         }
         return true;

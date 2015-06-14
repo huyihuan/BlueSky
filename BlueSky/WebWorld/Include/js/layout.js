@@ -61,7 +61,6 @@ var layout = {
         this.height(this.bottom, this.bottomHeight);
         this.width(this.rightPane, rightWidth);
         this.tabs.resize({ width: rightWidth, height: this.bottomHeight });
-        this.tabs.showMover();
     },
 
     width: function(_elm, _width) {

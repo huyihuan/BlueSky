@@ -23,7 +23,13 @@
             component: Bluesky.component.Tabs,
             viewstate: "",
             iconFolder: "",
-            left: 0,
+            moveDistance: 0,
+            moveStep: 29,
+            moverWidth: 20,
+            nodesWidth: 0,
+            leftEnd: function() { return (this.width - this.moveDistance) == (this.nodesWidth + this.moverWidth + 4); },
+            rightEnd: function() { return (this.moveDistance == this.moverWidth); },
+            hasMover: false,
             _viewNode: {},
             _wrapper: {},
             _tabsWrapper: {},
@@ -137,6 +143,15 @@
                     tab.contentNode.css("top", (35 - this.height) + "px");
                 }
                 this.list.push(tab);
+                setTimeout(function() {
+                    tabs.nodesWidth += tab.tabNode.width() + 3;
+                    if (!tabs.hasMover && tabs.nodesWidth >= tabs.width) {
+                        tabs.showMover();
+                    }
+                    if (tabs.hasMover) {
+                        tabs.moveLeftEnd();
+                    }
+                }, 0);
             },
             remove: function() {
                 var tab = arguments[0];
@@ -147,7 +162,16 @@
                 if (tab.isActive === true && this.list.length >= 1) {
                     this.setActiveTab(this.list.length - 1);
                 }
+                this.nodesWidth -= (tab.tabNode.width() + 3);
                 tab.remove();
+                if (this.hasMover) {
+                    if (this.nodesWidth <= this.width) {
+                        this.hiddenMover();
+                    }
+                    else {
+                        this.moveLeftEnd();
+                    }
+                }
             },
             activeTab: {},
             setActiveTab: function() {
@@ -177,29 +201,101 @@
                     size.height && (this._setHeight(size.height));
                 }
                 this._tabsWrapper.width(this.width - 2);
+                if (this.nodesWidth >= this.width && !this.hasMover) {
+                    this.showMover();
+                }
+                else if (this.nodesWidth < this.width && this.hasMover) {
+                    this.hiddenMover();
+                }
                 this._contentsNode.height(this.height - 35).width(this.width - 2);
                 this._wrapper.width(this.width).height(this.height);
             },
             showMover: function() {
-                if (this.node.leftMover == null) {
-
-                    this.node.leftMover = Bluesky.create("div", { className: "bluesky-tabs-leftMover" });
-                    this.node.rightMover = Bluesky.create("div", { className: "bluesky-tabs-rightMover" });
-                    var clouser = this;
-                    var moverWidth = 15;
-                    this.node.leftMover.addEvent("click", function(e) {
-                        clouser.left = clouser.left - 5;
-                        clouser._tabsNode.css("left", clouser.left + "px");
+                if (!this.hasMover) {
+                    this.node.leftMover = Bluesky.create("div", { className: "bluesky-tabs-mover bluesky-tabs-mover-left-normal" });
+                    this.node.rightMover = Bluesky.create("div", { className: "bluesky-tabs-mover bluesky-tabs-mover-right-normal" });
+                    var closure = this, leftInterval, rightInteral;
+                    this.node.leftMover.addEvent("mousedown", function(e) {
+                        leftInterval = window.setInterval(function() { closure.moveLeft(leftInterval); }, 100);
                     });
-                    this.node.rightMover.addEvent("click", function(e) {
-                        if (clouser.left < moverWidth) {
-                            clouser.left = clouser.left + 5 >= moverWidth ? moverWidth : clouser.left + 5;
-                            clouser._tabsNode.css("left", clouser.left + "px");
-                        }
+                    this.node.leftMover.addEvent("mouseup", function(e) { clearInterval(leftInterval); });
+                    this.node.leftMover.addEvent("mouseout", function(e) { clearInterval(leftInterval); });
+                    this.node.leftMover.addEvent("click", function(e) { closure.moveLeft(); });
+                    this.node.rightMover.addEvent("mousedown", function(e) {
+                        rightInteral = window.setInterval(function() { closure.moveRight(rightInteral); }, 100);
                     });
+                    this.node.rightMover.addEvent("mouseup", function(e) { clearInterval(rightInteral); });
+                    this.node.rightMover.addEvent("mouseout", function(e) { clearInterval(rightInteral); });
+                    this.node.rightMover.addEvent("click", function(e) { closure.moveRight(); });
+                    this.hasMover = true;
                 }
                 this.node.tabsBarWrapper.prepend(this.node.leftMover).append(this.node.rightMover);
+
+            },
+            hiddenMover: function() {
+                this.node.leftMover.remove();
+                this.node.rightMover.remove();
+                this.node.leftMover = null;
+                this.node.rightMover = null;
+                this.hasMover = false;
+                this._tabsNode.css("left", (this.moveDistance = 0) + "px");
+            },
+            leftEndDistance: function() {
+                return this.width - this.nodesWidth - this.moverWidth - 4;
+            },
+            moveLeft: function(_moveInteral) {
+                if (this.leftEnd()) {
+                    if (undefined != _moveInteral) {
+                        clearInterval(_moveInteral);
+                    }
+                    return;
+                }
+                if (this.rightEnd()) {
+                    this.node.rightMover.disabled(false).replaceClass("bluesky-tabs-mover-right-disabled", "bluesky-tabs-mover-right-normal");
+                }
+                if (!this.leftEnd()) {
+                    var dn = this.moveDistance - this.moveStep, ds = this.leftEndDistance();
+                    this.moveDistance = dn <= ds ? ds : dn;
+                    this._tabsNode.css("left", this.moveDistance + "px");
+                }
+                if (this.leftEnd()) {
+                    this.node.leftMover.disabled(true).replaceClass("bluesky-tabs-mover-left-normal", "bluesky-tabs-mover-left-disabled");
+                }
+            },
+            moveRight: function(_moveInteral) {
+                if (this.rightEnd()) {
+                    if (undefined != _moveInteral) {
+                        clearInterval(_moveInteral);
+                    }
+                    return;
+                }
+                if (this.leftEnd()) {
+                    this.node.leftMover.disabled(false).replaceClass("bluesky-tabs-mover-left-disabled", "bluesky-tabs-mover-left-normal");
+                }
+                if (!this.rightEnd()) {
+                    var distance = this.moveDistance + this.moveStep;
+                    this.moveDistance = distance >= this.moverWidth ? this.moverWidth : distance;
+                    this._tabsNode.css("left", this.moveDistance + "px");
+                }
+                if (this.rightEnd()) {
+                    this.node.rightMover.disabled(true).replaceClass("bluesky-tabs-mover-right-normal", "bluesky-tabs-mover-right-disabled");
+                }
+            },
+            moveLeftEnd: function() {
+                if (this.leftEnd()) {
+                    return;
+                }
+                var closure = this,
+                    leftInterval = window.setInterval(function() { closure.moveLeft(leftInterval); }, 50);
+            },
+            moveRightEnd: function() {
+                if (this.rightEnd()) {
+                    return;
+                }
+                var closure = this,
+                    rightInterval = window.setInterval(function() { closure.moveRight(rightInterval); }, 50);
             }
+
         });
 
         Bluesky.extend(false, Bluesky.component.Tabs, {

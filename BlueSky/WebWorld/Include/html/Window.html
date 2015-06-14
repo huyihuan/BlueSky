@@ -101,11 +101,51 @@
 		    }
 		    
 		});
+		function persion(){ }
+		persion.prototype.din = [];
+		persion.prototype.static = "123";
+		function getValue()
+		{
+			alert(Bluesky.util.isArray(123));
+			return;
+		debugger;
+			var e1 = new persion();
+			e1.prototype.din = ['1','2'];
+			var e2 = new persion();
+			//e1.din = ['1','2'];
+			
+			//(e2.din.length);
+			return;
+			
+			var arrs = [1,2,3];
+			var arr = document.getElementById("divWidth").children;
+			alert(Object.prototype.toString.call(arr));
+			return;
+			var strTree = '[{\"text\":\"一节点\",\"value\":\"one\"},{}]';
+			var oo = JSON.parse(strTree);
+			alert(oo.length);
+			return;
+			var a=234,div = document.getElementById("divWidth"),
+			value;
+			if (div.currentStyle) {
+                value = div.currentStyle["width"];
+			}
+			else {
+				value = div.ownerDocument.defaultView.getComputedStyle(div,null).getPropertyValue("width");
+			}
+			alert(value);
+			
+			//alert(Bluesky("#divWidth").width());
+			//alert(Bluesky("#divWidth").css("padding"));
+		}
     </script>
 </head>
 <body style="overflow:hidden;">
     <input type="button" value="弹出window" onclick="ss();" /><input type="button" value="测试" onclick=" crateWin();" />
-	<input type="text" id="txt_strTrim" class="txt-normal" /><input type="button" value="Trim" onclick="Trim();" class="btn-normal" />
+	<input type="text" id="txt_strTrim" class="txt-normal" /><input type="button" value="Trim" onclick="Trim();" class="btn-normal" /><input type="button" value="GetValue" onclick="getValue();" />
     <div id="cc" style="position:absolute;width:800px;height:700px;overflow:hidden;background-color:red;"></div>
+	
+	<div id="divWidth" style="width:50%;background:#CECECE;padding:4px 5px 6px 7px;"><div></div>你好我是DIV</div>
+	
 </body>
 </html>

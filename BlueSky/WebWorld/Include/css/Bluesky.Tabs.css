@@ -41,32 +41,60 @@ DIV.bluesky-tabs-bottom
 	border-top:1px solid #BBBBBB;
 	z-index:1;
 }
-DIV.bluesky-tabs-leftMover
+DIV.bluesky-tabs-mover
 {
-	width:15px;
+	width:20px;
 	height:24px;
-	background-color:#E7E8EA;
 	border:1px solid #BBBBBB;
-	border-radius:3px 3px 0px 0px;
-	-moz-border-radius:3px 3px 0px 0px;
 	position:absolute;
+	top:0;
+	z-index:3;
+	background-color:#E7E8EA;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+DIV.bluesky-tabs-mover-left-normal
+{
+	background-image: url(../image/icons/control_rewind_blue.png);
+	border-radius:0 3px 3px 0px;
+	-moz-border-radius:0 3px 3px 0px;
+	border-left:none;
 	left:0;
-	top:0;
-	z-index:3;
+	cursor:pointer;
 }
-DIV.bluesky-tabs-rightMover
+DIV.bluesky-tabs-mover-left-disabled
 {
-	width:15px;
-	height:24px;
-	background-color:#E7E8EA;
-	border:1px solid #BBBBBB;
-	border-radius:3px 3px 0px 0px;
-	-moz-border-radius:3px 3px 0px 0px;
-	position:absolute;
-	right:0;
-	top:0;
-	z-index:3;
+	background-image: url(../image/icons/control_rewind.png);
+	border-radius:0 3px 3px 0px;
+	-moz-border-radius:0 3px 3px 0px;
+	border-left:none;
+	left:0;
+	cursor:default;
 }
+DIV.bluesky-tabs-mover-right-normal
+{
+	background-image: url(../image/icons/control_fastforward_blue.png);
+	border-radius:3px 0px 0px 3px;
+	-moz-border-radius:3px 0px 0px 3px;
+	border-right:none;
+	right:0;
+	cursor:pointer;
+}
+
+DIV.bluesky-tabs-mover-right-disabled
+{
+	background-image: url(../image/icons/control_fastforward.png);
+	border-radius:3px 0px 0px 3px;
+	-moz-border-radius:3px 0px 0px 3px;
+	border-right:none;
+	right:0;
+	cursor:default;
+}
+DIV.bluesky-tabs-mover-left-normal:hover,DIV.bluesky-tabs-mover-right-normal:hover
+{
+	background-color:#F7F7F7;
+}
+
 
 DIV.bluesky-tabs-content-node
 {

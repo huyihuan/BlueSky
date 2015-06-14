@@ -207,6 +207,9 @@
       <DependentUpon>ModuleConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\ServerRouting.ashx.cs">
+      <DependentUpon>ServerRouting.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Server\SystemManage\Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>
     </Compile>
@@ -1549,12 +1552,15 @@
     <Content Include="BlueSky\themes\green\css\Bluesky.Tabs.css" />
     <Content Include="BlueSky\themes\green\css\Bluesky.Window.css" />
     <Content Include="Include\css\Bluesky.MusicPlayer.css" />
+    <Content Include="Include\css\Bluesky.Tree.css" />
     <Content Include="Include\js\Bluesky.MusicPlayer.js" />
+    <Content Include="Include\js\Bluesky.Tree.js" />
     <Content Include="Server\SystemManage\Login.ashx" />
     <Content Include="SystemManage\SystemManage.View\MFCOCXTest.ascx" />
     <Content Include="SystemManage\SystemManage.View\NoticeAdd.ascx" />
     <Content Include="SystemManage\SystemManage.View\NoticeList.ascx" />
     <Content Include="SystemManage\SystemManage.View\SystemManage.cfg.xml" />
+    <Content Include="Server\ServerRouting.ashx" />
     <None Include="SQL\BlueSky.sql" />
   </ItemGroup>
   <ItemGroup>
