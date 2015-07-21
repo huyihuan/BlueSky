@@ -1,0 +1,11 @@
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBaseServer.dll
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBaseServer.pdb
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\BlueSky.dll
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBase.dll
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBaseServer.Interface.dll
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBaseServer.Interface.pdb
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\WebBase.pdb
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\BlueSky.pdb
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\ResolveAssemblyReference.cache
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\WebBaseServer.dll
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\WebBaseServer.pdb

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigAccess.cs" />
+    <Compile Include="Interface\IServerProcess.cs" />
+    <Compile Include="Interface\ServerProcessBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemClass\SystemFunctionUtil.cs" />
     <Compile Include="SystemClass\SystemLog.cs" />

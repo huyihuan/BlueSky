@@ -207,14 +207,14 @@ INPUT.txt-normal-select
 }
 Input.txt-disabled
 {
-	height:19px;
+	height:21px;
 	width:auto;
 	border:none;
 	border-right:solid 1px #aaaaaa;
 	border-bottom:solid 1px #aaaaaa;
 	border-top:solid 1px #666666;
 	border-left:solid 1px #666666;
-	background:#D4D0C8;
+	background:#EDEDED;
 	font-size:12px;
 	padding-left:2px;
 	line-height:19px;
