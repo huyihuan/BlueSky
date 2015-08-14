@@ -19,6 +19,7 @@
             width: 0,
             height: 0,
             rootNode: {},
+            showRootNode : true,
             childNodes: [],
             childrens: [],
             showCheckBox: false,
@@ -46,22 +47,21 @@
                         data: this.loader.params,
                         dataType: "json",
                         success: function(_children) {
-                            var nodes = _children.json, length = nodes.length;
-                            if (nodes && length) {
-                                colsure.childrens = nodes;
+                            var root = _children.json;
+                            if (root) {
+                                colsure.childrens = colsure.showRootNode ? [root] : root.childrens;
                             }
+                            colsure.node.wrapper.text("");
+                            colsure.initNode();
                         },
                         fail: function() {
                             alert("获取失败");
                         }
                     });
                 }
-                if (this.childrens && this.childrens.length) {
-                    this.initNode();
-                }
-                Bluesky(this.renderTo).append(this.node.wrapper);
-                debugger;
-                Bluesky.cache(null, this.id, this);
+                this.initNode();
+                Bluesky(this.renderTo).append(this.node.wrapper.text("  Loading......"));
+                //Bluesky.cache(null, this.id, this);
                 delete this.renderTo;
                 return this;
             },
@@ -75,10 +75,12 @@
                             childrens: nodes[i].childrens,
                             index: i + 1,
                             siblingCount: length,
-                            showCheckBox: true,
+                            showCheckBox: this.showCheckBox,
                             parentNode: null,
-                            tree: this.id
+                            tree: null
+                            //tree: this.id
                         });
+                        cNode.tree = this;
                         cNode.init();
                         this.childNodes[i] = cNode;
                         this.node.wrapper.append(cNode.node.wrapper);
@@ -166,10 +168,10 @@
                     }
                     this.node.head = Bluesky.create("span", { className: "tree-node-head-normal", html: "<span class='tree-node-head-icon-leaf'>" + this.text + "</span>" });
                     this.node.head.addEvent("click", function() {
-                        var tree = Bluesky.cache(null, coulsure.tree);
-                        if (tree) {
-                            tree.select(coulsure);
-                        }
+                        //var tree = Bluesky.cache(null, coulsure.tree);
+                        //if (tree) {
+                        coulsure.tree.select(coulsure);
+                        //}
                         if (coulsure.onSelected) {
                             var result = coulsure.onSelected.call(coulsure, coulsure);
                             if (result === false)
@@ -192,10 +194,10 @@
                     var toggleStatus = function() { coulsure.node.childrenWrapper.isHidden() ? coulsure.plus() : coulsure.minus(); };
                     this.node.head.addEvent("click", function() {
                         toggleStatus();
-                        var tree = Bluesky.cache(null, coulsure.tree);
-                        if (tree) {
-                            tree.select(coulsure);
-                        }
+                        //var tree = Bluesky.cache(null, coulsure.tree);
+                        //if (tree) {
+                        coulsure.tree.select(coulsure);
+                        //}
                         if (coulsure.onSelected) {
                             var result = coulsure.onSelected.call(coulsure, coulsure);
                             if (result === false)
@@ -236,10 +238,15 @@
                             //childNodes: [], //防止所有的Node指向同一个原型链属性?
                             index: i + 1,
                             siblingCount: length,
-                            showCheckBox: true,
-                            parentNode: this,
-                            tree: this.tree
+                            showCheckBox: this.showCheckBox,
+                            parentNode: null,
+                            tree : null
+                            //tree: this.tree
                         });
+                        //引用父节点的属性不能通过extend进行初始化，避免死循环，extend初始化扩展后手动赋值
+                        cNode.tree = this.tree;
+                        cNode.parentNode = this;
+                        
                         cNode.init();
                         this.childNodes[i] = cNode;
                         this.node.childrenWrapper.append(cNode.node.wrapper);

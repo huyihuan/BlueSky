@@ -560,7 +560,7 @@
     });
     //初始化数据对象Key : uniqueCode
     BlueSky.data[uniqueCode] = {};
-    
+
 
     BlueSky.instance.extend({
         cache: function(_key, _value) {

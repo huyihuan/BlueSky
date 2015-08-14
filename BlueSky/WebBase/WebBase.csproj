@@ -63,8 +63,12 @@
     <Compile Include="SystemClass\SystemUserModulePermission.cs" />
     <Compile Include="SystemClass\UserInformation.cs" />
     <Compile Include="SystemClass\SystemUserRole.cs" />
+    <Compile Include="UserControls\ITree.cs" />
     <Compile Include="UserControls\PagerIndexChagedEventArgs.cs" />
     <Compile Include="UserControls\PagerNavication.cs" />
+    <Compile Include="UserControls\Tree.cs" />
+    <Compile Include="UserControls\TreeAttribute.cs" />
+    <Compile Include="UserControls\TreeNode.cs" />
     <Compile Include="Utilities\PageUtil.cs" />
     <Compile Include="Utilities\SystemUtil.cs" />
   </ItemGroup>

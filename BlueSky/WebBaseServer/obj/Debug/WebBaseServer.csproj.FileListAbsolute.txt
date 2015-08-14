@@ -9,3 +9,4 @@ E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\BlueSky.pdb
 E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\ResolveAssemblyReference.cache
 E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\WebBaseServer.dll
 E:\GitHub\BlueSky\BlueSky\WebBaseServer\obj\Debug\WebBaseServer.pdb
+E:\GitHub\BlueSky\BlueSky\WebBaseServer\bin\Newtonsoft.Json.dll

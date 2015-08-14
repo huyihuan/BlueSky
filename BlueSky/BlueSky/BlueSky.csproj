@@ -86,6 +86,7 @@
     <Compile Include="BlueSky.Interfaces\IEntityField.cs" />
     <Compile Include="BlueSky.Interfaces\IEntityMeta.cs" />
     <Compile Include="BlueSky.Utilities\CryptUtil.cs" />
+    <Compile Include="BlueSky.Utilities\JSON.cs" />
     <Compile Include="BlueSky.Utilities\RandomFactory.cs" />
     <Compile Include="BlueSky.Utilities\ReflectionUtil.cs" />
     <Compile Include="BlueSky.Utilities\StringUtil.cs" />

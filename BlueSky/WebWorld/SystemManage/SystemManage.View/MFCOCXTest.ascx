@@ -22,19 +22,11 @@
             renderTo: document.body.children[0],
             width: 300,
             height: 500,
-            childrens: [
-                { 
-                    text: "parents",
-                    value: "345",
-                    childrens: [
-                        { text: "节点1", value: "", childrens: [{ text: "x", value: "x" }, { text: "y", value: "y"}] },
-                        { text: "节点2", value: "", childrens: [{ text: "123", value: "x" }, { text: "456", value: "y"}] }
-                    ]
-                }
-            ],
+            showCheckBox: false,
+            showRootNode : true,
             loader: {
-                url: "",
-                params: { action: "TreeCreate" }
+                url: "/Server/ServerRouting.ashx",
+                params: { action: "GetFunctions" }
             }
         });
         tree.init();

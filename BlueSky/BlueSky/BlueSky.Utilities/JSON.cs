@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Text;
 using System.Collections;
 
-namespace WebBase.Interface
+namespace BlueSky.BlueSky.Utilities
 {
-    public abstract class ServerProcessBase
+    public class JSON
     {
-        public virtual string Json(Hashtable _htJson, bool _End)
+        public string Json(Hashtable _htJson, bool _End)
         {
             if (null == _htJson || _htJson.Count == 0)
                 return "";
@@ -19,7 +21,7 @@ namespace WebBase.Interface
                 {
                     sbJson.Append(" ,");
                 }
-                sbJson.Append(JsonKeyValue(strKey, _htJson[strKey]));
+                sbJson.Append(JsonKeyValue(strKey, _htJson[strKey], false));
                 nFlag++;
             }
             string strContent = (sbJson.Length >= 1) ? sbJson.ToString() : "";
@@ -30,9 +32,15 @@ namespace WebBase.Interface
             return strContent;
         }
 
-        public virtual string JsonKeyValue(string _Key, object _Value)
+        public string JsonKeyValue(string _Key, object _Value, bool _ValueIsArrayOrObject)
         {
-            return string.Format("\"{0}\" : {1}", _Key, _Value);
+            TypeCode code = Type.GetTypeCode(_Value.GetType());
+            string jsonFormat = "\"{0}\" : {1}";
+            if (!_ValueIsArrayOrObject && (code == TypeCode.String || code == TypeCode.DateTime || code == TypeCode.Char))
+            {
+                jsonFormat = "\"{0}\" : \"{1}\"";
+            }
+            return string.Format(jsonFormat, _Key, _Value);
         }
 
         public string JsonEnd(string _JsonContent)

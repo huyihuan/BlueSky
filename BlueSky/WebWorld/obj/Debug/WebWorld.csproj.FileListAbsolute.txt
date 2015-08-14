@@ -27,3 +27,7 @@ E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBase.pdb
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\ResolveAssemblyReference.cache
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\WebWorld.dll
 E:\GitHub\BlueSky\BlueSky\WebWorld\obj\Debug\WebWorld.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBaseServer.Interface.dll
+E:\GitHub\BlueSky\BlueSky\WebWorld\bin\WebBaseServer.Interface.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\bin\ToolService.Interface.dll
+E:\GitHub\BlueSky\BlueSky\WebWorld\bin\ToolService.Interface.pdb
