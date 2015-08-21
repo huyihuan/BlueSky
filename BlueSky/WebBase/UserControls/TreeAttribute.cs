@@ -22,7 +22,7 @@ namespace WebBase.UserControls
 
     public class TreeMeta
     {
-        public PropertyInfo TextFild { get; set; }
+        public PropertyInfo TextField { get; set; }
         public PropertyInfo ValueField { get; set; }
         public PropertyInfo LinkField { get; set; }
     }

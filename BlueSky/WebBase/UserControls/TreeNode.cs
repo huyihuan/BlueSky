@@ -11,7 +11,7 @@ namespace WebBase.UserControls
         public string Id { get; set; }
         public string Text { get; set; }
         public object Value { get; set; }
-        public object Data { get; set; }
+        public ITreeNodeData Data { get; set; }
         public List<TreeNode> Nodes { get; set; }
         public int NodesCount
         {
@@ -28,14 +28,12 @@ namespace WebBase.UserControls
         public TreeNode(string _Id)
         {
             this.Id = _Id;
-            this.Nodes = new List<TreeNode>();
         }
 
         public TreeNode(string _Text, object _Value)
         {
             this.Text = _Text;
             this.Value = _Value;
-            this.Nodes = new List<TreeNode>();
         }
 
         public TreeNode(string _Id, string _Text, object _Value)
@@ -43,7 +41,6 @@ namespace WebBase.UserControls
             this.Id = _Id;
             this.Text = _Text;
             this.Value = _Value;
-            this.Nodes = new List<TreeNode>();
         }
 
         public void AddChildren(TreeNode _Node)
@@ -64,6 +61,12 @@ namespace WebBase.UserControls
             ht["text"] = this.Text;
             ht["value"] = this.Value;
             builder.Append(json.Json(ht, false));
+            if (null != this.Data)
+            {
+                builder.Append(",");
+                Hashtable htData = BlueSky.Utilities.ReflectionUtil.GetObjectFieldValueHash(this.Data);
+                builder.Append(json.JsonKeyValue("data", json.Json(htData, true), true));
+            }
             builder.Append(",");
             builder.Append(json.JsonKeyValue("childrens", this.ToChildrenJSON(), true));
             return json.JsonEnd(builder.ToString());
@@ -80,6 +83,12 @@ namespace WebBase.UserControls
                 ht["text"] = node.Text;
                 ht["value"] = node.Value;
                 builderNode.Append(json.Json(ht, false));
+                if (null != node.Data)
+                {
+                    builderNode.Append(",");
+                    Hashtable htData = BlueSky.Utilities.ReflectionUtil.GetObjectFieldValueHash(node.Data);
+                    builderNode.Append(json.JsonKeyValue("data", json.Json(htData, true), true));
+                }
                 builderNode.Append(",");
                 builderNode.Append(json.JsonKeyValue("childrens", node.ToChildrenJSON(), true));
                 if (builder.Length >= 1)

@@ -223,6 +223,9 @@
     <Compile Include="Server\SystemManage\Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Server\SystemManage\WebPerformanceReceiver.ashx.cs">
+      <DependentUpon>WebPerformanceReceiver.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SystemManage\SystemManage.View\ActionAdd.ascx.cs">
       <DependentUpon>ActionAdd.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -513,7 +516,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BlueSky\Bluesky.min.js.bak" />
-    <None Include="ClassDiagram1.cd" />
     <Content Include="BlueSky\Bluesky.css" />
     <Content Include="BlueSky\Bluesky.js" />
     <Content Include="BlueSky\icons\accept.png" />
@@ -1564,6 +1566,7 @@
     <Content Include="Include\css\Bluesky.MusicPlayer.css" />
     <Content Include="Include\css\Bluesky.Tree.css" />
     <Content Include="Include\js\Bluesky.MusicPlayer.js" />
+    <Content Include="Include\js\Bluesky.Performance.js" />
     <Content Include="Include\js\Bluesky.Tree.js" />
     <Content Include="Server\SystemManage\Login.ashx" />
     <Content Include="SystemManage\SystemManage.View\MFCOCXTest.ascx" />
@@ -1571,6 +1574,7 @@
     <Content Include="SystemManage\SystemManage.View\NoticeList.ascx" />
     <Content Include="SystemManage\SystemManage.View\SystemManage.cfg.xml" />
     <Content Include="Server\ServerRouting.ashx" />
+    <Content Include="Server\SystemManage\WebPerformanceReceiver.ashx" />
     <None Include="SQL\BlueSky.sql" />
   </ItemGroup>
   <ItemGroup>

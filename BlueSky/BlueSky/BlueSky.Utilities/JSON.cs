@@ -40,7 +40,7 @@ namespace BlueSky.BlueSky.Utilities
             {
                 jsonFormat = "\"{0}\" : \"{1}\"";
             }
-            return string.Format(jsonFormat, _Key, _Value);
+            return string.Format(jsonFormat, _Key, _Value == null ? "" : _Value);
         }
 
         public string JsonEnd(string _JsonContent)

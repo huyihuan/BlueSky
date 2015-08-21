@@ -294,8 +294,10 @@
                 }
                 var closure = this,
                     rightInterval = window.setInterval(function() { closure.moveRight(rightInterval); }, 50);
+            },
+            tab: function(index) {
+                return this.list[index];
             }
-
         });
 
         Bluesky.extend(false, Bluesky.component.Tabs, {
@@ -403,6 +405,16 @@
             },
             refresh: function() {
                 this.contentNode.attr("src", this.loader.url);
+            },
+            add: function(element) {
+                if (!element)
+                    return;
+                if (element.node && element.node.wrapper) {
+                    this.contentNode.append(element.node.wrapper);
+                }
+                else {
+                    this.contentNode.append(element);
+                }
             }
 
         });

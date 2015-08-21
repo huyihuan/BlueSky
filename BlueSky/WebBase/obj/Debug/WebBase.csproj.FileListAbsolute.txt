@@ -11,3 +11,4 @@ E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebBase.dll
 E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebBase.pdb
 E:\GitHub\BlueSky\BlueSky\WebBase\obj\Debug\WebBase.dll
 E:\GitHub\BlueSky\BlueSky\WebBase\obj\Debug\WebBase.pdb
+E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebBase.dll.config

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebBase</RootNamespace>
     <AssemblyName>WebBase</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
@@ -36,6 +36,9 @@
     <Reference Include="BlueSky, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -64,6 +67,7 @@
     <Compile Include="SystemClass\UserInformation.cs" />
     <Compile Include="SystemClass\SystemUserRole.cs" />
     <Compile Include="UserControls\ITree.cs" />
+    <Compile Include="UserControls\ITreeNodeData.cs" />
     <Compile Include="UserControls\PagerIndexChagedEventArgs.cs" />
     <Compile Include="UserControls\PagerNavication.cs" />
     <Compile Include="UserControls\Tree.cs" />
@@ -71,6 +75,9 @@
     <Compile Include="UserControls\TreeNode.cs" />
     <Compile Include="Utilities\PageUtil.cs" />
     <Compile Include="Utilities\SystemUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

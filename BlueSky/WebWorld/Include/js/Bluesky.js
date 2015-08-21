@@ -378,6 +378,17 @@
             else {
                 return eval("(" + toJson + ")");
             }
+        },
+        stringify: function(json) {
+            if (JSON) {
+                return JSON.stringify(json);
+            }
+            else {
+                if (typeof json === "object" || typeof json === "array") {
+                    
+                }
+                return json + "";
+            }
         }
     });
 
@@ -972,7 +983,7 @@
     }
     BlueSky.extend({ Ajax: function(args) {
         var defaultArgs = {
-            type: "get",
+            type: "GET",
             url: "",
             async: true,
             data: {},
@@ -986,6 +997,7 @@
             contentType: ""
         }
         args = BlueSky.extend(true, {}, defaultArgs, args);
+        args.type = args.type.toUpperCase();
 
         var req = getXmlHttpRequest();
         args.context = args.context || req;
@@ -1013,10 +1025,12 @@
                 args.complete.call(args.context, req);
             }
         }
-        for (var key in args.data) {
-            if (args.url.indexOf("?") == -1)
-                args.url += "?";
-            args.url += "&" + getKeyValueEncode(key, args.data[key]);
+        if (args.type === "GET" && typeof args.data === "object") {
+            for (var key in args.data) {
+                if (args.url.indexOf("?") == -1)
+                    args.url += "?";
+                args.url += "&" + getKeyValueEncode(key, args.data[key]);
+            }
         }
         req.onreadystatechange = readyChange;
         req.open(args.type, args.url, args.async);
@@ -1025,7 +1039,12 @@
                 return req;
             }
         }
-        req.send(args.type.toLowerCase() === "get" ? null : "");
+        if (args.type === "POST" || args.type === "PUT") {
+            req.send(args.data);
+        }
+        else {
+            req.send(null);
+        }
         if (args.onSended) {
             args.onSended.call(args.context, req);
         }

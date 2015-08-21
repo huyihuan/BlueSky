@@ -23,10 +23,20 @@
             width: 300,
             height: 500,
             showCheckBox: false,
-            showRootNode : true,
+            showRootNode: false,
             loader: {
                 url: "/Server/ServerRouting.ashx",
                 params: { action: "GetFunctions" }
+            },
+            onNodeSelected: function(_node) {
+                if (_node.childrenCount() == 0 && _node.data) {
+                    var args = {
+                        title: _node.data.name,
+                        windowKey: _node.value,
+                        url: "Window.aspx?fn=" + _node.value
+                    };
+                    top.layout.goWindow(args);
+                }
             }
         });
         tree.init();

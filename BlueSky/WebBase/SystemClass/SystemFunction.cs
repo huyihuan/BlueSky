@@ -4,9 +4,12 @@ using BlueSky.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using WebBase.UserControls;
+
 namespace WebBase.SystemClass
 {
-	public class SystemFunction : IEntity, IComparer<SystemFunction>
+    [TreeAttribute(TextFieldName="Name", ValueFieldName="Id", LinkFieldName="ParentId", LinkStartValue=-1)]
+	public class SystemFunction : Tree<SystemFunction>, IEntity, IComparer<SystemFunction>, ITree<SystemFunction>
 	{
 		[EntityField(FieldName = "Id", IsPrimaryKey = true)]
 		public int Id
@@ -248,6 +251,43 @@ namespace WebBase.SystemClass
 				result = EntityAccess<SystemFunction>.Access.Save(_Entity);
 			}
 			return result;
-		}
-	}
+        }
+
+        #region ITree
+        public List<SystemFunction> TreeList()
+        {
+            SystemFunction[] Funcs = SystemFunction.List("");
+            if (null != Funcs && Funcs.Length >= 1)
+                return new List<SystemFunction>(Funcs);
+            return new List<SystemFunction>();
+        }
+        public List<SystemFunction> TreeList(object _LinkStartValue)
+        {
+            throw new NotImplementedException();
+        }
+        public ITreeNodeData TreeNodeData
+        {
+            get
+            {
+                FunctionData data = new FunctionData();
+                data.value = this.Id + "";
+                data.name = this.Name;
+                data.icon = this.IconName;
+                return data;
+            }
+        }
+        public class FunctionData : ITreeNodeData
+        {
+            public string value { get; set; }
+            public string name { get; set; }
+            public string icon { get; set; }
+            public FunctionData()
+            { }
+            public FunctionData(string _value)
+            {
+                this.value = _value;
+            }
+        }
+        #endregion
+    }
 }

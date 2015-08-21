@@ -7,7 +7,7 @@ var layout = {
 
     initLayout: function() {
         document.body.scroll = "no";
-        this.menuFrame = this.$("MenuFrame");
+        //this.menuFrame = this.$("MenuFrame");
         this.leftPane = this.$("divLeft");
         this.rightPane = this.$("divRight");
         this.top = this.$("divTop");
@@ -35,6 +35,64 @@ var layout = {
         });
         this.leftWidth = this.width(this.leftPane);
         this.topHeight = this.height(this.top);
+        this.menuTabs = Bluesky.component.Tabs.create({
+            renderTo: this.leftPane,
+            width: this.leftWidth - 1,
+            height: this.height(this.leftPane),
+            activeIndex: 0,
+            items: [
+	                {
+	                    title: "",
+	                    tip: "系统功能",
+	                    sliding: true,
+	                    closeable: false,
+	                    showIcon: true,
+	                    iconURL: "include/image/icons/house.png",
+	                    html: "<div style='height:5px;'></div>"
+	                },
+	                {
+	                    title: "",
+	                    tip: "日常办公",
+	                    sliding: true,
+	                    closeable: false,
+	                    showIcon: true,
+	                    iconURL: "include/image/icons/clock.png",
+	                    html: "日常办公"
+	                },
+	                {
+	                    title: "",
+	                    tip: "邮箱",
+	                    sliding: true,
+	                    closeable: false,
+	                    showIcon: true,
+	                    iconURL: "include/image/icons/email.png",
+	                    html: "邮箱"
+	                }
+            ]
+        });
+        this.menuTree = new Bluesky.component.Tree({
+            id: "SystemMunu",
+            renderTo: this.menuTabs.tab(0).contentNode,
+            width: "100%",
+            height: "100%",
+            showCheckBox: false,
+            showRootNode: false,
+            loader: {
+                url: "/Server/ServerRouting.ashx",
+                params: { action: "GetFunctions" }
+            },
+            onNodeSelected: function(_node) {
+                if (_node.childrenCount() == 0 && _node.data) {
+                    var args = {
+                        title: _node.data.name,
+                        windowKey: _node.value,
+                        url: "Window.aspx?fn=" + _node.value
+                    };
+                    top.layout.goWindow(args);
+                }
+            }
+        });
+        this.menuTree.init();
         this.initHeight();
 
         //加载任务栏
@@ -61,6 +119,8 @@ var layout = {
         this.height(this.bottom, this.bottomHeight);
         this.width(this.rightPane, rightWidth);
         this.tabs.resize({ width: rightWidth, height: this.bottomHeight });
+        this.menuTabs.resize({ width: this.leftWidth, height: this.bottomHeight });
+        //this.menuTree.node.wrapper.width(this.leftWidth);
     },
 
     width: function(_elm, _width) {

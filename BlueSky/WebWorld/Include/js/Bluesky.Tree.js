@@ -19,12 +19,13 @@
             width: 0,
             height: 0,
             rootNode: {},
-            showRootNode : true,
+            showRootNode: true,
             childNodes: [],
             childrens: [],
             showCheckBox: false,
             selectedNode: null,
             selectMode: Bluesky.component.Tree.selectMode.single,
+            onNodeSelected: null,
             node: {
                 wrapper: null
             },
@@ -72,6 +73,7 @@
                         var cNode = new Bluesky.component.TreeNode({
                             text: nodes[i].text,
                             value: nodes[i].value,
+                            data: nodes[i].data,
                             childrens: nodes[i].childrens,
                             index: i + 1,
                             siblingCount: length,
@@ -81,6 +83,9 @@
                             //tree: this.id
                         });
                         cNode.tree = this;
+                        if (this.onNodeSelected) {
+                            cNode.onSelected = this.onNodeSelected;
+                        }
                         cNode.init();
                         this.childNodes[i] = cNode;
                         this.node.wrapper.append(cNode.node.wrapper);
@@ -103,6 +108,16 @@
                 if (_node != this.selectedNode) {
                     _node.toSelected();
                     this.selectedNode = _node;
+                }
+            },
+            resize: function() {
+                var size = arguments[0];
+                if (undefined !== size && null != size) {
+                    if (this.width === size.width && this.height === size.height) {
+                        return;
+                    }
+                    size.width && (this.node.wrapper.width(size.width));
+                    size.height && (this.node.wrapper.height(size.height));
                 }
             }
         });
@@ -128,6 +143,7 @@
             value: {},
             html: "",
             key: {},
+            data: {},
             childNodes: [],
             childrens: [],
             parentNode: null,
@@ -234,19 +250,22 @@
                         var cNode = new Bluesky.component.TreeNode({
                             text: nodes[i].text,
                             value: nodes[i].value,
+                            data: nodes[i].data,
                             childrens: nodes[i].childrens,
                             //childNodes: [], //防止所有的Node指向同一个原型链属性?
                             index: i + 1,
                             siblingCount: length,
                             showCheckBox: this.showCheckBox,
                             parentNode: null,
-                            tree : null
+                            tree: null
                             //tree: this.tree
                         });
                         //引用父节点的属性不能通过extend进行初始化，避免死循环，extend初始化扩展后手动赋值
                         cNode.tree = this.tree;
                         cNode.parentNode = this;
-                        
+                        if (this.onSelected) {
+                            cNode.onSelected = this.onSelected;
+                        }
                         cNode.init();
                         this.childNodes[i] = cNode;
                         this.node.childrenWrapper.append(cNode.node.wrapper);
@@ -296,6 +315,12 @@
             },
             addNode: function(_node) {
 
+            },
+            childrenCount: function() {
+                if (this.childNodes) {
+                    return this.childNodes.length;
+                }
+                return 0;
             }
         });
     }

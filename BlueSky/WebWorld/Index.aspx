@@ -5,6 +5,7 @@
 <head>
     <title></title>
     <script src="Include/js/Bluesky.js" type="text/javascript"></script>
+	<script src="Include/js/Bluesky.Performance.js" type="text/javascript"></script>
     <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Masklayer.js?r=234934852834.23445" type="text/javascript"></script>
@@ -21,12 +22,18 @@
     <link href="Include/css/Bluesky.Resizer.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/Bluesky.Resizer.js" type="text/javascript"></script>
     <link href="BlueSky/themes/gray/css/Bluesky.Button.css" rel="stylesheet" type="text/css" />
+    
+        
+    <link href="Include/css/Bluesky.MusicPlayer.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.MusicPlayer.js" type="text/javascript"></script>
+    
+    <link href="Include/css/Bluesky.Tree.css" rel="stylesheet" type="text/css" />
+    <script src="Include/js/Bluesky.Tree.js" type="text/javascript"></script>
+    
     <link href="Include/css/layout.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/layout.js" type="text/javascript"></script>
     <script src="Include/js/utils.js" type="text/javascript"></script>
-    
-    <link href="Include/css/Bluesky.MusicPlayer.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.MusicPlayer.js" type="text/javascript"></script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -51,7 +58,7 @@
     </div>
     <div id="divButtom">
         <div id="divLeft">
-            <iframe id="MenuFrame" frameborder="0" src="Menu.aspx" scrolling="no" width="100%" height="100%"></iframe>
+            <!--<iframe id="MenuFrame" frameborder="0" src="Menu.aspx" scrolling="no" width="100%" height="100%"></iframe>-->
         </div>
         <div id="divRight"></div>
     </div>
