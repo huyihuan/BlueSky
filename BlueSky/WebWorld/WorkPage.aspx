@@ -7,9 +7,9 @@
     <title>工作区</title>
     <script src="BlueSky/Bluesky.js" type="text/javascript"></script>
     <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
-    <link href="Include/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
-    <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
+    <link href="BlueSky/themes/gray/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
+    <link href="BlueSky/themes/gray/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/plugins/Bluesky.Masklayer.js" type="text/javascript"></script>
     <link href="Include/css/tab.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/tabs.js" type="text/javascript"></script>
     <link href="Include/css/panel.css" rel="stylesheet" type="text/css" />

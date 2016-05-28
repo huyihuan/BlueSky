@@ -10,20 +10,20 @@
     <script src="BlueSky/Bluesky.js" type="text/javascript"></script>
     <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/form.js" type="text/javascript"></script>
-    <link href="Include/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Masklayer.js" type="text/javascript"></script>
-    <link href="Include/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
-    <link href="Include/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.Tabs.js" type="text/javascript"></script>
+    <link href="BlueSky/themes/gray/css/Bluesky.Masklayer.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/plugins/Bluesky.Masklayer.js" type="text/javascript"></script>
+    <link href="BlueSky/themes/gray/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
+    <link href="BlueSky/themes/gray/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/plugins/Bluesky.Tabs.js" type="text/javascript"></script>
     <script src="Include/js/utils.js" type="text/javascript"></script>
     <!--<link href="Include/css/menu.css" rel="stylesheet" type="text/css" />-->
     <!--<script src="Include/js/menu.js" type="text/javascript"></script>-->
     <link href="Include/css/panel.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/panel.js" type="text/javascript"></script>
-    <link href="Include/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
-    <script src="Include/js/Bluesky.MessageBox.js" type="text/javascript"></script>
-    <link href="Include/css/Bluesky.Tree.css" rel="stylesheet" type="text/css" />
-<script src="Include/js/Bluesky.Tree.js" type="text/javascript"></script>
+    <link href="BlueSky/themes/gray/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/plugins/Bluesky.MessageBox.js" type="text/javascript"></script>
+    <link href="BlueSky/themes/gray/css/Bluesky.Tree.css" rel="stylesheet" type="text/css" />
+<script src="BlueSky/plugins/Bluesky.Tree.js" type="text/javascript"></script>
     
 </head>
 <body onload="setTimeout(function() { Bluesky.component.Masklayer.remove(); }, 50);">
