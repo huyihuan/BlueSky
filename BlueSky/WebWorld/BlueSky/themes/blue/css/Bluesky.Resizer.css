@@ -6,9 +6,9 @@
     font-size:0px;
     overflow:hidden;
     background-color:#ffffff;
-    filter:alpha(Opacity=10);
-	-moz-opacity:0.1;
-	opacity:0.1;
+    filter:alpha(Opacity=0);
+	-moz-opacity:0;
+	opacity:0;
 }
 div.resizer-corner
 {

@@ -11,10 +11,10 @@
     <script src="BlueSky/plugins/Bluesky.Masklayer.js?r=234934852834.23445" type="text/javascript"></script>
     <link href="BlueSky/themes/gray/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="BlueSky/plugins/Bluesky.Tabs.js" type="text/javascript"></script>
-    <link href="BlueSky/themes/gray/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="BlueSky/plugins/Bluesky.Window.js?r=234934852834.23445" type="text/javascript"></script>
-    <%--<link href="BlueSky/themes/glass/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="BlueSky/themes/glass/plugins/Bluesky.Window.js" type="text/javascript"></script>--%>
+    <%--<link href="BlueSky/themes/gray/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/plugins/Bluesky.Window.js" type="text/javascript"></script>--%>
+    <link href="BlueSky/themes/glass/css/BlueSky.Window.css" rel="stylesheet" type="text/css" />
+    <script src="BlueSky/themes/glass/plugins/Bluesky.Window.js" type="text/javascript"></script>
     <link href="BlueSky/themes/gray/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
     <script src="BlueSky/plugins/Bluesky.MessageBox.js" type="text/javascript"></script>
     <script src="BlueSky/plugins/Bluesky.Drag.js" type="text/javascript"></script>
