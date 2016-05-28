@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title></title>
-    <script src="Include/js/Bluesky.js" type="text/javascript"></script>
+    <script src="BlueSky/Bluesky.js" type="text/javascript"></script>
     <link href="Include/css/menu.css" rel="stylesheet" type="text/css" />
     <link href="BlueSky/Bluesky.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/jquery-1.7.2.min.js" type="text/javascript"></script>

@@ -4,7 +4,7 @@
 * date: 2013-11-12
 **********************************************/
 (function() {
-    //Array类原型扩展
+    //Array类原型扩展: indexOf , indexOfProperty , remove , removeAt
     if (typeof Array.prototype.indexOf !== "function") {
         Array.prototype.indexOf = function(_item) {
             var length = this.length;
@@ -48,9 +48,25 @@
         }
     }
 
-    //String类型原型扩展
+    //String类型原型扩展: trim
     if (typeof String.prototype.trim !== "function") {
-        return this.toString().replace(" ", "");
+        String.prototype.trim = function() {
+            if ("" === this || " " === this) {
+                return "";
+            }
+            var temp = this, bStart = temp.charAt(0) === ' ', bEnd = temp.charAt(temp.length) === ' ';
+            while (bStart || bEnd) {
+                if (bStart) {
+                    temp = temp.slice(1);
+                }
+                if (bEnd) {
+                    temp = temp(0, temp.length);
+                }
+                bStart = temp.charAt(0) === ' ';
+                bEnd = temp.charAt(temp.length) === ' ';
+            }
+            return temp;
+        }
     }
 
 })();
@@ -70,7 +86,7 @@
 
     BlueSky.instance = BlueSky.prototype;
     BlueSky.extend = BlueSky.instance.extend = function() {
-        var options, key, src, copy, copyIsArray, clone,
+        var options, key, src, copy, copyIsArray = false, clone,
 		    target = arguments[0],
 		    i = 1,
 		    length = arguments.length,
@@ -98,11 +114,17 @@
             if ((options = arguments[i]) != null) {
                 for (key in options) {
                     copy = options[key];
-                    if (deep && copy && BlueSky.util.isPureObject(copy)) {
-                        src = target[key]; //如果对象不包含此属性Key，原型中包含，则此扩展将修改实例的原型结构影响所有的实例
-                        src = src && BlueSky.util.isPureObject(src) ? src : {};
+                    if (deep && copy && (BlueSky.util.isPureObject(copy) || (copyIsArray = BlueSky.util.isArray(copy)))) {
+                        src = target[key]; //如果对象不包含此属性Key，原型中包含，则此扩展将修改实例的原型结构，影响所有的实例
+                        if (copyIsArray) {
+                            copyIsArray = false;
+                            clone = src && BlueSky.util.isArray(src) ? src : [];
+                        }
+                        else {
+                            clone = src && BlueSky.util.isPureObject(src) ? src : {};
+                        }
 
-                        target[key] = BlueSky.extend(deep, src, copy);
+                        target[key] = BlueSky.extend(deep, clone, copy);
                     }
                     else if (copy !== undefined) {
                         target[key] = copy;
@@ -117,7 +139,7 @@
         String: {
             trim: function() {
                 if (arguments[0]) {
-                    return arguments[0].replace(" ", "");
+                    return arguments[0].trim();
                 }
             },
             toUpwer: function() {
@@ -141,9 +163,9 @@
                     els = document.querySelectorAll(selector);
                 }
                 else {
-                    //IE7一下浏览器支持
+                    //IE7及以下浏览器支持
                     if (selector.indexOf("#") == 0) {
-                        els = document.getElementById(selector);
+                        els = document.getElementById(selector.replace("#", ""));
                     }
                     else if (selector.indexOf(".") == 0) {
                         var a = document.all, len = a.length, c, ct = selector.replace(".", "");
@@ -279,9 +301,39 @@
 
                 return key === undefined || hasOwn.call(_object, key);
             },
-
+            isArray: function(_object) {
+                return BlueSky.util.type(_object) === "array";
+            },
             isFunction: function(_object) {
                 return typeof _object === "function";
+            },
+            parsePx2Int: function(_value) {
+                if (typeof _value !== "string")
+                    return _value;
+                _value = _value.replace("px", "");
+                return BlueSky.util.parseInt(_value, 0);
+            },
+            parseInt2Px: function(_value) {
+                if ("" === _value) {
+                    return "0px";
+                }
+                if (_value.toString().indexOf("px") == -1) {
+                    return _value + "px";
+                }
+                return _value;
+            },
+            getCamelStyle: function(_cssName) {
+                if ("" === _cssName || -1 === _cssName.indexOf("-")) {
+                    return _cssName;
+                }
+                var parts = _cssName.split("-"), count = parts.length, camelName;
+                for (var i = 0; i < count; i++) {
+                    if ("" === parts[i]) {
+                        continue;
+                    }
+                    camelName += (i == 0) ? parts[i] : (parts[i].charAt(0).toUpperCase() + parts[i].substr(1));
+                }
+                return camelName;
             }
         },
         getEventArg: function(e) {
@@ -326,6 +378,17 @@
             else {
                 return eval("(" + toJson + ")");
             }
+        },
+        stringify: function(json) {
+            if (JSON) {
+                return JSON.stringify(json);
+            }
+            else {
+                if (typeof json === "object" || typeof json === "array") {
+
+                }
+                return json + "";
+            }
         }
     });
 
@@ -340,7 +403,7 @@
             return this[index];
         },
         first: function() {
-            return BlueSky.G(this.element());
+            return BlueSky.G(this.element(0));
         },
         last: function() {
             return BlueSky.G(this.element(this.length - 1));
@@ -450,18 +513,6 @@
                     return _el.disabled;
                 });
             }
-        },
-
-        focus: function() {
-            return this.foreach(function(_el) {
-                return _el.focus();
-            });
-        },
-
-        select: function() {
-            return this.foreach(function(_el) {
-                return _el.select();
-            });
         }
     });
     //数据缓存
@@ -469,25 +520,30 @@
     BlueSky.extend({
         data: {},
         cache: function(_obj, _key, _value) {
-            if (null == _obj || undefined === _obj)
-                return;
             _key = _key.toString();
             if (_value === undefined) {
-                if (_obj.nodeType) {
+                if (_obj && _obj.nodeType) {
                     var GUID = _obj.getAttribute(uniqueCode);
                     if (undefined === GUID || null === GUID) {
                         return;
                     }
                     return this.data[GUID][_key];
                 } else {
-                    if (undefined === _obj[uniqueCode]) {
-                        return;
+                    if (_obj) {
+                        if (undefined === _obj[uniqueCode]) {
+                            return;
+                        }
+                        return _obj[uniqueCode][_key];
                     }
-                    return _obj[uniqueCode][_key];
+                    else {
+                        if (_key === undefined)
+                            return;
+                        return this.data[uniqueCode][_key];
+                    }
                 }
             }
             else {
-                if (_obj.nodeType) {
+                if (_obj && _obj.nodeType) {
                     var GUID = _obj.getAttribute(uniqueCode);
                     if (undefined === GUID || null === GUID) {
                         GUID = Math.random().toString();
@@ -497,14 +553,25 @@
                     this.data[GUID][_key] = _value;
                 }
                 else {
-                    if (_obj[uniqueCode] === undefined) {
-                        _obj[uniqueCode] = {};
+                    //如果传入obj，则在缓存存入obj对象中，否则存入全局数据对象中
+                    if (_obj) {
+                        if (_obj[uniqueCode] === undefined) {
+                            _obj[uniqueCode] = {};
+                        }
+                        _obj[uniqueCode][_key] = _value;
                     }
-                    _obj[uniqueCode][_key] = _value;
+                    else {
+                        if (_key === undefined)
+                            return;
+                        this.data[uniqueCode][_key] = _value;
+                    }
                 }
             }
         }
     });
+    //初始化数据对象Key : uniqueCode
+    BlueSky.data[uniqueCode] = {};
+
 
     BlueSky.instance.extend({
         cache: function(_key, _value) {
@@ -520,8 +587,60 @@
             }
         }
     });
+    BlueSky.support = (function() {
 
-    //样式操作模块
+    })();
+    var needAppendPxs = ["width", "height", "margin", "padding", "left", "top"];
+    BlueSky.css = (function() {
+        var currentStyle, getComputedStyle;
+        if (document.documentElement.currentStyle) {
+            currentStyle = function(_el, _cssArgs) {
+                var oValue;
+                if (_el.currentStyle) {
+                    oValue = _el.currentStyle[_cssArgs];
+                }
+                return oValue;
+            }
+        }
+        if (document.defaultView && document.defaultView.getComputedStyle) {
+            getComputedStyle = function(_el, _cssArgs) {
+                var defaultView;
+                if (!_el.ownerDocument || !(defaultView = _el.ownerDocument.defaultView)) {
+                    return undefined;
+                }
+                var computedStyle = defaultView.getComputedStyle(_el, null), oValue;
+                if (computedStyle) {
+                    oValue = computedStyle.getPropertyValue(_cssArgs);
+                }
+                return oValue;
+            }
+        }
+        return getComputedStyle || currentStyle;
+    })();
+
+    BlueSky.getSize = (function() {
+        var sizeProperty = { "width": "offsetWidth", "height": "offsetHeight" },
+            size2Padding = { "width": ["left", "right"], "height": ["top", "bottom"] },
+            getSize = function(_el, _cssArgs) {
+                var oValue = BlueSky.css(_el, _cssArgs), isPersent = oValue.indexOf("%") !== -1;
+                if ((isPersent || oValue === "auto") || (!isPersent && oValue === "0px")) {
+                    oValue = _el[sizeProperty[_cssArgs]];
+                }
+                else {
+                    oValue = BlueSky.util.parsePx2Int(oValue);
+                }
+
+                if (document.defaultView && document.defaultView.getComputedStyle) {
+                    BlueSky.foreach(size2Padding[_cssArgs], function(_elm) {
+                        oValue += BlueSky.util.parsePx2Int(BlueSky.css(_el, "padding-" + this));
+                        oValue += BlueSky.util.parsePx2Int(BlueSky.css(_el, "border-" + this + "-width"));
+                    }, _el);
+                }
+                return oValue;
+            }
+        return getSize;
+    })();
+
     BlueSky.instance.extend({
         hasClass: function(_className) {
             return this.attr("class").split(" ").indexOf(_className) != -1;
@@ -580,10 +699,10 @@
         },
 
         css: function(_cssArgs, _cssValue) {
-            var aComputedStyle = ["width", "height"];
             if (typeof _cssValue !== "undefined") {
+                _cssValue = _cssValue.toString();
                 return this.foreach(function(_el) {
-                    if (aComputedStyle.indexOf(_cssArgs) != -1 && _cssValue.toString().indexOf("px") == -1 && _cssValue.toString().indexOf("%") == -1) {
+                    if (needAppendPxs.indexOf(_cssArgs) != -1 && _cssValue.indexOf("px") == -1 && _cssValue.indexOf("%") == -1) {
                         _cssValue += "px";
                     }
                     _el["style"][_cssArgs] = _cssValue;
@@ -592,38 +711,15 @@
             else {
                 if (typeof _cssArgs === "string") {
                     return this.actionOne(function(_el) {
-                        var styleValue;
-                        if (_el.currentStyle) {
-                            styleValue = _el.currentStyle[_cssArgs];
-                        }
-                        else if (window.getComputedStyle) {
-                            styleValue = _el.ownerDocument.defaultView.getComputedStyle(_el, null)[_cssArgs];
-                        }
-                        else {
-                            styleValue = _el["style"][_cssArgs];
-                        }
-                        if (aComputedStyle.indexOf(_cssArgs) != -1 && typeof styleValue !== "undefined") {
-                            styleValue = styleValue.replace("px", "");
-                            var isPersent = styleValue.indexOf("%") !== -1;
-                            if (isPersent || styleValue === "auto") {
-                                styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
-                            }
-                            else if (!isPersent && styleValue === "0") {
-                                styleValue = _el["offset" + (_cssArgs === "width" ? "Width" : "Height")];
-                                styleValue = styleValue != 0 ? styleValue : 0;
-                            }
-                            else if (!isPersent && styleValue !== "auto") {
-                                styleValue = BlueSky.util.parseInt(styleValue, 0);
-                            }
-                        }
-                        return styleValue;
+                        var oValue = BlueSky.css(_el, _cssArgs);
+                        return oValue;
                     });
                 }
                 else {
                     return this.foreach(function(_el) {
                         for (var cssName in _cssArgs) {
                             var cssValue = _cssArgs[cssName];
-                            if (aComputedStyle.indexOf(cssName) != -1 && cssValue.toString().indexOf("px") == -1) {
+                            if (needAppendPxs.indexOf(cssName) != -1 && cssValue.toString().indexOf("px") == -1) {
                                 cssValue += "px";
                             }
                             _el["style"][cssName] = cssValue;
@@ -634,10 +730,20 @@
         },
 
         width: function(_value) {
+            if (typeof _value === "undefined") {
+                return this.actionOne(function(_el) {
+                    return BlueSky.getSize(_el, "width");
+                });
+            }
             return this.css("width", _value);
         },
 
         height: function(_value) {
+            if (typeof _value === "undefined") {
+                return this.actionOne(function(_el) {
+                    return BlueSky.getSize(_el, "height");
+                });
+            }
             return this.css("height", _value);
         },
         position: function() {
@@ -691,7 +797,11 @@
 
         children: function() {
             return this.actionOne(function(_el) {
-                return Bluesky(_el.children);
+                var els = [], len = _el.children.length;
+                for (var i = 0; i < len; i++) {
+                    els.push(_el.children[i]);
+                }
+                return Bluesky(els);
             });
         }
     });
@@ -750,6 +860,27 @@
             var closure = this;
             var once = function() { _fn(); closure.removeEvent(_eventName, once); }
             this.addEvent(_eventName, once);
+        },
+
+        click: function(_fn) {
+            if (undefined != _fn) {
+                return this.addEvent("click", _fn);
+            }
+            return this.foreach(function(_el) {
+                _el.click();
+            });
+        },
+
+        focus: function() {
+            return this.foreach(function(_el) {
+                return _el.focus();
+            });
+        },
+
+        select: function() {
+            return this.foreach(function(_el) {
+                return _el.select();
+            });
         }
     });
 
@@ -852,7 +983,7 @@
     }
     BlueSky.extend({ Ajax: function(args) {
         var defaultArgs = {
-            type: "get",
+            type: "GET",
             url: "",
             async: true,
             data: {},
@@ -866,6 +997,7 @@
             contentType: ""
         }
         args = BlueSky.extend(true, {}, defaultArgs, args);
+        args.type = args.type.toUpperCase();
 
         var req = getXmlHttpRequest();
         args.context = args.context || req;
@@ -893,10 +1025,12 @@
                 args.complete.call(args.context, req);
             }
         }
-        for (var key in args.data) {
-            if (args.url.indexOf("?") == -1)
-                args.url += "?";
-            args.url += "&" + getKeyValueEncode(key, args.data[key]);
+        if (args.type === "GET" && typeof args.data === "object") {
+            for (var key in args.data) {
+                if (args.url.indexOf("?") == -1)
+                    args.url += "?";
+                args.url += "&" + getKeyValueEncode(key, args.data[key]);
+            }
         }
         req.onreadystatechange = readyChange;
         req.open(args.type, args.url, args.async);
@@ -905,7 +1039,12 @@
                 return req;
             }
         }
-        req.send(args.type.toLowerCase() === "get" ? null : "");
+        if (args.type === "POST" || args.type === "PUT") {
+            req.send(args.data);
+        }
+        else {
+            req.send(null);
+        }
         if (args.onSended) {
             args.onSended.call(args.context, req);
         }
@@ -930,6 +1069,10 @@
                 BlueSky.cache(_el, "priv_display", _el.style.display);
                 _el.style.display = "none";
             });
+        },
+
+        isHidden: function() {
+            return this.css("display") == "none";
         },
 
         animate: function() {
@@ -980,19 +1123,28 @@
     });
     //组件库命名空间
     BlueSky.extend({
-        component: {
-            create: function() {
-                var comName = arguments.length >= 1 ? arguments[0] : undefined;
-                if (!comName)
-                    return;
-                var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
-                if (com.show) {
-                    com.show();
-                }
-                return com;
-            }
-        },
+        component: function() { },
         model: {}
+    });
+    BlueSky.extend(false, BlueSky.component, {
+        create: function() {
+            var comName = arguments.length >= 1 ? arguments[0] : undefined;
+            if (!comName)
+                return;
+            var com = new Bluesky.component[comName](arguments.length >= 2 ? arguments[1] : undefined);
+            if (com.show) {
+                com.show();
+            }
+            return com;
+        }
+    });
+    BlueSky.extend(false, BlueSky.component.prototype, {
+        dispose: function() {
+            for (name in this) {
+                this[name] = null;
+                delete this[name];
+            }
+        }
     });
 
     //创建别名
