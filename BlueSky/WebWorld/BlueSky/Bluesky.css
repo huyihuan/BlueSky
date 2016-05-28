@@ -524,33 +524,33 @@ Table.pager a
 }
 A.pager_first 
 {
-	background:url(icons/resultset_first.png) center center no-repeat;
+	background:url(icons/icons/resultset_first.png) center center no-repeat;
 	cursor:pointer;
                }
 A.pager_prev 
 {
-	background:url(icons/resultset_previous.png) center center no-repeat; 
+	background:url(icons/icons/resultset_previous.png) center center no-repeat; 
 	cursor:pointer;
 	}
 A.pager_next 
 {
-	background:url(icons/resultset_next.png) center center no-repeat; 
+	background:url(icons/icons/resultset_next.png) center center no-repeat; 
 	cursor:pointer;
 	}
 A.pager_last 
 {
-	background:url(icons/resultset_last.png) center center no-repeat; 
+	background:url(icons/icons/resultset_last.png) center center no-repeat; 
 	cursor:pointer;
 	}
 A.pager_refresh 
 {
-	background:url(icons/arrow_refresh.png) center center no-repeat; 
+	background:url(icons/icons/arrow_refresh.png) center center no-repeat; 
 	cursor:pointer;
 	}
-A.pager_first_disabled{ background:url(icons/resultset_first.png) center center no-repeat;}
-A.pager_prev_disabled{ background:url(icons/resultset_previous.png) center center no-repeat;}
-A.pager_next_disabled{ background:url(icons/resultset_next.png) center center no-repeat;}
-A.pager_last_disabled{ background:url(icons/resultset_last.png) center center no-repeat;}
+A.pager_first_disabled{ background:url(icons/icons/resultset_first.png) center center no-repeat;}
+A.pager_prev_disabled{ background:url(icons/icons/resultset_previous.png) center center no-repeat;}
+A.pager_next_disabled{ background:url(icons/icons/resultset_next.png) center center no-repeat;}
+A.pager_last_disabled{ background:url(icons/icons/resultset_last.png) center center no-repeat;}
 
 A.pager_first:hover,A.pager_prev:hover,A.pager_next:hover,A.pager_last:hover,A.pager_refresh:hover
 {

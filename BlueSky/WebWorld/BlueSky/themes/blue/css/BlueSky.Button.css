@@ -180,7 +180,7 @@ A.icon-return
 }
 A.icon-exist
 {
-    background-image:url("../../../icons/cancel.png");
+    background-image:url(../../../icons/icons/cancel.png);
     
 }
 A.icon-close
@@ -189,17 +189,17 @@ A.icon-close
 }
 A.icon-set
 {
-    background-image:url("../../../icons/cog.png");
+    background-image:url(../../../icons/icons/cog.png);
 }
 A.icon-refresh
 {
-	background-image:url("../../../icons/arrow_refresh.png");
+	background-image:url(../../../icons/icons/arrow_refresh.png);
 }
 A.icon-user
 {
-	background-image:url("../../../icons/user.png");
+	background-image:url(../../../icons/icons/user.png);
 }
 A.icon-music
 {
-	background-image:url("../../../icons/music.png");
+	background-image:url(../../../icons/icons/music.png);
 }
