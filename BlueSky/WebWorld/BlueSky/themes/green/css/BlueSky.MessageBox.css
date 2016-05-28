@@ -1,0 +1,29 @@
+﻿div.messagebox-footer
+{
+	width:100%;
+	height:36px;
+    text-align:right;
+    vertical-align:middle;
+    line-height:36px;
+    overflow:hidden;
+    background-color:#ffffff;
+    position:absolute;
+    bottom:0px;
+    left:0px;
+}
+div.messagebox-content
+{
+	width:100%;
+	text-align:center;
+	line-height:20px;
+	overflow:auto;
+}
+input.btn-messagebox-ok
+{
+	margin-right:10px;	
+}
+
+input.btn-messagebox-cancel
+{
+	margin-right:10px;	
+}

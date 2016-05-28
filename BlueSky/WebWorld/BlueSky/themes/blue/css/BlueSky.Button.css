@@ -13,11 +13,12 @@
 	letter-spacing:2px;
 	font-weight:normal;
 	color:#222222;
+	
 }
 A.buttonMode-normal
 {
-	background-color:#E6EFFA;
-	border:solid 1px #B7D8E5;
+	background-color:#EAEEF4;
+	border:solid 1px #B5AFAF;
 }
 A.buttonMode-plain
 {
@@ -26,8 +27,8 @@ A.buttonMode-plain
 }
 A.buttonMode-normal:hover
 {
-	background-color:#EDF5FA;
-	border:solid 1px #B7D8E5;
+	background-color:#F2F2F2;
+	border:solid 1px #C5AFAF;
 }
 A.buttonMode-plain:hover
 {
@@ -67,15 +68,15 @@ A.buttonNormalBorder-single
 }
 A.buttonNormalBorder-3D
 {
-	border-color:#B7D8E5;
-	border-top-color:#D6EFF7;
-	border-left-color:#D6EFF7;
+	border-color:#B5AFAF;
+	border-top-color:#E5E5E5;
+	border-left-color:#E5E5E5;
 }
 A.buttonNormalBorder-3D:hover
 {
-	border-color:#B7D8E5;
-	border-right-color:#D6EFF7;
-	border-bottom-color:#D6EFF7;
+	border-color:#B5AFAF;
+	border-right-color:#E5E5E5;
+	border-bottom-color:#E5E5E5;
 }
 A.buttonNormalBorder-dashed
 {
@@ -126,10 +127,6 @@ A.iconPosition-left
 	padding-left:24px;
 	padding-right:5px;
 	background-position:4px center;
-}
-A.iconPosition-left:hover
-{
-	background-position:4px 40%;
 }
 A.iconPosition-top
 {
@@ -183,7 +180,7 @@ A.icon-return
 }
 A.icon-exist
 {
-    background-image:url("../../icons/cancel.png");
+    background-image:url("../../../icons/cancel.png");
     
 }
 A.icon-close
@@ -192,13 +189,17 @@ A.icon-close
 }
 A.icon-set
 {
-    background-image:url("../../icons/cog.png");
+    background-image:url("../../../icons/cog.png");
 }
 A.icon-refresh
 {
-	background-image:url("../../icons/arrow_refresh.png");
+	background-image:url("../../../icons/arrow_refresh.png");
 }
 A.icon-user
 {
-	background-image:url("../../icons/user.png");
+	background-image:url("../../../icons/user.png");
+}
+A.icon-music
+{
+	background-image:url("../../../icons/music.png");
 }

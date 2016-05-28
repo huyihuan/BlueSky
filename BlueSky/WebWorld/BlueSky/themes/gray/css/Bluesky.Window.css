@@ -3,27 +3,38 @@ div.window-popup
 {
     width:300px;
     height:200px;
-    background-color:#ffffff;
+    background-color:#C6CFD5;
     border:solid 1px #999999;
-
     position:absolute;
     left:100px;
     top:100px;
     margin:0px;
     padding:0px;
-    border-radius:5px 5px 0px 0px;
-	-moz-border-radius:5px 5px 0px 0px;
-	box-shadow: 10px 10px 10px #888888;
-	-moz-box-shadow:10px 10px 10px #888888;
+    border-radius:5px 5px 5px 5px;
+	-moz-border-radius:5px 5px 5px 5px;
+	/*box-shadow:10px 10px 50px 20px #888888;*/
+	/*-moz-box-shadow:10px 10px 50px 20px #888888;*/
+	box-shadow:0px 0px 1px 1px #888888;
+	-moz-box-shadow:0px 0px 1px 1px #888888;
+	overflow:hidden;
+	border-top-color:#FFFFFF;
+	border-left-color:#FFFFFF;
+	/*background:url(../image/WindowImages/Header.png) repeat;*/
+}
+div.window-flicker
+{
+	background-color:#E8ECF1 !important;
 }
 div.window-normal
 {
 	z-index:9990;
-	}
+	background-color:#E8ECF1;
+}
 div.window-active
 {
 	z-index:9991;
-	}
+	background-color:#C6CFD5;
+}
 div.window-move-border
 {
     position:absolute;
@@ -32,7 +43,7 @@ div.window-move-border
     height:204px;
     left:98px;
     top:98px;
-    z-index:20001;
+    z-index:9999;
     filter:alpha(Opacity=30);
 	-moz-opacity:0.3;
 	opacity:0.3;
@@ -43,14 +54,14 @@ div.window-move-panel
     width:100%;
     height:100%;
     position:absolute;
-    z-index:20000;
+    z-index:9998;
     left:0px;
     top:0px;
     border:none;
     background-color:#ffffff;
     filter:alpha(Opacity=1);
-	-moz-opacity:0.01;
-	opacity:0.01;
+	-moz-opacity:0.1;
+	opacity:0.1;
 }
 div.window-title
 {
@@ -61,18 +72,29 @@ div.window-title
     font-size:13px;
     text-indent:5px;
     font-weight:bold;
-    border-bottom:solid 1px #e2e2e2;
-    background:url(../image/pop_title_bg.gif) left top repeat-x;
+    /*border-bottom:solid 1px #e2e2e2;*/
+    /*border-bottom-color:#C6CFD5;*/
     margin:0px;
     padding:0px;
     cursor:default;
     overflow:hidden;
-    
     border-radius:5px 5px 0px 0px;
 	-moz-border-radius:5px 5px 0px 0px;
 	text-shadow:0px 1px 0px #fff,0px -0.5px 0px #222222;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */ /* No support for these yet, use at own risk */
+	-o-user-select: none;
+	user-select: none; 
 }
-div.window-title-hover
+div.window-title-normal
+{
+    background:url(../image/pop_title_bg.gif) left top repeat-x;
+    filter:alpha(Opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+}
+div.window-title-active
 {
     background:url(../image/pop_title_active_bg.gif) left top repeat-x;
 }
@@ -94,11 +116,15 @@ img.window-icon
 div.window-main
 {
     width:100%;
+    position:absolute;
     background-color:#ffffff;
     border:none;
-    margin:0px;
+    margin-top:0px;
     padding:0px;
     overflow:hidden;
+    border:0px;
+    border-top:solid 1px #AFAFAF;
+    border-left:solid 1px #AFAFAF;
     }
 div.window-main iframe
 {
@@ -154,7 +180,51 @@ div.window-button-close-over
 {
     background-position:-65px -31px;
 }
-
+/*A 窗体按钮*/
+a.window-button
+{
+	display:block;
+    width:16px;
+    height:16px;
+    border:none;
+    float:right;
+    margin:4px 5px 0 0;
+    _margin:4px 3px 0 0;
+    background-image:url(../image/pop_window_button_bg.png);
+    cursor:pointer;
+}
+a.window-button-min
+{
+    background-position:-7px -61px;
+}
+a.window-button-min:hover
+{
+    background-position:-7px -32px;
+}
+a.window-button-normal
+{
+    background-position:-95px -61px;
+}
+a.window-button-normal:hover
+{
+    background-position:-95px -32px;
+}
+a.window-button-max
+{
+    background-position:-36px -61px;
+}
+a.window-button-max:hover
+{
+    background-position:-36px -31px;
+}
+a.window-button-close
+{
+    background-position:-65px -61px;
+}
+a.window-button-close:hover
+{
+    background-position:-65px -31px;
+}
 /*Window Resize Styles*/
 div.window-resize-border
 {
@@ -163,10 +233,10 @@ div.window-resize-border
     z-index:9994;
     font-size:0px;
     overflow:hidden;
-    background-color:#ffffff;
-    filter:alpha(Opacity=10);
-	-moz-opacity:0.1;
-	opacity:0.1;
+    background-color:Transparent;
+    filter:alpha(Opacity=0);
+	-moz-opacity:0.0;
+	opacity:0.0;
 }
 div.window-resize-corner
 {

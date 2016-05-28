@@ -7,15 +7,26 @@ DIV.bluesky-tabs-wrapper
 	overflow:hidden;
 	background:#F3F5F5;
 }
-DIV.bluesky-tabs-bar
+DIV.bluesky-tabs-barwrapper
 {
-	width:5000px;
+	width:100%;
 	height:25px;
 	border:0px;
 	padding:0px;
 	margin:0px;
-	z-index:2px;
 	position:relative;
+	left:0;
+	top:0;
+}
+DIV.bluesky-tabs-bar
+{
+	width:3000px;
+	height:25px;
+	border:0px;
+	padding:0px;
+	margin:0px;
+	z-index:2;
+	position:absolute;
 	left:0;
 	top:0;
 }
@@ -28,8 +39,63 @@ DIV.bluesky-tabs-bottom
 	border:none;
 	background-color:#F5F5F5;
 	border-top:1px solid #BBBBBB;
-	z-index:1px;
+	z-index:1;
 }
+DIV.bluesky-tabs-mover
+{
+	width:20px;
+	height:24px;
+	border:1px solid #BBBBBB;
+	position:absolute;
+	top:0;
+	z-index:3;
+	background-color:#E7E8EA;
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+DIV.bluesky-tabs-mover-left-normal
+{
+	background-image: url(../image/icons/control_rewind_blue.png);
+	border-radius:0 3px 3px 0px;
+	-moz-border-radius:0 3px 3px 0px;
+	border-left:none;
+	left:0;
+	cursor:pointer;
+}
+DIV.bluesky-tabs-mover-left-disabled
+{
+	background-image: url(../image/icons/control_rewind.png);
+	border-radius:0 3px 3px 0px;
+	-moz-border-radius:0 3px 3px 0px;
+	border-left:none;
+	left:0;
+	cursor:default;
+}
+DIV.bluesky-tabs-mover-right-normal
+{
+	background-image: url(../image/icons/control_fastforward_blue.png);
+	border-radius:3px 0px 0px 3px;
+	-moz-border-radius:3px 0px 0px 3px;
+	border-right:none;
+	right:0;
+	cursor:pointer;
+}
+
+DIV.bluesky-tabs-mover-right-disabled
+{
+	background-image: url(../image/icons/control_fastforward.png);
+	border-radius:3px 0px 0px 3px;
+	-moz-border-radius:3px 0px 0px 3px;
+	border-right:none;
+	right:0;
+	cursor:default;
+}
+DIV.bluesky-tabs-mover-left-normal:hover,DIV.bluesky-tabs-mover-right-normal:hover
+{
+	background-color:#F7F7F7;
+}
+
+
 DIV.bluesky-tabs-content-node
 {
 	width:100%;
@@ -38,8 +104,6 @@ DIV.bluesky-tabs-content-node
 	padding:0px;
 	margin:0px;
 	overflow:auto;
-	
-	
 }
 DIV.bluesky-tabs-content-wrapper
 {
@@ -109,7 +173,16 @@ A.bluesky-tab-active
 	background:#F5F5F5 url(../image/Panel/panel_title_bg_o2o.gif) left top repeat-x;
 	text-decoration:none;
 }
-
+A.bluesky-tab-disabled
+{
+	color:#A0A0A0;
+}
+A.bluesky-tab-disabled img
+{
+	filter:alpha(Opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+}
 A.bluesky-tab-close
 {
 	width:auto;
