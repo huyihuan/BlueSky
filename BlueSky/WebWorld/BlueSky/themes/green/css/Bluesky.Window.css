@@ -19,7 +19,7 @@ div.window-popup
 	overflow:hidden;
 	border-top-color:#FFFFFF;
 	border-left-color:#FFFFFF;
-	/*background:url(../image/WindowImages/Header.png) repeat;*/
+	/*background:url(../../../icons/WindowImages/Header.png) repeat;*/
 }
 div.window-flicker
 {
@@ -89,14 +89,14 @@ div.window-title
 }
 div.window-title-normal
 {
-    background:url(../image/pop_title_bg.gif) left top repeat-x;
+    background:url(../../../icons/pop_title_bg.gif) left top repeat-x;
     filter:alpha(Opacity=50);
 	-moz-opacity:0.5;
 	opacity:0.5;
 }
 div.window-title-active
 {
-    background:url(../image/pop_title_active_bg.gif) left top repeat-x;
+    background:url(../../../icons/pop_title_active_bg.gif) left top repeat-x;
 }
 
 div.window-title-text
@@ -145,7 +145,7 @@ div.window-button
     float:right;
     margin:4px 5px 0 0;
     _margin:4px 3px 0 0;
-    background-image:url(../image/pop_window_button_bg.png);
+    background-image:url(../../../icons/pop_window_button_bg.png);
     cursor:pointer;
 }
 div.window-button-min-out
@@ -190,7 +190,7 @@ a.window-button
     float:right;
     margin:4px 5px 0 0;
     _margin:4px 3px 0 0;
-    background-image:url(../image/pop_window_button_bg.png);
+    background-image:url(../../../icons/pop_window_button_bg.png);
     cursor:pointer;
 }
 a.window-button-min
@@ -313,7 +313,7 @@ div.taskbar
     position:absolute;
     border:none;
     border-top:solid 1px #efefff;
-    background:url(../image/topbackgroundimage.png) left top repeat-x;
+    background:url(../../../icons/topbackgroundimage.png) left top repeat-x;
     margin:0px;
     padding:0px;
     z-index:9993;
@@ -330,7 +330,7 @@ input.btnWindowHome
     margin-top:1px;
     margin-left:2px;
     margin-right:5px;
-    background:#D4D0C8 url(../image/windowsHome.png) center center no-repeat;
+    background:#D4D0C8 url(../../../icons/windowsHome.png) center center no-repeat;
 }
 
 div.taskitem

@@ -55,7 +55,7 @@ DIV.bluesky-tabs-mover
 }
 DIV.bluesky-tabs-mover-left-normal
 {
-	background-image: url(../image/icons/control_rewind_blue.png);
+	background-image: url(../../../icons/icons/control_rewind_blue.png);
 	border-radius:0 3px 3px 0px;
 	-moz-border-radius:0 3px 3px 0px;
 	border-left:none;
@@ -64,7 +64,7 @@ DIV.bluesky-tabs-mover-left-normal
 }
 DIV.bluesky-tabs-mover-left-disabled
 {
-	background-image: url(../image/icons/control_rewind.png);
+	background-image: url(../../../icons/icons/control_rewind.png);
 	border-radius:0 3px 3px 0px;
 	-moz-border-radius:0 3px 3px 0px;
 	border-left:none;
@@ -73,7 +73,7 @@ DIV.bluesky-tabs-mover-left-disabled
 }
 DIV.bluesky-tabs-mover-right-normal
 {
-	background-image: url(../image/icons/control_fastforward_blue.png);
+	background-image: url(../../../icons/icons/control_fastforward_blue.png);
 	border-radius:3px 0px 0px 3px;
 	-moz-border-radius:3px 0px 0px 3px;
 	border-right:none;
@@ -83,7 +83,7 @@ DIV.bluesky-tabs-mover-right-normal
 
 DIV.bluesky-tabs-mover-right-disabled
 {
-	background-image: url(../image/icons/control_fastforward.png);
+	background-image: url(../../../icons/icons/control_fastforward.png);
 	border-radius:3px 0px 0px 3px;
 	-moz-border-radius:3px 0px 0px 3px;
 	border-right:none;
@@ -113,7 +113,7 @@ DIV.bluesky-tabs-content-wrapper
 	border-top:none;
 	padding:0px;
 	margin:0px;
-	background:#FFFFFF url(../image/txt_backimage.gif) left top repeat-x;
+	background:#FFFFFF url(../../../icons/txt_backimage.gif) left top repeat-x;
 	font-size:12px;
 	color:#000000;
 	overflow:hidden;
@@ -163,14 +163,14 @@ A.bluesky-tab-normal
 {
 	border:1px solid #BBBBBB;
 	border-bottom:none;
-	background:#F5F5F5 url(../image/Panel/panel_title_bg.gif) left top repeat-x;
+	background:#F5F5F5 url(../../../icons/Panel/panel_title_bg.gif) left top repeat-x;
 }
 
 A.bluesky-tab-active
 {
 	border:1px solid #BBBBBB;
 	border-bottom-color:#F5F5F5;
-	background:#F5F5F5 url(../image/Panel/panel_title_bg_o2o.gif) left top repeat-x;
+	background:#F5F5F5 url(../../../icons/Panel/panel_title_bg_o2o.gif) left top repeat-x;
 	text-decoration:none;
 }
 A.bluesky-tab-disabled

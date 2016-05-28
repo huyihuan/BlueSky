@@ -43,14 +43,14 @@
 .tree-node-head-normal:hover
 {
     border:solid 1px #999999;
-	background: url(../image/pop_title_bg.gif) left top repeat-x;
+	background: url(../../../icons/pop_title_bg.gif) left top repeat-x;
 }
 .tree-node-head-active
 {
     width:auto;
     height:18px;
     border:solid 1px #999999;
-    background: url(../image/pop_title_bg.gif) left top repeat-x;
+    background: url(../../../icons/pop_title_bg.gif) left top repeat-x;
     cursor:pointer;
     padding-left:2px;
     padding-right:5px;
@@ -63,7 +63,7 @@
     border:none;
     padding-left:20px;
     line-height:18px;
-    background:url(../image/TreeImages/leaf.gif) left center no-repeat;
+    background:url(../../../icons/TreeImages/leaf.gif) left center no-repeat;
     }
 .tree-node-folder-normal
 {
@@ -72,7 +72,7 @@
     border:none;
     padding-left:20px;
     line-height:18px;
-    background:url(../image/TreeImages/folder_normal.gif) left center no-repeat;
+    background:url(../../../icons/TreeImages/folder_normal.gif) left center no-repeat;
     }
 .tree-node-folder-active
 {
@@ -81,7 +81,7 @@
     border:none;
     padding-left:20px;
     line-height:18px;
-    background:url(../image/TreeImages/folder_active.gif) left center no-repeat;
+    background:url(../../../icons/TreeImages/folder_active.gif) left center no-repeat;
     }
 .tree-node-head-icon-leaf input,.tree-node-folder-normal input,.tree-node-folder-active input
 {
@@ -107,24 +107,24 @@
     outline:none;
     }
     
-.tree-node-dot-plus{background:url(../image/TreeImages/plus.gif) top right no-repeat;}
-.tree-node-dot-minus{background:url(../image/TreeImages/minus.gif) top right no-repeat;}
-.tree-node-dot-first-plus{background:url(../image/TreeImages/firstPlus.gif) top right no-repeat;}
-.tree-node-dot-last-plus{background:url(../image/TreeImages/lastPlus.gif) top right no-repeat;}
-.tree-node-dot-first-minus{background:url(../image/TreeImages/firstMinus.gif) top right no-repeat;}
-.tree-node-dot-last-minus{background:url(../image/TreeImages/lastMinus.gif) top right no-repeat;}
-.tree-node-dot-one-minus{background:url(../image/TreeImages/oneMinus.gif) top right no-repeat;}
-.tree-node-dot-one-plus{background:url(../image/TreeImages/onePlus.gif) top right no-repeat;}
+.tree-node-dot-plus{background:url(../../../icons/TreeImages/plus.gif) top right no-repeat;}
+.tree-node-dot-minus{background:url(../../../icons/TreeImages/minus.gif) top right no-repeat;}
+.tree-node-dot-first-plus{background:url(../../../icons/TreeImages/firstPlus.gif) top right no-repeat;}
+.tree-node-dot-last-plus{background:url(../../../icons/TreeImages/lastPlus.gif) top right no-repeat;}
+.tree-node-dot-first-minus{background:url(../../../icons/TreeImages/firstMinus.gif) top right no-repeat;}
+.tree-node-dot-last-minus{background:url(../../../icons/TreeImages/lastMinus.gif) top right no-repeat;}
+.tree-node-dot-one-minus{background:url(../../../icons/TreeImages/oneMinus.gif) top right no-repeat;}
+.tree-node-dot-one-plus{background:url(../../../icons/TreeImages/onePlus.gif) top right no-repeat;}
 
 .tree-node-branch-line
 {
-    background-image:url(../image/TreeImages/line.gif);
+    background-image:url(../../../icons/TreeImages/line.gif);
     background-position:9px 1px;
     background-repeat:repeat-y;
 }
-.tree-node-branch-middle{background:url(../image/TreeImages/middleLine.gif) top right no-repeat;}
-.tree-node-branch-last{background:url(../image/TreeImages/lastLine.gif) top right no-repeat;}
-.tree-node-branch-first{background:url(../image/TreeImages/firstLine.gif) top right no-repeat;}
+.tree-node-branch-middle{background:url(../../../icons/TreeImages/middleLine.gif) top right no-repeat;}
+.tree-node-branch-last{background:url(../../../icons/TreeImages/lastLine.gif) top right no-repeat;}
+.tree-node-branch-first{background:url(../../../icons/TreeImages/firstLine.gif) top right no-repeat;}
 .tree-node-branch-empty{background:#FFFFFF;}
 .tree-node-branch-common
 {

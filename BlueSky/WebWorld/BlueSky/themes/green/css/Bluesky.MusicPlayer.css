@@ -110,7 +110,7 @@ A.bluesky-musicplayer-previous
     float:left;
     cursor:pointer;
     margin:0px;
-    background:url(../image/MusicPlayer/Button_First.png) center center no-repeat;
+    background:url(../../../icons/MusicPlayer/Button_First.png) center center no-repeat;
 	
 }
 A.bluesky-musicplayer-next
@@ -121,7 +121,7 @@ A.bluesky-musicplayer-next
     float:left;
     cursor:pointer;
     margin:0px 0px 0px 10px;
-    background:url(../image/MusicPlayer/Button_Last.png) center center no-repeat;
+    background:url(../../../icons/MusicPlayer/Button_Last.png) center center no-repeat;
 	
 }
 A.bluesky-musicplayer-play
@@ -132,7 +132,7 @@ A.bluesky-musicplayer-play
     float:left;
     cursor:pointer;
     margin:0px 0px 0px 10px;
-    background:url(../image/MusicPlayer/Button_Play_Pause.png) center center no-repeat;
+    background:url(../../../icons/MusicPlayer/Button_Play_Pause.png) center center no-repeat;
 	
 }
 A.bluesky-musicplayer-pause
@@ -143,6 +143,6 @@ A.bluesky-musicplayer-pause
     float:left;
     cursor:pointer;
     margin:0px 0px 0px 10px;
-    background:url(../image/MusicPlayer/Button_Rec.png) center center no-repeat;
+    background:url(../../../icons/MusicPlayer/Button_Rec.png) center center no-repeat;
 	
 }
