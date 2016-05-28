@@ -22,7 +22,7 @@
                 parent: "panel1",
                 width: "100%",
                 height: "100%",
-                splitPanel: [{ title: "博客园移动版", url: "http://m.cnblogs.com"}]
+                splitPanel: [{ title: "MSDN", url: "http://m.cnblogs.com"}]
             });
 
             var panel2 = new BlueSky.Panel();

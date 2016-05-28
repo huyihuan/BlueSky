@@ -7,13 +7,14 @@
     });
 
     function selectFunction() {
-        top.Bluesky.component.create("Window", {
+        var txtFunctionName = Bluesky("#<%=txt_FunctionName.ClientID %>");
+        var userWindows = top.Bluesky.component.create("Window", {
             width: 400,
             height: 400,
             title: "选择系统功能",
             renderTo: top.document.body,
             loader: {
-                url: "<%=strFunctionSelectUrl %>"
+                //url: "<%=strFunctionSelectUrl %>"
             },
             icon: {
                 show : false
@@ -21,6 +22,24 @@
             resizeable: false,
             moveable: true
         });
+        var menuTree = new Bluesky.component.Tree({
+            renderTo: userWindows.nodes.main,
+            width: "100%",
+            height: "100%",
+            showCheckBox: false,
+            showRootNode: false,
+            loader: {
+                url: "/Server/ServerRouting.ashx",
+                params: { action: "GetFunctions" }
+            },
+            onNodeSelected: function(_node) {
+                if (_node.childrenCount() == 0 && _node.data) {
+                    Bluesky("#<%=txt_FunctionName.ClientID %>").value(_node.text);
+                    userWindows.close();
+                }
+            }
+        });
+        menuTree.init();
     }
 </script>
 <table  cellpadding="0" cellspacing="0" width="100%">
@@ -35,7 +54,7 @@
                         <td nowrap>
                             操作名称：<input type="text" class="txt-normal" id="txt_Name" runat="server" />&nbsp;&nbsp;
                             Key：<input type="text" class="txt-normal"  id="txt_Key" runat="server" />&nbsp;&nbsp;
-                            所属功能：<input type="text" class="txt-normal" id="txt_FunctionName" runat="server" /><input type="button" class="btn-normal btn-select-noleft" id="btn_SelectFunction" value="..." onclick="selectFunction();" />&nbsp;&nbsp;
+                            所属功能：<input type="text" class="txt-normal txt-disabled" id="txt_FunctionName" runat="server" /><input type="button" class="btn-normal btn-select-noleft" id="btn_SelectFunction" value="..." onclick="selectFunction();" />&nbsp;&nbsp;
                             <input type="button" id="btn_Search" runat="server" class="btn-normal" onserverclick="btn_Search_Click" value="查 询" />
                         </td>
                     </tr>

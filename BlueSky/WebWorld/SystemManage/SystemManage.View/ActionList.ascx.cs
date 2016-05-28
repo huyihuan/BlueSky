@@ -31,10 +31,15 @@ namespace WebWorld.SystemManage
             string strFilter = "1=1" + (nFunctionId > 0 ? " and FunctionId=" + nFunctionId : "");
             string strName = txt_Name.Value.Trim();
             string strKey = txt_Key.Value.Trim();
+            string strFunctionName = txt_FunctionName.Value.Trim();
+
             if (!strName.IsNullOrEmpty())
                 strFilter += string.Format(" and Name like '%{0}%'", strName);
             if (!strKey.IsNullOrEmpty())
                 strFilter += string.Format(" and [Key] like '%{0}%'", strKey);
+            if (!strFunctionName.IsNullOrEmpty())
+                strFilter += string.Format(" and [FunctionId] in (select id from SystemFunction where Name='{0}')", strFunctionName);
+
             PagerNavication.RecordsCount = EntityAccess<SystemAction>.Access.Count(strFilter);
             SystemAction[] al = SystemAction.List(strFilter, "", PagerNavication.PageIndex, PagerNavication.PageSize);
             rptItems.DataSource = al;

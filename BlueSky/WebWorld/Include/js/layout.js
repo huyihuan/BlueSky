@@ -48,7 +48,7 @@ var layout = {
 	                    closeable: false,
 	                    showIcon: true,
 	                    iconURL: "include/image/icons/house.png",
-	                    html: "<div style='height:5px;'></div>"
+	                    html: ""
 	                },
 	                {
 	                    title: "",
@@ -86,7 +86,7 @@ var layout = {
                     var args = {
                         title: _node.data.name,
                         windowKey: _node.value,
-                        url: "Window.aspx?fn=" + _node.value
+                        url: "Window.aspx?fn=" + _node.value + "&r=" + Math.random()
                     };
                     top.layout.goWindow(args);
                 }

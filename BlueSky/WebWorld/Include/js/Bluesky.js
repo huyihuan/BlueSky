@@ -66,7 +66,7 @@
                 bEnd = temp.charAt(temp.length) === ' ';
             }
             return temp;
-        } 
+        }
     }
 
 })();
@@ -385,7 +385,7 @@
             }
             else {
                 if (typeof json === "object" || typeof json === "array") {
-                    
+
                 }
                 return json + "";
             }

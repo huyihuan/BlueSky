@@ -178,6 +178,13 @@
     <Content Include="WorkPage.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompressGzip.aspx.cs">
+      <DependentUpon>CompressGzip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompressGzip.aspx.designer.cs">
+      <DependentUpon>CompressGzip.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Desktop.aspx.cs">
       <DependentUpon>Desktop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1563,6 +1570,7 @@
     <Content Include="BlueSky\themes\green\css\Bluesky.SplitPanel.css" />
     <Content Include="BlueSky\themes\green\css\Bluesky.Tabs.css" />
     <Content Include="BlueSky\themes\green\css\Bluesky.Window.css" />
+    <Content Include="CompressGzip.aspx" />
     <Content Include="Include\css\Bluesky.MusicPlayer.css" />
     <Content Include="Include\css\Bluesky.Tree.css" />
     <Content Include="Include\js\Bluesky.MusicPlayer.js" />

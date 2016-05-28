@@ -27,7 +27,8 @@
     }
     //在Document完成加载加载后POST界面整体性能参数
     perf.postPage = function() {
-        var timmings = Bluesky.extend(false, {}, window.performance.timing);
+        //var timmings = Bluesky.extend(false, {}, window.performance.timing);
+        var timmings = window.performance.timing;
         if (!timmings) {
             return;
         }
@@ -37,9 +38,8 @@
             data: Bluesky.stringify(timmings)
         });
     }
-    perf.submitInterval = setInterval(function() {
-        //perf.postResource(); 
-    }, 10);
+    //perf.submitInterval = setInterval(perf.postResource, 10);
+    perf.submitInterval = setInterval(function() { }, 10);
     Bluesky.ready(function() {
         //perf.postResource();
         perf.postPage();
