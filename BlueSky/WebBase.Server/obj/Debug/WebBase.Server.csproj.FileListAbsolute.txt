@@ -1,9 +1,0 @@
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\WebBase.Server.dll
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\WebBase.Server.pdb
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\BlueSky.dll
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\WebBase.dll
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\BlueSky.pdb
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\bin\Debug\WebBase.pdb
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\obj\Debug\ResolveAssemblyReference.cache
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\obj\Debug\WebBase.Server.dll
-E:\GitHub\BlueSky\BlueSky\WebBase.Server\obj\Debug\WebBase.Server.pdb

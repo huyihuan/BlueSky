@@ -1,7 +1,0 @@
-E:\GitHub\BlueSky\BlueSky\WebBaseServer.Interface\bin\Debug\WebBaseServer.Interface.dll
-E:\GitHub\BlueSky\BlueSky\WebBaseServer.Interface\bin\Debug\WebBaseServer.Interface.pdb
-E:\GitHub\BlueSky\BlueSky\WebBaseServer.Interface\obj\Debug\ResolveAssemblyReference.cache
-E:\GitHub\BlueSky\BlueSky\WebBaseServer.Interface\obj\Debug\WebBaseServer.Interface.dll
-E:\GitHub\BlueSky\BlueSky\WebBaseServer.Interface\obj\Debug\WebBaseServer.Interface.pdb
-E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebBaseServer.Interface.dll
-E:\GitHub\BlueSky\BlueSky\WebWorld\UsingDll\WebBaseServer.Interface.pdb
