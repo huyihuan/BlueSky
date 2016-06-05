@@ -5,44 +5,50 @@
     <script src="BlueSky/Bluesky.js" type="text/javascript"></script>
     <link href="Bluesky/Bluesky.css" rel="stylesheet" type="text/css" />
     <script src="BlueSky/plugins/Bluesky.Performance.js" type="text/javascript"></script>
-    <script src="BlueSky/plugins/Bluesky.Drag.js" type="text/javascript"></script>
+    <!--<script src="BlueSky/plugins/Bluesky.Drag.js" type="text/javascript"></script>-->
     <link href="BlueSky/themes/gray/css/Bluesky.Drag.css" rel="stylesheet" type="text/css" />
     <link href="BlueSky/themes/glass/css/Bluesky.Window.css" rel="stylesheet" type="text/css" />
-    <script src="BlueSky/plugins/Bluesky.Window.js" type="text/javascript"></script>
+    <!--<script src="BlueSky/plugins/Bluesky.Window.js" type="text/javascript"></script>-->
     <link href="BlueSky/themes/gray/css/Bluesky.MessageBox.css" rel="stylesheet" type="text/css" />
-    <script src="BlueSky/plugins/Bluesky.MessageBox.js" type="text/javascript"></script>
+    <!--<script src="BlueSky/plugins/Bluesky.MessageBox.js" type="text/javascript"></script>-->
+    <script type="text/javascript">
+        Bluesky.loadComponents(["Drag", "Window", "MessageBox"]);
+    </script>
     <script type="text/javascript">
         Bluesky.ready(function() {
             //windowFactory.mainWindow = window;
             //windowFactory.menuWindow = window;
-            var strLoginUrl = "Window.aspx";
-            var bWindow = Bluesky.component.create("Window", {
-                title: "用户登录",
-                width: 400,
-                height: 300,
-                renderTo: document.body,
-                closeable: false,
-                maximum: false,
-                minimum: false,
-                resizeable: false,
-                moveable: true,
-                mask: false,
-                loader: {
-                    url: strLoginUrl
-                },
-                icon: {
-                    show: true,
-                    url: "/Include/image/ActionImages/role.png"
-                }
-            });
-            //登记界面随着窗口的变化居中
-            var body = Bluesky(document.body);
-            Bluesky(window).addEvent("resize", function() {
-                bWindow.setPosition({
-                    x: (body.width() - bWindow.width) / 2,
-                    y: (body.height() - bWindow.height) / 2
+            setTimeout(function() {
+                var strLoginUrl = "Window.aspx";
+                var bWindow = Bluesky.component.create("Window", {
+                    title: "用户登录",
+                    width: 400,
+                    height: 300,
+                    renderTo: document.body,
+                    closeable: false,
+                    maximum: false,
+                    minimum: false,
+                    resizeable: false,
+                    moveable: true,
+                    mask: false,
+                    loader: {
+                        url: strLoginUrl
+                    },
+                    icon: {
+                        show: true,
+                        url: "/Include/image/ActionImages/role.png"
+                    }
                 });
-            });
+                //登记界面随着窗口的变化居中
+                var body = Bluesky(document.body);
+                Bluesky(window).addEvent("resize", function() {
+                    bWindow.setPosition({
+                        x: (body.width() - bWindow.width) / 2,
+                        y: (body.height() - bWindow.height) / 2
+                    });
+                });
+
+            }, 500);
         });
     </script>
 </head>

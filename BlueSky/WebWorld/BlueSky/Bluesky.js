@@ -389,7 +389,31 @@
                 }
                 return json + "";
             }
-        }
+        },
+		loadComponents : function(components){
+			var len = components.length;
+			if(components && len > 0) {
+				//获取Bluesky.js的请求地址,读取根目录地址
+				var rootPath = "";
+				var scripts = document.getElementsByTagName("script");
+				for(var i = 0; i < scripts.length; i++) {
+					if(scripts[i].src && scripts[i].src.toLowerCase().indexOf("/bluesky.js") > 0) {
+						rootPath = scripts[i].src.split(/bluesky.js/ig)[0];
+						break;
+					}
+				}
+				if(!rootPath || "" == rootPath) {
+					return;
+				}
+				var head = document.getElementsByTagName("head")[0];
+				for(var i = 0; i < len ; i++) {
+					var comScript = document.createElement("script");
+					comScript.type = "text/javascript";
+					comScript.src = rootPath + "plugins/Bluesky." + components[i] + ".js";
+					head.appendChild(comScript);
+				}
+			}
+		}
     });
 
     BlueSky.instance.extend({
