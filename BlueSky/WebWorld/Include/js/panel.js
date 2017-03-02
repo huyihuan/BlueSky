@@ -78,6 +78,18 @@ BlueSky.Panel.prototype.setSplitPanel = function(_splitPanel) {
         setTimeout(function() { tFrame.src = _splitPanel.url }, 1);
     }
 }
+BlueSky.Panel.prototype.getPanel = function() {
+    var index = arguments[0];
+    if (isNaN(index)) {
+        return null;
+    }
+    var tbPanelContainer = document.getElementById(this.id);
+    if (undefined == tbPanelContainer) {
+        return;
+    }
+    return Bluesky(tbPanelContainer.lastChild.childNodes[index].firstChild);
+}
+
 BlueSky.Panel.prototype.init = function(_arg) {
     this._initArgument(_arg);
     BlueSky.panelCount++;

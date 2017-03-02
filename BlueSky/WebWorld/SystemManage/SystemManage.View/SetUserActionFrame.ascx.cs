@@ -16,8 +16,6 @@ namespace WebWorld.SystemManage
         protected void Page_Load(object sender, EventArgs e)
         {
             strActionUrl = SystemUtil.ResovleSingleFormUrl(this.Request, "SetUserAction", "userid=" + PageUtil.GetQueryInt(this.Request, "id", 0));
-            if (!IsPostBack)
-                strTree = SystemFunctionUtil.CreateFunctionTree();
         }
     }
 }

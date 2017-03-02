@@ -79,23 +79,13 @@
     <Content Include="Desktop.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Default.html" />
-    <Content Include="Include\css\BlueSky.Button.css" />
-    <Content Include="Include\css\Bluesky.Drag.css" />
-    <Content Include="Include\css\Bluesky.Panel.css" />
-    <Content Include="Include\css\Bluesky.Resizer.css" />
-    <Content Include="Include\css\Bluesky.SplitPanel.css" />
-    <Content Include="Include\css\Bluesky.Tabs.css" />
     <Content Include="Include\css\contextmenu.css" />
-    <Content Include="Include\css\BlueSky.MessageBox.css" />
     <Content Include="Include\css\desktop.css" />
     <Content Include="Include\css\desktopmain.css" />
-    <Content Include="Include\css\Bluesky.Masklayer.css" />
     <Content Include="Include\css\layout.css" />
-    <Content Include="Include\css\main.css" />
     <Content Include="Include\css\menu.css" />
     <Content Include="Include\css\panel.css" />
     <Content Include="Include\css\tab.css" />
-    <Content Include="Include\css\BlueSky.Window.css" />
     <Content Include="Include\html\VCode.aspx" />
     <Content Include="Include\html\Window.html" />
     <Content Include="Include\image\TreeImages\firstLine.gif" />
@@ -113,22 +103,11 @@
     <Content Include="Include\image\TreeImages\oneMinus.gif" />
     <Content Include="Include\image\TreeImages\onePlus.gif" />
     <Content Include="Include\image\TreeImages\plus.gif" />
-    <Content Include="Include\js\Bluesky.Drag.js" />
-    <Content Include="Include\js\Bluesky.js" />
-    <Content Include="Include\js\Bluesky.MessageBox.js" />
-    <Content Include="Include\js\Bluesky.Panel.js" />
-    <Content Include="Include\js\Bluesky.Resizer.js" />
-    <Content Include="Include\js\Bluesky.SplitPanel.js" />
-    <Content Include="Include\js\Bluesky.Tabs.js" />
-    <Content Include="Include\js\Bluesky.Window.js" />
     <Content Include="Include\js\contextmenu.js" />
-    <Content Include="Include\js\form.bak.js" />
     <Content Include="Include\js\layout.js" />
     <Content Include="Include\js\desktop.js" />
     <Content Include="Include\js\form.js" />
-    <Content Include="Include\js\Bluesky.Masklayer.js" />
     <Content Include="Include\js\jquery.json.js" />
-    <Content Include="Include\js\layout.bak.js" />
     <Content Include="Include\js\jquery-1.7.2.min.js" />
     <Content Include="Include\js\menu.js" />
     <Content Include="Include\js\panel.js" />
@@ -522,7 +501,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BlueSky\Bluesky.min.js.bak" />
     <Content Include="BlueSky\Bluesky.css" />
     <Content Include="BlueSky\Bluesky.js" />
     <Content Include="BlueSky\icons\accept.png" />
@@ -1571,11 +1549,6 @@
     <Content Include="BlueSky\themes\green\css\Bluesky.Tabs.css" />
     <Content Include="BlueSky\themes\green\css\Bluesky.Window.css" />
     <Content Include="CompressGzip.aspx" />
-    <Content Include="Include\css\Bluesky.MusicPlayer.css" />
-    <Content Include="Include\css\Bluesky.Tree.css" />
-    <Content Include="Include\js\Bluesky.MusicPlayer.js" />
-    <Content Include="Include\js\Bluesky.Performance.js" />
-    <Content Include="Include\js\Bluesky.Tree.js" />
     <Content Include="Server\SystemManage\Login.ashx" />
     <Content Include="SystemManage\SystemManage.View\MFCOCXTest.ascx" />
     <Content Include="SystemManage\SystemManage.View\NoticeAdd.ascx" />

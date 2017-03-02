@@ -13,8 +13,7 @@
     <script src="BlueSky/plugins/Bluesky.Tabs.js" type="text/javascript"></script>
     <link href="BlueSky/themes/gray/css/Bluesky.Tabs.css" rel="stylesheet" type="text/css" />
     <script src="Include/js/form.js" type="text/javascript"></script>
-    
-    <link href="Include/css/main.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript">
         function nodeClick(_node) {
             if (undefined == _node)

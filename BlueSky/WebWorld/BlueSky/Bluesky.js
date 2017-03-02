@@ -262,6 +262,9 @@
         isArray: function() {
             return toString.call(arguments[0]) === "[object Array]";
         },
+		isString : function() {
+			return toString.call(arguments[0]) === "[object String]";
+		},
         util: {
             parseInt: function(_strValue, _defaultValue) {
                 var parseValue = parseInt(_strValue);

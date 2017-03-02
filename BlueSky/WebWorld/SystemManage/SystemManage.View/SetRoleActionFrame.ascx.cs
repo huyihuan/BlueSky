@@ -17,8 +17,6 @@ namespace WebWorld.SystemManage
         protected void Page_Load(object sender, EventArgs e)
         {
             strActionUrl = string.Format("{0}&roleid={1}", SystemUtil.ResovleSingleFormUrl(this.Request, "SetRoleAction"), PageUtil.GetQueryInt(this.Request, "id", 0));
-            if (!IsPostBack)
-                strTree = SystemFunctionUtil.CreateFunctionTree();
         }
     }
 }
